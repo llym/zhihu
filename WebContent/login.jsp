@@ -133,8 +133,12 @@
                     $(".input-val").val('');
                     $.post("login.do",
         				    {
+<<<<<<< HEAD
                     	'username':username,
                     	'password':md5(password)
+=======
+                    	'username':username,'password':md5(password)
+>>>>>>> 12677f8c6f5a551b4c5013d9884cf3567aabaad4
         				    },
         				        function(data,status){
         				        alert(data);

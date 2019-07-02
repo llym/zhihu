@@ -1,3 +1,7 @@
 /com/
 /config/
+<<<<<<< HEAD
+=======
+/jdbc.properties
+>>>>>>> 12677f8c6f5a551b4c5013d9884cf3567aabaad4
 /mapper/
