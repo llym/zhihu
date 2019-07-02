@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+    <mapper namespace="com.jy.dao.FollowDao">
+        <insert id="addFollow" parameterType="Follow" >
+            insert into follow values (#{user1},#{user2})   
+        </insert>
+        <delete id="unfollow" parameterType="Follow">
+        	delete from follow where user1=#{user1} and user2=#{user2}
+        </delete>
+        <delete id="delFollow" parameterType="int">
+        	delete from follow where user2=#{id}
+        </delete>
+       
+        <select id="getUserFollow" parameterType="int" resultType="Follow">
+            select * from follow where user1=#{id}
+        </select>
+        
+        
+       
+    </mapper>
