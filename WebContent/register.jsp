@@ -43,6 +43,7 @@ body{
 </style>
 
 <script type="text/javascript" src="common/tool/js/jquery-1.9.0.min.js" ></script>
+<script src="common/tool/js/md5.js"></script>
 <script>
  $(function(){
   var show_num = [];
@@ -51,9 +52,9 @@ body{
    draw(show_num);
   })
   $(".btn1").on('click',function(){
-   var telnum=$("#telnum").val();//手机号
-   var password1=$("#password1").val();
-   var password2=$("#password2").val();
+   var telnum=$("input#telnum").val();//手机号
+   var password1=$("input#password1").val();
+   var password2=$("input#password2").val();
    var checkval = $("#checkval").val();//验证码
    var num = show_num.join("");
    if(telnum==""){
@@ -72,16 +73,18 @@ body{
       $('#checkval').attr('placeholder',"请输入验证码");
       $('#checkval').addClass("change");
    }
-   if(password1!=password2){
+   if(password1!= password2){
 	   $('#label').text('确认密码不正确');
    }
   else if(checkval == num&&password1==password2){
+	$('#label').text('');
+	alert('111')
     $.ajax({
       type:"post",
       url:"register.do",
       data:{
         'telnum':telnum,
-        'password':password2
+        'password':md5(password2)
       },
       success:function(result){
     	  
@@ -92,7 +95,7 @@ body{
     $('#label').text('验证码错误！请重新输入！');
     draw(show_num);
     $(".input-val").val('');
-    // draw(show_num);
+    
    }
   })
  })
@@ -191,7 +194,7 @@ body{
     </button>
   </form>
   <p class="mt-5">注册即代表同意《知乎协议》《隐私保护指引》<a href="#">注册机构号</a></p>
-  <div class="mt-5 mb-2"><p>已有账号？<a href="#">登录</a></p></div>
+  <div class="mt-5 mb-2"><p>已有账号？<a href="login.jsp">登录</a></p></div>
 </div>
 </body>
 </html>

@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
@@ -7,7 +7,7 @@
 <html>
 
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <title>登录</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/css/bootstrap.min.css">
@@ -16,6 +16,7 @@
     <script src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/js/bootstrap.min.js"></script>
      <script src="common/tool/js/jquery-1.9.0.min.js"></script>
+     <script src="common/tool/js/md5.js"></script>
     <script src="common/tool/js/jquery.toggle-password.js"></script>
     <style>
         .change::-webkit-input-placeholder {
@@ -129,15 +130,23 @@
                     }
                     alert('提交成功！');
                     $(".input-val").val('');
-                   
-                     $.ajax({
+                    $.post("login.do",
+        				    {
+                    	'username':username,'password':md5(password)
+        				    },
+        				        function(data,status){
+        				        alert(data);
+        				        window.location.reload();
+        				    });
+
+                     /* $.ajax({
                        type:'post',
-                       data:{'username':username,'password':password},
+                       data:{'username':username,'password':md5('password')},
                        url:"login.do",
                        success:function(result){
-
+							alert(result)
                        } 
-                    }); 
+                    });  */
                 
                 } else {
                     flag=false;

@@ -29,21 +29,24 @@ public class LoginController {
         System.out.println("LoginController->login");
         System.out.println(username);
         System.out.println(password);
-        return "�����̨";
+        return "中文";
         /*if(username.equals(""))
-        	return "�������˺�";
+        	return "请输入账号";
         return userService.findUser(username, password,request);*/
         
     }
-	@RequestMapping("/register.do")
-    public ModelAndView register(String username,String userpassword,HttpServletRequest request, HttpServletResponse response) throws Exception {
-        System.out.println("进入Controller-register");
-        ModelAndView mav = new ModelAndView("register");
-        return mav;
+	@ResponseBody
+	@RequestMapping(value="/register.do",produces="html/text;charset=utf-8")
+    public String register(String username,String password,HttpServletRequest request, HttpServletResponse response) throws Exception {
+        System.out.println("loginController-register");
+        System.out.println(username);
+        System.out.println(password);
+		return "注册成功";
+       
     }
 	@RequestMapping("/updateUser.do")
     public ModelAndView update(int id,HttpServletRequest request, HttpServletResponse response) throws Exception {
-        System.out.println("进入UserController-update");
+        System.out.println("杩涘叆UserController-update");
         ModelAndView mav = new ModelAndView("update");
         System.out.println(id);
         User user = userService.getUserById(id);
@@ -52,7 +55,7 @@ public class LoginController {
     }
 	@RequestMapping("/saveUpdateUser.do")
     public ModelAndView saveUpdate(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        System.out.println("进入UserController-saveUpdate");
+        System.out.println("杩涘叆UserController-saveUpdate");
         ModelAndView mav = new ModelAndView("redirect:/userList");
         String userId =request.getParameter("userId");
         System.out.println(userId);
@@ -69,19 +72,19 @@ public class LoginController {
 	
 	@RequestMapping("/loginResult.do")
     public ModelAndView loginResult(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        System.out.println("进入LoginController->loginResult");
+        System.out.println("杩涘叆LoginController->loginResult");
         ModelAndView mav = new ModelAndView("homePage");
         return mav;
     }
 	@RequestMapping("/test.do")
     public ModelAndView test(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        System.out.println("进入LoginController->loginResult");
+        System.out.println("杩涘叆LoginController->loginResult");
         ModelAndView mav = new ModelAndView("test");
         return mav;
     }
 	@RequestMapping("/userList.do")
     public ModelAndView userList(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        System.out.println("进入LoginController->userList");
+        System.out.println("杩涘叆LoginController->userList");
         ModelAndView mav = new ModelAndView("userList");
         String name = (String) request.getSession().getAttribute("username");
         int id = userService.findUserByName(name).getId();
@@ -93,7 +96,7 @@ public class LoginController {
     }
 	@RequestMapping("/searchUserByName")
     public ModelAndView search(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        System.out.println("进入Controller-search");
+        System.out.println("杩涘叆Controller-search");
         ModelAndView mav = new ModelAndView("userList");
         String name = request.getParameter("searchUserName");
         List<User> userList = userService.searchUserByName(name);
@@ -104,14 +107,14 @@ public class LoginController {
 	@ResponseBody
 	@RequestMapping(value="/addUser",produces="html/text;charset=utf-8")
     public String addUser(String username,String password,String repassword,HttpServletRequest request, HttpServletResponse response) throws Exception {
-        System.out.println("进入UserController");
+        System.out.println("杩涘叆UserController");
         return userService.addUser(username, password,repassword);
     }
 	
 	@ResponseBody
 	@RequestMapping(value="/delUser",produces="html/text;charset=utf-8")
     public String delUser(int id,HttpServletRequest request, HttpServletResponse response) throws Exception {
-        System.out.println("进入UserController");
+        System.out.println("杩涘叆UserController");
         return userService.delUser(id);
  		
         
