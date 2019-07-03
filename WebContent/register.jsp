@@ -6,16 +6,13 @@
 <head>
 <meta charset="UTF-8">
 <title>注册</title>
-<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" 
-integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" href="common/tool/bootstrap4/css/bootstrap.css">
 <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js" 
 integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js" 
 integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js" 
-integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="common/tool/bootstrap4/js/bootstrap.js" ></script>
 
-</script>
 <style type="text/css">
 body{
   background-image:url(common/image/register-img.jpg);
@@ -44,8 +41,12 @@ body{
 
 <script type="text/javascript" src="common/tool/js/jquery-1.9.0.min.js" ></script>
 <script src="common/tool/js/md5.js"></script>
+<script src="common/tool/js/base_form.js"></script>
 <script>
+	
  $(function(){
+	 $('#telnum').cbNum().cbLen(11,11);
+	 $('#telnum').cbFreeBlur( { regExp:/^\d{11}$/, msg:"请输入正确的手机号码" });
   var show_num = [];
   draw(show_num);
   $("#canvas").on('click',function(){
