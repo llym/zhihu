@@ -39,7 +39,13 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public void insertUserService(User user) {
-		userDao.insertUser(user);
+	public String insertUserService(User user) {
+		try {
+			userDao.insertUser(user);
+			return "注册成功";
+		}
+		catch(Exception e){
+			return "注册失败";
+		}
 	}	
 }

@@ -22,20 +22,21 @@ public class LoginController {
 	@Autowired
 	private UserService userservice;
 	
-//	//测试界面
-//	@RequestMapping("/test.do")
-//	public String error() {
-//		
-//		String a=userservice.findUserService("111","222");
-//		System.out.println(a);
-//		return "hello";
-//	}
-//	
+	//测试界面
+	@RequestMapping("/test.do")
+	public String error() {
+		
+		String a=userservice.findUserService("111","222");
+		System.out.println(a);
+		return "hello";
+	}
+	
 	//登录指令
 	@ResponseBody
 	@RequestMapping(value="/login.do",produces="html/text;charset=utf-8")
 	public String login(String username,String password,HttpServletRequest request,HttpServletResponse reponse,HttpSession session) {
 		System.out.println(username+"++++"+password);
+		session.setAttribute("username",username);
 		String a=userservice.findUserService(username,password);
 		System.out.println(a);
 		return a;
@@ -48,8 +49,8 @@ public class LoginController {
 		User user = new User();
 		user.setTelnum(telnum);
 		user.setPassword(password);
-		userservice.insertUserService(user);
-		return "注册成功";
+		String requset=	userservice.insertUserService(user);
+		return requset;
 	}
 
 }

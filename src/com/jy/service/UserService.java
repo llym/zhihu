@@ -7,5 +7,5 @@ public interface UserService {
 	
 	public String findUserService(String username,String password);
 	
-	public void insertUserService(User user);
+	public String insertUserService(User user);
 }

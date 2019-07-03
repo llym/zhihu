@@ -78,7 +78,6 @@ body{
    }
   else if(checkval == num&&password1==password2){
 	$('#label').text('');
-	alert('111')
     $.ajax({
       type:"post",
       url:"register.do",
@@ -86,9 +85,9 @@ body{
         'telnum':telnum,
         'password':md5(password2)
       },
-      success:function(result){
-    	  
-        alert("注册成功")
+      success:function(result){ 
+        alert(result)
+        
       }
     });
    }else{
