@@ -45,8 +45,11 @@ body{
 <script>
 	
  $(function(){
+	 //限制输入框内容
 	 $('#telnum').cbNum().cbLen(11,11);
 	 $('#telnum').cbFreeBlur( { regExp:/^\d{11}$/, msg:"请输入正确的手机号码" });
+	 
+	 
   var show_num = [];
   draw(show_num);
   $("#canvas").on('click',function(){
@@ -168,8 +171,8 @@ body{
           	中国+86
         </button>
         <div class="dropdown-menu">
-        <c:forEach items="${users}" var="user" >	
-			<a class="dropdown-item" >${user.username}</a>	
+        <c:forEach items="${countrys}" var="c" >	
+			<a class="dropdown-item" >${c}</a>	
 		</c:forEach>
         </div>
       </div>

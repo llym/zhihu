@@ -1,5 +1,6 @@
 package com.jy.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -49,5 +50,7 @@ public class LoginController {
 		String requset=	userservice.insertUserService(user);
 		return requset;
 	}
+		
+	
 
 }
