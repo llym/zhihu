@@ -138,7 +138,9 @@
         				    },
         				        function(data,status){
         				        alert(data);
-        				        window.location.reload();
+        				        if(data=="登录成功"){
+        				        	window.location.href="homePage";
+        				        }
         				    });
                      /* $.ajax({
                        type:'post',
