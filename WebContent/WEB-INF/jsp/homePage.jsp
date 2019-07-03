@@ -1,3 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 
@@ -9,7 +13,7 @@
     <script src="common/tool/bootstrap4/js/bootstrap.js"></script>
     <link href="common/tool/layui/css/layui.css" rel="stylesheet">
     <script src="common/tool/layui/layui.js"></script>
-    <title>首页</title>
+   <title>首页</title>
     <style>
         body {
             background-color: rgb(248, 248, 248);

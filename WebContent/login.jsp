@@ -139,7 +139,7 @@
         				        function(data,status){
         				        alert(data);
         				        if(data=="登录成功"){
-        				        	window.location.href="homePage";
+        				        	window.location.href="homePage.do";
         				        }
         				    });
                      /* $.ajax({

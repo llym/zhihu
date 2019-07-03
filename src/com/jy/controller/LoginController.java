@@ -22,13 +22,10 @@ public class LoginController {
 	@Autowired
 	private UserService userservice;
 	
-	//测试界面
-	@RequestMapping("/test.do")
+	//主界面
+	@RequestMapping("/homePage.do")
 	public String error() {
-		
-		String a=userservice.findUserService("111","222");
-		System.out.println(a);
-		return "hello";
+		return "homePage";
 	}
 	
 	//登录指令
@@ -41,7 +38,7 @@ public class LoginController {
 		System.out.println(a);
 		return a;
 	}
-	
+	//注册指令
 	@ResponseBody
 	@RequestMapping(value="/register.do",produces="html/text;charset=utf-8")
 	public String register(String telnum,String password,HttpServletRequest request,HttpServletResponse reponse,HttpSession session) {
