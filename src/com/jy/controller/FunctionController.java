@@ -7,7 +7,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class FunctionController {
 	//跳转到个人主页
-	@RequestMapping("personalHomePage.do")
+	@RequestMapping("myPage.do")
 	public ModelAndView personal() {
 		ModelAndView mav = new ModelAndView("MyPage");
 		return mav;

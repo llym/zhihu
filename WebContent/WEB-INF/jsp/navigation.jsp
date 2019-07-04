@@ -103,7 +103,7 @@
                     src="common/image/sculpture.jpg" style="
                 width:30px;height:30px;" />
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#"><input type="image" src="common/image/my.png" style="
+                    <a class="dropdown-item" href="myPage.do"><input type="image" src="common/image/my.png" style="
                         width:20px;height:20px;">&nbsp;&nbsp;我的主页</a>
                     <a class="dropdown-item" href="#"><input type="image" src="common/image/setting.png"
                             style="

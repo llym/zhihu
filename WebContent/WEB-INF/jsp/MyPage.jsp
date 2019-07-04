@@ -108,7 +108,7 @@ integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCm
         <span class="font-weight-bold"><h3>虾米</h3></span>
         <div id="demo" class="collapse"><p class="font-weight-bold">所在的行业</p></div>
         <a href="#demo" id="change-text" data-toggle="collapse" onclick="fold()">﹀ 查看详细资料</a>
-        <a class="btn btn-outline-primary edit" href="#">编辑个人资料</a>
+        <a class="btn btn-outline-primary edit" href="updatePersonalData.do">编辑个人资料</a>
     </div>
     </div>       
 </div>
