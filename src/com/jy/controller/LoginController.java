@@ -75,7 +75,7 @@ public class LoginController {
         	list4.addAll(list3);
         }
         	System.out.println(list4);
-            int a=Hlist.get(0).getQuestionid();
+            //int a=Hlist.get(0).getQuestionid();
 			ModelAndView mav =new ModelAndView("homePage");
 			mav.addObject("quelist",list);
 			mav.addObject("comlist",list2);
