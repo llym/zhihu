@@ -1,17 +1,11 @@
 package com.jy.dao;
 
+import java.util.List;
+
 import com.jy.entity.Question;
 
 public interface QuestionDao {
-    int deleteByPrimaryKey(Integer questionid);
+	
+	public List<Question> getQuestion(String name);
 
-    int insert(Question record);
-
-    int insertSelective(Question record);
-
-    Question selectByPrimaryKey(Integer questionid);
-
-    int updateByPrimaryKeySelective(Question record);
-
-    int updateByPrimaryKey(Question record);
 }
