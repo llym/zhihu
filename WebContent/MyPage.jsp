@@ -38,6 +38,7 @@ integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCm
 }
 .content{
     position: relative;
+    height:500px;
     top: 150px;
     left: 50px;
 }
