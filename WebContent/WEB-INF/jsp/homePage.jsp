@@ -26,10 +26,26 @@
             width: 600px;
         }
 
-        .right {
+        .right1 {
             margin-right: 100px;
             float: left;
             height: 100px;
+            width: 300px;
+            background: white;
+        }
+
+        .right2 {
+            margin-right: 100px;
+            float: left;
+            height: 200px;
+            width: 300px;
+            background: white;
+        }
+
+        .right3 {
+            margin-right: 100px;
+            float: left;
+            height: 200px;
             width: 300px;
             background: white;
         }
@@ -113,7 +129,7 @@
                 url: '',
 
             });
-            return false;
+            layer.close(layer.index);
         });
         $("#shared").click(function () {
             $("#shared").attr('disabled', true);
@@ -125,11 +141,6 @@
 
             });
         });
-        // $("#share").popover({
-        //     placement:'bottom',
-        //     html:true,
-        //     content:$('#shareList')
-        // });
         $('a[data-toggle="popover"]').popover({
             placement: 'bottom',
             trigger: "focus",
@@ -260,6 +271,73 @@
         var description = $("#description").val();
         alert(description);
     }
+    function writeIdeas() {
+        $("[name='testname']").val("xxxxxxxxxxxxxxx");//向模态框中赋值
+        layui.use(['layer'], function () {
+            var layer = layui.layer, $ = layui.$;
+            layer.open({
+                type: 1,//类型
+                area: ['600px', '500px'],//定义宽和高
+                title: false,//题目
+                shadeClose: false,//点击遮罩层关闭
+                content: $('#writeIdeas')//打开的内容
+            });
+        })
+    }
+    function previewImage(file) {
+        var MAXWIDTH = 90;
+        var MAXHEIGHT = 90;
+        $("#deletePhoto").show();
+        var div = document.getElementById('preview');
+        if (file.files && file.files[0]) {
+            div.innerHTML = '<img id=imghead onclick=$("#previewImg").click()>';
+            var img = document.getElementById('imghead');
+            img.onload = function () {
+                var rect = clacImgZoomParam(MAXWIDTH, MAXHEIGHT, img.offsetWidth, img.offsetHeight);
+                img.width = rect.width;
+                img.height = rect.height;
+                //                 img.style.marginLeft = rect.left+'px';
+                img.style.marginTop = rect.top + 'px';
+            }
+            var reader = new FileReader();
+            reader.onload = function (evt) { img.src = evt.target.result; }
+            reader.readAsDataURL(file.files[0]);
+        }
+        else //兼容IE
+        {
+            var sFilter = 'filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale,src="';
+            file.select();
+            var src = document.selection.createRange().text;
+            div.innerHTML = '<img id=imghead>';
+            var img = document.getElementById('imghead');
+            img.filters.item('DXImageTransform.Microsoft.AlphaImageLoader').src = src;
+            var rect = clacImgZoomParam(MAXWIDTH, MAXHEIGHT, img.offsetWidth, img.offsetHeight);
+            status = ('rect:' + rect.top + ',' + rect.left + ',' + rect.width + ',' + rect.height);
+            div.innerHTML = "<div id=divhead style='width:" + rect.width + "px;height:" + rect.height + "px;margin-top:" + rect.top + "px;" + sFilter + src + "\"'></div>";
+        }
+    }
+    function clacImgZoomParam(maxWidth, maxHeight, width, height) {
+        var param = { top: 0, left: 0, width: width, height: height };
+        if (width > maxWidth || height > maxHeight) {
+            rateWidth = width / maxWidth;
+            rateHeight = height / maxHeight;
+
+            if (rateWidth > rateHeight) {
+                param.width = maxWidth;
+                param.height = Math.round(height / rateWidth);
+            } else {
+                param.width = Math.round(width / rateHeight);
+                param.height = maxHeight;
+            }
+        }
+        param.left = Math.round((maxWidth - param.width) / 2);
+        param.top = Math.round((maxHeight - param.height) / 2);
+        return param;
+    }
+    function publish(){
+        var idea=$("#idea").val();
+        alert(idea);
+    }
 
     </script>
 </head>
@@ -351,7 +429,7 @@
 
         </div>
 
-        <div class="right" style="background-color:white;float:right">
+        <div class="right1" style="background-color:white;float:right">
             <div style="padding-left:40px;padding-top:20px;float:left">
                 <input type="image" src="common/image/commend.png" style="width:30px;height:30px">
                 <p class="mt-2"><a href="#">写回答</a></p>
@@ -360,7 +438,7 @@
                 <input type="image" src="common/image/article.png" style="width:30px;height:30px">
                 <p class="mt-2"><a href="#">写文章</a></p>
             </div>
-            <div style="padding-left:50px;padding-top:20px;float:left">
+            <div style="padding-left:50px;padding-top:20px;float:left" onclick="writeIdeas()">
                 <input type="image" src="common/image/idea.png" style="width:30px;height:30px">
                 <p class="mt-2"><a href="#">写想法</a></p>
             </div>
@@ -369,6 +447,55 @@
                 <input type="image"  src="common/image/clock.png" style="width:20px;height:20px;margin-left: 20px;margin-top:20px;">
                 <a href="#" class="text-muted">&nbsp;我的稍后答</a>    
             </div>
+        </div>
+                <div class="right2" style="float:right;margin-top: 50px;">
+            <div style="padding-left:45px;padding-top:20px;float:left">
+                <input type="image" src="common/image/live.png" style="width:40px;height:40px">
+                <p class="mt-2"><a href="#">Live</a></p>
+            </div>
+            <div style="padding-left:45px;padding-top:20px;float:left">
+                <input type="image" src="common/image/bookstore.png" style="width:40px;height:40px">
+                <p class="mt-2"><a href="#">书店</a></p>
+            </div>
+            <div style="padding-left:45px;padding-top:20px;float:left">
+                <input type="image" src="common/image/roundtable.png" style="width:40px;height:40px">
+                <p class="mt-2"><a href="#">圆桌</a></p>
+            </div>
+            <div style="padding-left:45px;padding-top:20px;float:left">
+                <input type="image" src="common/image/column.png" style="width:40px;height:40px">
+                <p class="mt-2"><a href="#">专栏</a></p>
+            </div>
+            <div style="padding-left:45px;padding-top:20px;float:left">
+                <input type="image" src="common/image/payment.png" style="width:40px;height:40px">
+                <p class="mt-2"><a href="#">付费咨询</a></p>
+            </div>
+        </div>
+        <div class="right3" style="float:right;margin-top: 20px;">
+            <table class="table table-hover">
+                <tbody>
+                    <tr>
+                        <td><input type="image" src="common/image/collect.png" style="width:20px;height:20px">
+                        </td>
+                        <td>我的收藏</td>
+                    </tr>
+                    <tr>
+                        <td><input type="image" src="common/image/question.png" style="width:20px;height:20px">
+                        </td>
+                        <td>我关注的问题</td>
+                    </tr>
+                    <tr>
+                        <td><input type="image" src="common/image/invite.png" style="width:20px;height:20px">
+                        </td>
+                        <td>我的邀请</td>
+                    </tr>
+                    <tr>
+                        <td><input type="image" src="common/image/service.png" style="width:20px;height:20px">
+                        </td>
+                        <td>版权服务中心</td>
+                    </tr>
+                </tbody>
+
+            </table>
         </div>
     </div>
 
@@ -413,6 +540,21 @@
             </div>
         </form>
         <button type="button" class="btn btn-primary" id="affirm">确认创建</button>
+    </div>
+        <div id="writeIdeas" style="display:none;" align="center">
+        <h3 class="mt-5">写想法</h3>
+        <p class="text-muted mt-2" >分享你此刻的想法</p>
+        <textarea class="form-control mt-2" rows="10" style="width: 500px" id="idea"></textarea>
+        <p class="text-primary col-sm-4" style="float:left">选择图片上传</p>
+        <div class="big-photo mt-4" style="padding-right:400px">
+            <div id="preview">
+                <img id="imghead" border="0" src="common/image/photo_icon.png" width="50" height="50"
+                    onclick="$('#previewImg').click();">
+            </div>
+            <input type="file" onchange="previewImage(this)" style="display: none;" id="previewImg">
+            <p class="text-primary" style="display:none" onclick="deletePhoto()" id="deletePhoto">删除</p>
+        </div>
+        <button type="button" class="btn btn-primary btn-sm" style="width:200px" onclick="publish()">发布</button>
     </div>
 </body>
 
