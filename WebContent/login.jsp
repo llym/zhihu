@@ -142,14 +142,7 @@
         				        	window.location.href="homePage.do";
         				        }
         				    });
-                     /* $.ajax({
-                       type:'post',
-                       data:{'username':username,'password':md5('password')},
-                       url:"login.do",
-                       success:function(result){
-							alert(result)
-                       } 
-                    });  */
+                    
                 
                 } else {
                     flag=false;

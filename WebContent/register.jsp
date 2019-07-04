@@ -7,12 +7,10 @@
 <meta charset="UTF-8">
 <title>注册</title>
 <link rel="stylesheet" href="common/tool/bootstrap4/css/bootstrap.css">
-<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js" 
-integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js" 
 integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="common/tool/bootstrap4/js/bootstrap.js" ></script>
-
+<!-- <script src="common/tool/js/jquery.toggle-password.js"></script> -->
 <style type="text/css">
 body{
   background-image:url(common/image/register-img.jpg);
@@ -40,15 +38,17 @@ body{
 </style>
 
 <script type="text/javascript" src="common/tool/js/jquery-1.9.0.min.js" ></script>
+<script src="common/tool/layui/layui.js"></script>
 <script src="common/tool/js/md5.js"></script>
 <script src="common/tool/js/base_form.js"></script>
+<script src="common/tool/MiniDialog-es5.min.js"></script>
 <script>
 	
  $(function(){
 	 //限制输入框内容
 	 $('#telnum').cbNum().cbLen(11,11);
 	 $('#telnum').cbFreeBlur( { regExp:/^\d{11}$/, msg:"请输入正确的手机号码" });
-	 
+	 $('#password1').cbLen(6,50);
 	 
   var show_num = [];
   draw(show_num);
@@ -82,6 +82,7 @@ body{
    }
   else if(checkval == num&&password1==password2){
 	$('#label').text('');
+	draw(show_num);
     $.ajax({
       type:"post",
       url:"register.do",
@@ -90,8 +91,15 @@ body{
         'password':md5(password2)
       },
       success:function(result){ 
-        alert(result)
-        
+    	  alert(result)
+    	  if(result == '注册成功'){
+    		  Dialog.success( {
+    			    content: result,
+    			    showButton: false
+    			});
+    		  window.location.href="login.jsp";
+    	  }
+    	        
       }
     });
    }else{

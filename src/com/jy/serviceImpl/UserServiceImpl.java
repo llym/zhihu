@@ -45,6 +45,7 @@ public class UserServiceImpl implements UserService{
 			return "注册成功";
 		}
 		catch(Exception e){
+			System.out.println(e.getMessage());
 			return "注册失败";
 		}
 	}	

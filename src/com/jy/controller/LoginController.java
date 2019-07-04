@@ -47,8 +47,8 @@ public class LoginController {
 		User user = new User();
 		user.setTelnum(telnum);
 		user.setPassword(password);
-		String requset=	userservice.insertUserService(user);
-		return requset;
+		String result=	userservice.insertUserService(user);
+		return result;
 	}
 		
 	
