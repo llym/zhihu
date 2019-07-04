@@ -17,9 +17,19 @@
             </li>
         </ul>
         <form class="form-inline">
-            <input class="form-control mr-2" type="text" placeholder="Search">
-            <button class="btn btn-primary ml-2" type="button">提问</button>
+           <div class="input-group">
+      			<input type="text" class="form-control" placeholder="Search">
+      			
+      			<div class="input-group-prepend">
+      				<button class="input-group-text" id="basic-addon1">
+      				<i class="layui-icon layui-icon-search" style="font-size: 16px; color: #1E9FFF;"></i>
+					</button>
+    			</div>
+    			
+    		</div>
+            
         </form>
+        <button class="btn btn-primary ml-2" type="button">提问</button>
         <ul class="nav">
             <li class="nav-item"><input type="image" class="ml-5" src='common/image/message.png' style="
                 width:30px;height:30px;" /></li>
