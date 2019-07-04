@@ -69,6 +69,18 @@ integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCm
             $('#change-text').text('﹀ 查看详细资料');
         }
     }
+    $(function(){
+        var val=$('.visi-menu').text();;
+        
+        $('.search-menu a').click(function(){
+            $(this).parent().each(function(){//移除其余非典中的状态
+                $('.search-menu a').removeClass("visi-menu");
+            });
+            var val1=$(this).text();
+                $('.visi-menu').text(val1);//把选中的值赋给当前值
+            $(this).addClass("visi-menu");//给所点击中的增加样式
+        })
+    });
   </script>
 
 </head>
@@ -163,30 +175,55 @@ integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCm
                 <div id="MyFocus" class="container tab-pane fade">                        
                     <nav class="navbar navbar-expand-sm bg-light "> 
                         <!-- Links -->
-                        <ul class="navbar-nav">
+                        <ul class="nav nva-tabs" role="tablist">
                           <li class="nav-item">
-                            <a class="nav-link active" href="#">我关注的人</a>
+                            <a class="nav-link active" data-toggle="tab" href="#MyFocusP">我关注的人</a>
                           </li>
                           <li class="nav-item">
-                            <a class="nav-link" href="#">关注我的人</a>
+                            <a class="nav-link" data-toggle="tab" href="#FcMe">关注我的人</a>
                           </li>
                           <li class="nav-item">
                                 <div class="dropdown">
-                                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
+                                        <a class="nav-link dropdown-toggle visi-menu" href="" data-toggle="dropdown">
                                                 我关注的专栏</a>
-                                        <div class="dropdown-menu">
-                                          <a id="MyFC" class="dropdown-item " href="#">我关注的专栏</a>
-                                          <a id="Mytop" class="dropdown-item" href="#">我关注的话题</a>
-                                          <a id="MyFQ" class="dropdown-item" href="#">我关注的问题</a>
-                                          <a id="Mycll" class="dropdown-item" href="#">我关注的收藏</a>
+                                        <div class="dropdown-menu search-menu" id="menu2">
+                                          <a  class="dropdown-item" data-toggle="tab" href="#MyFC">我关注的专栏</a>
+                                          <a  class="dropdown-item" data-toggle="tab" href="#Mytop">我关注的话题</a>
+                                          <a  class="dropdown-item" data-toggle="tab" href="#MyFQ">我关注的问题</a>
+                                          <a  class="dropdown-item" data-toggle="tab"  href="#Mycll">我关注的收藏</a>
                                         </div>
                                       </div>
                           </li>
                         </ul>                       
-                      </nav>                        
-                </div>
+                      </nav>
+                      <div class="tab-content">
+                        <div id="MyFocusP" class="container tab-pane active " >                        
+                                  <!--我关注的人-->  
+                                  <h1>111</h1>            
+                        </div>
+                        <div id="FcMe" class="container tab-pane fade">                        
+                            <!--关注我的人-->  
+                            <h1>222</h1>                   
+                        </div>
+                        <div id="MyFC" class=" container tab-pane fade">                        
+                                   <!--我关注的专栏--> 
+                                   <h1>333</h1>               
+                        </div>
+                        <div id="Mytop" class="container tab-pane fade">                        
+                                <!--我关注的话题--> 
+                                <h1>444</h1>                 
+                        </div>
+                        <div id="MyFQ" class="container tab-pane fade">                        
+                                    <!--我关注的问题--> 
+                                    <h1>555</h1>                
+                        </div>
+                        <div id="Mycll" class="container tab-pane fade">                        
+                                   <!--我关注的收藏-->
+                                   <h1>666</h1>                 
+                        </div>
+                      </div>                                              
+                </div> 
             </div>
-            <div class="dropdown-divider "></div>
     </div>
     <div class="col-sm-3 ml-4">
         <div class="row" style="height: 80px;">
@@ -201,22 +238,25 @@ integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCm
             </div>
         <div class="mt-2 text-left">
             <nav class="navbar navbar-expand-sm bg-light">
-                <ul class="nav flex-column text-left">
+                <ul class="nav flex-column nva-tabs text-left" role="tablist">
                 <li class="nav-item">
-                  <a class="nav-link" href="#Mytop">关注的话题<span class="ml-5 ml-2">0</span></a>
+                  <a class="nav-link" data-toggle="tab" href="#Mytop">关注的话题<span class="ml-5 ml-2">0</span></a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#MyFC">关注的专栏<span class="ml-5">0</span></a>
+                  <a class="nav-link" data-toggle="tab" href="#MyFC">关注的专栏<span class="ml-5">0</span></a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#Mytop">关注的问题<span class="ml-5">0</span></a>
+                  <a class="nav-link" href="#">关注的问题<span class="ml-5">0</span></a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link " href="#Mycll">关注的收藏<span class="ml-5">0</span></a>
                 </li>
+                <li class="nav-item">
+                        <a class="nav-link disabled text-primary">主页被浏览<span>0</span>次</a>
+                      </li>
               </ul>
             </nav>
-        </div><br/>
+        </div>
         <div style="height: 400px">
             <p class="font-weight-light text-primary">
                     刘看山.知乎指南.知乎协议知乎隐私保护指引<br>
