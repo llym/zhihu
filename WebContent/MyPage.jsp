@@ -38,8 +38,8 @@ integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCm
 }
 .content{
     position: relative;
-    height:500px;
-    top: 150px;
+    height: 500px;
+    top: 200px;
     left: 50px;
 }
 </style>
@@ -64,10 +64,8 @@ integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCm
 
 </head>
 <body style="background-color: #F6F6F6">
-        <!--引用导航栏-->
-    
+        <!--导航栏-->
         <div class="dropdown-divider "></div>
-    </nav>
     <br>
 <div class="container">
     <!--个人主页封面-->
@@ -96,8 +94,8 @@ integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCm
 <div class="container content">
     <div class="row">
     <div class="dropdown-divider "></div> 
-    <div class="col-sm-8">
-           <nav class="navbar navbar-expand-sm bg-light">
+    <div class="col-sm-8" style="background-color: white;height: 500px;">
+            <nav class="navbar navbar-expand-sm bg-light">
                     <ul class="nav nva-tabs" role="tablist">
                       <li class="nav-item">
                         <a class="nav-link active" data-toggle="tab" href="#MyAction">动态&nbsp;&nbsp;</a>
@@ -129,7 +127,7 @@ integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCm
                             </div>
                         </li>
                     </ul>
-                </nav>  
+                </nav> 
                 <div class="dropdown-divider "></div>
                 <div class="tab-content">
                 <div id="MyAction" class="container tab-pane active " >                        
@@ -154,36 +152,73 @@ integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCm
                     <h5 class="ml-3">我的收藏夹</h5>                        
                 </div>
                 <div id="MyFocus" class="container tab-pane fade">                        
-                    <nav class="navbar navbar-expand-sm bg-light">
- 
+                    <nav class="navbar navbar-expand-sm bg-light "> 
                         <!-- Links -->
                         <ul class="navbar-nav">
                           <li class="nav-item">
-                            <a class="nav-link" href="#">我关注的人</a>
+                            <a class="nav-link active" href="#">我关注的人</a>
                           </li>
                           <li class="nav-item">
                             <a class="nav-link" href="#">关注我的人</a>
                           </li>
                           <li class="nav-item">
-                            <a class="nav-link" href="#">我关注的专栏</a>
+                                <div class="dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
+                                                我关注的专栏</a>
+                                        <div class="dropdown-menu">
+                                          <a id="MyFC" class="dropdown-item " href="#">我关注的专栏</a>
+                                          <a id="Mytop" class="dropdown-item" href="#">我关注的话题</a>
+                                          <a id="MyFQ" class="dropdown-item" href="#">我关注的问题</a>
+                                          <a id="Mycll" class="dropdown-item" href="#">我关注的收藏</a>
+                                        </div>
+                                      </div>
                           </li>
-                        </ul>
-                       
+                        </ul>                       
                       </nav>                        
                 </div>
             </div>
-                <div class="dropdown-divider "></div>
+            <div class="dropdown-divider "></div>
     </div>
-    <div class="col-sm-3">
-        <div class="row">
-            <div class="col-sm-6 " style="background-color:white">
-                <a  href="#">关注了</a>
+    <div class="col-sm-3 ml-4">
+        <div class="row" style="height: 80px;">
+            <div class="col-sm-6 text-center pt-3" style="background-color:white;border-right:solid 1px #F6F6F6;">
+                <a  href="#">关注了</a><br/>
+                <sapn>0</sapn>
             </div>
-            <div class="col-sm-6 " style="background-color:white">
-                    <a href="#">关注者</a>
+            <div class="col-sm-6  text-center pt-3" style="background-color:white">
+                    <a href="#">关注者</a><br/>
+                    <span>0</span>
                 </div>
             </div>
-            
+        <div class="mt-2 text-left">
+            <nav class="navbar navbar-expand-sm bg-light">
+                <ul class="nav flex-column text-left">
+                <li class="nav-item">
+                  <a class="nav-link" href="#Mytop">关注的话题<span class="ml-5 ml-2">0</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#MyFC">关注的专栏<span class="ml-5">0</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#Mytop">关注的问题<span class="ml-5">0</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link " href="#Mycll">关注的收藏<span class="ml-5">0</span></a>
+                </li>
+              </ul>
+            </nav>
+        </div><br/>
+        <div style="height: 400px">
+            <p class="font-weight-light text-primary">
+                    刘看山.知乎指南.知乎协议知乎隐私保护指引<br>
+                    应用.工作.申请开通知乎机构号<br>
+                    侵权举报.网上有害信息举报专区<br>
+                    违法和不良信息举报：010-82716601<br>
+                    儿童色情信息举报专区<br>
+                    证照中心<br>
+                    联系我们 © 2019 知乎<br/>
+            </p>
+        </div> 
     </div>
     <div class="col-sm-1"></div>
 </div>
