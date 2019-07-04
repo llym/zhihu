@@ -1,6 +1,8 @@
 package com.jy.serviceImpl;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +17,7 @@ public class UserServiceImpl implements UserService{
 	UserDao userDao;
 	
 	@Override
-	public String findUserService(String username, String password) {
+	public String findUserService(String username, String password,HttpSession session) {
 		
 		try {
 			User user=userDao.findUser(username);
@@ -25,6 +27,7 @@ public class UserServiceImpl implements UserService{
 			System.out.println(b);
 		if (user!=null) {
 			if (a.equals(username)&&b.equals(password)) {
+				session.setAttribute("username", username);
 				return "登录成功";
 			}
 			else {

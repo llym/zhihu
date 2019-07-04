@@ -35,7 +35,7 @@ public class LoginController {
 	public String login(String username,String password,HttpServletRequest request,HttpServletResponse reponse,HttpSession session) {
 		System.out.println(username+"++++"+password);
 		session.setAttribute("username",username);
-		String a=userservice.findUserService(username,password);
+		String a=userservice.findUserService(username,password,session);
 		System.out.println(a);
 		return a;
 	}

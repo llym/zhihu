@@ -1,11 +1,13 @@
 package com.jy.service;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import com.jy.entity.User;
 
 public interface UserService {
 	
-	public String findUserService(String username,String password);
+	public String findUserService(String username,String password, HttpSession session);
 	
 	public String insertUserService(User user);
 
