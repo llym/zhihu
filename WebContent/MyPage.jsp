@@ -63,28 +63,8 @@ integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCm
 
 </head>
 <body style="background-color: #F6F6F6">
-        <!--导航栏-->
-    <nav class="navbar navbar-expand-lg bg-white navbar-white justify-content-center ">
-        <a class="navbar-brand text-primary text-lg" href="#">知乎</a>
-        <ul class="nav nav-tabs ml-5 mr-5">
-            <li class="nav-item"><a class="nav-link active font-weight-bold" href="#">首页</a>
-            </li>
-            <li class="nav-item"><a class="nav-link" href="#">发现</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">等你来答</a></li>
-            </li>
-        </ul>
-        <form class="form-inline">
-            <input class="form-control mr-2" type="text" placeholder="Search">
-            <button class="btn btn-primary ml-2" type="button">提问</button>
-        </form>
-        <div class="dropdown  ml-5">
-            <a  data-toggle="dropdown" href="#">我的</a>
-            <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">我的主页</a>
-                    <a class="dropdown-item" href="#">设置</a>
-                    <a class="dropdown-item" href="#">退出</a>
-                  </div>
-        </div>
+        <!--引用导航栏-->
+    
         <div class="dropdown-divider "></div>
     </nav>
     <br>
