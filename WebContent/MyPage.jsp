@@ -96,10 +96,10 @@ integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCm
     <div class="row">
     <div class="dropdown-divider "></div> 
     <div class="col-sm-8">
-            <nav class="navbar navbar-expand-sm bg-light">
-                    <ul class="navbar-nav">
+           <nav class="navbar navbar-expand-sm bg-light">
+                    <ul class="nav nva-tabs" role="tablist">
                       <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#MyAction">动态&nbsp;&nbsp;</a>
+                        <a class="nav-link active" data-toggle="tab" href="#MyAction">动态&nbsp;&nbsp;</a>
                       </li>
                       <li class="nav-item">
                             <a class="nav-link" data-toggle="tab" href="#MyAnswer">回答&nbsp;<span>0&nbsp;&nbsp;</span></a>
@@ -108,13 +108,13 @@ integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCm
                         <a class="nav-link" data-toggle="tab" href="#MyQuestion">提问&nbsp;<span>0&nbsp;&nbsp;</span></a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" href="#MyArticle">文章&nbsp;<span>0&nbsp;&nbsp;</span></a>
+                        <a class="nav-link" data-toggle="tab" href="#MyArticle">文章&nbsp;<span>0&nbsp;&nbsp;</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#MyColumn">专栏&nbsp;<span>0&nbsp;&nbsp;</span></a>
+                            <a class="nav-link" data-toggle="tab" href="#MyColumn">专栏&nbsp;<span>0&nbsp;&nbsp;</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#MyIdea">想法&nbsp;<span>0&nbsp;&nbsp;</span></a>
+                            <a class="nav-link" data-toggle="tab" href="#MyIdea">想法&nbsp;<span>0&nbsp;&nbsp;</span></a>
                         </li>
                         <li class="nav-item">
                             <div class="dropdown">
@@ -122,17 +122,17 @@ integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCm
                                     更多
                                 </button>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="#MyCollect">收藏</a>
-                                        <a class="dropdown-item" href="#MyFocus">关注</a>
+                                        <a class="dropdown-item" data-toggle="tab" href="#MyCollect">收藏</a>
+                                        <a class="dropdown-item" data-toggle="tab" href="#MyFocus">关注</a>
                                     </div>
                             </div>
                         </li>
                     </ul>
-                </nav> 
+                </nav>  
                 <div class="dropdown-divider "></div>
                 <div class="tab-content">
-                <div id="MyAction" class="container tab-pane fade">                        
-                    <h5 class="ml-3">我的动态</h5>                        
+                <div id="MyAction" class="container tab-pane active " >                        
+                    <h5 class="ml-3 ">我的动态</h5>                        
                 </div>
                 <div id="MyAnswer" class="container tab-pane fade">                        
                     <h5 class="ml-3">我的回答</h5>                        
@@ -152,19 +152,19 @@ integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCm
                 <div id="MyCollect" class="container tab-pane fade">                        
                     <h5 class="ml-3">我的收藏夹</h5>                        
                 </div>
-                <div id="MyFocus">                        
+                <div id="MyFocus" class="container tab-pane fade">                        
                     <nav class="navbar navbar-expand-sm bg-light">
  
                         <!-- Links -->
                         <ul class="navbar-nav">
                           <li class="nav-item">
-                            <a class="nav-link" href="#">Link 1</a>
+                            <a class="nav-link" href="#">我关注的人</a>
                           </li>
                           <li class="nav-item">
-                            <a class="nav-link" href="#">Link 2</a>
+                            <a class="nav-link" href="#">关注我的人</a>
                           </li>
                           <li class="nav-item">
-                            <a class="nav-link" href="#">Link 3</a>
+                            <a class="nav-link" href="#">我关注的专栏</a>
                           </li>
                         </ul>
                        
