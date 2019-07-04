@@ -42,6 +42,15 @@ integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCm
     top: 200px;
     left: 50px;
 }
+.normalFace{
+    width: 240px;
+    height: 240px;
+    background-size:cover;
+    display:block; 
+    border-radius:120px;
+    -webkit-border-radius:120px;
+    -moz-border-radius:120px
+}
 </style>
 <script type="text/javascript">
     function fileSelect() {
@@ -70,7 +79,7 @@ integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCm
 <div class="container">
     <!--个人主页封面-->
     <div class="ml-5">
-        <p><img class="myface" src="common/image/rg.jpg" onclick="fileSelect();"></p>
+        <p><img class="myface" src="common/image/id-img.jpg" onclick="fileSelect();"></p>
         <form id="form_face" enctype="multipart/form-data" style="width:auto;">
             <input type="file" name="fileToUpload" id="fileToUpload" onchange="fileSelected();" style="display:none;">
         </form>
@@ -78,7 +87,7 @@ integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCm
     <div >
     <!--个人主页头像-->
     <div class="face ml-5">
-            <p><img class="normalFace ml-5" src="common/image/xl.jpg" onclick="fileSelect();"></p>
+            <p><img class="normalFace ml-5" src="common/image/idImg.jpg" onclick="fileSelect();"></p>
             <form id="form_face" enctype="multipart/form-data" style="width:auto;">
              <input type="file" name="fileToUpload" id="fileToUpload" onchange="fileSelected();" style="display:none;">
             </form>
