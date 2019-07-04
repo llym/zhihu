@@ -49,6 +49,17 @@ body{
 	 $('#telnum').cbNum().cbLen(11,11);
 	 $('#telnum').cbFreeBlur( { regExp:/^\d{11}$/, msg:"请输入正确的手机号码" });
 	 $('#password1').cbLen(6,50);
+	 //输入完手机号后判断是否重复注册
+	 $("#telnum").blur(function(){
+		 var telnum=$("input#telnum").val();//手机号
+		 $.post("checkTelnum.do",
+				    {
+         	'telnum':telnum
+				    },
+				function(data,status){
+				    	$('#label').text(data);
+				    });
+		  });
 	 
   var show_num = [];
   draw(show_num);
@@ -91,15 +102,12 @@ body{
         'password':md5(password2)
       },
       success:function(result){ 
-    	  alert(result)
-    	  if(result == '注册成功'){
-    		  Dialog.success( {
-    			    content: result,
-    			    showButton: false
-    			});
-    		  window.location.href="login.jsp";
-    	  }
-    	        
+    	  Dialog({
+    		    title: "注册结果",
+    		    content: result,
+    		    showButton: false
+    		});
+    	  window.location.reload();
       }
     });
    }else{

@@ -50,7 +50,17 @@ public class LoginController {
 		String result=	userservice.insertUserService(user);
 		return result;
 	}
-		
+	
+	//检查手机号是否重复
+	@ResponseBody
+	@RequestMapping(value="/checkTelnum.do",produces="html/text;charset=utf-8")
+	public String checkTelnum(String telnum,HttpServletRequest request,HttpServletResponse reponse,HttpSession session) {
+		System.out.println(telnum);
+		User user = new User();
+		user.setTelnum(telnum);
+		String result=	userservice.checkTelnumService(user);
+		return result;
+	}
 	
 
 }

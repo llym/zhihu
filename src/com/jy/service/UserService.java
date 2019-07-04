@@ -8,4 +8,6 @@ public interface UserService {
 	public String findUserService(String username,String password);
 	
 	public String insertUserService(User user);
+
+	public String checkTelnumService(User user);
 }

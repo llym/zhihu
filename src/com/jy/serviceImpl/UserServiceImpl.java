@@ -48,5 +48,21 @@ public class UserServiceImpl implements UserService{
 			System.out.println(e.getMessage());
 			return "注册失败";
 		}
+	}
+
+	@Override
+	public String checkTelnumService(User user) {
+		
+		try {
+			User user2 = userDao.checkTelnum(user);
+			if(user2==null)
+				return "";
+			else
+				return "该手机号已注册";
+		}
+		catch(Exception e){
+			System.out.println(e.getMessage());
+			return "";
+		}
 	}	
 }
