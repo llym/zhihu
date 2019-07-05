@@ -137,7 +137,6 @@
                     	'password':md5(password)
         				    },
         				        function(data,status){
-        				        alert(data);
         				        if(data=="登录成功"){
         				        	window.location.href="homePage.do";
         				        }
