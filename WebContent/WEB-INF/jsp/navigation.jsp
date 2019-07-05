@@ -53,23 +53,30 @@
                         </li>
                     </ul>
                     <div class="tab-content">
+                    	<!-- 别人回答了你关注的问题收到的消息 -->
                         <div id="answer" class="container tab-pane active" align="center">
-                            <input type="image" src='common/image/mess.png' style="
-                                width:50px;height:50px;margin-top:100px" />
-                            <p>还没有消息</p>
+                            <!-- 嵌入jsp页面 -->
+                            <iframe src="contentAnswer.jsp" style="width:100%;height:300px;border:0px"></iframe>
+                            <div id="" style="float:left">
+                                <input type="image" src="common/image/setting.png" style="width:20px;height:20px"><span class="text-muted">&nbsp;设置</span></p>
+                            </div> 
+                            <span class="text-muted" style="padding-left:100px">查看全部通知</span>
                         </div>
+                        <!-- 好友私信消息 -->
                         <div id="friend" class="container tab-pane fade" align="center">
-                            <input type="image" src='common/image/mess.png' style="
-                                width:50px;height:50px;margin-top:100px" />
-                            <p>还没有消息</p>
+                            <iframe src="contentFriend.jsp" style="width:100%;height:300px;border:0px"></iframe>
+                            <div id="" style="float:left">
+                                <input type="image" src="common/image/setting.png" style="width:20px;height:20px"><span class="text-muted">&nbsp;设置</span></p>
+                            </div> 
+                            <span class="text-muted" style="padding-left:100px">查看全部通知</span>
                         </div>
+                        <!-- 别人点赞了你的评论 -->
                         <div id="like" class="container tab-pane fade">
-                            <p><span id="person" class="text-primary">clm</span>赞了你的评论<span id="question"
-                                    class="text-primary">恋练有词我用起来觉得不好，你们是怎么用的？</span></p>
-                            <hr />
-                            <p><span id="person" class="text-primary">clm</span>赞了你的评论<span id="question"
-                                    class="text-primary">恋练有词我用起来觉得不好，你们是怎么用的？</span></p>
-                            <hr />
+                            <iframe src="contentLike.jsp" style="width:100%;height:300px;border:0px"></iframe>
+                            <div id="" style="float:left">
+                                <input type="image" src="common/image/setting.png" style="width:20px;height:20px"><span class="text-muted">&nbsp;设置</span></p>
+                            </div> 
+                            <span class="text-muted" style="padding-left:100px">查看全部通知</span>
                         </div>
                     </div>
 
@@ -84,17 +91,11 @@
                 <div class="dropdown-menu" style="width:300px;height:400px">
                     <p class="text-dark" align="center">我的私信</p>
                     <hr />
-
-                    <a class="dropdown-item">
-                        <div id="head" style="float:left"><input type="image" src="common/image/zhi.jpg"
-                                style="
-                                    width:40px;height:40px;"> </div>
-                        <div id="userAndContent" style="padding-left:50px">
-                            <p id="sendUser">知乎小伙伴</p>
-
-                            <p id="privmesscontent">亲爱的士大夫地方打发士大夫士</p>
-                        </div>
-                    </a>
+                    <iframe src="privateMess.jsp" style="width:100%;height:300px;border:0px"></iframe>
+                    <div id="" style="float:left">
+                        <input type="image" src="common/image/column.png" style="width:20px;height:20px"><span class="text-muted">&nbsp;写新私信</span></p>
+                        </div> 
+                    <span class="text-muted" style="padding-left:100px">查看全部私信</span>
                 </div>
             </li>
             <!-- 头像 -->
