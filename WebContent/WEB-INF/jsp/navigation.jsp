@@ -8,9 +8,9 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-lg bg-white navbar-white justify-content-center ">
-        <a class="navbar-brand text-primary text-lg" href="#">知乎</a>
+        <a class="navbar-brand text-primary text-lg" href="homePage.do">知乎</a>
         <ul class="nav  ml-5 mr-5">
-            <li class="nav-item"><a class="nav-link active font-weight-bold" href="#">首页</a>
+            <li class="nav-item"><a class="nav-link active font-weight-bold" href="homePage.do">首页</a>
             </li>
             <li class="nav-item"><a class="nav-link" href="#">发现</a></li>
             <li class="nav-item"><a class="nav-link" href="#">等你来答</a></li>
