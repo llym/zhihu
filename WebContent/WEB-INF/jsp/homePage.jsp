@@ -338,7 +338,57 @@
         var idea=$("#idea").val();
         alert(idea);
     }
+    // 此次代码待改进
+    function station(){
+        alert('1');
+        $("#science").removeClass("btn-primary");
+        $("#digital").removeClass("btn-primary");
+        $("#physical").removeClass("btn-primary");
+        $("#fashion").removeClass("btn-primary");
+        $("#movie").removeClass("btn-primary");
+        $("#station").addClass("btn-primary");
+    }
+    function science(){
+        $("#science").addClass("btn-primary");
+        $("#digital").removeClass("btn-primary");
+        $("#physical").removeClass("btn-primary");
+        $("#fashion").removeClass("btn-primary");
+        $("#movie").removeClass("btn-primary");
+        $("#station").removeClass("btn-primary");
 
+    }
+    function digital(){
+        $("#science").removeClass("btn-primary");
+        $("#digital").addClass("btn-primary");
+        $("#physical").removeClass("btn-primary");
+        $("#fashion").removeClass("btn-primary");
+        $("#movie").removeClass("btn-primary");
+        $("#station").removeClass("btn-primary");
+    }
+    function physical(){
+        $("#science").removeClass("btn-primary");
+        $("#digital").removeClass("btn-primary");
+        $("#physical").addClass("btn-primary");
+        $("#fashion").removeClass("btn-primary");
+        $("#movie").removeClass("btn-primary");
+        $("#station").removeClass("btn-primary");
+    }
+    function fashion(){
+        $("#science").removeClass("btn-primary");
+        $("#digital").removeClass("btn-primary");
+        $("#physical").removeClass("btn-primary");
+        $("#fashion").addClass("btn-primary");
+        $("#movie").removeClass("btn-primary");
+        $("#station").removeClass("btn-primary");
+    }
+    function movie(){
+        $("#science").removeClass("btn-primary");
+        $("#digital").removeClass("btn-primary");
+        $("#physical").removeClass("btn-primary");
+        $("#fashion").removeClass("btn-primary");
+        $("#movie").addClass("btn-primary");
+        $("#station").removeClass("btn-primary");
+    }
     </script>
 </head>
 
@@ -347,7 +397,7 @@
 
     <div class="container mt-3">
         <div class="left" style="background-color:white;float:left;">
-            <ul class="nav nav-tabs" role="tablist">
+            <ul class="nav" role="tablist">
                 <li class="nav-item">
                     <a class="nav-link active" data-toggle="tab" href="#commend">推荐</a>
                 </li>
@@ -378,10 +428,48 @@
                     </div>
                 </div>
                 <div id="follow" class="container tab-pane fade"><br>
-                    <h3>关注</h3>
+                    <div id="" style="height:400px;">
+                        <h3>关注</h3>
+                    </div>
                 </div>
                 <div id="hot" class="container tab-pane fade"><br>
-                    <h3>热榜</h3>
+                    <div id="hotList">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-sm ml-2 btn-priamry" onclick="station()" id="station">全站</button>
+                            <button type="button" class="btn btn-sm ml-2" onclick="science()" id="science">科学</button>
+                            <button type="button" class="btn btn-sm ml-2" onclick="digital()" id="digital">数码</button>
+                            <button type="button" class="btn btn-sm ml-2" onclick="physical()" id="physical">体育</button>
+                            <button type="button" class="btn btn-sm ml-2" onclick="fashion()" id="fashion">时尚</button>
+                            <button type="button" class="btn btn-sm ml-2" onclick="movie()" id="movie">影视</button>
+                        </div>
+                    </div>
+                    <hr />
+                    <div id="hotContent">
+                        <div id="hotNum" style="float:left;color: darkorange;font-size:25px;font-weight:bold">1</div>
+                        <div id="hotTitle" style="float:left;margin-left:10px;width:400px;">
+                            <p style="font-size:18px;font-weight:bold">地球上是否存在没有天敌的动物？</p>
+                            <p class="text-muted mt-1">所谓天敌只是针对动物，例如老鼠的天敌是猫。不包括生病，气候变化，火山喷发之类的</p>
+                            <div id="">
+                                <p class="text-muted mt-1" style="float:left">♨<span id="heat">6675万</span>热度</p>
+                                <p class="text-muted mt-1" onclick="openShare()" style="float:right">➢分享</p>
+                            </div>
+                        </div>
+                        <!--如果有图片的话-->
+                        <div id="hotImg" style="float:right;width:130px;">
+                            <image src="common/image/bg.jpg" style="width:130px;height:100px;"></image>
+                        </div>
+                        <hr />
+                        <div id="hotNum" style="float:left;color: darkorange;font-size:25px;font-weight:bold">2</div>
+                        <div id="hotTitle" style="float:left;margin-left:10px;width:400px;">
+                            <p style="font-size:18px;font-weight:bold">为什么鲁迅在他那个年代骂人成名了，而现实中大多数骂人只能落个网络喷子的下场?</p>
+                            <p class="text-muted mt-1">二者差距在哪</p>
+                            <div id="">
+                                <p class="text-muted mt-2" style="float:left">♨<span id="heat">4684万</span>热度</p>
+                                <p class="text-muted mt-2" onclick="openShare()" style="float:right">➢分享</p>
+                            </div>
+                        </div>
+                        <hr />
+                    </div>
                 </div>
                 <div id="comments" style="display: none;border:1px solid #D9D9D9;margin-left:15px;margin-right:15px ">
                     <div id="commentNum" style="font-weight: bold">39条评论</div>
