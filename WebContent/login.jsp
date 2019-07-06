@@ -213,7 +213,7 @@
     <div class="container-fluid" align="center">
         <div class="logo">
             <h1 class="text-primary">知乎</h1><br />
-            <h4 class="text-primary mt-3">登录知乎，发现更多可信赖的解答</h4>
+            <h3><small><p class="text-primary">登录知乎，发现更多可信赖的解答</p></small></h3>
             <form class="mt-5">
                 <input type="text" class="input" id="username" placeholder="手机号或邮箱" ><br />
                 <input type="password" class="input mt-2" id="password" placeholder="密码" onfocus="this.placeholder=''" onblur="this.placeholder='请输入密码'"><br />

@@ -90,9 +90,18 @@
         #contentNum {
             padding-right: 200px;
         }
+        .nav-link.active {
+            color: blue;
+        }
     </style>
     <script>
     $(function () {
+    	/* 热榜选择的话题  一定要放在最上面  我也不知道为啥= = */
+        $(".btn-outline-primary").click(function () {
+            var topic=$(this).text().toString();
+		    alert(topic);
+		    alert(topic.substring(33,35));
+        });
         var num = $("#num").text();
         var favoritesname = $("#favoritesname").val();//收藏标题
         var description = $("#description").val();//收藏描述
@@ -148,6 +157,7 @@
             content: $('#shareList')
         });
 
+
         // 收藏标题
         var counter1 = favoritesname.length;
         $("#detail1_num").text(counter1);
@@ -165,7 +175,7 @@
             var counter = text.length;
             $("#detail2_num").text(counter);
         });
-
+        
 
     })
 
@@ -338,57 +348,7 @@
         var idea=$("#idea").val();
         alert(idea);
     }
-    // 此次代码待改进
-    function station(){
-        alert('1');
-        $("#science").removeClass("btn-primary");
-        $("#digital").removeClass("btn-primary");
-        $("#physical").removeClass("btn-primary");
-        $("#fashion").removeClass("btn-primary");
-        $("#movie").removeClass("btn-primary");
-        $("#station").addClass("btn-primary");
-    }
-    function science(){
-        $("#science").addClass("btn-primary");
-        $("#digital").removeClass("btn-primary");
-        $("#physical").removeClass("btn-primary");
-        $("#fashion").removeClass("btn-primary");
-        $("#movie").removeClass("btn-primary");
-        $("#station").removeClass("btn-primary");
 
-    }
-    function digital(){
-        $("#science").removeClass("btn-primary");
-        $("#digital").addClass("btn-primary");
-        $("#physical").removeClass("btn-primary");
-        $("#fashion").removeClass("btn-primary");
-        $("#movie").removeClass("btn-primary");
-        $("#station").removeClass("btn-primary");
-    }
-    function physical(){
-        $("#science").removeClass("btn-primary");
-        $("#digital").removeClass("btn-primary");
-        $("#physical").addClass("btn-primary");
-        $("#fashion").removeClass("btn-primary");
-        $("#movie").removeClass("btn-primary");
-        $("#station").removeClass("btn-primary");
-    }
-    function fashion(){
-        $("#science").removeClass("btn-primary");
-        $("#digital").removeClass("btn-primary");
-        $("#physical").removeClass("btn-primary");
-        $("#fashion").addClass("btn-primary");
-        $("#movie").removeClass("btn-primary");
-        $("#station").removeClass("btn-primary");
-    }
-    function movie(){
-        $("#science").removeClass("btn-primary");
-        $("#digital").removeClass("btn-primary");
-        $("#physical").removeClass("btn-primary");
-        $("#fashion").removeClass("btn-primary");
-        $("#movie").addClass("btn-primary");
-        $("#station").removeClass("btn-primary");
-    }
     </script>
 </head>
 
@@ -434,13 +394,25 @@
                 </div>
                 <div id="hot" class="container tab-pane fade"><br>
                     <div id="hotList">
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-sm ml-2 btn-priamry" onclick="station()" id="station">全站</button>
-                            <button type="button" class="btn btn-sm ml-2" onclick="science()" id="science">科学</button>
-                            <button type="button" class="btn btn-sm ml-2" onclick="digital()" id="digital">数码</button>
-                            <button type="button" class="btn btn-sm ml-2" onclick="physical()" id="physical">体育</button>
-                            <button type="button" class="btn btn-sm ml-2" onclick="fashion()" id="fashion">时尚</button>
-                            <button type="button" class="btn btn-sm ml-2" onclick="movie()" id="movie">影视</button>
+                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                            <label class="btn btn-outline-primary active ml-2">
+                                <input type="radio" name="options" id="option1" autocomplete="off" checked>全站
+                            </label>
+                            <label class="btn btn-outline-primary ml-2">
+                                <input type="radio" name="options" id="option2" autocomplete="off">科学
+                            </label>
+                            <label class="btn btn-outline-primary ml-2">
+                                <input type="radio" name="options" id="option3" autocomplete="off">数码
+                            </label>
+                            <label class="btn btn-outline-primary ml-2">
+                                <input type="radio" name="options" id="option3" autocomplete="off">体育
+                            </label>
+                            <label class="btn btn-outline-primary ml-2">
+                                <input type="radio" name="options" id="option3" autocomplete="off">时尚
+                            </label>
+                            <label class="btn btn-outline-primary ml-2">
+                                <input type="radio" name="options" id="option3" autocomplete="off">影视
+                            </label>
                         </div>
                     </div>
                     <hr />
@@ -475,7 +447,7 @@
                     <div id="commentNum" style="font-weight: bold">39条评论</div>
                     <hr>
                     <div id="comment" class="ml-4">
-                        <input class="mt-2" type="image" src='F:\大三下\课程设计\login\images\sculpture.jpg' style="
+                        <input class="mt-2" type="image" src='common/image/sculpture.jpg' style="
                             width:30px;height:30px;float:left;" />
                         <p id="commentName" class="ml-2" style="padding-top:10px;">&nbsp;一株禾<span id="commentTime"
                                 style="padding-left:350px">20小时前</span></p>
@@ -493,7 +465,7 @@
                         </div>
                         <hr>
                         <div style="padding-left:40px;">
-                            <input class="mt-2" type="image" src='F:\大三下\课程设计\login\images\sculpture.jpg'" style="
+                            <input class="mt-2" type="image" src='common/image/sculpture.jpg'" style="
                                 width:30px;height:30px;float:left;" />
                             <p id="replyer" class="ml-2" style="padding-top:10px;">&nbsp;一株禾<span
                                     class="text-muted">回复</span><span id="replyed">北儿京儿人儿</span>
