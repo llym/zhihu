@@ -357,7 +357,7 @@
 
     <div class="container mt-3">
         <div class="left" style="background-color:white;float:left;">
-            <ul class="nav" role="tablist">
+            <ul class="nav mt-2" role="tablist">
                 <li class="nav-item">
                     <a class="nav-link active" data-toggle="tab" href="#commend">推荐</a>
                 </li>
@@ -389,7 +389,32 @@
                 </div>
                 <div id="follow" class="container tab-pane fade"><br>
                     <div id="" style="height:400px;">
-                        <h3>关注</h3>
+                        <!--如果没有关注的人-->
+                        <div id="pic" align="center">
+                            <input type="image" class="" src="common/image/card.png"/>
+                            <p class="text-muted" style="font-size:16px">还没有关注的人，为你推荐以下用户</p>
+                        </div>
+                        <!-- 推荐的用户 -->
+                        <div id="recommendation" class="ml-2 mt-3" >
+                            <div style="float:left"><input type="image" class="" src="common/image/sculpture.jpg" style="width:40px;height:40px"></div>
+                            <div style="float:left" class="ml-2">
+                                <p><span id="userName" style="font-weight:bold">Mr-HH</span>,<span id="profile">中南大学 细胞生物学博士在读</span></p>
+                                <p class="text-muted"><span id="replyNum">75</span>回答.<span id="followNum">90682</span>关注着</p>
+                            </div>
+                            <div style="float:right">
+                                <button type="button" class="btn btn-primary" id="followHim">+ 关注他</button>
+                            </div>
+                        </div>
+
+                        <div style="float:left" class="mt-2">
+                            <p id="ideaTitle" style="font-weight:bold;font-size:18px">为什么昆虫不小心摔倒六脚朝天，如果不及时翻身过来就会马上死掉了？</p>
+                            <div style="float:left;width:150px;height:100px;"><input type="image" src="common/image/pic.jpg" style="width:150px;height:100px;"></div>
+                            <div style="float:right;width:400px;height:100px">
+                                <p id="ideaContent" style="font-size:16px">正常情况下来说，当昆虫碰到了[四脚朝天]的状态时，他们都会尽自己所能，尝试回正。一般状态下有三种：1.拼命挣扎,挥动足部以改变重心，
+                                    从而翻身；2.借助道具，比如说利用自然环境中存在着各种各样的...</p>
+                            </div>
+
+                        </div>
                     </div>
                 </div>
                 <div id="hot" class="container tab-pane fade"><br>
