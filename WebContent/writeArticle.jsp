@@ -35,6 +35,8 @@ input:focus{
 <script src="common/tool/assets/trumbowyg.js"></script>
 <script src="common/tool/assets/plugins/base64/trumbowyg.base64.js"></script>
 <link rel="stylesheet" href="common/tool/assets/design/css/trumbowyg.css">
+<link rel="stylesheet" href="common/tool/layui/css/layui.css"  media="all">
+<script src="common/tool/layui/layui.js" charset="utf-8"></script>
 
 <script type="text/javascript">
  function fileSelect() {
@@ -54,6 +56,38 @@ input:focus{
 $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip();   
 });
+
+layui.use('upload', function(){
+	  var $ = layui.jquery
+	  ,upload = layui.upload;
+	  
+	  //普通图片上传
+	  var uploadInst = upload.render({
+	    elem: '#test1'
+	    ,url: '/upload/'
+	    ,before: function(obj){
+	      //预读本地文件示例，不支持ie8
+	      obj.preview(function(index, file, result){
+	        $('#demo1').attr('src', result); //图片链接（base64）
+	      });
+	    }
+	    ,done: function(res){
+	      //如果上传失败
+	      if(res.code > 0){
+	        return layer.msg('上传失败');
+	      }
+	      //上传成功
+	    }
+	    ,error: function(){
+	      //演示失败状态，并实现重传
+	      var demoText = $('#demoText');
+	      demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+	      demoText.find('.demo-reload').on('click', function(){
+	        uploadInst.upload();
+	      });
+	    }
+	  });
+	});
 </script>
 </head>
 <body>
@@ -97,16 +131,15 @@ $(document).ready(function(){
 
 <!--*******************正文***************************-->
 <div class="content">
-  <div class="mt-5" style="height: 200px;background-color: #F6F6F6" data-toggle="collapse" 
-  data-target="#bg-img" data-toggle="tooltip" data-placement="bottom" title="添加题图" onclick="fileSelect();">
-  <img style="margin-left: 330px;margin-top:80px;height: 50px;width: 50px;" src="common/image/camera-fill.png"/>
-    <div>
-        <p><img class="myface"  src="" onclick="fileSelect();"></p>
-        <form id="form_face" enctype="multipart/form-data" style="width:auto;">
-            <input type="file" name="fileToUpload" id="fileToUpload" onchange="fileSelected();" style="display:none;">
-        </form>
-    </div>
-  </div>
+<div class="layui-upload" >
+        <button type="button" id="test1"  data-toggle="collapse" data-target="#bg-img" data-toggle="tooltip" 
+        data-placement="bottom" title="添加题图" style="border:0">
+        <img class="layui-upload-img" id="demo1" style="height: 300px;width:700px;background-color: #F6F6F6;"></button>
+        <div class="layui-upload-list">
+          
+          <p id="demoText"></p>
+        </div>
+      </div> 
   <div>
       <input type="text" id="inputId" maxlength=50 placeholder="请输入标题（最多50个字）" 
       style="border:0;height: 80px; width: 600px;font-size: 2rem;font-weight:bold" />
