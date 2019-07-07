@@ -39,13 +39,6 @@ input:focus{
 <script src="common/tool/layui/layui.js" charset="utf-8"></script>
 
 <script type="text/javascript">
- function fileSelect() {
-        document.getElementById("fileToUpload").click(); 
-    }
-    
-    function fileSelected() {
-      // 文件选择后触发次函数
-    }
   $(document).ready(function() {//设置标题字数超过50个字弹窗提醒
     $("#inputId").keyup(function() {
       if ($.trim(this.value).length > 50) { 
@@ -129,14 +122,13 @@ layui.use('upload', function(){
   </ul>
   <div class="dropdown-divider "></div>
 
-<!--*******************正文***************************-->
+<!--正文-->
 <div class="content">
 <div class="layui-upload" >
         <button type="button" id="test1"  data-toggle="collapse" data-target="#bg-img" data-toggle="tooltip" 
         data-placement="bottom" title="添加题图" style="border:0">
         <img class="layui-upload-img" id="demo1" style="height: 300px;width:700px;background-color: #F6F6F6;"></button>
-        <div class="layui-upload-list">
-          
+        <div class="layui-upload-list">         
           <p id="demoText"></p>
         </div>
       </div> 
@@ -145,6 +137,7 @@ layui.use('upload', function(){
       style="border:0;height: 80px; width: 600px;font-size: 2rem;font-weight:bold" />
     <div class="dropdown-divider "></div>
   </div>
+  <!-- 富文本框 -->
     <div id="odiv" style="display:none;position:absolute;z-index:100;">
         <img src="common/tool/assets/pic/sx.png" title="缩小" border="0" alt="缩小" onclick="sub(-1);"/>
         <img src="common/tool/assets/pic/fd.png" title="放大" border="0" alt="放大" onclick="sub(1)"/>
