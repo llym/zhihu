@@ -21,4 +21,10 @@ public class AnswerCommentServiceImpl implements AnswerCommentService{
 		return answercommentdao.getAnswercomment(answerid);
 	}
 
+	@Override
+	public void insertAnswercommentService(Answercomment answercomment) {
+		// TODO Auto-generated method stub
+		answercommentdao.insertAnswercomment(answercomment);
+	}
+
 }

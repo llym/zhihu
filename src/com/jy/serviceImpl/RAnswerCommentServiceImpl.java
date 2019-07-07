@@ -20,4 +20,10 @@ public class RAnswerCommentServiceImpl implements RAnswerCommentService{
 		return ranswercommentdao.getRanswercomment(commentid);
 	}
 
+	@Override
+	public void insertRAnswercommentService(Ranswercomment ranswercomment) {
+		// TODO Auto-generated method stub
+		ranswercommentdao.insertRanswercomment(ranswercomment);
+	}
+
 }

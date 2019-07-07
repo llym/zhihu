@@ -6,5 +6,8 @@
 	<select id="getRanswercomment" parameterType="Integer" resultType="com.jy.entity.Ranswercomment">
 		select * from ranswercomment where commentid=#{commentid} and status="1" 
 	</select>
+	<insert id="insertRanswercomment" parameterType="com.jy.entity.Ranswercomment" useGeneratedKeys="true">
+		insert into ranswercomment(commentid,commentuserid,userid,prisenumb,commentcontent,createtime,status) VALUES (#{commentid},#{commentuserid},#{userid},"0",#{commentcontent},#{createtime},"1")
+	</insert>
 	
 </mapper>

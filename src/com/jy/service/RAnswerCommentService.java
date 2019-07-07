@@ -8,4 +8,5 @@ public interface RAnswerCommentService {
 
 	public List<Ranswercomment> getRanswercommentService(Integer commentid);
 	
+	public void insertRAnswercommentService(Ranswercomment ranswercomment);
 }

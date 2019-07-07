@@ -90,18 +90,9 @@
         #contentNum {
             padding-right: 200px;
         }
-        .nav-link.active {
-            color: blue;
-        }
     </style>
     <script>
     $(function () {
-    	/* 热榜选择的话题  一定要放在最上面  我也不知道为啥= = */
-        $(".btn-outline-primary").click(function () {
-            var topic=$(this).text().toString();
-		    alert(topic);
-		    alert(topic.substring(33,35));
-        });
         var num = $("#num").text();
         var favoritesname = $("#favoritesname").val();//收藏标题
         var description = $("#description").val();//收藏描述
@@ -157,7 +148,6 @@
             content: $('#shareList')
         });
 
-
         // 收藏标题
         var counter1 = favoritesname.length;
         $("#detail1_num").text(counter1);
@@ -175,12 +165,12 @@
             var counter = text.length;
             $("#detail2_num").text(counter);
         });
-        
+
 
     })
 
-    function openComment() {   //查看评论
-        $("#comments").toggle();
+     function openComment(id){   //查看评论
+        $("#comments"+id).toggle();
     }
     function openShare() {   //分享
         $("[name='testname']").val("xxxxxxxxxxxxxxx");//向模态框中赋值
@@ -243,34 +233,80 @@
         }
     }
     //回复评论
-    var t1 = 0;
-    function reply1() {
-        t1 = t1 + 1;
-        if (t1 % 2 != 0) {
-            $("#reply1").text("✎取消回复");
-        } else if (t1 % 2 == 0) {
-            $("#reply1").text("✎回复");
+    var t1=0;
+    function reply1(id){
+        t1=t1+1;
+        if(t1%2!=0){
+            $("#reply1"+id).text("✎取消回复");
+        }else if(t1%2==0){
+            $("#reply1"+id).text("✎回复");
         }
-        $("#replyText1").toggle();
+        $("#replyText1"+id).toggle();
     }
-    var t2 = 0;
-    function reply2() {
-        t2 = t2 + 1;
-        if (t2 % 2 != 0) {
-            $("#reply2").text("✎取消回复");
-        } else if (t2 % 2 == 0) {
-            $("#reply2").text("✎回复");
+    var t2=0;
+    function reply2(id){
+        t2=t2+1;
+        if(t2%2!=0){
+            $("#reply2"+id).text("✎取消回复");
+        }else if(t2%2==0){
+            $("#reply2"+id).text("✎回复");
         }
-        $("#replyText2").toggle();
+        $("#replyText2"+id).toggle();
     }
-    function submitReply1() {
-        var text1 = $("#text1").val();
-        alert(text1);
+    function submitReply1(id){
+       
+
+         var commentid=id.getAttribute('co');
+         var queid=id.getAttribute('uc');
+         var text1=$("#text1"+commentid).val();
+        alert(commentid+text1+queid);  
+         $.post("insertr.do",
+			    {
+        	'commentcontent':text1,
+			'commentid':commentid,
+			'queid':queid
+					},
+ 			        function(data,status){
+ 			        alert(data);
+ 			        window.location.reload();
+			    });
+        
     }
-    function submitReply2() {
-        var text2 = $("#text2").val();
-        alert(text2);
+    function submitReply2(id){
+    	var rcommentid=id.getAttribute('rc');
+    	var answerid=id.getAttribute('uc');
+        var commentid=id.getAttribute('co');
+        var text2=$("#text2"+rcommentid).val();
+        alert(text2+answerid+commentid);
+        $.post("insertr.do",
+			    {
+        	'commentcontent':text2,
+			'commentid':commentid,
+			'queid':answerid
+					},
+ 			        function(data,status){
+ 			        alert(data);
+ 			        window.location.reload();
+			    });
     }
+    //评论
+    function submitReply3(id){  
+        var answerid=id.getAttribute('an');
+        var commentid=id.getAttribute('uc');
+        var text3=$("#text3"+commentid).val();
+       alert(text3);
+       alert(answerid);
+       $.post("insert.do",
+			    {
+       	'commentcontent':text3,
+			'answerid':answerid
+			    },
+			        function(data,status){
+			        alert(data);
+			        window.location.reload();
+			    });
+       
+   }
     function collecting() {
         $("#collecting").attr('disabled', true);
         $("#collecting").text("已收藏");
@@ -348,7 +384,57 @@
         var idea=$("#idea").val();
         alert(idea);
     }
+    // 此次代码待改进
+    function station(){
+        alert('1');
+        $("#science").removeClass("btn-primary");
+        $("#digital").removeClass("btn-primary");
+        $("#physical").removeClass("btn-primary");
+        $("#fashion").removeClass("btn-primary");
+        $("#movie").removeClass("btn-primary");
+        $("#station").addClass("btn-primary");
+    }
+    function science(){
+        $("#science").addClass("btn-primary");
+        $("#digital").removeClass("btn-primary");
+        $("#physical").removeClass("btn-primary");
+        $("#fashion").removeClass("btn-primary");
+        $("#movie").removeClass("btn-primary");
+        $("#station").removeClass("btn-primary");
 
+    }
+    function digital(){
+        $("#science").removeClass("btn-primary");
+        $("#digital").addClass("btn-primary");
+        $("#physical").removeClass("btn-primary");
+        $("#fashion").removeClass("btn-primary");
+        $("#movie").removeClass("btn-primary");
+        $("#station").removeClass("btn-primary");
+    }
+    function physical(){
+        $("#science").removeClass("btn-primary");
+        $("#digital").removeClass("btn-primary");
+        $("#physical").addClass("btn-primary");
+        $("#fashion").removeClass("btn-primary");
+        $("#movie").removeClass("btn-primary");
+        $("#station").removeClass("btn-primary");
+    }
+    function fashion(){
+        $("#science").removeClass("btn-primary");
+        $("#digital").removeClass("btn-primary");
+        $("#physical").removeClass("btn-primary");
+        $("#fashion").addClass("btn-primary");
+        $("#movie").removeClass("btn-primary");
+        $("#station").removeClass("btn-primary");
+    }
+    function movie(){
+        $("#science").removeClass("btn-primary");
+        $("#digital").removeClass("btn-primary");
+        $("#physical").removeClass("btn-primary");
+        $("#fashion").removeClass("btn-primary");
+        $("#movie").addClass("btn-primary");
+        $("#station").removeClass("btn-primary");
+    }
     </script>
 </head>
 
@@ -357,7 +443,7 @@
 
     <div class="container mt-3">
         <div class="left" style="background-color:white;float:left;">
-            <ul class="nav mt-2" role="tablist">
+            <ul class="nav" role="tablist">
                 <li class="nav-item">
                     <a class="nav-link active" data-toggle="tab" href="#commend">推荐</a>
                 </li>
@@ -368,76 +454,96 @@
                     <a class="nav-link" data-toggle="tab" href="#hot">热榜</a>
                 </li>
             </ul>
-            <hr>
+            
             <div class="tab-content">
                 <div id="commend" class="container tab-pane active"><br>
+                <c:forEach items="${quelist}" var="que">
+                <hr>
                     <div class="content">
-                        <p id="title">陈都灵和章泽天实际上各是什么样的人？</p>
-                        <input class="head mt-2" type="image" src='common/image/sculpture.jpg'" style="
+                        <p id="title">${que.name}</p>
+                        <input class="head mt-2" type="image" src='${que.photo}' style="
                             width:30px;height:30px;float:left;" />
-                        <p id="author" class="mt-2">&nbsp;雨蒙</p><br />
-                        <p class="text-secondary mt-2">118人赞同了该回答</p>
-                        <p class="mt-2">陈都灵是学姐同学， 厦门一中的。<br /><br />
-                            校花身份红的时候学姐就讲过她不是那种乖乖女或者好学生。比较叛逆，有一点社会感……总之通过这件事觉得娱乐圈很多明星人设都是包装的吧<br /><br />
-                            章泽天就不了解了，记得当年的奶茶照真的直男斩啊</p>
+                        <p id="author" class="mt-2">&nbsp;${que.userid}</p><br />
+<!--                         <p class="text-secondary mt-2">118人赞同了该回答</p> -->
+                        <p class="mt-2">${que.describe}</p>
                         <p class="text-secondary mt-2">发布于2019-06-16</p>
-                        <button class="btn btn-sm mt-2" type="submit" id="agree">赞同<span id="num">123</span></button>
+                        <button class="btn btn-sm mt-2" type="submit" id="agree">赞同<span id="num">${que.prisenumb}</span></button>
                         <button class="btn btn-primary btn-sm mt-2" id="cancel">▼</button>
-                        <span class="tip1 mt-2" onclick="openComment()">✉100评论</span><span class="tip2 mt-2"
+                        <span class="tip1 mt-2" onclick="openComment(${que.questionid})">✉${que.commentnumb}评论</span><span class="tip2 mt-2"
                             onclick="openShare()">➢分享</span><span class="tip3 mt-2" onclick="openModak()">★收藏</span>
                     </div>
+                     <!-- 回答的评论 --> 
+                    <div id="comments${que.questionid}" style="display: none;border:1px solid #D9D9D9;margin-left:15px;margin-right:15px ">
+                    <div id="commentNum" style="font-weight: bold">39条评论</div>
+                    <hr>
+                     <c:forEach items="${comlist}" var="com">
+                       <c:if   test="${com.answerid eq que.answerid}">
+                    <div id="comment" class="ml-4">
+                        <input class="mt-2" type="image" src='F:\大三下\课程设计\login\images\sculpture.jpg' style="
+                            width:30px;height:30px;float:left;" />
+                        <p id="commentName" class="ml-2" style="padding-top:10px;">&nbsp;${com.userid}<span id="commentTime"
+                                style="padding-left:350px">20小时前</span></p>
+                        <br />
+                        <p id="content" style="padding-left: 40px;padding-top:5px;font-size:16px">${com.commentcontent}</p>
+                        <div class="mt-2">
+                            <span onclick="like()" style="padding-left:40px;padding-top:10px">👍<span
+                                    id="like">${com.prisenumb}</span></span>
+                            <span id="reply1${com.commentid}" onclick="reply1(${com.commentid})" style="padding-left: 5px;">✎回复</span>
+                        </div>
+                         <div id="replyText1${com.commentid}"  style="display: none" >
+                            <textarea id="text1${com.commentid}" class="form-control" row="5" style="width:500px;"></textarea>
+                            <button type="button" class="btn btn-primary btn-sm mt-2"  uc="${com.userid}" co="${com.commentid}" onclick="submitReply1(this)"style="margin-left:450px">发布</button>
+                        </div>
+                        <hr>
+                        <!-- 问题回答的评论的评论 -->
+                        <c:forEach items="${rcomlist}" var="rcom">
+                        <c:if   test="${com.commentid eq rcom.commentid}">
+                        <div style="padding-left:40px;">
+                            <input class="mt-2" type="image" src='F:\大三下\课程设计\login\images\sculpture.jpg'" style="
+                                width:30px;height:30px;float:left;" />
+                            <p id="replyer" class="ml-2" style="padding-top:10px;">&nbsp;${rcom.userid}<span
+                                    class="text-muted">回复</span><span id="replyed">${rcom.commentuserid}</span>
+                                <span id="replyTime" style="padding-left: 200px">2小时前</span></p>
+                            <p id="replyContent" style="padding-left: 40px;padding-top:20px;font-size:14px">${rcom.commentcontent}</p>
+                            <div class="mt-2">
+                                <span onclick="replyLike()" style="padding-left:40px;padding-top:10px">👍<span
+                                        id="replyLike">1</span></span>
+                                <span id="reply2${rcom.rcommentid}" onclick="reply2(${rcom.rcommentid})" style="padding-left: 5px;">✎回复</span>
+                            </div>
+                        </div>
+                        <div id="replyText2${rcom.rcommentid}" style="display: none" >
+                            <textarea id="text2${rcom.rcommentid}" class="form-control" row="5" style="width:500px;"></textarea>
+                            <button type="button" class="btn btn-primary btn-sm mt-2" rc="${rcom.rcommentid}" uc="${rcom.userid}" co="${com.commentid}"  onclick="submitReply2(this)"style="margin-left:450px">发布</button>
+                        </div>
+                        </c:if>
+                        </c:forEach>
+                    </div>
+                     </c:if>
+                     </c:forEach>
+                     <div id="replyText3">
+                            <textarea id="text3${que.userid}" class="form-control" row="5" style="width:500px;"></textarea>
+                            <button type="button" class="btn btn-primary btn-sm mt-2" uc="${que.userid}" an="${que.answerid}"
+                             onclick="submitReply3(this)"style="margin-left:450px">发布</button>
+                      </div>
                 </div>
+                    </c:forEach>
+                </div>
+                
+                
                 <div id="follow" class="container tab-pane fade"><br>
                     <div id="" style="height:400px;">
-                        <!--如果没有关注的人-->
-                        <div id="pic" align="center">
-                            <input type="image" class="" src="common/image/card.png"/>
-                            <p class="text-muted" style="font-size:16px">还没有关注的人，为你推荐以下用户</p>
-                        </div>
-                        <!-- 推荐的用户 -->
-                        <div id="recommendation" class="ml-2 mt-3" >
-                            <div style="float:left"><input type="image" class="" src="common/image/sculpture.jpg" style="width:40px;height:40px"></div>
-                            <div style="float:left" class="ml-2">
-                                <p><span id="userName" style="font-weight:bold">Mr-HH</span>,<span id="profile">中南大学 细胞生物学博士在读</span></p>
-                                <p class="text-muted"><span id="replyNum">75</span>回答.<span id="followNum">90682</span>关注着</p>
-                            </div>
-                            <div style="float:right">
-                                <button type="button" class="btn btn-primary" id="followHim">+ 关注他</button>
-                            </div>
-                        </div>
-
-                        <div style="float:left" class="mt-2">
-                            <p id="ideaTitle" style="font-weight:bold;font-size:18px">为什么昆虫不小心摔倒六脚朝天，如果不及时翻身过来就会马上死掉了？</p>
-                            <div style="float:left;width:150px;height:100px;"><input type="image" src="common/image/pic.jpg" style="width:150px;height:100px;"></div>
-                            <div style="float:right;width:400px;height:100px">
-                                <p id="ideaContent" style="font-size:16px">正常情况下来说，当昆虫碰到了[四脚朝天]的状态时，他们都会尽自己所能，尝试回正。一般状态下有三种：1.拼命挣扎,挥动足部以改变重心，
-                                    从而翻身；2.借助道具，比如说利用自然环境中存在着各种各样的...</p>
-                            </div>
-
-                        </div>
+                        <h3>关注</h3>
                     </div>
                 </div>
                 <div id="hot" class="container tab-pane fade"><br>
                     <div id="hotList">
-                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                            <label class="btn btn-outline-primary active ml-2">
-                                <input type="radio" name="options" id="option1" autocomplete="off" checked>全站
-                            </label>
-                            <label class="btn btn-outline-primary ml-2">
-                                <input type="radio" name="options" id="option2" autocomplete="off">科学
-                            </label>
-                            <label class="btn btn-outline-primary ml-2">
-                                <input type="radio" name="options" id="option3" autocomplete="off">数码
-                            </label>
-                            <label class="btn btn-outline-primary ml-2">
-                                <input type="radio" name="options" id="option3" autocomplete="off">体育
-                            </label>
-                            <label class="btn btn-outline-primary ml-2">
-                                <input type="radio" name="options" id="option3" autocomplete="off">时尚
-                            </label>
-                            <label class="btn btn-outline-primary ml-2">
-                                <input type="radio" name="options" id="option3" autocomplete="off">影视
-                            </label>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-sm ml-2 btn-priamry" onclick="station()" id="station">全站</button>
+                            <button type="button" class="btn btn-sm ml-2" onclick="science()" id="science">科学</button>
+                            <button type="button" class="btn btn-sm ml-2" onclick="digital()" id="digital">数码</button>
+                            <button type="button" class="btn btn-sm ml-2" onclick="physical()" id="physical">体育</button>
+                            <button type="button" class="btn btn-sm ml-2" onclick="fashion()" id="fashion">时尚</button>
+                            <button type="button" class="btn btn-sm ml-2" onclick="movie()" id="movie">影视</button>
                         </div>
                     </div>
                     <hr />
@@ -466,49 +572,32 @@
                             </div>
                         </div>
                         <hr />
-                    </div>
-                </div>
-                <div id="comments" style="display: none;border:1px solid #D9D9D9;margin-left:15px;margin-right:15px ">
-                    <div id="commentNum" style="font-weight: bold">39条评论</div>
-                    <hr>
-                    <div id="comment" class="ml-4">
-                        <input class="mt-2" type="image" src='common/image/sculpture.jpg' style="
-                            width:30px;height:30px;float:left;" />
-                        <p id="commentName" class="ml-2" style="padding-top:10px;">&nbsp;一株禾<span id="commentTime"
-                                style="padding-left:350px">20小时前</span></p>
-                        <br />
-                        <p id="content" style="padding-left: 40px;padding-top:5px;font-size:16px">totally 赞同!!!</p>
-                        <div class="mt-2">
-                            <span onclick="like()" style="padding-left:40px;padding-top:10px">👍<span
-                                    id="like">53</span></span>
-                            <span id="reply1" onclick="reply1()" style="padding-left: 5px;">✎回复</span>
-                        </div>
-                        <div id="replyText1" style="display: none">
-                            <textarea id="text1" class="form-control" row="5" style="width:500px;"></textarea>
-                            <button type="button" class="btn btn-primary btn-sm mt-2" onclick="submitReply1()"
-                                style="margin-left:450px">发布</button>
-                        </div>
-                        <hr>
-                        <div style="padding-left:40px;">
-                            <input class="mt-2" type="image" src='common/image/sculpture.jpg'" style="
-                                width:30px;height:30px;float:left;" />
-                            <p id="replyer" class="ml-2" style="padding-top:10px;">&nbsp;一株禾<span
-                                    class="text-muted">回复</span><span id="replyed">北儿京儿人儿</span>
-                                <span id="replyTime" style="padding-left: 200px">2小时前</span></p>
-                            <p id="replyContent" style="padding-left: 40px;padding-top:20px;font-size:14px">赞同+1</p>
-                            <div class="mt-2">
-                                <span onclick="replyLike()" style="padding-left:40px;padding-top:10px">👍<span
-                                        id="replyLike">1</span></span>
-                                <span id="reply2" onclick="reply2()" style="padding-left: 5px;">✎回复</span>
+                        
+                        <div id="hotNum" style="float:left;color: darkorange;font-size:25px;font-weight:bold">3</div>
+                        <div id="hotTitle" style="float:left;margin-left:10px;width:400px;">
+                            <p style="font-size:18px;font-weight:bold">为什么鲁迅在他那个年代骂人成名了，而现实中大多数骂人只能落个网络喷子的下场?</p>
+                            <p class="text-muted mt-1">二者差距在哪</p>
+                            <div id="">
+                                <p class="text-muted mt-2" style="float:left">♨<span id="heat">4684万</span>热度</p>
+                                <p class="text-muted mt-2" onclick="openShare()" style="float:right">➢分享</p>
                             </div>
                         </div>
-                        <div id="replyText2" style="display: none">
-                            <textarea id="text2" class="form-control" row="5" style="width:500px;"></textarea>
-                            <button type="button" class="btn btn-primary btn-sm mt-2" onclick="submitReply2()"
-                                style="margin-left:450px">发布</button>
+                        <hr />
+                        <div id="hotNum" style="float:left;color: darkorange;font-size:25px;font-weight:bold">4</div>
+                        <div id="hotTitle" style="float:left;margin-left:10px;width:400px;">
+                            <p style="font-size:18px;font-weight:bold">为什么鲁迅在他那个年代骂人成名了，而现实中大多数骂人只能落个网络喷子的下场?</p>
+                            <p class="text-muted mt-1">二者差距在哪</p>
+                            <div id="">
+                                <p class="text-muted mt-2" style="float:left">♨<span id="heat">4684万</span>热度</p>
+                                <p class="text-muted mt-2" onclick="openShare()" style="float:right">➢分享</p>
+                            </div>
                         </div>
+                        <hr />
+                        
+                        
                     </div>
                 </div>
+                
                 <hr>
             </div>
 

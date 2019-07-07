@@ -8,4 +8,6 @@ public interface RanswercommentDao {
 	
 	public List<Ranswercomment> getRanswercomment(Integer commentid);
 	
+	public void insertRanswercomment(Ranswercomment ranswercomment);
+
 }

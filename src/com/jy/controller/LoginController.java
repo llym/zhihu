@@ -56,6 +56,7 @@ public class LoginController {
             	 Answer answer =new Answer();
             	 answer=answerservice.getAnswerService(Hlist.get(i).getQuestionid());
             	// System.out.println(answer.getPrisenumb());   
+            	 qa.setQuestionid(answer.getQuestionid());
             	 qa.setName(Hlist.get(i).getQuestionname());
             	 qa.setPhoto(answer.getPhoto());
             	 qa.setDescribe(answer.getAnswercontent());
@@ -75,7 +76,6 @@ public class LoginController {
         	list4.addAll(list3);
         }
         	System.out.println(list4);
-            //int a=Hlist.get(0).getQuestionid();
 			ModelAndView mav =new ModelAndView("homePage");
 			mav.addObject("quelist",list);
 			mav.addObject("comlist",list2);
