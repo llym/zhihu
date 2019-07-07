@@ -6,6 +6,8 @@ public class Rideacomment {
     private Integer rcommentid;
 
     private Integer commentid;
+    
+    private String commentuserid;
 
     private String userid;
 
@@ -17,7 +19,15 @@ public class Rideacomment {
 
     private String status;
 
-    public Integer getRcommentid() {
+    public String getCommentuserid() {
+		return commentuserid;
+	}
+
+	public void setCommentuserid(String commentuserid) {
+		this.commentuserid = commentuserid;
+	}
+
+	public Integer getRcommentid() {
         return rcommentid;
     }
 
