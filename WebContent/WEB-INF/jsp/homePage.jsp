@@ -455,7 +455,7 @@
 </head>
 
 <body>
-      <jsp:include page="navigation.jsp" flush="true"></jsp:include> 
+    <jsp:include page="navigation.jsp" flush="true"></jsp:include> 
 
     <div class="container mt-3">
         <div class="left" style="background-color:white;float:left;">

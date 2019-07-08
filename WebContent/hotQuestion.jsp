@@ -34,8 +34,8 @@
         }
 
         .question {
-            margin-left: 200px;
-            margin-right: 200px;
+            margin-left: 15%;
+            margin-right: 15%;
             background-color: white;
         }
 
@@ -54,10 +54,10 @@
         .answer,
         .write,
         .writeAnswer {
-            float:left;
+            float: left;
             background-color: white;
-            margin-left: 200px;
-            width: 600px;
+            margin-left: 14%;
+            width: 550px;
         }
 
         .btns {
@@ -69,13 +69,16 @@
         .collect {
             background-color: white;
         }
-        #submit{
-            margin-left:500px;
+
+        #submit {
+            margin-left: 500px;
         }
-        .other{
-            float:right;
-            margin-right:200px;
-            width:330px;
+
+        .other {
+            float: right;
+            margin-right: 14%;
+            width: 330px;
+            background-color:aquamarine;
         }
     </style>
         <script>

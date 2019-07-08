@@ -17,6 +17,7 @@ textarea::-webkit-input-placeholder {
             color: rgb(163, 163, 163);
             font-size: 18px;
         }
+
 </style>
 <script>
 	function askQuestion(){
