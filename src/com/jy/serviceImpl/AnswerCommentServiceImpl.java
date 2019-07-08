@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.jy.dao.AnswercommentDao;
+import com.jy.entity.Answer;
 import com.jy.entity.Answercomment;
 import com.jy.service.AnswerCommentService;
 
@@ -18,7 +19,13 @@ public class AnswerCommentServiceImpl implements AnswerCommentService{
 	@Override
 	public List<Answercomment> getAnswercommentService(Integer answerid) {
 		// TODO Auto-generated method stub
-		return answercommentdao.getAnswercomment(answerid);
+		
+		try {
+			return answercommentdao.getAnswercomment(answerid);
+			}
+			catch(Exception e){
+				return null;	
+		}
 	}
 
 	@Override

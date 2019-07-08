@@ -25,11 +25,11 @@ public class AnswerServiceImpl implements AnswerService{
 		String b=user.getAnswercontent();
 //		System.out.println(a);
 //		System.out.println(b);
-		return user;	
+			return user;	
 		}
 		catch(Exception e){
 			return null;	
-			}
+		}
 		
 	}
 	

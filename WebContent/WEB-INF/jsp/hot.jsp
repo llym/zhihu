@@ -440,121 +440,18 @@
         <div class="left" style="background-color:white;float:left;">
             <ul class="nav" role="tablist">
                 <li class="nav-item">
-                    <a class="nav-link active" data-toggle="tab" href="#commend">推荐</a>
+                    <a class="nav-link active" href="homePage.do">推荐</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" data-toggle="tab" href="#follow">关注</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link"  href="hot.do">热榜</a>
+                    <a class="nav-link" data-toggle="tab" href="#hot">热榜</a>
                 </li>
             </ul>
             
-            <div class="tab-content">
-                <div id="commend" class="container tab-pane active"><br>
-                <c:forEach items="${quelist}" var="que">
-                <hr>
-                    <div class="content">
-                        <p id="title">${que.name}</p>
-                        <input class="head mt-2" type="image" src='${que.photo}' style="
-                          width:30px;height:30px;float:left;" />
-                        <p id="author" class="mt-2">&nbsp;${que.userid}</p><br />
-<!--                         <p class="text-secondary mt-2">118人赞同了该回答</p> -->
-                        <p class="mt-2">${que.describe}</p>
-                        <p class="text-secondary mt-2">发布于2019-06-16</p>
-                        <button class="btn btn-sm mt-2" type="submit" id="agree">赞同<span id="num">${que.prisenumb}</span></button>
-                        <button class="btn btn-primary btn-sm mt-2" id="cancel">▼</button>
-                        <span class="tip1 mt-2" onclick="openComment(${que.questionid})">✉${que.commentnumb}评论</span><span class="tip2 mt-2"
-                            onclick="openShare()">➢分享</span><span class="tip3 mt-2" onclick="openModak()">★收藏</span>
-                    </div>
-                     <!-- 回答的评论 --> 
-                    <div id="comments${que.questionid}" style="display: none;border:1px solid #D9D9D9;margin-left:15px;margin-right:15px ">
-                    <div id="commentNum" style="font-weight: bold">39条评论</div>
-                    <hr>
-                     <c:forEach items="${comlist}" var="com">
-                       <c:if   test="${com.answerid eq que.answerid}">
-                    <div id="comment" class="ml-4">
-                        <input class="mt-2" type="image" src='F:\大三下\课程设计\login\images\sculpture.jpg' style="
-                            width:30px;height:30px;float:left;" />
-                        <p id="commentName" class="ml-2" style="padding-top:10px;">&nbsp;${com.userid}<span id="commentTime"
-                                style="padding-left:350px">20小时前</span></p>
-                        <br />
-                        <p id="content" style="padding-left: 40px;padding-top:5px;font-size:16px">${com.commentcontent}</p>
-                        <div class="mt-2">
-                            <span onclick="like(${com.commentid})" style="padding-left:40px;padding-top:10px">👍<span
-                                    id="like${com.commentid}">${com.prisenumb}</span></span>
-                            <span id="reply1${com.commentid}" onclick="reply1(${com.commentid})" style="padding-left: 5px;">✎回复</span>
-                        </div>
-                         <div id="replyText1${com.commentid}"  style="display: none" >
-                            <textarea id="text1${com.commentid}" class="form-control" row="5" style="width:500px;"></textarea>
-                            <button type="button" class="btn btn-primary btn-sm mt-2"  uc="${com.userid}" co="${com.commentid}" onclick="submitReply1(this)"style="margin-left:450px">发布</button>
-                        </div>
-                        <hr>
-                        <!-- 问题回答的评论的评论 -->
-                        <c:forEach items="${rcomlist}" var="rcom">
-                        <c:if   test="${com.commentid eq rcom.commentid}">
-                        <div style="padding-left:40px;">
-                            <input class="mt-2" type="image" src='F:\大三下\课程设计\login\images\sculpture.jpg'" style="
-                                width:30px;height:30px;float:left;" />
-                            <p id="replyer" class="ml-2" style="padding-top:10px;">&nbsp;${rcom.userid}<span
-                                    class="text-muted">回复</span><span id="replyed">${rcom.commentuserid}</span>
-                                <span id="replyTime" style="padding-left: 200px">2小时前</span></p>
-                            <p id="replyContent" style="padding-left: 40px;padding-top:20px;font-size:14px">${rcom.commentcontent}</p>
-                            <div class="mt-2">
-                                <span onclick="replyLike(${rcom.rcommentid})" style="padding-left:40px;padding-top:10px">👍<span
-                                        id="replyLike${rcom.rcommentid}">${rcom.prisenumb}</span></span>
-                                <span id="reply2${rcom.rcommentid}" onclick="reply2(${rcom.rcommentid})" style="padding-left: 5px;">✎回复</span>
-                            </div>
-                        </div>
-                        <div id="replyText2${rcom.rcommentid}" style="display: none" >
-                            <textarea id="text2${rcom.rcommentid}" class="form-control" row="5" style="width:500px;"></textarea>
-                            <button type="button" class="btn btn-primary btn-sm mt-2" rc="${rcom.rcommentid}" uc="${rcom.userid}" co="${com.commentid}"  onclick="submitReply2(this)"style="margin-left:450px">发布</button>
-                        </div>
-                        </c:if>
-                        </c:forEach>
-                    </div>
-                     </c:if>
-                     </c:forEach>
-                     <div id="replyText3">
-                            <textarea id="text3${que.userid}" class="form-control" row="5" style="width:500px;"></textarea>
-                            <button type="button" class="btn btn-primary btn-sm mt-2" uc="${que.userid}" an="${que.answerid}"
-                             onclick="submitReply3(this)"style="margin-left:450px">发布</button>
-                      </div>
-                </div>
-                    </c:forEach>
-                </div>
-                
-                
-                <div id="follow" class="container tab-pane fade"><br>
-                    <div id="" style="height:400px;">
-                        <!--如果没有关注的人-->
-                        <div id="pic" align="center">
-                            <input type="image" class="" src="common/image/card.png"/>
-                            <p class="text-muted" style="font-size:16px">还没有关注的人，为你推荐以下用户</p>
-                        </div>
-                        <!-- 推荐的用户 -->
-                        <div id="recommendation" class="ml-2 mt-3" >
-                            <div style="float:left"><input type="image" class="" src="common/image/sculpture.jpg" style="width:40px;height:40px"></div>
-                            <div style="float:left" class="ml-2">
-                                <p><span id="userName" style="font-weight:bold">Mr-HH</span>,<span id="profile">中南大学 细胞生物学博士在读</span></p>
-                                <p class="text-muted"><span id="replyNum">75</span>回答.<span id="followNum">90682</span>关注着</p>
-                            </div>
-                            <div style="float:right">
-                                <button type="button" class="btn btn-primary" id="followHim">+ 关注他</button>
-                            </div>
-                        </div>
-
-                        <div style="float:left" class="mt-2">
-                            <p id="ideaTitle" style="font-weight:bold;font-size:18px">为什么昆虫不小心摔倒六脚朝天，如果不及时翻身过来就会马上死掉了？</p>
-                            <div style="float:left;width:150px;height:100px;"><input type="image" src="common/image/pic.jpg" style="width:150px;height:100px;"></div>
-                            <div style="float:right;width:400px;height:100px">
-                                <p id="ideaContent" style="font-size:16px">正常情况下来说，当昆虫碰到了[四脚朝天]的状态时，他们都会尽自己所能，尝试回正。一般状态下有三种：1.拼命挣扎,挥动足部以改变重心，
-                                    从而翻身；2.借助道具，比如说利用自然环境中存在着各种各样的...</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="hot" class="container tab-pane fade"><br>
+           
+                <div id="hot"><br>
                     <div id="hotList">
                         <div class="btn-group btn-group-toggle" data-toggle="buttons">
                             <label class="btn btn-outline-primary active ml-2">

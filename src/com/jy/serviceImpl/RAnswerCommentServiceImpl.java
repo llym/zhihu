@@ -17,7 +17,13 @@ public class RAnswerCommentServiceImpl implements RAnswerCommentService{
 	@Override
 	public List<Ranswercomment> getRanswercommentService(Integer commentid) {
 		// TODO Auto-generated method stub
-		return ranswercommentdao.getRanswercomment(commentid);
+		
+		try {
+			return ranswercommentdao.getRanswercomment(commentid);
+			}
+			catch(Exception e){
+				return null;	
+		}
 	}
 
 	@Override
