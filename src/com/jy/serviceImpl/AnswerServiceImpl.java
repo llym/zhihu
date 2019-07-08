@@ -32,5 +32,11 @@ public class AnswerServiceImpl implements AnswerService{
 		}
 		
 	}
+
+	@Override
+	public String getPhotoService(Integer questionid) {
+		// TODO Auto-generated method stub
+		return answerdao.getPhoto(questionid);
+	}
 	
 }

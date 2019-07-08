@@ -9,4 +9,5 @@ public interface AnswerDao {
 	
 	public Answer getAnswer(Integer questionid);
 	
+	public String getPhoto(Integer questionid);
 }

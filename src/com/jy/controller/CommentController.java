@@ -51,12 +51,13 @@ public class CommentController {
 			//SimpleDateFormat dateFormat= new SimpleDateFormat("yyyy-MM-dd :hh:mm:ss");
 			SimpleDateFormat dateFormat= new SimpleDateFormat("yyyy-MM-dd ");
 			System.out.println(dateFormat.format(date));
+			String name=(String) request.getSession().getAttribute("username");
 			String userid="111";
 			Answercomment answerc=new Answercomment();
 			//Integer an=Integer.decode(answerid);
 			answerc.setAnswerid(Integer.decode(answerid));
 			answerc.setCommentcontent(commentcontent);
-			answerc.setUserid(userid);
+			answerc.setUserid(name);
 			answerc.setCreatetime(date);
 					
 			answercommentservice.insertAnswercommentService(answerc);
@@ -73,11 +74,12 @@ public class CommentController {
 				SimpleDateFormat dateFormat= new SimpleDateFormat("yyyy-MM-dd ");
 				System.out.println(dateFormat.format(date));
 				String userid="111";
+				String name=(String) request.getSession().getAttribute("username");
 				Ranswercomment ranswerc=new Ranswercomment();
 				ranswerc.setCommentid(Integer.decode(commentid));
 				ranswerc.setCommentcontent(commentcontent);
 				ranswerc.setCommentuserid(queid);
-				ranswerc.setUserid(userid);
+				ranswerc.setUserid(name);
 				ranswerc.setCreatetime(date);
 				ranswercommentservice.insertRAnswercommentService(ranswerc);
 				return "添加成功";

@@ -8,4 +8,5 @@ public interface QuestionService {
 	
 	public List<Question> getQuestionService(String name);
 	
+	public List<Question> getHotQuestionService(Integer topicid);
 }

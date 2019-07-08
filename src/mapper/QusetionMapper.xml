@@ -6,7 +6,7 @@
 	<select id="getQuestion" parameterType="String" resultType="com.jy.entity.Question">
 		select questionid,questionname from question where status="1" 
 	</select>
-	<select id="getHot" parameterType="String" resultType="com.jy.entity.Question">
+	<select id="getHotQuestion" parameterType="Integer" resultType="com.jy.entity.Question">
 		select* from question where topicid=#{topicid} order by browsenumb desc;
 	</select>
 	

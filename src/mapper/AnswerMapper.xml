@@ -6,5 +6,7 @@
 	<select id="getAnswer" parameterType="Integer" resultType="com.jy.entity.Answer">
 		select * from answer where prisenumb=(select max(prisenumb) from answer where questionid=#{questionid}) and status="1"
 	</select>
-	
+	<select id="getPhoto" parameterType="Integer" resultType="String">
+		select photo from answer where questionid=#{questionid} and status="1"
+	</select>
 </mapper>

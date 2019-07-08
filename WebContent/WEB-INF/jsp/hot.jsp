@@ -100,9 +100,19 @@
     	//热榜的按钮分类
         $(".btn-outline-primary").click(function () {
             var string=$(this).text().toString();
-		    alert(string);
-		    alert(string.substring(33,35));
+//		    alert(string.substring(33,35));
+		    
+		    var id=1;
+		    if(string.substring(33,35)=="科学"){
+		    	id=2;
+		    }
+		    else if (string.substring(33,35)=="数码"){
+		    	id=3;
+		    }
+		    window.location.href ='hotopic.do?top='+id;
         });
+    	
+    	
         var num = $("#num").text();
         var favoritesname = $("#favoritesname").val();//收藏标题
         var description = $("#description").val();//收藏描述
@@ -221,138 +231,7 @@
             });
         })
     }
-    //赞同
-    var times1 = 0;
-    function like(id) {
-    	alert(id);
-        times1 = times1 + 1;
-        var n = $("#like"+id).text();
-        if (times1 % 2 != 0) {
-            $.post("priseac.do",
-    			    {
-    			'commentid':id
-    					},
-     			        function(data,status){
-     			        alert(data);
-     			        //window.location.reload();
-    			    });
-            $("#like"+id).text((parseInt(n) + 1));
-            
-        } else if (times1 % 2 == 0) {
-        	$.post("reduceac.do",
-    			    {
-    			'commentid':id
-    					},
-     			        function(data,status){
-     			        alert(data);
-     			        //window.location.reload();
-    			    });
-            $("#like"+id).text((parseInt(n) - 1));
-            
-        }
-    }
-    var times2 = 0;
-    function replyLike(id) {
-        times2 = times2 + 1;
-        var n = $("#replyLike"+id).text();
-        if (times2 % 2 != 0) {
-            $("#replyLike"+id).text((parseInt(n) + 1));
-            $.post("priserac.do",
-    			    {
-    			'rcommentid':id
-    					},
-     			        function(data,status){
-     			        alert(data);
-     			        //window.location.reload();
-    			    });
-        } else if (times2 % 2 == 0) {
-        	$.post("reducerac.do",
-    			    {
-    			'rcommentid':id
-    					},
-     			        function(data,status){
-     			        alert(data);
-     			        //window.location.reload();
-    			    });
-            $("#replyLike"+id).text((parseInt(n) - 1));
-            
-        }
-    }
-    //回复评论
-    var t1=0;
-    function reply1(id){
-        t1=t1+1;
-        if(t1%2!=0){
-            $("#reply1"+id).text("✎取消回复");
-        }else if(t1%2==0){
-            $("#reply1"+id).text("✎回复");
-        }
-        $("#replyText1"+id).toggle();
-    }
-    var t2=0;
-    function reply2(id){
-        t2=t2+1;
-        if(t2%2!=0){
-            $("#reply2"+id).text("✎取消回复");
-        }else if(t2%2==0){
-            $("#reply2"+id).text("✎回复");
-        }
-        $("#replyText2"+id).toggle();
-    }
-    function submitReply1(id){
-       
-
-         var commentid=id.getAttribute('co');
-         var queid=id.getAttribute('uc');
-         var text1=$("#text1"+commentid).val();
-        alert(commentid+text1+queid);  
-         $.post("insertr.do",
-			    {
-        	'commentcontent':text1,
-			'commentid':commentid,
-			'queid':queid
-					},
- 			        function(data,status){
- 			        alert(data);
- 			        //window.location.reload();
-			    });
-        
-    }
-    function submitReply2(id){
-    	var rcommentid=id.getAttribute('rc');
-    	var answerid=id.getAttribute('uc');
-        var commentid=id.getAttribute('co');
-        var text2=$("#text2"+rcommentid).val();
-        alert(text2+answerid+commentid);
-        $.post("insertr.do",
-			    {
-        	'commentcontent':text2,
-			'commentid':commentid,
-			'queid':answerid
-					},
- 			        function(data,status){
- 			        alert(data);
- 			        //window.location.reload();
-			    });
-    }
-    //评论
-    function submitReply3(id){  
-        var answerid=id.getAttribute('an');
-        var commentid=id.getAttribute('uc');
-        var text3=$("#text3"+commentid).val();
-       alert(text3);
-       alert(answerid);
-       $.post("insert.do",
-			    {
-       	'commentcontent':text3,
-			'answerid':answerid
-			    },
-			        function(data,status){
-			        alert(data);
-			        window.location.reload();
-			    });
-       
-   }
+   
     function collecting() {
         $("#collecting").attr('disabled', true);
         $("#collecting").text("已收藏");
@@ -446,11 +325,9 @@
                     <a class="nav-link" data-toggle="tab" href="#follow">关注</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#hot">热榜</a>
+                    <a class="nav-link" href="hot.do">热榜</a>
                 </li>
             </ul>
-            
-           
                 <div id="hot"><br>
                     <div id="hotList">
                         <div class="btn-group btn-group-toggle" data-toggle="buttons">
@@ -475,55 +352,30 @@
                         </div>
                     </div>
                     <hr />
+                       <c:forEach items="${quelist}" var="que">
                     <div id="hotContent">
-                        <div id="hotNum" style="float:left;color: darkorange;font-size:25px;font-weight:bold">1</div>
+                    	<c:forEach items="${numlist}" var="num">
+                    	  <c:if   test="${que.questionid eq num.questionid}">
+                        <div id="hotNum" style="float:left;color: darkorange;font-size:25px;font-weight:bold">${num.numb}</div>
                         <div id="hotTitle" style="float:left;margin-left:10px;width:400px;">
-                            <p style="font-size:18px;font-weight:bold">地球上是否存在没有天敌的动物？</p>
-                            <p class="text-muted mt-1">所谓天敌只是针对动物，例如老鼠的天敌是猫。不包括生病，气候变化，火山喷发之类的</p>
+                            <p style="font-size:18px;font-weight:bold">${que.questionname}</p>
+                            <p class="text-muted mt-1">${que.questiondescribe}</p>
                             <div id="">
-                                <p class="text-muted mt-1" style="float:left">♨<span id="heat">6675万</span>热度</p>
+                                <p class="text-muted mt-1" style="float:left">♨<span id="heat">${que.browsenumb}</span>热度</p>
                                 <p class="text-muted mt-1" onclick="openShare()" style="float:right">➢分享</p>
                             </div>
                         </div>
                         <!--如果有图片的话-->
+                          <c:if   test="${not empty num.photo}">
                         <div id="hotImg" style="float:right;width:130px;">
-                            <image src="common/image/bg.jpg" style="width:130px;height:100px;"></image>
+                            <image src='${num.photo}' alt = "无图片" style="width:130px;height:100px;"></image>
                         </div>
+                         </c:if>
+                         </c:if>
+                        </c:forEach>
                         <hr />
-                        <div id="hotNum" style="float:left;color: darkorange;font-size:25px;font-weight:bold">2</div>
-                        <div id="hotTitle" style="float:left;margin-left:10px;width:400px;">
-                            <p style="font-size:18px;font-weight:bold">为什么鲁迅在他那个年代骂人成名了，而现实中大多数骂人只能落个网络喷子的下场?</p>
-                            <p class="text-muted mt-1">二者差距在哪</p>
-                            <div id="">
-                                <p class="text-muted mt-2" style="float:left">♨<span id="heat">4684万</span>热度</p>
-                                <p class="text-muted mt-2" onclick="openShare()" style="float:right">➢分享</p>
-                            </div>
-                        </div>
-                        <hr />
-                        
-                        <div id="hotNum" style="float:left;color: darkorange;font-size:25px;font-weight:bold">3</div>
-                        <div id="hotTitle" style="float:left;margin-left:10px;width:400px;">
-                            <p style="font-size:18px;font-weight:bold">为什么鲁迅在他那个年代骂人成名了，而现实中大多数骂人只能落个网络喷子的下场?</p>
-                            <p class="text-muted mt-1">二者差距在哪</p>
-                            <div id="">
-                                <p class="text-muted mt-2" style="float:left">♨<span id="heat">4684万</span>热度</p>
-                                <p class="text-muted mt-2" onclick="openShare()" style="float:right">➢分享</p>
-                            </div>
-                        </div>
-                        <hr />
-                        <div id="hotNum" style="float:left;color: darkorange;font-size:25px;font-weight:bold">4</div>
-                        <div id="hotTitle" style="float:left;margin-left:10px;width:400px;">
-                            <p style="font-size:18px;font-weight:bold">为什么鲁迅在他那个年代骂人成名了，而现实中大多数骂人只能落个网络喷子的下场?</p>
-                            <p class="text-muted mt-1">二者差距在哪</p>
-                            <div id="">
-                                <p class="text-muted mt-2" style="float:left">♨<span id="heat">4684万</span>热度</p>
-                                <p class="text-muted mt-2" onclick="openShare()" style="float:right">➢分享</p>
-                            </div>
-                        </div>
-                        <hr />
-                        
-                        
                     </div>
+                      </c:forEach>
                 </div>
                 
                 <hr>

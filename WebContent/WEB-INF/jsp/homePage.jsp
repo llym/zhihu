@@ -96,6 +96,27 @@
         }
     </style>
     <script>
+    function getPhotoPath(obj){
+		//obj传入的DOM对象
+		console.log(obj)
+		console.log(obj.id);
+		console.log(obj.src);
+		console.log(obj.onload);
+		var path
+		$.post("getPhotoPath.do",{
+			id:obj.id
+		},function(data){
+			console.log(data)
+			obj.src=data
+			obj.onload=""
+				console.log(obj.onload)
+			console.log(obj.src)
+			
+		});
+		
+	}
+
+    
     $(function () {
     	//热榜的按钮分类
         $(".btn-outline-primary").click(function () {
@@ -456,8 +477,8 @@
                 <hr>
                     <div class="content">
                         <p id="title">${que.name}</p>
-                        <input class="head mt-2" type="image" src='${que.photo}' style="
-                          width:30px;height:30px;float:left;" />
+                        <input id ="${que.userid}" class="head mt-2" type="image" src='/pic/b.jpg' style="
+                          width:30px;height:30px;float:left;" onload="getPhotoPath(this)"/>
                         <p id="author" class="mt-2">&nbsp;${que.userid}</p><br />
 <!--                         <p class="text-secondary mt-2">118人赞同了该回答</p> -->
                         <p class="mt-2">${que.describe}</p>
@@ -474,8 +495,9 @@
                      <c:forEach items="${comlist}" var="com">
                        <c:if   test="${com.answerid eq que.answerid}">
                     <div id="comment" class="ml-4">
-                        <input class="mt-2" type="image" src='F:\大三下\课程设计\login\images\sculpture.jpg' style="
-                            width:30px;height:30px;float:left;" />
+                        <input id="${com.userid}" class="mt-2" type="image" src='/pic/b.jpg' style="
+                            width:30px;height:30px;float:left;" onload="getPhotoPath(this)"/>
+                             
                         <p id="commentName" class="ml-2" style="padding-top:10px;">&nbsp;${com.userid}<span id="commentTime"
                                 style="padding-left:350px">20小时前</span></p>
                         <br />
@@ -494,8 +516,10 @@
                         <c:forEach items="${rcomlist}" var="rcom">
                         <c:if   test="${com.commentid eq rcom.commentid}">
                         <div style="padding-left:40px;">
-                            <input class="mt-2" type="image" src='F:\大三下\课程设计\login\images\sculpture.jpg'" style="
-                                width:30px;height:30px;float:left;" />
+                            <input id="${rcom.userid}" class="mt-2" type="image" src='/pic/b.jpg' style="
+                                width:30px;height:30px;float:left;" onload="getPhotoPath(this)"/>
+                          
+                                
                             <p id="replyer" class="ml-2" style="padding-top:10px;">&nbsp;${rcom.userid}<span
                                     class="text-muted">回复</span><span id="replyed">${rcom.commentuserid}</span>
                                 <span id="replyTime" style="padding-left: 200px">2小时前</span></p>

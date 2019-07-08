@@ -7,7 +7,7 @@
 		select * from user where userid=#{username} and status="1"
 	</select>
 	<select id="getUserById" parameterType="int" resultType="com.jy.entity.User">
-		select * from user where id=#{id} and status="1"
+		select * from user where userid=#{id} and status="1"
 	</select>
 	<select id="checkTelnum" parameterType="com.jy.entity.User" resultType="com.jy.entity.User">
 		select * from user where telnum=#{telnum} and status="1"
