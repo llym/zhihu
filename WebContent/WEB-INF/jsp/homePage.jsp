@@ -97,6 +97,12 @@
     </style>
     <script>
     $(function () {
+    	//热榜的按钮分类
+        $(".btn-outline-primary").click(function () {
+            var string=$(this).text().toString();
+		    alert(string);
+		    alert(string.substring(33,35));
+        });
         var num = $("#num").text();
         var favoritesname = $("#favoritesname").val();//收藏标题
         var description = $("#description").val();//收藏描述
@@ -424,57 +430,6 @@
         var idea=$("#idea").val();
         alert(idea);
     }
-    // 此次代码待改进
-    function station(){
-        alert('1');
-        $("#science").removeClass("btn-primary");
-        $("#digital").removeClass("btn-primary");
-        $("#physical").removeClass("btn-primary");
-        $("#fashion").removeClass("btn-primary");
-        $("#movie").removeClass("btn-primary");
-        $("#station").addClass("btn-primary");
-    }
-    function science(){
-        $("#science").addClass("btn-primary");
-        $("#digital").removeClass("btn-primary");
-        $("#physical").removeClass("btn-primary");
-        $("#fashion").removeClass("btn-primary");
-        $("#movie").removeClass("btn-primary");
-        $("#station").removeClass("btn-primary");
-
-    }
-    function digital(){
-        $("#science").removeClass("btn-primary");
-        $("#digital").addClass("btn-primary");
-        $("#physical").removeClass("btn-primary");
-        $("#fashion").removeClass("btn-primary");
-        $("#movie").removeClass("btn-primary");
-        $("#station").removeClass("btn-primary");
-    }
-    function physical(){
-        $("#science").removeClass("btn-primary");
-        $("#digital").removeClass("btn-primary");
-        $("#physical").addClass("btn-primary");
-        $("#fashion").removeClass("btn-primary");
-        $("#movie").removeClass("btn-primary");
-        $("#station").removeClass("btn-primary");
-    }
-    function fashion(){
-        $("#science").removeClass("btn-primary");
-        $("#digital").removeClass("btn-primary");
-        $("#physical").removeClass("btn-primary");
-        $("#fashion").addClass("btn-primary");
-        $("#movie").removeClass("btn-primary");
-        $("#station").removeClass("btn-primary");
-    }
-    function movie(){
-        $("#science").removeClass("btn-primary");
-        $("#digital").removeClass("btn-primary");
-        $("#physical").removeClass("btn-primary");
-        $("#fashion").removeClass("btn-primary");
-        $("#movie").addClass("btn-primary");
-        $("#station").removeClass("btn-primary");
-    }
     </script>
 </head>
 
@@ -572,18 +527,54 @@
                 
                 <div id="follow" class="container tab-pane fade"><br>
                     <div id="" style="height:400px;">
-                        <h3>关注</h3>
+                        <!--如果没有关注的人-->
+                        <div id="pic" align="center">
+                            <input type="image" class="" src="common/image/card.png"/>
+                            <p class="text-muted" style="font-size:16px">还没有关注的人，为你推荐以下用户</p>
+                        </div>
+                        <!-- 推荐的用户 -->
+                        <div id="recommendation" class="ml-2 mt-3" >
+                            <div style="float:left"><input type="image" class="" src="common/image/sculpture.jpg" style="width:40px;height:40px"></div>
+                            <div style="float:left" class="ml-2">
+                                <p><span id="userName" style="font-weight:bold">Mr-HH</span>,<span id="profile">中南大学 细胞生物学博士在读</span></p>
+                                <p class="text-muted"><span id="replyNum">75</span>回答.<span id="followNum">90682</span>关注着</p>
+                            </div>
+                            <div style="float:right">
+                                <button type="button" class="btn btn-primary" id="followHim">+ 关注他</button>
+                            </div>
+                        </div>
+
+                        <div style="float:left" class="mt-2">
+                            <p id="ideaTitle" style="font-weight:bold;font-size:18px">为什么昆虫不小心摔倒六脚朝天，如果不及时翻身过来就会马上死掉了？</p>
+                            <div style="float:left;width:150px;height:100px;"><input type="image" src="common/image/pic.jpg" style="width:150px;height:100px;"></div>
+                            <div style="float:right;width:400px;height:100px">
+                                <p id="ideaContent" style="font-size:16px">正常情况下来说，当昆虫碰到了[四脚朝天]的状态时，他们都会尽自己所能，尝试回正。一般状态下有三种：1.拼命挣扎,挥动足部以改变重心，
+                                    从而翻身；2.借助道具，比如说利用自然环境中存在着各种各样的...</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div id="hot" class="container tab-pane fade"><br>
                     <div id="hotList">
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-sm ml-2 btn-priamry" onclick="station()" id="station">全站</button>
-                            <button type="button" class="btn btn-sm ml-2" onclick="science()" id="science">科学</button>
-                            <button type="button" class="btn btn-sm ml-2" onclick="digital()" id="digital">数码</button>
-                            <button type="button" class="btn btn-sm ml-2" onclick="physical()" id="physical">体育</button>
-                            <button type="button" class="btn btn-sm ml-2" onclick="fashion()" id="fashion">时尚</button>
-                            <button type="button" class="btn btn-sm ml-2" onclick="movie()" id="movie">影视</button>
+                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                            <label class="btn btn-outline-primary active ml-2">
+                                <input type="radio" name="options" id="option1" autocomplete="off" checked>全站
+                            </label>
+                            <label class="btn btn-outline-primary ml-2">
+                                <input type="radio" name="options" id="option2" autocomplete="off">科学
+                            </label>
+                            <label class="btn btn-outline-primary ml-2">
+                                <input type="radio" name="options" id="option3" autocomplete="off">数码
+                            </label>
+                            <label class="btn btn-outline-primary ml-2">
+                                <input type="radio" name="options" id="option3" autocomplete="off">体育
+                            </label>
+                            <label class="btn btn-outline-primary ml-2">
+                                <input type="radio" name="options" id="option3" autocomplete="off">时尚
+                            </label>
+                            <label class="btn btn-outline-primary ml-2">
+                                <input type="radio" name="options" id="option3" autocomplete="off">影视
+                            </label>
                         </div>
                     </div>
                     <hr />
