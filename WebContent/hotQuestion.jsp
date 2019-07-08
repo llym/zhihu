@@ -11,13 +11,17 @@
     <link rel="stylesheet" href="common/tool/assets/design/css/trumbowyg.css"> 
     <script type="text/javascript" src="common/tool/jquery/jquery.js"></script>
     <script src="common/tool/bootstrap4/js/bootstrap.js"></script>
-
     <script src="common/tool/layui/layui.js"></script>
     <script type="text/javascript" src="common/tool/layui/layui.js"></script>  
     <link rel="stylesheet" href="common/tool/assets/design/css/trumbowyg.css"> 
     <script src="common/tool/assets/jquery.min.js"></script>
     <script src="common/tool/assets/trumbowyg.js"></script>
     <script src="common/tool/assets/plugins/base64/trumbowyg.base64.js"></script>
+    <link rel="stylesheet" type="text/css" href="common/tool/styles/simditor.css" />
+    <script src="common/tool/scripts/module.min.js"></script>
+    <script src="common/tool/scripts/hotkeys.min.js"></script>
+    <script src="common/tool/scripts/uploader.min.js"></script>
+    <script src="common/tool/scripts/simditor.min.js"></script>
 <title>如何评价...</title>
 	    <style>
         body {
@@ -75,6 +79,12 @@
         }
     </style>
         <script>
+        $(function () {
+            var editor = new Simditor({
+                textarea: $('#editor')
+                //optional options
+            });
+        });
         function followQuestion() {
             if ($("#followQuestion").text() == "关注问题") {
                 $("#followQuestion").text("取消关注");
@@ -93,13 +103,13 @@
             $(".writeAnswer").show();
         }
         function submit(){
-            alert($(".editor").text());
+            alert($("#editor").val());
         }
         
     </script>
 </head>
 <body>
-	<%-- <jsp:include page="navigation.jsp" flush="true"></jsp:include> --%>
+	 <%-- <jsp:include page="navigation.jsp" flush="true"></jsp:include>  --%>
     <div class="topHeader mt-2">
         <div class="question">
             <div class="top">
@@ -141,16 +151,12 @@
     </div>
     <div class="writeAnswer mt-2" style="display: none">
         <div class="ml-3 pt-2">
-            <image src="F:\大三下\课程设计\login\images\sculpture.jpg" style="width:30px;height:30px"></image>
+            <image src="common/image/sculpture.jpg" style="width:30px;height:30px"></image>
             <span id="username">用户名</span>
         </div>
-        <div id="odiv" style="display:none;position:absolute;z-index:100;">
-            <img src="assets/pic/sx.png" title="缩小" border="0" alt="缩小" onclick="sub(-1);" />
-            <img src="assets/pic/fd.png" title="放大" border="0" alt="放大" onclick="sub(1)" />
-            <img src="assets/pic/cz.png" title="重置" border="0" alt="重置" onclick="sub(0)" />
-            <img src="assets/pic/sc.png" title="删除" border="0" alt="删除" onclick="del();odiv.style.display='none';" />
+        <div style="padding:10px">
+            <textarea id="editor" placeholder="Balabala" autofocus></textarea>
         </div>
-        <div onmousedown="show_element(event)" style="clear:both" id="customized-buttonpane" class="editor"></div>
         <button type="button" class="btn btn-primary btn-sm" id="submit" onclick="submit()">提交回答</button>
     </div>
     <div class="other mt-2">
@@ -168,7 +174,7 @@
             <ul class="list-group list-group-flush">
                 <li class="list-group-item">
                     <!-- 头像         -->
-                    <image src="F:\大三下\课程设计\login\images\sculpture.jpg" style="width:30px;height:30px" />
+                    <image src="common/image/sculpture.jpg" style="width:30px;height:30px" />
                     <!-- 用户名 -->
                     <span id="username" style="font-size:18px;font-weight: bold">Mr.panda</span>
                     <button type="button" class="btn btn-sm btn-outline-primary" style="float:right" id="invite"
