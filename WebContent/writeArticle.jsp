@@ -15,6 +15,16 @@ integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b
 <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js" 
 integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
+<link rel="stylesheet" href="common/tool/layui/css/layui.css"  media="all">
+<script src="common/tool/layui/layui.js" charset="utf-8"></script>
+
+<link rel="stylesheet" type="text/css" href="common/tool/styles/simditor.css" />
+
+<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="common/tool/scripts/module.min.js"></script>
+<script type="text/javascript" src="common/tool/scripts/hotkeys.min.js"></script>
+<script type="text/javascript" src="common/tool/scripts/uploader.min.js"></script>
+<script type="text/javascript" src="common/tool/scripts/simditor.min.js"></script>
 
 <style type="text/css">
 input:focus{
@@ -30,13 +40,6 @@ input:focus{
   font-weight: bold;
 }
 </style>
-
-<script src="common/tool/assets/jquery.min.js"></script>
-<script src="common/tool/assets/trumbowyg.js"></script>
-<script src="common/tool/assets/plugins/base64/trumbowyg.base64.js"></script>
-<link rel="stylesheet" href="common/tool/assets/design/css/trumbowyg.css">
-<link rel="stylesheet" href="common/tool/layui/css/layui.css"  media="all">
-<script src="common/tool/layui/layui.js" charset="utf-8"></script>
 
 <script type="text/javascript">
   $(document).ready(function() {//设置标题字数超过50个字弹窗提醒
@@ -81,6 +84,7 @@ layui.use('upload', function(){
 	    }
 	  });
 	});
+	
 </script>
 </head>
 <body>
@@ -138,14 +142,14 @@ layui.use('upload', function(){
     <div class="dropdown-divider "></div>
   </div>
   <!-- 富文本框 -->
-    <div id="odiv" style="display:none;position:absolute;z-index:100;">
-        <img src="common/tool/assets/pic/sx.png" title="缩小" border="0" alt="缩小" onclick="sub(-1);"/>
-        <img src="common/tool/assets/pic/fd.png" title="放大" border="0" alt="放大" onclick="sub(1)"/>
-        <img src="common/tool/assets/pic/cz.png" title="重置" border="0" alt="重置" onclick="sub(0)"/>
-        <img src="common/tool/assets/pic/sc.png" title="删除" border="0" alt="删除" onclick="del();odiv.style.display='none';"/>
-    </div>
-    <div onmousedown="show_element(event)" style="clear:both" id="customized-buttonpane" class="editor"></div>
-
+<textarea id="editor" placeholder="请输入正文" autofocus></textarea>
+<script>
+	var editor = new Simditor({
+  	textarea: $('#editor')
+  	//optional options
+});
+	
+</script>
 </div>
 </body>
 </html>
