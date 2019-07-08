@@ -67,5 +67,17 @@ public class UserServiceImpl implements UserService{
 			System.out.println(e.getMessage());
 			return "";
 		}
+	}
+
+	@Override
+	public List<User> getAllUser() {
+		// TODO Auto-generated method stub
+		return userDao.getAllUser();
+	}
+
+	@Override
+	public User getUserById(int id) {
+		// TODO Auto-generated method stub
+		return userDao.getUserById(id);
 	}	
 }

@@ -6,11 +6,17 @@
 	<select id="findUser" parameterType="String" resultType="com.jy.entity.User">
 		select * from user where userid=#{username} and status="1"
 	</select>
+	<select id="getUserById" parameterType="int" resultType="com.jy.entity.User">
+		select * from user where id=#{id} and status="1"
+	</select>
 	<select id="checkTelnum" parameterType="com.jy.entity.User" resultType="com.jy.entity.User">
 		select * from user where telnum=#{telnum} and status="1"
 	</select>
 	<insert id="insertUser" parameterType="com.jy.entity.User" useGeneratedKeys="true">
 		insert into user(userid,telnum,password,status) VALUES (#{telnum},#{telnum},#{password},"1")
 	</insert>
+	<select id="getAllUser"  resultType="com.jy.entity.User">
+		select * from user 
+	</select>
 	
 </mapper>

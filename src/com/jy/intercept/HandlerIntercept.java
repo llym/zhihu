@@ -36,6 +36,9 @@ public class HandlerIntercept implements HandlerInterceptor{
 		if(url.indexOf("register")>=0){
 			return true;//表示放行
 		}
+		if(url.indexOf("adminLogin")>=0){
+			return true;//表示放行
+		}
 		//判断session
 		HttpSession session = request.getSession();
 		String username = (String)session.getAttribute("username");

@@ -1,5 +1,7 @@
 package com.jy.dao;
 
+import java.util.List;
+
 import com.jy.entity.User;
 
 public interface UserDao {
@@ -8,5 +10,9 @@ public interface UserDao {
 	public void insertUser(User user);
 
 	public User checkTelnum(User user);
+
+	public List<User> getAllUser();
+
+	public User getUserById(int id);
 	
 }
