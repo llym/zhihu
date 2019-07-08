@@ -51,10 +51,8 @@ public class TestController {
 	
 	@RequestMapping("/hot.do")
 	 public ModelAndView hot(){
-		List<Question> list= questionservice.getHotQuestionService(1);
+		List<Question> list= questionservice.getHotService(1);
 		List<hot> numlist=new ArrayList<hot>();	
-		
-		
 		for(int i=0;i<list.size();i++) {
       	 System.out.println(list.get(i).getQuestionid()); 
       	 String photo=answerservice.getPhotoService(list.get(i).getQuestionid());

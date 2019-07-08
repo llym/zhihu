@@ -100,16 +100,27 @@
     	//热榜的按钮分类
         $(".btn-outline-primary").click(function () {
             var string=$(this).text().toString();
-//		    alert(string.substring(33,35));
-		    
 		    var id=1;
 		    if(string.substring(33,35)=="科学"){
-		    	id=2;
+		    	id=1;window.location.href ='hotopic.do?top='+id;
 		    }
 		    else if (string.substring(33,35)=="数码"){
-		    	id=3;
+		    	id=2;window.location.href ='hotopic.do?top='+id;
 		    }
-		    window.location.href ='hotopic.do?top='+id;
+		    else if (string.substring(33,35)=="体育"){
+		    	id=3;window.location.href ='hotopic.do?top='+id;
+		    }
+		    else if (string.substring(33,35)=="时尚"){
+		    	id=4;window.location.href ='hotopic.do?top='+id;
+		    }
+		    else if (string.substring(33,35)=="影视"){
+		    	id=5;
+		    	window.location.href ='hotopic.do?top='+id;
+		    }
+		    else if (string.substring(33,35)=="全站"){
+		    	window.location.href ="hot.do";
+		    }
+		    
         });
     	
     	

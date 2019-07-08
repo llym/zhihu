@@ -9,5 +9,7 @@
 	<select id="getHotQuestion" parameterType="Integer" resultType="com.jy.entity.Question">
 		select* from question where topicid=#{topicid} order by browsenumb desc;
 	</select>
-	
+	<select id="getHot" parameterType="Integer" resultType="com.jy.entity.Question">
+		select  * from question order by browsenumb desc limit 0,10 
+	</select>
 </mapper>
