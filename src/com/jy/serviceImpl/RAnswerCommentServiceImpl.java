@@ -26,4 +26,15 @@ public class RAnswerCommentServiceImpl implements RAnswerCommentService{
 		ranswercommentdao.insertRanswercomment(ranswercomment);
 	}
 
+	@Override
+	public void priseracService(Integer rcommentid) {
+		// TODO Auto-generated method stub
+		ranswercommentdao.priserac(rcommentid);
+	}
+
+	@Override
+	public void reduceracService(Integer rcommentid) {
+		// TODO Auto-generated method stub
+		ranswercommentdao.priserac(rcommentid);
+	}
 }

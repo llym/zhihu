@@ -42,44 +42,78 @@ public class CommentController {
 	private RAnswerCommentService ranswercommentservice;
 	
 	//评论指令
-			@ResponseBody
-			@RequestMapping(value="/insert.do",produces="html/text;charset=utf-8")
-			public String insert(String commentcontent,String answerid,HttpServletRequest request,HttpServletResponse reponse,HttpSession session) {
+		@ResponseBody
+		@RequestMapping(value="/insert.do",produces="html/text;charset=utf-8")
+		public String insert(String commentcontent,String answerid,HttpServletRequest request,HttpServletResponse reponse,HttpSession session) {
+			System.out.println(commentcontent);
+			System.out.println(answerid);
+			Date date = new Date();
+			//SimpleDateFormat dateFormat= new SimpleDateFormat("yyyy-MM-dd :hh:mm:ss");
+			SimpleDateFormat dateFormat= new SimpleDateFormat("yyyy-MM-dd ");
+			System.out.println(dateFormat.format(date));
+			String userid="111";
+			Answercomment answerc=new Answercomment();
+			//Integer an=Integer.decode(answerid);
+			answerc.setAnswerid(Integer.decode(answerid));
+			answerc.setCommentcontent(commentcontent);
+			answerc.setUserid(userid);
+			answerc.setCreatetime(date);
+					
+			answercommentservice.insertAnswercommentService(answerc);
+			return "添加成功";
+		}
+	//回复评论指令
+		@ResponseBody
+		@RequestMapping(value="/insertr.do",produces="html/text;charset=utf-8")
+		public String insertr(String commentcontent,String commentid,String queid,HttpServletRequest request,HttpServletResponse reponse,HttpSession session) {
 				System.out.println(commentcontent);
-				System.out.println(answerid);
+				System.out.println(commentid);
 				Date date = new Date();
 				//SimpleDateFormat dateFormat= new SimpleDateFormat("yyyy-MM-dd :hh:mm:ss");
 				SimpleDateFormat dateFormat= new SimpleDateFormat("yyyy-MM-dd ");
 				System.out.println(dateFormat.format(date));
 				String userid="111";
-				Answercomment answerc=new Answercomment();
-				//Integer an=Integer.decode(answerid);
-				answerc.setAnswerid(Integer.decode(answerid));
-				answerc.setCommentcontent(commentcontent);
-				answerc.setUserid(userid);
-				answerc.setCreatetime(date);
-				
-				answercommentservice.insertAnswercommentService(answerc);
+				Ranswercomment ranswerc=new Ranswercomment();
+				ranswerc.setCommentid(Integer.decode(commentid));
+				ranswerc.setCommentcontent(commentcontent);
+				ranswerc.setCommentuserid(queid);
+				ranswerc.setUserid(userid);
+				ranswerc.setCreatetime(date);
+				ranswercommentservice.insertRAnswercommentService(ranswerc);
 				return "添加成功";
 			}
-			//评论指令
-					@ResponseBody
-					@RequestMapping(value="/insertr.do",produces="html/text;charset=utf-8")
-					public String insertr(String commentcontent,String commentid,String queid,HttpServletRequest request,HttpServletResponse reponse,HttpSession session) {
-						System.out.println(commentcontent);
-						System.out.println(commentid);
-						Date date = new Date();
-						//SimpleDateFormat dateFormat= new SimpleDateFormat("yyyy-MM-dd :hh:mm:ss");
-						SimpleDateFormat dateFormat= new SimpleDateFormat("yyyy-MM-dd ");
-						System.out.println(dateFormat.format(date));
-						String userid="111";
-						Ranswercomment ranswerc=new Ranswercomment();
-						ranswerc.setCommentid(Integer.decode(commentid));
-						ranswerc.setCommentcontent(commentcontent);
-						ranswerc.setCommentuserid(queid);
-						ranswerc.setUserid(userid);
-						ranswerc.setCreatetime(date);
-						ranswercommentservice.insertRAnswercommentService(ranswerc);
-						return "添加成功";
-					}
+
+		//评论点赞
+		@ResponseBody
+		@RequestMapping(value="/priseac.do",produces="html/text;charset=utf-8")
+		public String priseac(String commentid) {
+			System.out.println(commentid);
+			answercommentservice.priseacService(Integer.decode(commentid));
+			return "赞成功";
+		}
+		//评论取消点赞
+		@ResponseBody
+		@RequestMapping(value="/reduceac.do",produces="html/text;charset=utf-8")
+		public String reduceac(String commentid) {
+			System.out.println(commentid);
+			answercommentservice.reduceacService(Integer.decode(commentid));
+			return "取消成功";
+		}
+		//评论点赞
+		@ResponseBody
+		@RequestMapping(value="/priserac.do",produces="html/text;charset=utf-8")
+		public String priserac(String rcommentid) {
+			System.out.println(rcommentid);
+			ranswercommentservice.priseracService(Integer.decode(rcommentid));
+			return "赞成功";
+		}
+		//评论取消点赞
+		@ResponseBody
+		@RequestMapping(value="/reducerac.do",produces="html/text;charset=utf-8")
+		public String reducerac(String rcommentid) {
+			System.out.println(rcommentid);
+			ranswercommentservice.reduceracService(Integer.decode(rcommentid));
+			return "取消成功";
+		}
+
 }

@@ -9,5 +9,10 @@
 	<insert id="insertRanswercomment" parameterType="com.jy.entity.Ranswercomment" useGeneratedKeys="true">
 		insert into ranswercomment(commentid,commentuserid,userid,prisenumb,commentcontent,createtime,status) VALUES (#{commentid},#{commentuserid},#{userid},"0",#{commentcontent},#{createtime},"1")
 	</insert>
-	
+	<update id="priserac" parameterType="com.jy.entity.Ranswercomment">
+        update ranswercomment set prisenumb=prisenumb+1 where rcommentid=#{rcommentid}
+	</update> 
+	<update id="reducerac" parameterType="com.jy.entity.Ranswercomment">
+        update ranswercomment set prisenumb=prisenumb-1 where rcommentid=#{rcommentid}
+	</update>
 </mapper>

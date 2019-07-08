@@ -8,4 +8,8 @@ public interface AnswerCommentService {
 	public List<Answercomment> getAnswercommentService(Integer answerid);
 
 	public void insertAnswercommentService(Answercomment answercomment);
+	
+	public void priseacService(Integer commentid);
+	
+	public void reduceacService(Integer commentid);
 }

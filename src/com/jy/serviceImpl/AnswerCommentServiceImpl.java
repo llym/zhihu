@@ -27,4 +27,16 @@ public class AnswerCommentServiceImpl implements AnswerCommentService{
 		answercommentdao.insertAnswercomment(answercomment);
 	}
 
+	@Override
+	public void priseacService(Integer commentid) {
+		// TODO Auto-generated method stub
+		answercommentdao.priseac(commentid);
+	}
+
+	@Override
+	public void reduceacService(Integer commentid) {
+		// TODO Auto-generated method stub
+		answercommentdao.reduceac(commentid);
+	}
+
 }

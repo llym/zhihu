@@ -9,4 +9,10 @@
 	<insert id="insertAnswercomment" parameterType="com.jy.entity.Answercomment" useGeneratedKeys="true">
 		insert into answercomment(answerid,userid,prisenumb,commentcontent,createtime,status) VALUES (#{answerid},#{userid},"0",#{commentcontent},#{createtime},1)
 	</insert>
+	<update id="priseac" parameterType="com.jy.entity.Answercomment">
+        update answercomment set prisenumb=prisenumb+1 where commentid=#{commentid}
+	</update> 
+	<update id="reduceac" parameterType="com.jy.entity.Answercomment">
+        update answercomment set prisenumb=prisenumb-1 where commentid=#{commentid}
+	</update>
 </mapper>

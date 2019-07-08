@@ -9,4 +9,8 @@ public interface RAnswerCommentService {
 	public List<Ranswercomment> getRanswercommentService(Integer commentid);
 	
 	public void insertRAnswercommentService(Ranswercomment ranswercomment);
+	
+	public void priseracService(Integer rcommentid);
+	
+	public void reduceracService(Integer rcommentid);
 }

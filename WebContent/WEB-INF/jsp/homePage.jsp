@@ -13,7 +13,7 @@
     <script src="common/tool/bootstrap4/js/bootstrap.js"></script>
     <link href="common/tool/layui/css/layui.css" rel="stylesheet">
     <script src="common/tool/layui/layui.js"></script>
-        <link rel="stylesheet" href="common/tool/assets/design/css/trumbowyg.css"> 
+    <link rel="stylesheet" href="common/tool/assets/design/css/trumbowyg.css"> 
     <script src="common/tool/assets/jquery.min.js"></script>
     <script src="common/tool/assets/trumbowyg.js"></script>
     <script src="common/tool/assets/plugins/base64/trumbowyg.base64.js"></script>
@@ -217,23 +217,59 @@
     }
     //赞同
     var times1 = 0;
-    function like() {
+    function like(id) {
+    	alert(id);
         times1 = times1 + 1;
-        var n = $("#like").text();
+        var n = $("#like"+id).text();
         if (times1 % 2 != 0) {
-            $("#like").text((parseInt(n) + 1));
+            $.post("priseac.do",
+    			    {
+    			'commentid':id
+    					},
+     			        function(data,status){
+     			        alert(data);
+     			        //window.location.reload();
+    			    });
+            $("#like"+id).text((parseInt(n) + 1));
+            
         } else if (times1 % 2 == 0) {
-            $("#like").text((parseInt(n) - 1));
+        	$.post("reduceac.do",
+    			    {
+    			'commentid':id
+    					},
+     			        function(data,status){
+     			        alert(data);
+     			        //window.location.reload();
+    			    });
+            $("#like"+id).text((parseInt(n) - 1));
+            
         }
     }
     var times2 = 0;
-    function replyLike() {
+    function replyLike(id) {
         times2 = times2 + 1;
-        var n = $("#replyLike").text();
+        var n = $("#replyLike"+id).text();
         if (times2 % 2 != 0) {
-            $("#replyLike").text((parseInt(n) + 1));
+            $("#replyLike"+id).text((parseInt(n) + 1));
+            $.post("priserac.do",
+    			    {
+    			'rcommentid':id
+    					},
+     			        function(data,status){
+     			        alert(data);
+     			        //window.location.reload();
+    			    });
         } else if (times2 % 2 == 0) {
-            $("#replyLike").text((parseInt(n) - 1));
+        	$.post("reducerac.do",
+    			    {
+    			'rcommentid':id
+    					},
+     			        function(data,status){
+     			        alert(data);
+     			        //window.location.reload();
+    			    });
+            $("#replyLike"+id).text((parseInt(n) - 1));
+            
         }
     }
     //回复评论
@@ -272,7 +308,7 @@
 					},
  			        function(data,status){
  			        alert(data);
- 			        window.location.reload();
+ 			        //window.location.reload();
 			    });
         
     }
@@ -290,7 +326,7 @@
 					},
  			        function(data,status){
  			        alert(data);
- 			        window.location.reload();
+ 			        //window.location.reload();
 			    });
     }
     //评论
@@ -466,7 +502,7 @@
                     <div class="content">
                         <p id="title">${que.name}</p>
                         <input class="head mt-2" type="image" src='${que.photo}' style="
-                            width:30px;height:30px;float:left;" />
+                          width:30px;height:30px;float:left;" />
                         <p id="author" class="mt-2">&nbsp;${que.userid}</p><br />
 <!--                         <p class="text-secondary mt-2">118人赞同了该回答</p> -->
                         <p class="mt-2">${que.describe}</p>
@@ -490,8 +526,8 @@
                         <br />
                         <p id="content" style="padding-left: 40px;padding-top:5px;font-size:16px">${com.commentcontent}</p>
                         <div class="mt-2">
-                            <span onclick="like()" style="padding-left:40px;padding-top:10px">👍<span
-                                    id="like">${com.prisenumb}</span></span>
+                            <span onclick="like(${com.commentid})" style="padding-left:40px;padding-top:10px">👍<span
+                                    id="like${com.commentid}">${com.prisenumb}</span></span>
                             <span id="reply1${com.commentid}" onclick="reply1(${com.commentid})" style="padding-left: 5px;">✎回复</span>
                         </div>
                          <div id="replyText1${com.commentid}"  style="display: none" >
@@ -510,8 +546,8 @@
                                 <span id="replyTime" style="padding-left: 200px">2小时前</span></p>
                             <p id="replyContent" style="padding-left: 40px;padding-top:20px;font-size:14px">${rcom.commentcontent}</p>
                             <div class="mt-2">
-                                <span onclick="replyLike()" style="padding-left:40px;padding-top:10px">👍<span
-                                        id="replyLike">1</span></span>
+                                <span onclick="replyLike(${rcom.rcommentid})" style="padding-left:40px;padding-top:10px">👍<span
+                                        id="replyLike${rcom.rcommentid}">${rcom.prisenumb}</span></span>
                                 <span id="reply2${rcom.rcommentid}" onclick="reply2(${rcom.rcommentid})" style="padding-left: 5px;">✎回复</span>
                             </div>
                         </div>
