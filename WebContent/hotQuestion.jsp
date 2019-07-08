@@ -7,16 +7,17 @@
 <head>
 	<meta charset="UTF-8">
     <link href="common/tool/bootstrap4/css/bootstrap.css" rel="stylesheet">
-        <link rel="stylesheet" href="common/tool/assets/design/css/trumbowyg.css"> 
-    <script type="text/javascript" src="common/tool/jquery/jquery.js"></script>
-    <script src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
-    <script src="common/tool/bootstrap4/js/bootstrap.js"></script>
     <link href="common/tool/layui/css/layui.css" rel="stylesheet">
+    <link rel="stylesheet" href="common/tool/assets/design/css/trumbowyg.css"> 
+    <script type="text/javascript" src="common/tool/jquery/jquery.js"></script>
+    <script src="common/tool/bootstrap4/js/bootstrap.js"></script>
+
     <script src="common/tool/layui/layui.js"></script>
     <script type="text/javascript" src="common/tool/layui/layui.js"></script>  
+    <link rel="stylesheet" href="common/tool/assets/design/css/trumbowyg.css"> 
     <script src="common/tool/assets/jquery.min.js"></script>
     <script src="common/tool/assets/trumbowyg.js"></script>
-    <script src="common/tool/assets/plugins/base64/trumbowyg.base64.js"></script> 
+    <script src="common/tool/assets/plugins/base64/trumbowyg.base64.js"></script>
 <title>如何评价...</title>
 	    <style>
         body {
@@ -98,7 +99,7 @@
     </script>
 </head>
 <body>
-	<%-- <jsp:include page="navigation.jsp" flush="true"></jsp:include>  --%>
+	<%-- <jsp:include page="navigation.jsp" flush="true"></jsp:include> --%>
     <div class="topHeader mt-2">
         <div class="question">
             <div class="top">

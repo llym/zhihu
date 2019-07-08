@@ -13,6 +13,10 @@
     <script src="common/tool/bootstrap4/js/bootstrap.js"></script>
     <link href="common/tool/layui/css/layui.css" rel="stylesheet">
     <script src="common/tool/layui/layui.js"></script>
+        <link rel="stylesheet" href="common/tool/assets/design/css/trumbowyg.css"> 
+    <script src="common/tool/assets/jquery.min.js"></script>
+    <script src="common/tool/assets/trumbowyg.js"></script>
+    <script src="common/tool/assets/plugins/base64/trumbowyg.base64.js"></script>
    <title>首页</title>
     <style>
         body {
