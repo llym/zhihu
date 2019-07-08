@@ -11,13 +11,26 @@
 <script src="common/tool/jquery/jquery.js"></script>
 <script src="common/tool/bootstrap4/js/bootstrap.js"></script>
 <script src="common/tool/layui/layui.js"></script>
+<link rel="shortcut icon" href="#" />
 <script type="text/javascript">
-	function getPhotoPath(id){
+	function getPhotoPath(obj){
+		//obj传入的DOM对象
+		console.log(obj)
+		console.log(obj.id);
+		console.log(obj.src);
+		console.log(obj.onload);
+		var path
 		$.post("getPhotoPath.do",{
-			id:id
+			id:obj.id
 		},function(data){
-			$("#"+id).attr('src',data);
+			console.log(data)
+			obj.src=data
+			obj.onload=""
+				console.log(obj.onload)
+			console.log(obj.src)
+			
 		});
+		
 	}
 	
 	
@@ -34,16 +47,54 @@
 		</ul>
 		<div class="layui-tab-content">
 			<div class="layui-tab-item layui-show" id="user control">
-				<fieldset class="layui-elem-field layui-field-title"
-					style="margin-top: 30px;">
-					<legend>将一段已知数组分页展示</legend>
-				</fieldset>
+
+				<table id="userTable"
+					class="table table-condensed table-hover table-striped">
+					<tr>
+						<th>id</th>
+						<th>登录id</th>
+						<th>住址</th>
+						<th>手机号</th>
+						<th>邮箱</th>
+						<th>操作</th>
+					</tr>
+					<c:forEach items="${books}" var="b" varStatus="st">
+						<tr>
+							<td id="${b.id}">${b.bookname}</td>
+							<td>${b.press}</td>
+							<td>${b.author}</td>
+							<td>${b.inventory}</td>
+							<td><a href="#" onclick="edit(${b.id})">编辑 </a> <a href="#"
+								id="deleteBill" onclick="del(${b.id})">删除</a></td>
+						</tr>
+						<div id="edit${b.id}" style="display: none">
+							<h3>编辑图书</h3>
+							<hr />
+							<p>
+								<span>图书名称:</span><input value="${b.bookname}" type="text"
+									class="form-control" id="name${b.id}"
+									style="width: 300px; margin-left: 50px;" />
+							</p>
+							出版社:<input type="text" value="${b.press}" class="form-control"
+								id="publisher${b.id}" style="width: 300px; margin-left: 50px;" />
+							作者:<input type="text" value="${b.author}" class="form-control"
+								id="author${b.id}" style="width: 300px; margin-left: 50px;" />
+							库存:<input type="text" value="${b.inventory}" class="form-control"
+								id="num${b.id}" style="width: 300px; margin-left: 50px;" />
+							<button type="button" class="btn btn-sm mt-2" onclick="cancel()"
+								style="float: right; margin-right: 50px;">取消</button>
+							<button type="button" class="btn btn-primary btn-sm mt-2"
+								onclick="save(${b.id})" style="float: right">保存</button>
+
+						</div>
+
+					</c:forEach>
+				</table>
 
 				<div id="demo20"></div>
 				<ul id="biuuu_city_list"></ul>
-	<script>
+				<script>
 	var s =${userList};
-	console.log(s)
 	layui.use(['laypage', 'layer'], function(){
 		  var laypage = layui.laypage
 		  ,layer = layui.layer;
@@ -71,13 +122,12 @@
 	
 });
 	</script>
-	
-	
-	<img id="img1" src="/pic/logo1.png" style="
-                            width:30px;height:30px;float:left;"/>
-	<script>
-		getPhotoPath(1);
-	</script>
+
+
+				<img id="1" src="/pic/logo1.png"
+					style="width: 30px; height: 30px; float: left;" 
+					onload="getPhotoPath(this)"/>
+				
 			</div>
 			<div class="layui-tab-item">内容2</div>
 			<div class="layui-tab-item">内容3</div>
