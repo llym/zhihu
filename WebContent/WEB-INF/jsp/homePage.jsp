@@ -451,6 +451,11 @@
         var idea=$("#idea").val();
         alert(idea);
     }
+    
+    function writeque(id){
+    	alert(id);
+    	window.location.href ='test.do?questionid='+id;
+    }
     </script>
 </head>
 
@@ -476,7 +481,7 @@
                 <c:forEach items="${quelist}" var="que">
                 <hr>
                     <div class="content">
-                        <p id="title">${que.name}</p>
+                        <p id="title"onclick="writeque(${que.questionid})" >${que.name}</p>
                         <input id ="${que.userid}" class="head mt-2" type="image" src='/pic/b.jpg' style="
                           width:30px;height:30px;float:left;" onload="getPhotoPath(this)"/>
                         <p id="author" class="mt-2">&nbsp;${que.userid}</p><br />

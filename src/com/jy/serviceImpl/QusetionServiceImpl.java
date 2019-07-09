@@ -34,6 +34,13 @@ public class QusetionServiceImpl implements QuestionService {
 		// TODO Auto-generated method stub
 		return questiondao.getHot(topicid);
 	}
+
+
+	@Override
+	public Question getaQuestionService(Integer questionid) {
+		// TODO Auto-generated method stub
+		return questiondao.getaQuestion(questionid);
+	}
 	
 
 }
