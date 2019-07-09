@@ -20,6 +20,7 @@ textarea::-webkit-input-placeholder {
 
 </style>
 <script>
+
 	function askQuestion(){
         $("[name='testname']").val("xxxxxxxxxxxxxxx");//向模态框中赋值
         layui.use(['layer'], function () {
@@ -54,7 +55,7 @@ textarea::-webkit-input-placeholder {
             </li>
             <li class="nav-item"><a class="nav-link" href="#">发现</a></li>
             <li class="nav-item"><a class="nav-link" href="#">等你来答</a></li>
-            </li>
+            
         </ul>
         <form class="form-inline">
            <div class="input-group">
@@ -98,7 +99,7 @@ textarea::-webkit-input-placeholder {
                             <!-- 嵌入jsp页面 -->
                             <iframe src="contentAnswer.jsp" style="width:100%;height:300px;border:0px"></iframe>
                             <div id="" style="float:left">
-                                <input type="image" src="common/image/setting.png" style="width:20px;height:20px"><span class="text-muted">&nbsp;设置</span></p>
+                                <input type="image" src="common/image/setting.png" style="width:20px;height:20px"><span class="text-muted">&nbsp;设置</span>
                             </div> 
                             <span class="text-muted" style="padding-left:100px">查看全部通知</span>
                         </div>
@@ -106,7 +107,7 @@ textarea::-webkit-input-placeholder {
                         <div id="friend" class="container tab-pane fade" align="center">
                             <iframe src="contentFriend.jsp" style="width:100%;height:300px;border:0px"></iframe>
                             <div id="" style="float:left">
-                                <input type="image" src="common/image/setting.png" style="width:20px;height:20px"><span class="text-muted">&nbsp;设置</span></p>
+                                <input type="image" src="common/image/setting.png" style="width:20px;height:20px"><span class="text-muted">&nbsp;设置</span>
                             </div> 
                             <span class="text-muted" style="padding-left:100px">查看全部通知</span>
                         </div>
@@ -114,7 +115,7 @@ textarea::-webkit-input-placeholder {
                         <div id="like" class="container tab-pane fade">
                             <iframe src="contentLike.jsp" style="width:100%;height:300px;border:0px"></iframe>
                             <div id="" style="float:left">
-                                <input type="image" src="common/image/setting.png" style="width:20px;height:20px"><span class="text-muted">&nbsp;设置</span></p>
+                                <input type="image" src="common/image/setting.png" style="width:20px;height:20px"><span class="text-muted">&nbsp;设置</span>
                             </div> 
                             <span class="text-muted" style="padding-left:100px">查看全部通知</span>
                         </div>
@@ -133,23 +134,23 @@ textarea::-webkit-input-placeholder {
                     <hr />
                     <iframe src="privateMess.jsp" style="width:100%;height:300px;border:0px"></iframe>
                     <div id="" style="float:left">
-                        <input type="image" src="common/image/column.png" style="width:20px;height:20px"><span class="text-muted">&nbsp;写新私信</span></p>
+                        <input type="image" src="common/image/column.png" style="width:20px;height:20px"><span class="text-muted">&nbsp;写新私信</span>
                         </div> 
                     <span class="text-muted" style="padding-left:100px">查看全部私信</span>
                 </div>
             </li>
             <!-- 头像 -->
             <li class="nav-item dropdown">
-                <input type="image" class="ml-5 dropdown-toggle" data-toggle="dropdown"
+                <input id = "${username}" type="image" class="ml-5 dropdown-toggle" data-toggle="dropdown"
                     src="common/image/sculpture.jpg" style="
-                width:30px;height:30px;" />
+                width:30px;height:30px;" onload="getPhotoPath(this)"/>
                 <div class="dropdown-menu">
                     <a class="dropdown-item" href="myPage.do"><input type="image" src="common/image/my.png" style="
                         width:20px;height:20px;">&nbsp;&nbsp;我的主页</a>
-                    <a class="dropdown-item" href="#"><input type="image" src="common/image/setting.png"
+                    <a class="dropdown-item" href="personalSetting.do?username=${username}"><input type="image" src="common/image/setting.png"
                             style="
                             width:20px;height:20px;">&nbsp;&nbsp;设置</a>
-                    <a class="dropdown-item" href="#"><input type="image" src="common/image/out.png" style="
+                    <a class="dropdown-item" href="logout.do"><input type="image" src="common/image/out.png" style="
                             width:20px;height:20px;">&nbsp;&nbsp;退出</a>
                 </div>
             </li>

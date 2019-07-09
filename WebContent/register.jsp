@@ -7,9 +7,11 @@
 <meta charset="UTF-8">
 <title>注册</title>
 <link rel="stylesheet" href="common/tool/bootstrap4/css/bootstrap.css">
-<script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js" 
-integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="common/tool/layui/css/layui.css">
+<script src="common/tool/jquery/jquery.js"></script>
+<script src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
 <script src="common/tool/bootstrap4/js/bootstrap.js" ></script>
+<script src="common/tool/layui/layui.js"></script>
 <!-- <script src="common/tool/js/jquery.toggle-password.js"></script> -->
 <style type="text/css">
 body{
@@ -37,14 +39,14 @@ body{
 }  
 </style>
 
-<script type="text/javascript" src="common/tool/js/jquery-1.9.0.min.js" ></script>
-<script src="common/tool/layui/layui.js"></script>
+
 <script src="common/tool/js/md5.js"></script>
 <script src="common/tool/js/base_form.js"></script>
 <script src="common/tool/MiniDialog-es5.min.js"></script>
 <script>
 	
  $(function(){
+	 
 	 //限制输入框内容
 	 $('#telnum').cbNum().cbLen(11,11);
 	 $('#telnum').cbFreeBlur( { regExp:/^\d{11}$/, msg:"请输入正确的手机号码" });
@@ -102,11 +104,7 @@ body{
         'password':md5(password2)
       },
       success:function(result){ 
-    	  Dialog({
-    		    title: "注册结果",
-    		    content: result,
-    		    showButton: false
-    		});
+    	 alert(result)
     	  window.location.reload();
       }
     });
@@ -118,6 +116,7 @@ body{
    }
   })
  })
+ 
  //生成并渲染出验证码图形
  function draw(show_num) {
   var canvas_width=$('#canvas').width();
@@ -187,9 +186,8 @@ body{
           	中国+86
         </button>
         <div class="dropdown-menu">
-        <c:forEach items="${countrys}" var="c" >	
-			<a class="dropdown-item" >${c}</a>	
-		</c:forEach>
+       	 <button class="dropdown-item" >美国 +1</button>
+       	<button class="dropdown-item" >英国 +19</button>
         </div>
       </div>
       <input type="text" id="telnum" class="form-control tel-val" placeholder="手机号">  

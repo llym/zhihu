@@ -28,9 +28,7 @@
 			obj.onload=""
 				console.log(obj.onload)
 			console.log(obj.src)
-			
 		});
-		
 	}
 	
 	
