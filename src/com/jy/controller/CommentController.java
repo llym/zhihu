@@ -19,12 +19,16 @@ import com.jy.entity.Answer;
 import com.jy.entity.Answercomment;
 import com.jy.entity.QA;
 import com.jy.entity.Question;
+import com.jy.entity.Questioncomment;
 import com.jy.entity.Ranswercomment;
+import com.jy.entity.Rquestioncomment;
 import com.jy.entity.User;
 import com.jy.service.AnswerCommentService;
 import com.jy.service.AnswerService;
+import com.jy.service.QuestionCommentService;
 import com.jy.service.QuestionService;
 import com.jy.service.RAnswerCommentService;
+import com.jy.service.RQuestionCommentService;
 import com.jy.service.UserService;
 
 
@@ -40,6 +44,10 @@ public class CommentController {
 	private AnswerCommentService answercommentservice;
 	@Autowired
 	private RAnswerCommentService ranswercommentservice;
+	@Autowired
+	private QuestionCommentService questioncommentservice ;
+	@Autowired
+	private RQuestionCommentService rquestioncommentservice;
 	
 	//评论指令
 		@ResponseBody
@@ -85,6 +93,7 @@ public class CommentController {
 				return "添加成功";
 			}
 
+		
 		//评论点赞
 		@ResponseBody
 		@RequestMapping(value="/priseac.do",produces="html/text;charset=utf-8")
@@ -118,4 +127,67 @@ public class CommentController {
 			return "取消成功";
 		}
 
+		
+		
+		//评论指令
+				@ResponseBody
+				@RequestMapping(value="/qinsert.do",produces="html/text;charset=utf-8")
+				public String qinsert(String commentcontent,String answerid,HttpServletRequest request,HttpServletResponse reponse,HttpSession session) {
+					System.out.println(commentcontent);
+					System.out.println(answerid);
+					Date date = new Date();
+					//SimpleDateFormat dateFormat= new SimpleDateFormat("yyyy-MM-dd :hh:mm:ss");
+					SimpleDateFormat dateFormat= new SimpleDateFormat("yyyy-MM-dd ");
+					System.out.println(dateFormat.format(date));
+					String name=(String) request.getSession().getAttribute("username");
+					String userid="111";
+					Questioncomment answerc=new Questioncomment();
+					//Integer an=Integer.decode(answerid);
+					answerc.setQuestionid(Integer.decode(answerid));
+					answerc.setCommentcontent(commentcontent);
+					answerc.setUserid(name);
+					answerc.setCreatetime(date);
+							
+					questioncommentservice.insertQuestioncommentService(answerc);
+					return "添加成功";
+				}
+		
+		
+	//回复评论指令
+		@ResponseBody
+		@RequestMapping(value="/qinsertr.do",produces="html/text;charset=utf-8")
+		public String qinsertr(String commentcontent,String commentid,String queid,HttpServletRequest request,HttpServletResponse reponse,HttpSession session) {
+				System.out.println(commentcontent);
+				System.out.println(commentid);
+				Date date = new Date();
+				//SimpleDateFormat dateFormat= new SimpleDateFormat("yyyy-MM-dd :hh:mm:ss");
+				SimpleDateFormat dateFormat= new SimpleDateFormat("yyyy-MM-dd ");
+				System.out.println(dateFormat.format(date));
+				String name=(String) request.getSession().getAttribute("username");
+				Rquestioncomment ranswerc=new Rquestioncomment();
+				ranswerc.setCommentid(Integer.decode(commentid));
+				ranswerc.setCommentcontent(commentcontent);
+				ranswerc.setCommentuserid(queid);
+				ranswerc.setUserid(name);
+				ranswerc.setCreatetime(date);
+				rquestioncommentservice.insertRquestioncommentService(ranswerc);
+				return "添加成功";
+			}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 }

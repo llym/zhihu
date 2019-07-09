@@ -321,8 +321,6 @@
         $("#replyText2"+id).toggle();
     }
     function submitReply1(id){
-       
-
          var commentid=id.getAttribute('co');
          var queid=id.getAttribute('uc');
          var text1=$("#text1"+commentid).val();
