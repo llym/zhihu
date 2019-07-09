@@ -40,5 +40,11 @@ public class AnswerServiceImpl implements AnswerService{
 		// TODO Auto-generated method stub
 		return answerdao.getallAnswer(questionid);
 	}
+
+	@Override
+	public void insertAnswerService(Answer answer) {
+		// TODO Auto-generated method stub
+		answerdao.insertAnswer(answer);
+	}
 	
 }

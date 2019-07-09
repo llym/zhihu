@@ -320,6 +320,11 @@
         var idea=$("#idea").val();
         alert(idea);
     }
+    
+    function writeque(id){
+    	alert(id);
+    	window.location.href ='test.do?questionid='+id;
+    }
     </script>
 </head>
 
@@ -369,7 +374,7 @@
                     	  <c:if   test="${que.questionid eq num.questionid}">
                         <div id="hotNum" style="float:left;color: darkorange;font-size:25px;font-weight:bold">${userStatus.count}</div>
                         <div id="hotTitle" style="float:left;margin-left:10px;width:400px;">
-                            <p style="font-size:18px;font-weight:bold">${que.questionname}</p>
+                            <p onclick="writeque(${que.questionid})" style="font-size:18px;font-weight:bold">${que.questionname}</p>
                             <p class="text-muted mt-1">${que.questiondescribe}</p>
                             <div id="">
                                 <p class="text-muted mt-1" style="float:left">♨<span id="heat">${que.browsenumb}</span>热度</p>

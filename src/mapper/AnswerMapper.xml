@@ -12,4 +12,8 @@
 	<select id="getallAnswer" parameterType="Integer" resultType="com.jy.entity.Answer">
 		select * from answer where questionid=#{questionid} and status="1"
 	</select>
+	
+	<insert id="insertAnswer" parameterType="com.jy.entity.Answer" useGeneratedKeys="true">
+		insert into answer (questionid,userid,answercontent,prisenumb,commentnumb,createtime,status) VALUES (#{questionid},#{userid},#{answercontent},"0","0",#{createtime},"1")
+	</insert>	
 </mapper>

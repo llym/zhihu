@@ -163,6 +163,18 @@
         }
         function submit(){
             alert($("#editor").val());
+            var questionid=${question.questionid};
+            alert(questionid);
+            $.post("insertanswer.do",
+    			    {
+    			'queid':questionid,
+    			'content':$("#editor").val()
+    					},
+     			        function(data,status){
+     			        alert(data);
+     			        //window.location.reload();
+    			    });
+            
         }
         //问题的评论框
         function readComment() {

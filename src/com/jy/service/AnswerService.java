@@ -11,4 +11,6 @@ public interface AnswerService {
 	public String getPhotoService(Integer questionid);
 	
 	public List<Answer> getallAnswerService(Integer questionid);
+	
+	public void insertAnswerService(Answer answer);
 }

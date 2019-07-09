@@ -11,4 +11,6 @@ public interface AnswerDao {
 	public String getPhoto(Integer questionid);
 	
 	public List<Answer> getallAnswer(Integer questionid);
+	
+	public void insertAnswer(Answer answer);
 }
