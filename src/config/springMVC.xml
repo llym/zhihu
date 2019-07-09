@@ -61,7 +61,7 @@
 				
 			</mvc:interceptor>
 		</mvc:interceptors>
-		<!-- 上传文件 -->
+		<!-- 开放上传文件功能 -->
 		<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
 
  </beans>			    

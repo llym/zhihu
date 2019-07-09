@@ -7,7 +7,9 @@
 	
 	<servlet-mapping>    
     <servlet-name>default</servlet-name>    
-    <url-pattern>*.js</url-pattern>    
+    <url-pattern>*.js</url-pattern>  
+    <url-pattern>*.jpg</url-pattern>
+    <url-pattern>*.png</url-pattern>    
     <url-pattern>*.css</url-pattern>    
     <url-pattern>/common/js/*"</url-pattern>    
     <url-pattern>/common/image/*</url-pattern>    

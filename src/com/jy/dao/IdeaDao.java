@@ -5,7 +5,7 @@ import com.jy.entity.Idea;
 public interface IdeaDao {
     int deleteByPrimaryKey(Integer ideaid);
 
-    int insert(Idea record);
+    int insert(Idea idea);
 
     int insertSelective(Idea record);
 

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.jy.dao.IdeaDao">
+<!-- 复杂查询 -->
+	<select id="getAnswercomment" parameterType="Integer" resultType="com.jy.entity.Answercomment">
+		select * from answercomment where answerid=#{answerid} and status="1" order by prisenumb desc
+	</select>
+	<insert id="insert" parameterType="com.jy.entity.Idea">
+		insert into idea VALUES (#{ideaid},#{userid},#{ideacontent},#{photo},#{prisenumb},#{createtime},1)
+	</insert>
+	<update id="priseac" parameterType="com.jy.entity.Answercomment">
+        update answercomment set prisenumb=prisenumb+1 where commentid=#{commentid}
+	</update> 
+	<update id="reduceac" parameterType="com.jy.entity.Answercomment">
+        update answercomment set prisenumb=prisenumb-1 where commentid=#{commentid}
+	</update>
+</mapper>

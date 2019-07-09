@@ -445,7 +445,7 @@
         param.top = Math.round((maxHeight - param.height) / 2);
         return param;
     }
-    function publish(){
+    function publishIdea(){
         var idea=$("#idea").val();
         alert(idea);
     }
@@ -687,7 +687,7 @@
             </div>
             <div style="padding-left:45px;padding-top:20px;float:left">
                 <input type="image" src="common/image/bookstore.png" style="width:40px;height:40px">
-                <p class="mt-2"><a href="#">书店</a></p>
+                <p class="mt-2"><a href="https://www.zhihu.com/pub/">书店</a></p>
             </div>
             <div style="padding-left:45px;padding-top:20px;float:left">
                 <input type="image" src="common/image/roundtable.png" style="width:40px;height:40px">
@@ -773,20 +773,24 @@
         </form>
         <button type="button" class="btn btn-primary" id="affirm">确认创建</button>
     </div>
-        <div id="writeIdeas" style="display:none;" align="center">
+	
+	<!-- 写想法功能弹窗 -->
+	<div id="writeIdeas" style="display:none;" align="center">
         <h3 class="mt-5">写想法</h3>
         <p class="text-muted mt-2" >分享你此刻的想法</p>
-        <textarea class="form-control mt-2" rows="10" style="width: 500px" id="idea"></textarea>
+        <form action="uploadIdea.do" method="post" enctype="multipart/form-data">
+        <textarea class="form-control mt-2" rows="10" style="width: 500px" name="ideacontent" id="idea"></textarea>
         <p class="text-primary col-sm-4" style="float:left">选择图片上传</p>
         <div class="big-photo mt-4" style="padding-right:400px">
             <div id="preview">
                 <img id="imghead" border="0" src="common/image/photo_icon.png" width="50" height="50"
                     onclick="$('#previewImg').click();">
             </div>
-            <input type="file" onchange="previewImage(this)" style="display: none;" id="previewImg">
+            <input type="file" onchange="previewImage(this)" style="display: none;" name ="image" id="previewImg">
             <p class="text-primary" style="display:none" onclick="deletePhoto()" id="deletePhoto">删除</p>
         </div>
-        <button type="button" class="btn btn-primary btn-sm" style="width:200px" onclick="publish()">发布</button>
+        <button type="submit" class="btn btn-primary btn-sm" style="width:200px" >发布</button>
+   		</form>
     </div>
 </body>
 
