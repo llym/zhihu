@@ -47,13 +47,7 @@
 								<input type="radio" name="optradio">女</label>
 							</div>
 						</div>
-						<div class="form-group row">
-							<label for="inputPassword" class="col-sm-4 col-form-label">地址</label>
-							<div class="col-sm-8">
-								<input type="text" class="form-control" id="inputPassword"
-									placeholder="地址">
-							</div>
-						</div>
+						
 						<div class="form-group row">
 							<label for="inputPassword" class="col-sm-4 col-form-label">学校</label>
 							<div class="col-sm-8">

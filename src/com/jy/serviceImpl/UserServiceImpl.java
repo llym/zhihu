@@ -1,6 +1,8 @@
 package com.jy.serviceImpl;
+
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,34 +12,54 @@ import com.jy.service.UserService;
 import com.jy.dao.UserDao;
 import com.jy.entity.User;
 
-
 @Service("UserService")
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 	@Autowired
 	UserDao userDao;
-	
+
 	@Override
-	public String findUserService(String username, String password,HttpSession session) {
-		
+	public String findUserService(String username, String password, HttpSession session) {
+
 		try {
-			User user=userDao.findUser(username);
-			String a=user.getUserid();
-			String b=user.getPassword();
-			System.out.println(a);
-			System.out.println(b);
-		if (user!=null) {
-			if (a.equals(username)&&b.equals(password)) {
-				session.setAttribute("username", username);
-				return "登录成功";
+			System.out.println("通过userid查找用户");
+			User user = userDao.findUser(username);
+			System.out.println("user:"+user);
+			if (user != null) {
+				System.out.println("未能通过userid查找用户");
+				if ( user.getPassword().equals(password)) {
+					session.setAttribute("username", username);
+					return "登录成功";
+				} else {
+					return "密码错误";
+				}
+			}else {
+				System.out.println("通过telnum查找用户");
+				user = userDao.finUserByTel(username);
+				if(user != null) {
+					if(user.getPassword().equals(password))
+					{
+						session.setAttribute("username", user.getUserid());
+						return "登录成功";
+					}else 
+						return "密码错误！";
+				}else {
+					System.out.println("通过email查找用户");
+					user = userDao.finUserByEmail(username);
+					if(user != null) {
+						if(user.getPassword().equals(password))
+						{
+							session.setAttribute("username", user.getUserid());
+							return "登录成功";
+						}else 
+							return "密码错误！";
+					}else 
+						return "账号错误！";
+					
+				}
 			}
-			else {
-				return "密码错误";
-			}
-		}
-		return "账号错误";
-		}
-		catch(Exception e){
-		return "账号错误";	
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			return "账号错误";
 		}
 	}
 
@@ -46,8 +68,7 @@ public class UserServiceImpl implements UserService{
 		try {
 			userDao.insertUser(user);
 			return "注册成功";
-		}
-		catch(Exception e){
+		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			return "注册失败";
 		}
@@ -55,15 +76,14 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public String checkTelnumService(User user) {
-		
+
 		try {
 			User user2 = userDao.checkTelnum(user);
-			if(user2==null)
+			if (user2 == null)
 				return "";
 			else
 				return "该手机号已注册";
-		}
-		catch(Exception e){
+		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			return "";
 		}
@@ -76,8 +96,42 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public User getUserById(int id) {
+	public User getUserById(String id) {
 		// TODO Auto-generated method stub
 		return userDao.getUserById(id);
-	}	
+	}
+
+	@Override
+	public String updatePassword(User user) {
+		try {
+			userDao.updatePassword(user);
+			return "修改成功！";
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			return "修改失败！";
+		}
+	}
+
+	@Override
+	public String updateTelNum(User user, HttpServletRequest request) {
+		try {
+			userDao.updateTelNum(user);
+
+			return "修改成功！";
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			return "修改失败！";
+		}
+	}
+
+	@Override
+	public String updateEmail(User user) {
+		try {
+			userDao.updateEmail(user);
+			return "修改成功！";
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			return "修改失败！";
+		}
+	}
 }

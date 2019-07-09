@@ -1,6 +1,7 @@
 package com.jy.service;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import com.jy.entity.User;
@@ -15,5 +16,11 @@ public interface UserService {
 
 	public List<User> getAllUser();
 
-	public User getUserById(int id);
+	public User getUserById(String username);
+
+	public String updatePassword(User user);
+
+	public String updateTelNum(User user,HttpServletRequest request);
+
+	public String updateEmail(User user);
 }

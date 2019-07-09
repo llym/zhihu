@@ -20,7 +20,23 @@ textarea::-webkit-input-placeholder {
 
 </style>
 <script>
-
+function getPhotoPath(obj){
+	//obj传入的DOM对象
+	console.log(obj)
+	console.log(obj.id);
+	console.log(obj.src);
+	console.log(obj.onload);
+	var path
+	$.post("getPhotoPath.do",{
+		id:obj.id
+	},function(data){
+		console.log(data)
+		obj.src=data
+		obj.onload=""
+			console.log(obj.onload)
+		console.log(obj.src)
+	});
+}
 	function askQuestion(){
         $("[name='testname']").val("xxxxxxxxxxxxxxx");//向模态框中赋值
         layui.use(['layer'], function () {

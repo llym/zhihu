@@ -14,6 +14,7 @@
 <script src="common/tool/bootstrap4/js/bootstrap.js"></script>
 <link href="common/tool/layui/css/layui.css" rel="stylesheet">
 <script src="common/tool/layui/layui.js"></script>
+<script src="common/tool/js/md5.js"></script>
 <title>个人设置</title>
 <style>
 body {
@@ -52,10 +53,77 @@ input{
 	box-shadow: none;
 }
 </style>
+
+<script>
+function getUserInfo(){
+	$.post("getUserInfo.do",{
+		username:${username}
+	},function(data,status){
+		
+	});
+}
+
+function updatePassword(){
+	var newp = $("#password").val();
+	console.log(newp)
+	$.post("updatePassword.do",{
+		username:${username},
+		newPassword:md5(newp)
+	},function(data,status){
+		alert(data)
+		
+	});
+}
+
+function updateTelNum(){
+	var newTel = $("#telNum").val();
+	console.log(newTel)
+	 $.post("checkTelnum.do",{
+         	telnum:newTel
+				    },
+				function(data,status){
+				    	if(data!=""){
+				    		alert(data)
+				    		return;
+				    	}else{
+				    		$.post("updateTelNum.do",{
+				    			username:${username},
+				    			newTelNum:newTel
+				    		},function(data,status){
+				    			alert(data)
+				    			window.location.reload();
+				    		});
+				    	}
+				    });
+	
+	
+}
+
+function updateEmail(){
+	var newE = $("#email").val();
+	console.log(newE)
+	$.post("updateEmail.do",{
+		username:${username},
+		newEmail:newE
+	},function(data,status){
+		alert(data)
+		window.location.reload();
+	});
+}
+	
+	$(function(){
+		/*  */
+		
+		
+		
+	})
+</script>
+
+
 </head>
 
-<body>
-	<jsp:include page="WEB-INF/jsp/navigation.jsp" flush="true"></jsp:include>
+<body onpageshow="getUserInfo()" onload="getUserInfo()">
+	<jsp:include page="navigation.jsp" flush="true"></jsp:include>
 
 	<div class="container mt-3">
 		<div class="left" style="background-color: white; float: left;">
@@ -99,16 +167,18 @@ input{
 						disabled="true" style="border:0;background-color: white;width: 400px;">
 						<div class="dropdown-divider "></div>
 						<h6 class="mt-4 ml-3">密码</h6>
-						<input class="ml-3" type="password" placeholder="未设置"style="width: 360px;">
-						<a href="#" >提交</a>
+						<input id="password" class="ml-3" type="password" placeholder="未设置" style="width: 360px;" value="123456">
+						<a href="#" onclick="updatePassword()">提交</a>
 						<div class="dropdown-divider "></div>
 						<h6 class="mt-4 ml-3">绑定手机</h6>
-						<input class="ml-3" type="text" placeholder="未绑定"style="width: 360px;">
-						<a href="#" >提交</a>
+						<input id="telNum" class="ml-3" type="text" placeholder="未绑定"style="width: 360px;"
+							value="${userTelNum}">
+						<a href="#" onclick="updateTelNum()">提交</a>
 						<div class="dropdown-divider "></div>
 						<h6 class="mt-4 ml-3">绑定邮箱</h6>
-						<input class="ml-3" type="text" placeholder="未绑定"style="width: 360px;">
-						<a href="#" >提交</a>
+						<input id="email" class="ml-3" type="text" placeholder="未绑定"style="width: 360px;"
+							value="${userEmail}">
+						<a href="#" onclick="updateEmail()">提交</a>
 						<div class="dropdown-divider "></div>
 						<h6 class="mt-4 ml-3">个性域名</h6>
 						<input class="ml-3" type="text" placeholder="个人主页的地址，个性域名只可更改一次" 

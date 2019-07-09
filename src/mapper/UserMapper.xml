@@ -6,7 +6,13 @@
 	<select id="findUser" parameterType="String" resultType="com.jy.entity.User">
 		select * from user where userid=#{username} and status="1"
 	</select>
-	<select id="getUserById" parameterType="int" resultType="com.jy.entity.User">
+	<select id="finUserByTel" parameterType="String" resultType="com.jy.entity.User">
+		select * from user where telnum=#{username} and status="1"
+	</select>
+	<select id="finUserByEmail" parameterType="String" resultType="com.jy.entity.User">
+		select * from user where adress=#{username} and status="1"
+	</select>
+	<select id="getUserById" parameterType="String" resultType="com.jy.entity.User">
 		select * from user where userid=#{id} and status="1"
 	</select>
 	<select id="checkTelnum" parameterType="com.jy.entity.User" resultType="com.jy.entity.User">
@@ -18,5 +24,16 @@
 	<select id="getAllUser"  resultType="com.jy.entity.User">
 		select * from user 
 	</select>
-	
+	<update id="updatePassword"  parameterType="com.jy.entity.User">
+		update user set password=#{password} where userid=#{userid}
+	</update>
+	<update id="updateTelNum"  parameterType="com.jy.entity.User">
+		update user set telnum=#{telnum} where userid=#{userid}
+	</update>
+	<update id="updateUserId"  parameterType="com.jy.entity.User">
+		update user set userid=#{telnum} where telnum=#{telnum}
+	</update>
+	<update id="updateEmail"  parameterType="com.jy.entity.User">
+		update user set adress=#{adress} where userid=#{userid}
+	</update>
 </mapper>

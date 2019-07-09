@@ -70,7 +70,8 @@ public class AdminController {
 	
 	@ResponseBody
 	@RequestMapping(value="getPhotoPath.do",produces="html/text;charset=utf-8")
-	public String getPhotoPath(int id,HttpServletRequest request){
+	public String getPhotoPath(String id,HttpServletRequest request){
+		System.out.println(id+"get");
 		User user = userservice.getUserById(id);
 		String path = user.getPhoto();
 		return path;

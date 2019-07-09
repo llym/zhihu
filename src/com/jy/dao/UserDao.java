@@ -13,6 +13,17 @@ public interface UserDao {
 
 	public List<User> getAllUser();
 
-	public User getUserById(int id);
+	public User getUserById(String id);
+
+	public void updatePassword(User user);
+
+	public void updateTelNum(User user);
+	public void updateEmail(User user);
+
+	public void updateUserId(User user);
+
+	public User finUserByTel(String username);
+
+	public User finUserByEmail(String username);
 	
 }

@@ -50,7 +50,7 @@ public class HandlerIntercept implements HandlerInterceptor{
 			return true;
 		}else{
 			System.out.println(username+":"+"用户未登录！");
-		request.getRequestDispatcher("/login.jsp").forward(request, response);
+			request.getRequestDispatcher("/login.jsp").forward(request, response);
 		}
 		return false;
 	}
