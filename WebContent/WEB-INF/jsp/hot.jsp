@@ -363,11 +363,11 @@
                         </div>
                     </div>
                     <hr />
-                       <c:forEach items="${quelist}" var="que">
+                       <c:forEach items="${quelist}" var="que" varStatus="userStatus">
                     <div id="hotContent">
                     	<c:forEach items="${numlist}" var="num">
                     	  <c:if   test="${que.questionid eq num.questionid}">
-                        <div id="hotNum" style="float:left;color: darkorange;font-size:25px;font-weight:bold">${num.numb}</div>
+                        <div id="hotNum" style="float:left;color: darkorange;font-size:25px;font-weight:bold">${userStatus.count}</div>
                         <div id="hotTitle" style="float:left;margin-left:10px;width:400px;">
                             <p style="font-size:18px;font-weight:bold">${que.questionname}</p>
                             <p class="text-muted mt-1">${que.questiondescribe}</p>

@@ -78,7 +78,7 @@
             float: right;
             margin-right: 14%;
             width: 330px;
-            background-color:aquamarine;
+            background-color:white;
         }
     </style>
         <script>
