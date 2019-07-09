@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.jy.dao.QuestionDao">
+<!-- 复杂查询 -->
+	<select id="getQuestion" parameterType="String" resultType="com.jy.entity.Question">
+		select questionid,questionname from question where status="1" 
+	</select>
+	<select id="getaQuestion" parameterType="Integer" resultType="com.jy.entity.Question">
+		select* from question where questionid=#{questionid} and status="1" 
+	</select>
+	<select id="getHotQuestion" parameterType="Integer" resultType="com.jy.entity.Question">
+		select* from question where topicid=#{topicid} order by browsenumb desc;
+	</select>
+	<select id="getHot" parameterType="Integer" resultType="com.jy.entity.Question">
+		select  * from question order by browsenumb desc limit 0,10 
+	</select>
+</mapper>

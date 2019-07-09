@@ -138,11 +138,11 @@
         <div class="right" style="background-color:white;float:right">
             <div style="padding-left:40px;padding-top:20px;float:left">
                 <input type="image" src="common/image/commend.png" style="width:30px;height:30px">
-                <p class="mt-2"><a href="#">写回答</a></p>
+                <p class="mt-2"><a href="writeAnswer.do">写回答</a></p>
             </div>
             <div style="padding-left:50px;padding-top:20px;float:left">
                 <input type="image" src="common/image/article.png" style="width:30px;height:30px">
-                <p class="mt-2"><a href="#">写文章</a></p>
+                <p class="mt-2"><a href="writeArticle.do">写文章</a></p>
             </div>
             <div style="padding-left:50px;padding-top:20px;float:left">
                 <input type="image" src="common/image/idea.png" style="width:30px;height:30px">

@@ -109,7 +109,7 @@
         function submit(){
             alert($("#editor").val());
         }
-        
+        //问题的评论框
         function readComment() {
             $("[name='testname']").val("xxxxxxxxxxxxxxx");
             layui.use(['layer'], function () {
@@ -124,11 +124,10 @@
             })
         }
         
-       
+       //回答的评论框
         function  anreadComment(id) {
             $("[name='testname']").val("xxxxxxxxxxxxxxx");
             var a="#anreadComment"+id;
-            alert(a);
             layui.use(['layer'], function () {
                 var layer = layui.layer, $ = layui.$;
                 layer.open({
@@ -175,9 +174,22 @@
         }
         //发布回复评论的内容
         function publishReply(id) {
-        	 var commentid=id.getAttribute('co');
+        	
+        	var commentid=id.getAttribute('co');
+         	var queid=id.getAttribute('uc');
             var text = $("#replyContent"+commentid).val();
-            alert(text);
+            alert(commentid+text+queid);
+            $.post("qinsertr.do",
+    			    {
+            	'commentcontent':text,
+    			'commentid':commentid,
+    			'queid':queid
+    					},
+     			        function(data,status){
+     			        alert(data);
+     			        //window.location.reload();
+    			    });
+            
         }
         //回复评论中的回复
         function replyComment(id) {
@@ -192,23 +204,167 @@
         //发布回复评论中的内容
         function publishReplyComment(id){
         	var rcommentid=id.getAttribute('rc');
+        	var queid=id.getAttribute('uc');
             var text=$("#replyCommentText"+rcommentid).val();
-            alert(text);
+            alert(text+queid);
+            $.post("qinsertr.do",
+    			    {
+            	'commentcontent':text,
+    			'commentid':rcommentid,
+    			'queid':queid
+    					},
+     			        function(data,status){
+     			        alert(data);
+     			        //window.location.reload();
+    			    });
         }
         //发布对问题的评论
         function publish(){
             var text=$("#commentText").val();
-            alert(text);
+            var questionid=${question.questionid};
+            alert(text+questionid);
+            $.post("qinsert.do",
+    			    {
+           	'commentcontent':text,
+    			'answerid':questionid
+    			    },
+    			        function(data,status){
+    			        alert(data);
+    			        window.location.reload();
+    			    });
         }
         
         
         
+        //上面是问题，下面是回答
         
         
         
-        
-        
-        
+     // 点赞评论
+        function anpraise(id) {
+            var num = $("#anpraiseNum"+id).text();
+            if ($(".praise"+id).css('color') == 'rgb(128, 128, 128)') {
+                $(".praise"+id).css('color', 'blue');
+                $("#anpraiseNum"+id).text(parseInt(num) + 1);
+                $.post("priseac.do",
+        			    {
+        			'commentid':id
+        					},
+         			        function(data,status){
+         			        alert(data);
+         			        //window.location.reload();
+        			    });
+            } else if ($(".praise"+id).css('color') == 'rgb(0, 0, 255)') {
+                $(".praise"+id).css('color', 'gray');
+                $.post("reduceac.do",
+        			    {
+        			'commentid':id
+        					},
+         			        function(data,status){
+         			        alert(data);
+         			        //window.location.reload();
+        			    });
+                $("#anpraiseNum"+id).text(parseInt(num) - 1);
+            }
+        }
+        //点赞回复评论的
+        function anpraiseReply(id) {
+            var num = $("#anpraiseReplyNum"+id).text();
+            if ($(".praiseReply"+id).css('color') == 'rgb(128, 128, 128)') {
+            	 $.post("priserac.do",
+         			    {
+         			'rcommentid':id
+         					},
+          			        function(data,status){
+          			        alert(data);
+          			        //window.location.reload();
+         			    });
+                $(".praiseReply"+id).css('color', 'blue');
+                $("#anpraiseReplyNum"+id).text(parseInt(num) + 1);
+            } else if ($(".praiseReply"+id).css('color') == 'rgb(0, 0, 255)') {
+                $(".praiseReply"+id).css('color', 'gray');
+                $.post("reducerac.do",
+        			    {
+        			'rcommentid':id
+        					},
+         			        function(data,status){
+         			        alert(data);
+         			        //window.location.reload();
+        			    });
+                $("#anpraiseReplyNum"+id).text(parseInt(num) - 1);
+            }
+        }
+        //回复评论  
+        function anreply(id) {
+            if ($("#anreplyFlag1"+id).text() == '回复') {
+                $("#anreplyFlag1"+id).text("取消回复");
+                $("#anreply"+id).show();
+            } else if ($("#anreplyFlag1"+id).text() == '取消回复') {
+                $("#anreplyFlag1"+id).text("回复");
+                $("#anreply"+id).hide();
+            }
+        }
+        //发布回复评论的内容
+        function anpublishReply(id) {
+        	 var commentid=id.getAttribute('co');
+        	 var queid=id.getAttribute('uc');
+            var text = $("#anreplyContent"+commentid).val();
+            alert(commentid+text+queid);
+            $.post("insertr.do",
+    			    {
+            	'commentcontent':text,
+    			'commentid':commentid,
+    			'queid':queid
+    					},
+     			        function(data,status){
+     			        alert(data);
+     			        //window.location.reload();
+    			    });
+        }
+        //回复评论中的回复
+        function anreplyComment(id) {
+            if ($("#anreplyFlag2"+id).text() == '回复') {
+                $("#anreplyFlag2"+id).text("取消回复");
+                $("#anreplyCommentArea"+id).show();
+            } else if ($("#anreplyFlag2"+id).text() == '取消回复') {
+                $("#anreplyFlag2"+id).text("回复");
+                $("#anreplyCommentArea"+id).hide();
+            }
+        }
+        //发布回复评论中的内容
+        function anpublishReplyComment(id){
+        	 var rcommentid=id.getAttribute('rc');
+         	 var queid=id.getAttribute('uc');
+             var commentid=id.getAttribute('co');
+             var text=$("#anreplyCommentText"+rcommentid).val();
+            alert(text+queid+commentid);
+            $.post("insertr.do",
+    			    {
+            	'commentcontent':text,
+    			'commentid':commentid,
+    			'queid':queid
+    					},
+     			        function(data,status){
+     			        alert(data);
+     			        //window.location.reload();
+    			    });
+        }
+        //发布对回答的评论
+        function anpublish(id){
+           
+            var answerid=id.getAttribute('an');
+            var text=$("#ancommentText"+answerid).val();
+            alert(text);
+            $.post("insert.do",
+    			    {
+           	'commentcontent':text,
+    			'answerid':answerid
+    			    },
+    			        function(data,status){
+    			        alert(data);
+    			        window.location.reload();
+    			    });
+        }
         
     </script>
 </head>
@@ -306,80 +462,78 @@
                 <div class="mt-2">
                     <button type="button" class="btn btn-sm agree">赞同</button>
                     <button type="button" class="btn btn-sm cancel">▼</i></button>
-                    <button onclick="anreadComment(${an.answerid})" type="button" class="btn btn-sm comment">✉<span id="commentNum">2</span>条评论</button>
+                    <button onclick="anreadComment(${an.answerid})" type="button" class="btn btn-sm comment">✉<span id="commentNum">${an.commentnumb}</span>条评论</button>
                     <button type="button" class="btn btn-sm share">分享</button>
                     <button type="button" class="btn btn-sm collect">收藏</button>
                 </div>
                 
-                
-                
                   <div id="anreadComment${an.answerid}" style="display:none;">
-				        <p style="font-weight:bold;font-size:16px"><span id="num">3</span>条评论</p>
-				        <hr />
+				        <p style="font-weight:bold;font-size:16px"><span id="num">${an.commentnumb}</span>条评论</p>
+				        <hr>
 				         <c:forEach items="${comlist}" var="com">
 				          <c:if   test="${com.answerid eq an.answerid}">
 				        <div id="ancomment" style="font-size:16px;">
 				            <p>
 				                <image src="common/image/pic.jpg" style="width:30px;height:30px"></image>
-				                <span id="ancommentUser" style="font-size:16px" class="ml-2">怡红公子</span>
+				                <span id="ancommentUser" style="font-size:16px" class="ml-2">${com.userid}</span>
 				                <!-- 评论的内容 -->
 				                <p id="ancommentContent" style="padding-left:40px" class="mt-2">${com.commentcontent}</p>
 				                <p style="padding-left:40px;" class="mt-2">
 				                    <!-- 点赞 -->
-				                    <i class="layui-icon layui-icon-praise praise" style="font-size: 16px; color: gray;"
-				                        onclick="anpraise()"></i>
-				                    <span id="anpraiseNum">1</span>
+				                    <i class="layui-icon layui-icon-praise praise${com.commentid}" style="font-size: 16px; color: gray;"
+				                        onclick="anpraise(${com.commentid})"></i>
+				                    <span id="anpraiseNum${com.commentid}">${com.prisenumb}</span>
 				
 				                    <i class="layui-icon layui-icon-edit" style="font-size: 16px; color: gray;"></i>
-				                    <span onclick="anreply()" id="replyFlag1">回复</span>
+				                    <span onclick="anreply(${com.commentid})" id="anreplyFlag1${com.commentid}">回复</span>
 				                </p>
-				                <div style="padding-left:40px;display:none" id="reply">
-				                    <textarea id="anreplyContent" class="form-control"
+				                <div style="padding-left:40px;display:none" id="anreply${com.commentid}">
+				                    <textarea id="anreplyContent${com.commentid}" class="form-control"
 				                        style="float:left;width:500px;height:40px;"></textarea>
-				                    <button type="button" class="btn btn-primary ml-2" onclick="anpublishReply()">发布</button>
+				                    <button type="button" class="btn btn-primary ml-2" uc="${com.userid}" co="${com.commentid}" onclick="anpublishReply(this)">发布</button>
 				                </div>
 				            </p>
 				           
 				          		 
 				            <!-- 该评论下的回复 -->
-				            <hr />
-				            
-				            <div id="anreplyanComment" style="padding-left:40px;">
-				                <p>
-				                <c:forEach items="${rcomlist}" var="rcom">
+				            <c:forEach items="${rcomlist}" var="rcom">
 				         		 <c:if   test="${com.commentid eq rcom.commentid}">
+				            <div id="anreplyanComment" style="padding-left:40px;">
+				            
+				                <p>
+				                
 				                    <image src="common/image/pic.jpg" style="width:30px;height:30px"></image>
-				                    <span id="anreplyCommentUser">天猪</span>
+				                    <span id="anreplyCommentUser">${rcom.userid}</span>
 				                    <span class="text-muted">回复</span>
-				                    <span id="ancommentUser">怡红公子</span>
+				                    <span id="ancommentUser">${rcom.commentuserid}</span>
 				                    <p id="anreplyCommentContent" class="mt-2" style="padding-left:40px">
 				                       ${rcom.commentcontent}
 				                    </p>
 				                    <p style="padding-left:40px;" class="mt-2">
 				                        <!-- 点赞 -->
-				                        <i class="layui-icon layui-icon-praise praiseReply" style="font-size: 16px; color: gray;"
-				                            onclick="praiseReply()"></i>
-				                        <span id="anpraiseReplyNum">3</span>
+				                        <i class="layui-icon layui-icon-praise praiseReply${rcom.rcommentid}" style="font-size: 16px; color: gray;"
+				                            onclick="anpraiseReply(${rcom.rcommentid})"></i>
+				                        <span id="anpraiseReplyNum${rcom.rcommentid}">${rcom.prisenumb}</span>
 				                        <i class="layui-icon layui-icon-edit" style="font-size: 16px; color: gray;"></i>
-				                        <span onclick="anreplyComment()" id="anreplyFlag2">回复</span>
+				                        <span onclick="anreplyComment(${rcom.rcommentid})" id="anreplyFlag2${rcom.rcommentid}">回复</span>
 				                    </p>
-				                    <div style="padding-left:40px;display:none" id="anreplyCommentArea">
-				                        <textarea id="anreplyCommentText" class="form-control"
+				                    <div style="padding-left:40px;display:none" id="anreplyCommentArea${rcom.rcommentid}">
+				                        <textarea id="anreplyCommentText${rcom.rcommentid}" class="form-control"
 				                            style="float:left;width:500px;height:40px;"></textarea>
-				                        <button type="button" class="btn btn-primary ml-2" onclick="anpublishReplyComment()">发布</button>
+				                        <button type="button" class="btn btn-primary ml-2"uc="${rcom.userid}" rc="${rcom.rcommentid}"  co="${com.commentid}" onclick="anpublishReplyComment(this)">发布</button>
 				                    </div> 
-				                     </c:if>
-                        </c:forEach>
+				                    
 				                </p>
 				            </div>
-				
-				
+							 </c:if>        
+                        </c:forEach>
 				        </div>
 				        </c:if>
+				        <hr>
 				        </c:forEach>
 				        <div style="position:absolute;padding-top:270px">
-				            <textarea class="form-control" style="float:left;width:550px;height:40px;" id="ancommentText"></textarea>
-				            <buttont type="button" class="btn btn-primary ml-2" onclick="anpublish()">发布</buttont>
+				            <textarea class="form-control" style="float:left;width:550px;height:40px;" id="ancommentText${an.answerid}"></textarea>
+				            <buttont type="button" class="btn btn-primary ml-2"  an="${an.answerid}"  onclick="anpublish(this)">发布</buttont>
 				        </div>
 				    </div>
 				             
@@ -416,7 +570,7 @@
                 <div style="padding-left:40px;display:none" id="reply${que.commentid}">
                     <textarea id="replyContent${que.commentid}" class="form-control"
                         style="float:left;width:80%;height:40px;"></textarea>
-                    <button type="button" class="btn btn-primary ml-2" co="${que.commentid}" onclick="publishReply(this)">发布</button>
+                    <button type="button" class="btn btn-primary ml-2"  co="${que.commentid}" uc="${que.userid}" onclick="publishReply(this)">发布</button>
                 </div>
             </p>
             <!-- 该评论下的回复 -->
@@ -444,7 +598,7 @@
                     <div style="padding-left:40px;display:none" id="replyCommentArea${rque.rcommentid}">
                         <textarea id="replyCommentText${rque.rcommentid}" class="form-control"
                             style="float:left;width:500px;height:40px;"></textarea>
-                        <button type="button" class="btn btn-primary ml-2" rc="${rque.rcommentid}" onclick="publishReplyComment(this)">发布</button>
+                        <button type="button" class="btn btn-primary ml-2" rc="${rque.rcommentid}" uc="${rque.userid}" onclick="publishReplyComment(this)">发布</button>
                     </div> 
                 </p>
             </div>

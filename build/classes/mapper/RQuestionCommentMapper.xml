@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.jy.dao.RquestioncommentDao">
+<!-- 复杂查询 -->
+	<select id="getRquestioncomment" parameterType="Integer" resultType="com.jy.entity.Rquestioncomment">
+		select * from rquestioncomment where commentid=#{commentid} and status="1" order by prisenumb desc
+	</select>
+	<insert id="insertRquestioncomment" parameterType="com.jy.entity.Rquestioncomment" useGeneratedKeys="true">
+		insert into rquestioncomment(commentid,commentuserid,userid,prisenumb,commentcontent,createtime,status) VALUES (#{commentid},#{commentuserid},#{userid},"0",#{commentcontent},#{createtime},"1")
+	</insert>
+	<update id="priserqc" parameterType="com.jy.entity.Rquestioncomment">
+        update rquestioncomment set prisenumb=prisenumb+1 where rcommentid=#{rcommentid}
+	</update> 
+	<update id="reducerqc" parameterType="com.jy.entity.Rquestioncomment">
+        update rquestioncomment set prisenumb=prisenumb-1 where rcommentid=#{rcommentid}
+	</update>
+</mapper>

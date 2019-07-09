@@ -21,7 +21,7 @@ public class FunctionController {
 	//跳转到写文章
 	@RequestMapping("writeArticle.do")
 	public ModelAndView writeArticle() {
-		ModelAndView mav = new ModelAndView("MyPage");
+		ModelAndView mav = new ModelAndView("writeArticle");
 		return mav;
 	}
 }
