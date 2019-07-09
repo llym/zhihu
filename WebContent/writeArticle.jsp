@@ -103,8 +103,8 @@ layui.use('upload', function(){
           style="margin-left:600px" data-toggle="dropdown" href="#">发布</button>
           <div class="dropdown-menu" style="height: 340px;width: 320px; margin-right: 200px">
             <h4 class="ml-3">发布文章</h4>
-            <p class="font-weight-light">绑定适合的话题，能方便分类检索，文章也更容易让读者发现。</p>
-            <div><img style="height: 30px;width: 30px;" src="common/image/search.png">
+            <p class="font-weight-light m-2">绑定适合的话题，能方便分类检索，文章也更容易让读者发现。</p>
+            <div class="m-2"><img style="height: 30px;width: 30px;" src="common/image/search.png">
             <input type="text" placeholder="搜索话题..." style="border:0; width: 270px;"></input>
           </div>
           <div class="dropdown-divider "></div>
@@ -124,7 +124,7 @@ layui.use('upload', function(){
       </div>
     </li>
   </ul>
-  <div class="dropdown-divider "></div>
+  <div class="dropdown-divider"></div>
 
 <!--正文-->
 <div class="content">
