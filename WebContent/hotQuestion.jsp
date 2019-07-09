@@ -102,8 +102,9 @@
             $("#invite").attr('disabled', true);
             $("#invite").text("已邀请")
         }
+        
         function writeAnswer() {
-            $(".writeAnswer").show();
+            $(".writeAnswer").toggle();
         }
         function submit(){
             alert($("#editor").val());
@@ -120,6 +121,7 @@
                     <button type="button" class="topic btn btn-sm ml-2">JavaScript</button>
                     <button type="button" class="topic btn btn-sm ml-2">Node.js</button>
                     <button type="button" class="topic btn btn-sm ml-2">npm</button>
+                    
                     <button type="button" class="btn btns" style="margin-left:400px" id="btnFollow">关注者<br>
                         <span style="font-weight:bold" id="followerNum">196</span></button>
                     <button type="button" class="btn btns" style="margin-left:20px">浏览者<br>
@@ -230,10 +232,10 @@
             </div>
         </div>
     </div>
-    <div class="write mt-2">
-        <button type="button" class="btn btn-block mt-2" style="background-color: white" onclick="writeAnswer()"><i
-                class="layui-icon layui-icon-edit" style="font-size: 14px; color: rgb(109, 177, 245);"></i>写回答</button>
-    </div>
+<!--     <div class="write mt-2"> -->
+<!--         <button type="button" class="btn btn-block mt-2" style="background-color: white" onclick="writeAnswer()"><i -->
+<!--                 class="layui-icon layui-icon-edit" style="font-size: 14px; color: rgb(109, 177, 245);"></i>写回答</button> -->
+<!--     </div> -->
 
 </body>
 </html>

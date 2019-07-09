@@ -1,17 +1,17 @@
 package com.jy.dao;
 
+import java.util.List;
+
 import com.jy.entity.Questioncomment;
 
 public interface QuestioncommentDao {
-    int deleteByPrimaryKey(Integer commentid);
-
-    int insert(Questioncomment record);
-
-    int insertSelective(Questioncomment record);
-
-    Questioncomment selectByPrimaryKey(Integer commentid);
-
-    int updateByPrimaryKeySelective(Questioncomment record);
-
-    int updateByPrimaryKey(Questioncomment record);
+    
+	public List<Questioncomment> getQuestioncomment(Integer questionid);
+	
+	public void insertQuestioncomment(Questioncomment questioncomment);
+	
+	public void priseqc(Integer commentid);
+	
+	public void reduceqc(Integer commentid);
+	
 }
