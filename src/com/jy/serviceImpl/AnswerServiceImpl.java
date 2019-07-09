@@ -23,20 +23,22 @@ public class AnswerServiceImpl implements AnswerService{
 		Answer user=answerdao.getAnswer(questionid);
 		String a=user.getUserid();
 		String b=user.getAnswercontent();
-//		System.out.println(a);
-//		System.out.println(b);
 			return user;	
 		}
 		catch(Exception e){
 			return null;	
 		}
-		
 	}
 
 	@Override
 	public String getPhotoService(Integer questionid) {
 		// TODO Auto-generated method stub
 		return answerdao.getPhoto(questionid);
+	}
+	@Override
+	public List<Answer> getallAnswerService(Integer questionid) {
+		// TODO Auto-generated method stub
+		return answerdao.getallAnswer(questionid);
 	}
 	
 }

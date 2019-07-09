@@ -123,56 +123,76 @@
                 });
             })
         }
+        
+       
+        function  anreadComment(id) {
+            $("[name='testname']").val("xxxxxxxxxxxxxxx");
+            var a="#anreadComment"+id;
+            alert(a);
+            layui.use(['layer'], function () {
+                var layer = layui.layer, $ = layui.$;
+                layer.open({
+                    type: 1,//类型
+                    area: ['700px', '600px'],
+                    title: false,
+                    shadeClose: false,
+                    content: $(a)
+                });
+            })
+        }
+        
         // 点赞评论
-        function praise() {
-            var num = $("#praiseNum").text();
-            if ($(".praise").css('color') == 'rgb(128, 128, 128)') {
-                $(".praise").css('color', 'blue');
-                $("#praiseNum").text(parseInt(num) + 1);
-            } else if ($(".praise").css('color') == 'rgb(0, 0, 255)') {
-                $(".praise").css('color', 'gray');
-                $("#praiseNum").text(parseInt(num) - 1);
+        function praise(id) {
+            var num = $("#praiseNum"+id).text();
+            if ($(".praise"+id).css('color') == 'rgb(128, 128, 128)') {
+                $(".praise"+id).css('color', 'blue');
+                $("#praiseNum"+id).text(parseInt(num) + 1);
+            } else if ($(".praise"+id).css('color') == 'rgb(0, 0, 255)') {
+                $(".praise"+id).css('color', 'gray');
+                $("#praiseNum"+id).text(parseInt(num) - 1);
             }
         }
         //点赞回复评论的
-        function praiseReply() {
-            var num = $("#praiseReplyNum").text();
-            if ($(".praiseReply").css('color') == 'rgb(128, 128, 128)') {
-                $(".praiseReply").css('color', 'blue');
-                $("#praiseReplyNum").text(parseInt(num) + 1);
-            } else if ($(".praiseReply").css('color') == 'rgb(0, 0, 255)') {
-                $(".praiseReply").css('color', 'gray');
-                $("#praiseReplyNum").text(parseInt(num) - 1);
+        function praiseReply(id) {
+            var num = $("#praiseReplyNum"+id).text();
+            if ($(".praiseReply"+id).css('color') == 'rgb(128, 128, 128)') {
+                $(".praiseReply"+id).css('color', 'blue');
+                $("#praiseReplyNum"+id).text(parseInt(num) + 1);
+            } else if ($(".praiseReply"+id).css('color') == 'rgb(0, 0, 255)') {
+                $(".praiseReply"+id).css('color', 'gray');
+                $("#praiseReplyNum"+id).text(parseInt(num) - 1);
             }
         }
         //回复评论  
-        function reply() {
-            if ($("#replyFlag1").text() == '回复') {
-                $("#replyFlag1").text("取消回复");
-                $("#reply").show();
-            } else if ($("#replyFlag1").text() == '取消回复') {
-                $("#replyFlag1").text("回复");
-                $("#reply").hide();
+        function reply(id) {
+            if ($("#replyFlag1"+id).text() == '回复') {
+                $("#replyFlag1"+id).text("取消回复");
+                $("#reply"+id).show();
+            } else if ($("#replyFlag1"+id).text() == '取消回复') {
+                $("#replyFlag1"+id).text("回复");
+                $("#reply"+id).hide();
             }
         }
         //发布回复评论的内容
-        function publishReply() {
-            var text = $("#replyContent").val();
+        function publishReply(id) {
+        	 var commentid=id.getAttribute('co');
+            var text = $("#replyContent"+commentid).val();
             alert(text);
         }
         //回复评论中的回复
-        function replyComment() {
-            if ($("#replyFlag2").text() == '回复') {
-                $("#replyFlag2").text("取消回复");
-                $("#replyCommentArea").show();
-            } else if ($("#replyFlag2").text() == '取消回复') {
-                $("#replyFlag2").text("回复");
-                $("#replyCommentArea").hide();
+        function replyComment(id) {
+            if ($("#replyFlag2"+id).text() == '回复') {
+                $("#replyFlag2"+id).text("取消回复");
+                $("#replyCommentArea"+id).show();
+            } else if ($("#replyFlag2"+id).text() == '取消回复') {
+                $("#replyFlag2"+id).text("回复");
+                $("#replyCommentArea"+id).hide();
             }
         }
         //发布回复评论中的内容
-        function publishReplyComment(){
-            var text=$("#replyCommentText").val();
+        function publishReplyComment(id){
+        	var rcommentid=id.getAttribute('rc');
+            var text=$("#replyCommentText"+rcommentid).val();
             alert(text);
         }
         //发布对问题的评论
@@ -180,6 +200,16 @@
             var text=$("#commentText").val();
             alert(text);
         }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     </script>
 </head>
 <body>
@@ -264,40 +294,98 @@
             </div>
             <hr />
             <div>
+            <c:forEach items="${anlist}" var="an">
                 <!-- 头像 -->
-                <image src="F:\大三下\课程设计\login\images\head.jpg" style="width:30px;height: 30px" />
+                <image src="/pic/a.jpg" style="width:30px;height: 30px" />
                 <!-- 用户名 -->
-                <span id="answerUser" style="font-weight: bold;font-size:16px;padding-left:10px">out4b</span>
+                <span id="answerUser" style="font-weight: bold;font-size:16px;padding-left:10px">${an.userid}</span>
                 <div>
-                    <p id="answerContent" class="mt-2" style="font-size:16px">思路挺好的。但私有包要放在哪里呢？</p>
-                    <p class="text-muted mt-2">发布于<span id="answerTime">2019-06-21</span></p>
+                    <p id="answerContent" class="mt-2" style="font-size:16px">${an.answercontent}</p>
+                    <p class="text-muted mt-2">发布于<span id="answerTime"><fmt:formatDate value="${an.createtime}" pattern="yyyy-MM-dd"/></span></p>
                 </div>
                 <div class="mt-2">
                     <button type="button" class="btn btn-sm agree">赞同</button>
                     <button type="button" class="btn btn-sm cancel">▼</i></button>
-                    <button type="button" class="btn btn-sm comment">✉<span id="commentNum">2</span>条评论</button>
+                    <button onclick="anreadComment(${an.answerid})" type="button" class="btn btn-sm comment">✉<span id="commentNum">2</span>条评论</button>
                     <button type="button" class="btn btn-sm share">分享</button>
                     <button type="button" class="btn btn-sm collect">收藏</button>
                 </div>
+                
+                
+                
+                  <div id="anreadComment${an.answerid}" style="display:none;">
+				        <p style="font-weight:bold;font-size:16px"><span id="num">3</span>条评论</p>
+				        <hr />
+				         <c:forEach items="${comlist}" var="com">
+				          <c:if   test="${com.answerid eq an.answerid}">
+				        <div id="ancomment" style="font-size:16px;">
+				            <p>
+				                <image src="common/image/pic.jpg" style="width:30px;height:30px"></image>
+				                <span id="ancommentUser" style="font-size:16px" class="ml-2">怡红公子</span>
+				                <!-- 评论的内容 -->
+				                <p id="ancommentContent" style="padding-left:40px" class="mt-2">${com.commentcontent}</p>
+				                <p style="padding-left:40px;" class="mt-2">
+				                    <!-- 点赞 -->
+				                    <i class="layui-icon layui-icon-praise praise" style="font-size: 16px; color: gray;"
+				                        onclick="anpraise()"></i>
+				                    <span id="anpraiseNum">1</span>
+				
+				                    <i class="layui-icon layui-icon-edit" style="font-size: 16px; color: gray;"></i>
+				                    <span onclick="anreply()" id="replyFlag1">回复</span>
+				                </p>
+				                <div style="padding-left:40px;display:none" id="reply">
+				                    <textarea id="anreplyContent" class="form-control"
+				                        style="float:left;width:500px;height:40px;"></textarea>
+				                    <button type="button" class="btn btn-primary ml-2" onclick="anpublishReply()">发布</button>
+				                </div>
+				            </p>
+				           
+				          		 
+				            <!-- 该评论下的回复 -->
+				            <hr />
+				            
+				            <div id="anreplyanComment" style="padding-left:40px;">
+				                <p>
+				                <c:forEach items="${rcomlist}" var="rcom">
+				         		 <c:if   test="${com.commentid eq rcom.commentid}">
+				                    <image src="common/image/pic.jpg" style="width:30px;height:30px"></image>
+				                    <span id="anreplyCommentUser">天猪</span>
+				                    <span class="text-muted">回复</span>
+				                    <span id="ancommentUser">怡红公子</span>
+				                    <p id="anreplyCommentContent" class="mt-2" style="padding-left:40px">
+				                       ${rcom.commentcontent}
+				                    </p>
+				                    <p style="padding-left:40px;" class="mt-2">
+				                        <!-- 点赞 -->
+				                        <i class="layui-icon layui-icon-praise praiseReply" style="font-size: 16px; color: gray;"
+				                            onclick="praiseReply()"></i>
+				                        <span id="anpraiseReplyNum">3</span>
+				                        <i class="layui-icon layui-icon-edit" style="font-size: 16px; color: gray;"></i>
+				                        <span onclick="anreplyComment()" id="anreplyFlag2">回复</span>
+				                    </p>
+				                    <div style="padding-left:40px;display:none" id="anreplyCommentArea">
+				                        <textarea id="anreplyCommentText" class="form-control"
+				                            style="float:left;width:500px;height:40px;"></textarea>
+				                        <button type="button" class="btn btn-primary ml-2" onclick="anpublishReplyComment()">发布</button>
+				                    </div> 
+				                     </c:if>
+                        </c:forEach>
+				                </p>
+				            </div>
+				
+				
+				        </div>
+				        </c:if>
+				        </c:forEach>
+				        <div style="position:absolute;padding-top:270px">
+				            <textarea class="form-control" style="float:left;width:550px;height:40px;" id="ancommentText"></textarea>
+				            <buttont type="button" class="btn btn-primary ml-2" onclick="anpublish()">发布</buttont>
+				        </div>
+				    </div>
+				             
+                </c:forEach>
             </div>
             <hr>
-            <div>
-                <!-- 头像 -->
-                <image src="F:\大三下\课程设计\login\images\head.jpg" style="width:30px;height: 30px" />
-                <!-- 用户名 -->
-                <span id="answerUser" style="font-weight: bold;font-size:16px;padding-left:10px">谢谢的谢</span>
-                <div>
-                    <p id="answerContent" class="mt-2" style="font-size:16px">时代在变化 有的时候被替代是必然的</p>
-                    <p class="text-muted mt-2">发布于<span id="answerTime">2019-06-20</span></p>
-                </div>
-                <div class="mt-2">
-                    <button type="button" class="btn btn-sm agree">赞同</button>
-                    <button type="button" class="btn btn-sm cancel">▼</i></button>
-                    <button type="button" class="btn btn-sm comment">✉<span id="commentNum"></span>条评论</button>
-                    <button type="button" class="btn btn-sm share">分享</button>
-                    <button type="button" class="btn btn-sm collect">收藏</button>
-                </div>
-            </div>
         </div>
     </div>
 <!--     <div class="write mt-2"> -->
@@ -307,10 +395,10 @@
 
 	    <div id="readComment" style="display:none;">
 	    	
-        <p style="font-weight:bold;font-size:16px"><span id="num">3</span>条评论</p>
-        <hr />
+        <p style="font-weight:bold;font-size:16px" class="ml-2"><span id="num">3</span>条评论</p>
+        <hr>
         <c:forEach items="${questioncomment}" var="que">
-        <div id="comment" style="font-size:16px;">
+        <div id="comment" class="ml-2" style="font-size:16px;">
             <p>
                 <image src="common/image/pic.jpg" style="width:30px;height:30px"></image>
                 <span id="commentUser" style="font-size:16px" class="ml-2">${que.userid}</span>
@@ -318,22 +406,23 @@
                 <p id="commentContent" style="padding-left:40px" class="mt-2">${que.commentcontent}</p>
                 <p style="padding-left:40px;" class="mt-2">
                     <!-- 点赞 -->
-                    <i class="layui-icon layui-icon-praise praise" style="font-size: 16px; color: gray;"
-                        onclick="praise()"></i>
-                    <span id="praiseNum">${que.prisenumb}</span>
+                    <i class="layui-icon layui-icon-praise praise${que.commentid}" style="font-size: 16px; color: gray;"
+                        onclick="praise(${que.commentid})"></i>
+                    <span id="praiseNum${que.commentid}">${que.prisenumb}</span>
 
                     <i class="layui-icon layui-icon-edit" style="font-size: 16px; color: gray;"></i>
-                    <span onclick="reply()" id="replyFlag1">回复</span>
+                    <span onclick="reply(${que.commentid})" id="replyFlag1${que.commentid}">回复</span>
                 </p>
-                <div style="padding-left:40px;display:none" id="reply">
-                    <textarea id="replyContent" class="form-control"
-                        style="float:left;width:500px;height:40px;"></textarea>
-                    <button type="button" class="btn btn-primary ml-2" onclick="publishReply()">发布</button>
+                <div style="padding-left:40px;display:none" id="reply${que.commentid}">
+                    <textarea id="replyContent${que.commentid}" class="form-control"
+                        style="float:left;width:80%;height:40px;"></textarea>
+                    <button type="button" class="btn btn-primary ml-2" co="${que.commentid}" onclick="publishReply(this)">发布</button>
                 </div>
             </p>
             <!-- 该评论下的回复 -->
-            <hr />
+           
                <c:forEach items="${rquestioncomment}" var="rque">
+               <br>
                         <c:if   test="${que.commentid eq rque.commentid}">
             <div id="replyComment" style="padding-left:40px;">
                 <p>
@@ -346,16 +435,16 @@
                     </p>
                     <p style="padding-left:40px;" class="mt-2">
                         <!-- 点赞 -->
-                        <i class="layui-icon layui-icon-praise praiseReply" style="font-size: 16px; color: gray;"
-                            onclick="praiseReply()"></i>
-                        <span id="praiseReplyNum">3</span>
+                        <i class="layui-icon layui-icon-praise praiseReply${rque.rcommentid}" style="font-size: 16px; color: gray;"
+                            onclick="praiseReply(${rque.rcommentid})"></i>
+                        <span id="praiseReplyNum${rque.rcommentid}">${rque.prisenumb}</span>
                         <i class="layui-icon layui-icon-edit" style="font-size: 16px; color: gray;"></i>
-                        <span onclick="replyComment()" id="replyFlag2">回复</span>
+                        <span onclick="replyComment(${rque.rcommentid})" id="replyFlag2${rque.rcommentid}">回复</span>
                     </p>
-                    <div style="padding-left:40px;display:none" id="replyCommentArea">
-                        <textarea id="replyCommentText" class="form-control"
+                    <div style="padding-left:40px;display:none" id="replyCommentArea${rque.rcommentid}">
+                        <textarea id="replyCommentText${rque.rcommentid}" class="form-control"
                             style="float:left;width:500px;height:40px;"></textarea>
-                        <button type="button" class="btn btn-primary ml-2" onclick="publishReplyComment()">发布</button>
+                        <button type="button" class="btn btn-primary ml-2" rc="${rque.rcommentid}" onclick="publishReplyComment(this)">发布</button>
                     </div> 
                 </p>
             </div>
@@ -363,11 +452,13 @@
            </c:forEach>
 
         </div>
+        <hr>
+        </c:forEach>
         <div style="position:absolute;padding-top:270px">
             <textarea class="form-control" style="float:left;width:550px;height:40px;" id="commentText"></textarea>
             <buttont type="button" class="btn btn-primary ml-2" onclick="publish()">发布</buttont>
         </div>
-        </c:forEach>
+        
     </div>
 
 </body>
