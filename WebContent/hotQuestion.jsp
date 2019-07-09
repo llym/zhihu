@@ -110,6 +110,76 @@
             alert($("#editor").val());
         }
         
+        function readComment() {
+            $("[name='testname']").val("xxxxxxxxxxxxxxx");
+            layui.use(['layer'], function () {
+                var layer = layui.layer, $ = layui.$;
+                layer.open({
+                    type: 1,//类型
+                    area: ['700px', '600px'],
+                    title: false,
+                    shadeClose: false,
+                    content: $('#readComment')
+                });
+            })
+        }
+        // 点赞评论
+        function praise() {
+            var num = $("#praiseNum").text();
+            if ($(".praise").css('color') == 'rgb(128, 128, 128)') {
+                $(".praise").css('color', 'blue');
+                $("#praiseNum").text(parseInt(num) + 1);
+            } else if ($(".praise").css('color') == 'rgb(0, 0, 255)') {
+                $(".praise").css('color', 'gray');
+                $("#praiseNum").text(parseInt(num) - 1);
+            }
+        }
+        //点赞回复评论的
+        function praiseReply() {
+            var num = $("#praiseReplyNum").text();
+            if ($(".praiseReply").css('color') == 'rgb(128, 128, 128)') {
+                $(".praiseReply").css('color', 'blue');
+                $("#praiseReplyNum").text(parseInt(num) + 1);
+            } else if ($(".praiseReply").css('color') == 'rgb(0, 0, 255)') {
+                $(".praiseReply").css('color', 'gray');
+                $("#praiseReplyNum").text(parseInt(num) - 1);
+            }
+        }
+        //回复评论  
+        function reply() {
+            if ($("#replyFlag1").text() == '回复') {
+                $("#replyFlag1").text("取消回复");
+                $("#reply").show();
+            } else if ($("#replyFlag1").text() == '取消回复') {
+                $("#replyFlag1").text("回复");
+                $("#reply").hide();
+            }
+        }
+        //发布回复评论的内容
+        function publishReply() {
+            var text = $("#replyContent").val();
+            alert(text);
+        }
+        //回复评论中的回复
+        function replyComment() {
+            if ($("#replyFlag2").text() == '回复') {
+                $("#replyFlag2").text("取消回复");
+                $("#replyCommentArea").show();
+            } else if ($("#replyFlag2").text() == '取消回复') {
+                $("#replyFlag2").text("回复");
+                $("#replyCommentArea").hide();
+            }
+        }
+        //发布回复评论中的内容
+        function publishReplyComment(){
+            var text=$("#replyCommentText").val();
+            alert(text);
+        }
+        //发布对问题的评论
+        function publish(){
+            var text=$("#commentText").val();
+            alert(text);
+        }
     </script>
 </head>
 <body>
@@ -148,7 +218,7 @@
                     <button type="button" class="btn btn-sm btn-outline-secondary mr-3"><i
                             class="layui-icon layui-icon-friends"
                             style="font-size: 14px; color: rgb(125, 131, 136);"></i>邀请回答</button>
-                    <a href="#" class="btn"><i class="layui-icon layui-icon-dialogue"
+                    <a href="#" class="btn" onclick="readComment()"><i class="layui-icon layui-icon-dialogue"
                             style="font-size: 14px; color: rgb(125, 131, 136);"></i><span id="num">3</span>条评论</a>
                 </div>
             </div>
@@ -236,6 +306,66 @@
 <!--         <button type="button" class="btn btn-block mt-2" style="background-color: white" onclick="writeAnswer()"><i -->
 <!--                 class="layui-icon layui-icon-edit" style="font-size: 14px; color: rgb(109, 177, 245);"></i>写回答</button> -->
 <!--     </div> -->
+	    <div id="readComment" style="display:none;">
+        <p style="font-weight:bold;font-size:16px"><span id="num">3</span>条评论</p>
+        <hr />
+        <div id="comment" style="font-size:16px;">
+            <p>
+                <image src="common/image/pic.jpg" style="width:30px;height:30px"></image>
+                <span id="commentUser" style="font-size:16px" class="ml-2">怡红公子</span>
+                <!-- 评论的内容 -->
+                <p id="commentContent" style="padding-left:40px" class="mt-2">看了下，用 toml
+                    做依赖描述文件真是好评，总算能写注释了。不过比较担心万一项目使用了多个源的包
+                    ，万一某个源突然挂了....安装会不会变的异常的难....</p>
+                <p style="padding-left:40px;" class="mt-2">
+                    <!-- 点赞 -->
+                    <i class="layui-icon layui-icon-praise praise" style="font-size: 16px; color: gray;"
+                        onclick="praise()"></i>
+                    <span id="praiseNum">1</span>
+
+                    <i class="layui-icon layui-icon-edit" style="font-size: 16px; color: gray;"></i>
+                    <span onclick="reply()" id="replyFlag1">回复</span>
+                </p>
+                <div style="padding-left:40px;display:none" id="reply">
+                    <textarea id="replyContent" class="form-control"
+                        style="float:left;width:500px;height:40px;"></textarea>
+                    <button type="button" class="btn btn-primary ml-2" onclick="publishReply()">发布</button>
+                </div>
+            </p>
+            <!-- 该评论下的回复 -->
+            <hr />
+            <div id="replyComment" style="padding-left:40px;">
+                <p>
+                    <image src="common/image/pic.jpg" style="width:30px;height:30px"></image>
+                    <span id="replyCommentUser">天猪</span>
+                    <span class="text-muted">回复</span>
+                    <span id="commentUser">怡红公子</span>
+                    <p id="replyCommentContent" class="mt-2" style="padding-left:40px">
+                        去中心化不代表实际用很多个吧，就像 git 我们也不会连很多
+                    </p>
+                    <p style="padding-left:40px;" class="mt-2">
+                        <!-- 点赞 -->
+                        <i class="layui-icon layui-icon-praise praiseReply" style="font-size: 16px; color: gray;"
+                            onclick="praiseReply()"></i>
+                        <span id="praiseReplyNum">3</span>
+                        <i class="layui-icon layui-icon-edit" style="font-size: 16px; color: gray;"></i>
+                        <span onclick="replyComment()" id="replyFlag2">回复</span>
+                    </p>
+                    <div style="padding-left:40px;display:none" id="replyCommentArea">
+                        <textarea id="replyCommentText" class="form-control"
+                            style="float:left;width:500px;height:40px;"></textarea>
+                        <button type="button" class="btn btn-primary ml-2" onclick="publishReplyComment()">发布</button>
+                    </div> 
+                </p>
+            </div>
+ 
+
+        </div>
+        <div style="position:absolute;padding-top:270px">
+            <textarea class="form-control" style="float:left;width:550px;height:40px;" id="commentText"></textarea>
+            <buttont type="button" class="btn btn-primary ml-2" onclick="publish()">发布</buttont>
+        </div>
+    </div>
 
 </body>
 </html>
