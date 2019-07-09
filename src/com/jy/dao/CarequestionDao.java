@@ -3,15 +3,10 @@ package com.jy.dao;
 import com.jy.entity.Carequestion;
 
 public interface CarequestionDao {
-    int deleteByPrimaryKey(Integer id);
 
-    int insert(Carequestion record);
-
-    int insertSelective(Carequestion record);
-
-    Carequestion selectByPrimaryKey(Integer id);
-
-    int updateByPrimaryKeySelective(Carequestion record);
-
-    int updateByPrimaryKey(Carequestion record);
+	public void insertCarequestion(Carequestion carequestion);
+	
+	public void reduceCarequestion(Carequestion carequestion);
+	
+	public Carequestion getCarequestion(Carequestion carequestion);
 }

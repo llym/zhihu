@@ -82,6 +82,41 @@
         }
     </style>
         <script>
+        function getPhotoPath(obj){
+    		//obj传入的DOM对象
+    		console.log(obj)
+    		console.log(obj.id);
+    		console.log(obj.src);
+    		console.log(obj.onload);
+    		var path
+    		$.post("getPhotoPath.do",{
+    			id:obj.id
+    		},function(data){
+    			console.log(data)
+    			obj.src=data
+    			obj.onload=""
+    				console.log(obj.onload)
+    			console.log(obj.src)
+    			
+    		});
+    		
+    	}
+        //判断有没有关注
+        var queid=${question.questionid};
+        $.post("testcare.do",
+			    {
+			'queid':queid
+					},
+ 			        function(data,status){
+ 			        if(data=="1"){
+ 			        	$("#followQuestion").text("取消关注");
+ 			        }
+ 			        else{
+ 			        	 $("#followQuestion").text("关注问题");
+ 			        }
+ 			        //window.location.reload();
+			    });
+        
         $(function () {
             var editor = new Simditor({
                 textarea: $('#editor')
@@ -91,8 +126,28 @@
         function followQuestion() {
             if ($("#followQuestion").text() == "关注问题") {
                 $("#followQuestion").text("取消关注");
+                var a=${question.questionid};
+                $.post("insertcq.do",
+        			    {
+        			'queid':a
+        					},
+         			        function(data,status){
+         			        alert(data);
+         			        //window.location.reload();
+        			    });
+                
+                
             } else if ($("#followQuestion").text() == "取消关注") {
                 $("#followQuestion").text("关注问题");
+                	var a=${question.questionid};
+                    $.post("cancelcq.do",
+            			    {
+            			'queid':a
+            					},
+             			        function(data,status){
+             			        alert(data);
+             			        //window.location.reload();
+            			    });
             }
 
         }
@@ -452,7 +507,7 @@
             <div>
             <c:forEach items="${anlist}" var="an">
                 <!-- 头像 -->
-                <image src="/pic/a.jpg" style="width:30px;height: 30px" />
+                <image id="${an.userid}" src="/pic/a.jpg" style="width:30px;height: 30px" onload="getPhotoPath(this)"/>
                 <!-- 用户名 -->
                 <span id="answerUser" style="font-weight: bold;font-size:16px;padding-left:10px">${an.userid}</span>
                 <div>
@@ -474,7 +529,7 @@
 				          <c:if   test="${com.answerid eq an.answerid}">
 				        <div id="ancomment" style="font-size:16px;">
 				            <p>
-				                <image src="common/image/pic.jpg" style="width:30px;height:30px"></image>
+				                <image id ="${com.userid}" src="common/image/pic.jpg" style="width:30px;height:30px" onload="getPhotoPath(this)"></image>
 				                <span id="ancommentUser" style="font-size:16px" class="ml-2">${com.userid}</span>
 				                <!-- 评论的内容 -->
 				                <p id="ancommentContent" style="padding-left:40px" class="mt-2">${com.commentcontent}</p>
@@ -502,7 +557,7 @@
 				            
 				                <p>
 				                
-				                    <image src="common/image/pic.jpg" style="width:30px;height:30px"></image>
+				                    <image id="${rcom.userid}" src="common/image/pic.jpg" style="width:30px;height:30px" onload="getPhotoPath(this)"></image>
 				                    <span id="anreplyCommentUser">${rcom.userid}</span>
 				                    <span class="text-muted">回复</span>
 				                    <span id="ancommentUser">${rcom.commentuserid}</span>
@@ -554,7 +609,7 @@
         <c:forEach items="${questioncomment}" var="que">
         <div id="comment" class="ml-2" style="font-size:16px;">
             <p>
-                <image src="common/image/pic.jpg" style="width:30px;height:30px"></image>
+                <image id="${que.userid}" src="common/image/pic.jpg" style="width:30px;height:30px" onload="getPhotoPath(this)"></image>
                 <span id="commentUser" style="font-size:16px" class="ml-2">${que.userid}</span>
                 <!-- 评论的内容 -->
                 <p id="commentContent" style="padding-left:40px" class="mt-2">${que.commentcontent}</p>
@@ -580,7 +635,7 @@
                         <c:if   test="${que.commentid eq rque.commentid}">
             <div id="replyComment" style="padding-left:40px;">
                 <p>
-                    <image src="common/image/pic.jpg" style="width:30px;height:30px"></image>
+                    <image id="${rque.userid}" src="common/image/pic.jpg" style="width:30px;height:30px" onload="getPhotoPath(this)"></image>
                     <span id="replyCommentUser">${rque.userid}</span>
                     <span class="text-muted">回复</span>
                     <span id="commentUser">${rque.commentuserid}</span>

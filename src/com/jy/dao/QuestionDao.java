@@ -14,4 +14,8 @@ public interface QuestionDao {
 	
 	//获取回答界面的问题信息
 	public Question getaQuestion(Integer questionid);
+	
+	public void addattention(Integer questionid);
+	
+	public void reduceattention(Integer questionid);
 }

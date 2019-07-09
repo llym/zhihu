@@ -15,4 +15,10 @@
 	<select id="getHot" parameterType="Integer" resultType="com.jy.entity.Question">
 		select  * from question order by browsenumb desc limit 0,10 
 	</select>
+	<update id="addattention" parameterType="com.jy.entity.Question">
+        update question set attentionnumb=attentionnumb+1 where questionid=#{questionid} and status="1"
+	</update>
+	<update id="reduceattention" parameterType="com.jy.entity.Question">
+        update question set attentionnumb=attentionnumb-1 where questionid=#{questionid} and status="1"
+	</update>
 </mapper>

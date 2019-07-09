@@ -41,6 +41,20 @@ public class QusetionServiceImpl implements QuestionService {
 		// TODO Auto-generated method stub
 		return questiondao.getaQuestion(questionid);
 	}
+
+
+	@Override
+	public void addattentionService(Integer questionid) {
+		// TODO Auto-generated method stub
+		questiondao.addattention(questionid);
+	}
+
+
+	@Override
+	public void reduceattentionService(Integer questionid) {
+		// TODO Auto-generated method stub
+		questiondao.reduceattention(questionid);
+	}
 	
 
 }

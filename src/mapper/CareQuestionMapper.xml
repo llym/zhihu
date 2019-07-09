@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.jy.dao.CarequestionDao">
+<!-- 复杂查询 -->
+	<insert id="insertCarequestion" parameterType="com.jy.entity.Carequestion" useGeneratedKeys="true">
+		insert into carequestion(questionid,userid,createtime,status) VALUES (#{questionid},#{userid},#{createtime},"1")
+	</insert>
+	 <update id="reduceCarequestion" parameterType="com.jy.entity.Carequestion">
+        update carequestion set status="0" where questionid=#{questionid} and userid=#{userid} and status="1"
+	</update>
+	 <select id="getCarequestion" parameterType="com.jy.entity.Carequestion" resultType="com.jy.entity.Carequestion">
+		select * from carequestion where questionid=#{questionid} and userid=#{userid} and status="1"
+	</select>
+</mapper>

@@ -13,4 +13,8 @@ public interface QuestionService {
 	public List<Question> getHotService(Integer topicid);
 	
 	public Question getaQuestionService(Integer questionid);
+	
+	public void addattentionService(Integer questionid);
+	
+	public void reduceattentionService(Integer questionid);
 }
