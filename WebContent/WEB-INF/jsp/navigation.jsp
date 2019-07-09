@@ -109,29 +109,65 @@ function getPhotoPath(obj){
                         </li>
                     </ul>
                     <div class="tab-content">
-                    	<!-- 别人回答了你关注的问题收到的消息 -->
-                        <div id="answer" class="container tab-pane active" align="center">
-                            <!-- 嵌入jsp页面 -->
-                            <iframe src="contentAnswer.jsp" style="width:100%;height:300px;border:0px"></iframe>
+                        <div id="answer" class="container tab-pane active">
+                            <div id="contentAnswer"
+                                style="height:310px;font-size:14px;overflow-y:scroll;border-top:1px solid gray;border-bottom:1px solid gray;padding-top:10px">
+                                <p>
+                                    <span id="user" class="text-primary">clm</span>回答了问题<span id="question"
+                                        class="text-primary">恋练有词我用起来觉得不好，你们是怎么用的？</span>
+                                </p>
+                                <hr />
+                                <p>
+                                    <span id="user" class="text-primary">姜明</span>回答了问题<span id="question"
+                                        class="text-primary">你写过什么有趣的程序？</span>
+                                </p>
+                                <hr />
+                                <p>
+                                    <span id="user" class="text-primary">与你</span>回答了问题<span id="question"
+                                        class="text-primary">你看过什么好看的电影？</span>
+                                </p>
+                            </div>
                             <div id="" style="float:left">
-                                <input type="image" src="common/image/setting.png" style="width:20px;height:20px"><span class="text-muted">&nbsp;设置</span>
-                            </div> 
+                                <input type="image" src="common/image/setting.png"
+                                    style="width:20px;height:20px"><span class="text-muted">&nbsp;设置</span></p>
+                            </div>
                             <span class="text-muted" style="padding-left:100px">查看全部通知</span>
                         </div>
-                        <!-- 好友私信消息 -->
                         <div id="friend" class="container tab-pane fade" align="center">
-                            <iframe src="contentFriend.jsp" style="width:100%;height:300px;border:0px"></iframe>
+                            <div id="contentFriend"
+                                style="height:310px;font-size:14px;overflow-y:scroll;border-top:1px solid gray;border-bottom:1px solid gray;padding-top:10px">
+                                <div align="center" style="padding-top:50px">
+                                    <input type="image" src='common/image/mess.png' style="
+                                        width:50px;height:50px;" />
+                                    <p>还没有消息</p>
+                                </div>
+                            </div>
+
                             <div id="" style="float:left">
-                                <input type="image" src="common/image/setting.png" style="width:20px;height:20px"><span class="text-muted">&nbsp;设置</span>
-                            </div> 
+                                <input type="image" src="common/image/setting.png"
+                                    style="width:20px;height:20px"><span class="text-muted">&nbsp;设置</span></p>
+                            </div>
                             <span class="text-muted" style="padding-left:100px">查看全部通知</span>
                         </div>
-                        <!-- 别人点赞了你的评论 -->
                         <div id="like" class="container tab-pane fade">
-                            <iframe src="contentLike.jsp" style="width:100%;height:300px;border:0px"></iframe>
+                            <div id="contentLike"
+                                style="height:310px;font-size:14px;overflow-y:scroll;border-top:1px solid gray;border-bottom:1px solid gray;padding-top:10px">
+                                <!-- 如果没有消息的话 -->
+                                <!-- <div align="center" style="padding-top:50px">
+                                    <input type="image" src='commom/image/mess.png' style="width:50px;height:50px;" />
+                                    <p>还没有消息</p>
+                                </div> -->
+                                <p><span id="person" class="text-primary">clm</span>赞了你的评论<span id="question"
+                                        class="text-primary">恋练有词我用起来觉得不好，你们是怎么用的？</span></p>
+                                <hr />
+                                <p><span id="person" class="text-primary">clm</span>赞了你的评论<span id="question"
+                                        class="text-primary">恋练有词我用起来觉得不好，你们是怎么用的？</span></p>
+                                <hr />
+                            </div>
                             <div id="" style="float:left">
-                                <input type="image" src="common/image/setting.png" style="width:20px;height:20px"><span class="text-muted">&nbsp;设置</span>
-                            </div> 
+                                <input type="image" src="common/image/setting.png"
+                                    style="width:20px;height:20px"><span class="text-muted">&nbsp;设置</span></p>
+                            </div>
                             <span class="text-muted" style="padding-left:100px">查看全部通知</span>
                         </div>
                     </div>
@@ -145,13 +181,29 @@ function getPhotoPath(obj){
                     src='common/image/letter.png' style="
                 width:30px;height:30px;" />
                 <div class="dropdown-menu" style="width:300px;height:400px">
-                    <p class="text-dark" align="center">我的私信</p>
-                    <hr />
-                    <iframe src="privateMess.jsp" style="width:100%;height:300px;border:0px"></iframe>
-                    <div id="" style="float:left">
-                        <input type="image" src="common/image/column.png" style="width:20px;height:20px"><span class="text-muted">&nbsp;写新私信</span>
-                        </div> 
-                    <span class="text-muted" style="padding-left:100px">查看全部私信</span>
+                    <p class="text-dark mb-2" align="center">我的私信</p>
+                    <!-- 收到的私信 -->
+                    <div id="privateMess"
+                        style="width:300px;height:310px;overflow-y:scroll;border-top:1px solid gray;border-bottom:1px solid gray">
+                        <div id="message">
+                            <div class="list-group">
+                                <a href="#" class="list-group-item list-group-item-action" style="font-size:14px">
+                                    <image src="common/image/zhi.jpg"
+                                        style="width:30px;height:30px;float:left" />
+                                    <!-- 私信方 -->
+                                    <p id="" style="padding-left:40px">知乎小伙伴</p>
+                                    <!-- 私信的内容 最少显示16各字以内 -->
+                                    <p id="messContent" class="text-muted" style="padding-left:40px">亲爱的xxx你好：你是否还记得...
+                                    </p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="padding:10px 10px;font-size: 16px; color: gray;">
+                        <span><i class="layui-icon layui-icon-edit"></i> 写新私信</span>
+                        <span style="padding-left:60px">查看全部私信</span>
+                    </div>
+
                 </div>
             </li>
             <!-- 头像 -->
