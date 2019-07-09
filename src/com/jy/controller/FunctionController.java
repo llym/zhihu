@@ -9,7 +9,7 @@ public class FunctionController {
 	//跳转到个人主页
 	@RequestMapping("myPage.do")
 	public ModelAndView personal() {
-		ModelAndView mav = new ModelAndView("MyPage");
+		ModelAndView mav = new ModelAndView("personalPage");
 		return mav;
 	}
 	//跳转到写回答

@@ -4,14 +4,13 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-<!--     <link rel="stylesheet" href="common/tool/assets/design/css/trumbowyg.css">
+	<link rel="stylesheet" href="common/tool/assets/design/css/trumbowyg.css">
     <link rel="stylesheet" href="common/tool/layui/css/layui.css" media="all" />
     <script type="text/javascript" src="common/tool/layui/layui.js"></script>  
     <script src="common/tool/assets/jquery.min.js"></script>
     <script src="common/tool/assets/trumbowyg.js"></script>
-    <script src="common/tool/assets/plugins/base64/trumbowyg.base64.js"></script>   -->
-    
-<title>Insert title here</title>
+    <script src="common/tool/assets/plugins/base64/trumbowyg.base64.js"></script>
+
 <style>
 textarea::-webkit-input-placeholder {
             color: rgb(163, 163, 163);

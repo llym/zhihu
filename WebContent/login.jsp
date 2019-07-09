@@ -10,11 +10,11 @@
     <meta charset="UTF-8">
     <title>登录</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="common/tool/bootstrap4/css/bootstrap.css">
     <link rel="stylesheet" href="common/tool/layui/css/layui.css">
-    <script src=" https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"> </script>
+    <script src=" /zhihu/WebContent/common/tool/jquery/jquery.js"> </script>
     <script src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
-    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <script src="common/tool/bootstrap4/js/bootstrap.js"></script>
      <script src="common/tool/js/jquery-1.9.0.min.js"></script>
      <script src="common/tool/js/md5.js"></script>
     <script src="common/tool/js/jquery.toggle-password.js"></script>

@@ -115,7 +115,7 @@ layui.use('upload', function(){
 </head>
 <body style="background-color: #F6F6F6">
         <!--导航栏-->
-        <jsp:include page="WEB-INF/jsp/navigation.jsp" flush="true"></jsp:include>
+        <jsp:include page="navigation.jsp" flush="true"></jsp:include>
 <div class="container" style="background-color: white;height: 400px;width: 1000px;">
     <!--个人主页封面-->
     <div class="layui-upload mt-5" >
