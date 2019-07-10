@@ -19,20 +19,19 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public String findUserService(String username, String password, HttpSession session) {
-
 		try {
 			System.out.println("通过userid查找用户");
 			User user = userDao.findUser(username);
-			System.out.println("user:"+user);
 			if (user != null) {
-				System.out.println("未能通过userid查找用户");
-				if ( user.getPassword().equals(password)) {
+				System.out.println("通过userid找到用户，进行密码验证");
+				if (user.getPassword().equals(password)) {
 					session.setAttribute("username", username);
 					return "登录成功";
 				} else {
 					return "密码错误";
 				}
-			}else {
+			}else{
+				System.out.println("未能通过userid查找用户");
 				System.out.println("通过telnum查找用户");
 				user = userDao.finUserByTel(username);
 				if(user != null) {
@@ -43,6 +42,7 @@ public class UserServiceImpl implements UserService {
 					}else 
 						return "密码错误！";
 				}else {
+					System.out.println("未能通过telnum查找用户");
 					System.out.println("通过email查找用户");
 					user = userDao.finUserByEmail(username);
 					if(user != null) {
@@ -57,7 +57,8 @@ public class UserServiceImpl implements UserService {
 				}
 			}
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			System.out.println("错误信息:"+e.getMessage());
+			
 			return "账号错误";
 		}
 	}
