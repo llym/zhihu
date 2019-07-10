@@ -45,7 +45,7 @@ span.emotion:hover { background-position: 2px -28px }
 .qqFace table td { padding: 0px; }
 .qqFace table td img { cursor: pointer; border: 1px #fff solid; }
 .qqFace table td img:hover { border: 1px #0066cc solid; }
- #show { width: 770px; margin: 20px auto; background: #fff; padding: 5px; border: 1px solid #DDD; vertical-align: top; } 
+ #show { width: 770px; margin: 20px auto; background: #fff; padding: 5px; border-top: 1px solid #DDD;border-bottom: 1px solid #DDD; vertical-align: top; } 
 
 .chat-bg{
     margin-right: 50%;
@@ -208,16 +208,6 @@ function replace_em(str){
             <p class=" text-center text-muted">刘看山·知乎指南·知乎协议·应用·工作·联系我们 © 2019 知乎</p>
     </div>
 
-    <!-- <div id="show"></div> -->
-<!-- <div class="comment"> -->
-  <!-- <div class="com_form"> -->
-        <!-- <span class="emotion">表情</span>
-    <textarea class="input" id="saytext" name="saytext"></textarea>
-    <p>
-      <input type="button" class="sub_btn" value="提交">
-      </p> -->
-  <!-- </div> -->
-<!-- </div> -->
 </body>
 
 </html>
