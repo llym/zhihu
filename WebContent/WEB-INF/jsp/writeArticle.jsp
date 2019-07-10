@@ -6,25 +6,19 @@
 <meta charset="utf-8">
 <title>写文章</title>
 
-<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" 
-integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js" 
-integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="common/tool/bootstrap4/css/bootstrap.css">
+<link rel="stylesheet" href="common/tool/layui/css/layui.css"  media="all">
+<script src="common/tool/jquery/jquery.js"></script>
 <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js" 
 integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js" 
-integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
-<link rel="stylesheet" href="common/tool/layui/css/layui.css"  media="all">
+<script src="common/tool/bootstrap4/js/bootstrap.js"></script>
 <script src="common/tool/layui/layui.js" charset="utf-8"></script>
 
-<link rel="stylesheet" type="text/css" href="common/tool/styles/simditor.css" />
-
-<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+<!-- <link rel="stylesheet" type="text/css" href="common/tool/styles/simditor.css" />
 <script type="text/javascript" src="common/tool/scripts/module.min.js"></script>
 <script type="text/javascript" src="common/tool/scripts/hotkeys.min.js"></script>
 <script type="text/javascript" src="common/tool/scripts/uploader.min.js"></script>
-<script type="text/javascript" src="common/tool/scripts/simditor.min.js"></script>
+<script type="text/javascript" src="common/tool/scripts/simditor.min.js"></script> -->
 
 <style type="text/css">
 input:focus{
@@ -33,7 +27,7 @@ input:focus{
 .content{
   width: 700px;
   height: 800px;
-  margin-left: 340px;
+  margin-left: 20%;
 }
 .inputId-webkit-input-placeholder{
   font-size: 2rem;
@@ -144,12 +138,22 @@ layui.use('upload', function(){
   <!-- 富文本框 -->
 <textarea id="editor" placeholder="请输入正文" autofocus></textarea>
 <script>
-	var editor = new Simditor({
-  	textarea: $('#editor')
-  	//optional options
+layui.use('layedit', function(){
+  var layedit = layui.layedit,$=layui.jquery;
+  var index = layedit.build('editor'); //建立编辑器
+ 
+  $("#btn1").click(function(){
+	  console.log(layedit.getContent(index))
+  })
+ 
+  
+  
 });
-	
+
+
+
 </script>
+<button type="button" id="btn1" data-type="content">111</button>
 </div>
 </body>
 </html>

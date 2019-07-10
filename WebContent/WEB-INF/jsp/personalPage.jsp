@@ -198,7 +198,7 @@ function getIdeaPhotoPath(obj){
 				<a href="#demo" id="change-text" data-toggle="collapse"
 					onclick="fold()">﹀ 查看详细资料</a> <a
 					class="btn btn-outline-primary edit pull-right"
-					style="float: right" href="#">编辑个人资料</a>
+					style="float: right" href="updatePersonalData.do">编辑个人资料</a>
 			</div>
 		</div>
 	</div>
