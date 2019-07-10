@@ -9,4 +9,6 @@ public interface PrivateMessageService {
 	public List<Privatemessage> getPMService(String takeuserid);
 	
 	public List<Privatemessage> getuserPMService(Privatemessage privatemessage);
+	
+	public void insertPMService(Privatemessage privatemessage);
 }

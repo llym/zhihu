@@ -27,4 +27,10 @@ public class PrivateMessageServiceImpl implements PrivateMessageService{
 		return privatemessagedao.getuserPM(privatemessage);
 	}
 
+	@Override
+	public void insertPMService(Privatemessage privatemessage) {
+		// TODO Auto-generated method stub
+		privatemessagedao.insertPM(privatemessage);
+	}
+
 }

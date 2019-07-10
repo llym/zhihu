@@ -4,7 +4,7 @@
 <mapper namespace="com.jy.dao.CareuserDao">
 <!-- 复杂查询 -->
 	<select id="getCU" parameterType="String" resultType="com.jy.entity.Careuser">
-		select * from careuser where userid=#{userid} and status="1" 
+		select * from careuser where userid=#{userid} or quserid=#{userid} and status="1" 
 	</select>
 
 </mapper>

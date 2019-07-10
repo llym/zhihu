@@ -170,9 +170,25 @@ function replace_em(str){
 
 }
 function openpm(id){
+//	alert(id);
+	window.location.href ='chooseuc.do?takeuserid='+id;
+	
+}
+
+function sendpm(id){
 	alert(id);
-	
-	
+	var text=$("#saytext").val();
+	alert(text);
+	window.location.reload();
+	$.post("insertpm.do",
+		    {
+    	pmcontent:text,
+		queid:id
+				},
+			        function(data,status){
+			       console.log(data)
+			        window.location.reload();
+		    });
 }
 
 </script>
@@ -204,7 +220,7 @@ function openpm(id){
 							<a class="nav-link active" id="v-pills-home-tab"
 								data-toggle="pill" href="#v-pills-home" role="tab"
 								aria-controls="v-pills-home" aria-selected="true"
-								onclick="openpm(${cu.id})"> <img class="privateLetterIdImg"
+								onclick="openpm(${cu.quserid})"> <img class="privateLetterIdImg"
 								src="common/image/privateLetter1.jpg" />&nbsp;${cu.quserid} <img
 								src="common/image/privateLetter2.png"
 								style="width: 15px; height: 15px;" /></a>
@@ -231,7 +247,7 @@ function openpm(id){
 							<c:forEach items="${pmdlist}" var="pm">
 
 
-								<c:if test="${pm.takeuserid  ne username}">
+								<c:if test="${pm.takeuserid  eq username}">
 									<time dateTime="2018-11-19">
 										<p class="text-center text-muted mt-3">${pm.createtime}</p>
 									</time>
@@ -248,7 +264,7 @@ function openpm(id){
 										</div>
 									</div>
 								</c:if>
-								<c:if test="${pm.takeuserid  eq username}">
+								<c:if test="${pm.takeuserid  ne username}">
 									<time dateTime="2018-11-19">
 										<p class="text-center text-muted mt-3">${pm.createtime}</p>
 									</time>
@@ -267,6 +283,8 @@ function openpm(id){
 
 					</div>
 
+					
+					<div>
 					<div>
 						<button class="emotion"
 							style="border: 0px; background-color: transparent;">
@@ -274,14 +292,11 @@ function openpm(id){
 								src="common/image/smile.png" />
 						</button>
 					</div>
-					<div>
-						<textarea class="input mt-1 ml-3" id="saytext" name="saytext"
-							style="width: 600px; height: 90px;">
-
-                        </textarea>
+						<textarea  class="input mt-1 ml-3" id="saytext" name="saytext"
+							style="width: 600px; height: 90px;"></textarea>
 					</div>
 					<button type="button" class="btn btn-primary sub_btn"
-						style="float: right;">发送</button>
+						style="float: right;"   onclick="sendpm(${takename})">发送</button>
 
 				</div>
 			</div>

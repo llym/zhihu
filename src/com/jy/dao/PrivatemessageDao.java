@@ -10,4 +10,5 @@ public interface PrivatemessageDao {
 	
 	public List<Privatemessage> getuserPM(Privatemessage privatemessage);
 	
+	public void insertPM(Privatemessage privatemessage);
 }

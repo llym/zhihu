@@ -9,5 +9,7 @@
 	<select id="getuserPM" parameterType="String" resultType="com.jy.entity.Privatemessage">
 		select * from privatemessage where (takeuserid=#{takeuserid} and senduserid=#{senduserid}) or (takeuserid=#{senduserid} and senduserid=#{takeuserid})  and status="1" ORDER BY createtime asc                      
 	</select>
-
+	<insert id="insertPM" parameterType="com.jy.entity.Privatemessage" useGeneratedKeys="true">
+		insert into privatemessage (takeuserid,senduserid,privmesscontent,createtime,status) VALUES (#{takeuserid},#{senduserid},#{privmesscontent},#{createtime},"1")
+	</insert>
 </mapper>
