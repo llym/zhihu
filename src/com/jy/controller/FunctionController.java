@@ -7,15 +7,20 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.jy.entity.Idea;
+import com.jy.entity.Topic;
 import com.jy.service.IdeaService;
+import com.jy.service.TopicService;
 
 @Controller
 public class FunctionController {
 	@Autowired
 	IdeaService ideaService;
+	@Autowired
+	TopicService topicService;
 	
 	//跳转到个人主页
 	@RequestMapping("myPage.do")
@@ -40,5 +45,14 @@ public class FunctionController {
 	public ModelAndView writeArticle() {
 		ModelAndView mav = new ModelAndView("writeArticle");
 		return mav;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="getTopicList.do",produces="html/text;charset=utf-8")
+	public String deleteIdea(HttpServletRequest request) {
+		List<Topic> topicList = topicService.getAllTopics();
+		System.out.println("获取全部话题："+topicList);
+		request.getSession().setAttribute("topicList", topicList);
+		return "";
 	}
 }

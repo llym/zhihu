@@ -149,9 +149,6 @@ layui.use('layedit', function(){
   
   
 });
-
-
-
 </script>
 <button type="button" id="btn1" data-type="content">111</button>
 </div>
