@@ -15,12 +15,14 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.jy.entity.Answer;
 import com.jy.entity.Answercomment;
+import com.jy.entity.Privatemessage;
 import com.jy.entity.QA;
 import com.jy.entity.Question;
 import com.jy.entity.Ranswercomment;
 import com.jy.entity.User;
 import com.jy.service.AnswerCommentService;
 import com.jy.service.AnswerService;
+import com.jy.service.PrivateMessageService;
 import com.jy.service.QuestionService;
 import com.jy.service.RAnswerCommentService;
 import com.jy.service.UserService;
@@ -39,6 +41,8 @@ public class LoginController {
 	private AnswerCommentService answercommentservice;
 	@Autowired
 	private RAnswerCommentService ranswercommentservice;
+	@Autowired
+	private PrivateMessageService privatemessageService;
 	
 	//主界面
 	@RequestMapping("/homePage.do")
@@ -93,6 +97,8 @@ public class LoginController {
 		System.out.println(username+"++++"+password);
 		session.setAttribute("username",username);
 		String a=userservice.findUserService(username,password,session);
+		List<Privatemessage> list=privatemessageService.getPMService(username);
+		request.getSession().setAttribute("pmlist",list);
 		System.out.println(a);
 		return a;
 	}

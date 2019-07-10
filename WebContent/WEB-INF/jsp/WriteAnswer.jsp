@@ -636,7 +636,7 @@
 				            <buttont type="button" class="btn btn-primary ml-2"  an="${an.answerid}"  onclick="anpublish(this)">发布</buttont>
 				        </div>
 				    </div>
-				             
+				         <hr>     
                 </c:forEach>
             </div>
             <hr>

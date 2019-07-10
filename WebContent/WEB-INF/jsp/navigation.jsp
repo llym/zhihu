@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -60,9 +62,26 @@ function getPhotoPath(obj){
 		alert(questionName);
 		alert($("#sel1").val());
 	}
+	
+	
+// 	function getPrivmess(){
+// 		var queid=${username};
+// 		alert(queid);
+// 		$.post("privatem.do",
+// 			    {
+// 			'queid':queid
+// 					},
+// 				        function(data,status){
+				        
+// 				        alert(data);
+// 				        alert(${pmlist[1].privmesscontent})
+// 				        //window.location.reload();
+// 					});
+		
+// 	}
 </script>
 </head>
-<body>
+<body onload="getPrivmess()">
     <nav class="navbar navbar-expand-lg bg-white navbar-white justify-content-center ">
         <a class="navbar-brand text-primary text-lg" href="homePage.do">知乎</a>
         <ul class="nav  ml-5 mr-5">
@@ -187,15 +206,17 @@ function getPhotoPath(obj){
                         style="width:300px;height:310px;overflow-y:scroll;border-top:1px solid gray;border-bottom:1px solid gray">
                         <div id="message">
                             <div class="list-group">
+                             <c:forEach items="${pmlist}" var="pm">
                                 <a href="#" class="list-group-item list-group-item-action" style="font-size:14px">
                                     <image src="common/image/zhi.jpg"
                                         style="width:30px;height:30px;float:left" />
                                     <!-- 私信方 -->
-                                    <p id="" style="padding-left:40px">知乎小伙伴</p>
+                                    <p id="" style="padding-left:40px">${pm.senduserid}</p>
                                     <!-- 私信的内容 最少显示16各字以内 -->
-                                    <p id="messContent" class="text-muted" style="padding-left:40px">亲爱的xxx你好：你是否还记得...
+                                    <p id="messContent" class="text-muted" style="padding-left:40px">${pm.privmesscontent}
                                     </p>
                                 </a>
+                                 </c:forEach>
                             </div>
                         </div>
                     </div>

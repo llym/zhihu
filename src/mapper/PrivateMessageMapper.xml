@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.jy.dao.PrivatemessageDao">
+<!-- 复杂查询 -->
+	<select id="getPM" parameterType="String" resultType="com.jy.entity.Privatemessage">
+		select * from privatemessage where takeuserid=#{takeuserid} and status="1" 
+	</select>
+
+</mapper>
