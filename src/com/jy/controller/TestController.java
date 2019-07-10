@@ -56,6 +56,8 @@ public class TestController {
 		List<User> ulist =userservice.searchuserService("李");
 		System.out.println(ulist);
 		*/
+		
+		
 		return "test";
 	}
 }
