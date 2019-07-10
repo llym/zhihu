@@ -67,7 +67,7 @@ public class CommentController {
 			answerc.setCommentcontent(commentcontent);
 			answerc.setUserid(name);
 			answerc.setCreatetime(date);
-					
+			answerservice.addcommentService(Integer.decode(answerid));	//评论次数++
 			answercommentservice.insertAnswercommentService(answerc);
 			return "添加成功";
 		}
@@ -89,6 +89,7 @@ public class CommentController {
 				ranswerc.setCommentuserid(queid);
 				ranswerc.setUserid(name);
 				ranswerc.setCreatetime(date);
+				answercommentservice.addacommentService(Integer.decode(commentid));
 				ranswercommentservice.insertRAnswercommentService(ranswerc);
 				return "添加成功";
 			}
@@ -127,7 +128,7 @@ public class CommentController {
 			return "取消成功";
 		}
 
-		
+		//下面是问题
 		
 		//评论指令
 				@ResponseBody
@@ -175,8 +176,38 @@ public class CommentController {
 			}
 		
 		
-		
-		
+		//评论点赞
+				@ResponseBody
+				@RequestMapping(value="/qpriseac.do",produces="html/text;charset=utf-8")
+				public String qpriseac(String commentid) {
+					System.out.println(commentid);
+					answercommentservice.priseacService(Integer.decode(commentid));
+					return "赞成功";
+				}
+				//评论取消点赞
+				@ResponseBody
+				@RequestMapping(value="/qreduceac.do",produces="html/text;charset=utf-8")
+				public String qreduceac(String commentid) {
+					System.out.println(commentid);
+					answercommentservice.reduceacService(Integer.decode(commentid));
+					return "取消成功";
+				}
+				//评论点赞
+				@ResponseBody
+				@RequestMapping(value="/qpriserac.do",produces="html/text;charset=utf-8")
+				public String qpriserac(String rcommentid) {
+					System.out.println(rcommentid);
+					ranswercommentservice.priseracService(Integer.decode(rcommentid));
+					return "赞成功";
+				}
+				//评论取消点赞
+				@ResponseBody
+				@RequestMapping(value="/qreducerac.do",produces="html/text;charset=utf-8")
+				public String qreducerac(String rcommentid) {
+					System.out.println(rcommentid);
+					ranswercommentservice.reduceracService(Integer.decode(rcommentid));
+					return "取消成功";
+				}
 		
 		
 		

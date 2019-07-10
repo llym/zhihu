@@ -373,6 +373,7 @@
         }
         //发布回复评论的内容
         function anpublishReply(id) {
+        	var answerid=id.getAttribute('an');
         	 var commentid=id.getAttribute('co');
         	 var queid=id.getAttribute('uc');
             var text = $("#anreplyContent"+commentid).val();
@@ -408,7 +409,7 @@
             $.post("insertr.do",
     			    {
             	'commentcontent':text,
-    			'commentid':commentid,
+    			'commentid':rcommentid,
     			'queid':queid
     					},
      			        function(data,status){
@@ -557,7 +558,7 @@
 				                <div style="padding-left:40px;display:none" id="anreply${com.commentid}">
 				                    <textarea id="anreplyContent${com.commentid}" class="form-control"
 				                        style="float:left;width:500px;height:40px;"></textarea>
-				                    <button type="button" class="btn btn-primary ml-2" uc="${com.userid}" co="${com.commentid}" onclick="anpublishReply(this)">发布</button>
+				                    <button type="button" class="btn btn-primary ml-2"an="${an.answerid}" uc="${com.userid}" co="${com.commentid}" onclick="anpublishReply(this)">发布</button>
 				                </div>
 				            </p>
 				           
@@ -587,7 +588,7 @@
 				                    <div style="padding-left:40px;display:none" id="anreplyCommentArea${rcom.rcommentid}">
 				                        <textarea id="anreplyCommentText${rcom.rcommentid}" class="form-control"
 				                            style="float:left;width:500px;height:40px;"></textarea>
-				                        <button type="button" class="btn btn-primary ml-2"uc="${rcom.userid}" rc="${rcom.rcommentid}"  co="${com.commentid}" onclick="anpublishReplyComment(this)">发布</button>
+				                        <button type="button" class="btn btn-primary ml-2"an="${an.answerid}" uc="${rcom.userid}" rc="${rcom.rcommentid}"  co="${com.commentid}" onclick="anpublishReplyComment(this)">发布</button>
 				                    </div> 
 				                    
 				                </p>

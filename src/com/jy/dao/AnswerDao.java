@@ -13,4 +13,6 @@ public interface AnswerDao {
 	public List<Answer> getallAnswer(Integer questionid);
 	
 	public void insertAnswer(Answer answer);
+	
+	public void addcomment(Integer answerid);
 }

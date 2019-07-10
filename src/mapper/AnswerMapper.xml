@@ -16,4 +16,7 @@
 	<insert id="insertAnswer" parameterType="com.jy.entity.Answer" useGeneratedKeys="true">
 		insert into answer (questionid,userid,answercontent,prisenumb,commentnumb,createtime,status) VALUES (#{questionid},#{userid},#{answercontent},"0","0",#{createtime},"1")
 	</insert>	
+	<update id="addcomment" parameterType="com.jy.entity.Answer">
+        update answer set commentnumb=commentnumb+1 where answerid=#{answerid} and status="1"
+	</update>
 </mapper>

@@ -13,4 +13,6 @@ public interface AnswerService {
 	public List<Answer> getallAnswerService(Integer questionid);
 	
 	public void insertAnswerService(Answer answer);
+	
+	public void addcommentService(Integer answerid);
 }

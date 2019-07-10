@@ -14,4 +14,6 @@ public interface AnswercommentDao {
 	
 	public void reduceac(Integer commentid);
 	
+	public void addacomment(Integer commentid);
+	
 }

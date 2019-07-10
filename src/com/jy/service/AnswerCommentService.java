@@ -12,4 +12,6 @@ public interface AnswerCommentService {
 	public void priseacService(Integer commentid);
 	
 	public void reduceacService(Integer commentid);
+	
+	public void addacommentService(Integer commentid);
 }

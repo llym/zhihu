@@ -46,4 +46,10 @@ public class AnswerCommentServiceImpl implements AnswerCommentService{
 		answercommentdao.reduceac(commentid);
 	}
 
+	@Override
+	public void addacommentService(Integer commentid) {
+		// TODO Auto-generated method stub
+		answercommentdao.addacomment(commentid);
+	}
+
 }
