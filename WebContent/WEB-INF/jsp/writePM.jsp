@@ -232,7 +232,7 @@ function openpm(id){
 
 
 								<c:if test="${pm.takeuserid  ne username}">
-									<time dateTime="2018-11-19T03:36:37.000Z">
+									<time dateTime="2018-11-19">
 										<p class="text-center text-muted mt-3">${pm.createtime}</p>
 									</time>
 									<div class="d-flex justify-content-start">
@@ -249,7 +249,7 @@ function openpm(id){
 									</div>
 								</c:if>
 								<c:if test="${pm.takeuserid  eq username}">
-									<time dateTime="2018-11-19T03:36:37.000Z">
+									<time dateTime="2018-11-19">
 										<p class="text-center text-muted mt-3">${pm.createtime}</p>
 									</time>
 									<div class="d-flex justify-content-end">
