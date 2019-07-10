@@ -113,6 +113,27 @@ span.emotion:hover {
 }
 </style>
 <script>
+function getPhotoPath(obj){
+	//obj传入的DOM对象
+	console.log(obj)
+	console.log(obj.id);
+	console.log(obj.src);
+	console.log(obj.onload);
+	var path
+	$.post("getPhotoPath.do",{
+		id:obj.id
+	},function(data){
+		console.log(data)
+		obj.src=data
+		obj.onload=""
+			console.log(obj.onload)
+		console.log(obj.src)
+		
+	});
+	
+}
+
+
     function fold(){
         var val=$('#change-text').text();       
         if(val=="∨"){
@@ -248,13 +269,15 @@ function sendpm(id){
 
 
 								<c:if test="${pm.takeuserid  eq username}">
-									<time dateTime="2018-11-19">
-										<p class="text-center text-muted mt-3">${pm.createtime}</p>
-									</time>
+<!-- 									<time dateTime="2018-11-19"> -->
+<%-- 										<p class="text-center text-muted mt-3">${pm.createtime}</p> --%>
+<!-- 									</time> -->
+									<p class="text-center text-muted mt-3" >
+									<fmt:formatDate  value="${pm.createtime}" pattern="yyyy-MM-dd HH:mm:ss"/></p>
 									<div class="d-flex justify-content-start">
 										<div>
-											<img class="privateLetterIdImg ml-4"
-												src="common/image/privateLetter1.jpg" />
+											<img id="${pm.senduserid}" class="privateLetterIdImg ml-4"
+												src="common/image/privateLetter1.jpg" onload="getPhotoPath(this)"/>
 											<div class="ml-5 chat-bg">
 												<!--chat-bg为对方聊天气泡样式-->
 
@@ -265,13 +288,15 @@ function sendpm(id){
 									</div>
 								</c:if>
 								<c:if test="${pm.takeuserid  ne username}">
-									<time dateTime="2018-11-19">
-										<p class="text-center text-muted mt-3">${pm.createtime}</p>
-									</time>
+<!-- 									<time dateTime="2018-11-19" pattern="yyyy-MM-dd"> -->
+<%-- 										<p class="text-center text-muted mt-3" >${pm.createtime}</p> --%>
+<!-- 									</time> -->
+									<p class="text-center text-muted mt-3" >
+									<fmt:formatDate  value="${pm.createtime}" pattern="yyyy-MM-dd HH:mm:ss"/></p>
 									<div class="d-flex justify-content-end">
 										<div>
-											<img class="privateLetterIdImg ml-4"
-												src="common/image/sculpture.jpg" />
+											<img id="${username}" class="privateLetterIdImg ml-4"
+												src="common/image/sculpture.jpg" onload="getPhotoPath(this)"/>
 											<div class=" chat-bg">
 												<p style="margin-right: 20px">${pm.privmesscontent}</p>
 											</div>
