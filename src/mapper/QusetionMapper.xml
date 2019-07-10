@@ -24,5 +24,10 @@
 	<update id="addbrowse" parameterType="com.jy.entity.Question">
         update question set browsenumb=browsenumb+1 where questionid=#{questionid} and status="1"
 	</update>
-	
+	<update id="addqcomment" parameterType="com.jy.entity.Question">
+        update question set commentnumb=commentnumb+1 where questionid=#{questionid} and status="1"
+	</update>
+	<update id="addanswer" parameterType="com.jy.entity.Answer">
+        update question set answernumb=answernumb+1 where questionid=#{questionid} and status="1"
+	</update>
 </mapper>

@@ -20,4 +20,8 @@ public interface QuestionDao {
 	public void reduceattention(Integer questionid);
 	
 	public void addbrowse(Integer questionid);
+	
+	public void addqcomment(Integer questionid);
+	
+	public void addanswer(Integer questionid);
 }

@@ -14,4 +14,6 @@ public interface QuestioncommentDao {
 	
 	public void reduceqc(Integer commentid);
 	
+	public void  insertqcomment(Integer commentid);
+	
 }

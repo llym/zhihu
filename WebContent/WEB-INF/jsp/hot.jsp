@@ -369,13 +369,13 @@
                     </div>
                     <hr />
                        <c:forEach items="${quelist}" var="que" varStatus="userStatus">
-                    <div id="hotContent">
+                    <div id="hotContent" >
                     	<c:forEach items="${numlist}" var="num">
                     	  <c:if   test="${que.questionid eq num.questionid}">
-                        <div id="hotNum" style="float:left;color: darkorange;font-size:25px;font-weight:bold">${userStatus.count}</div>
+                        <div id="hotNum" style="float:left;color: darkorange;font-size:25px;font-weight:bold">${userStatus.count}</div>         
                         <div id="hotTitle" style="float:left;margin-left:10px;width:400px;">
                             <p onclick="writeque(${que.questionid})" style="font-size:18px;font-weight:bold">${que.questionname}</p>
-                            <p class="text-muted mt-1">${que.questiondescribe}</p>
+                            <p class="text-muted mt-1" style="width:400px; white-space:nowrap; text-overflow:ellipsis; overflow:hidden;">${que.questiondescribe}</p>
                             <div id="">
                                 <p class="text-muted mt-1" style="float:left">♨<span id="heat">${que.browsenumb}</span>热度</p>
                                 <p class="text-muted mt-1" onclick="openShare()" style="float:right">➢分享</p>

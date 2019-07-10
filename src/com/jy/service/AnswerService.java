@@ -15,4 +15,5 @@ public interface AnswerService {
 	public void insertAnswerService(Answer answer);
 	
 	public void addcommentService(Integer answerid);
+	
 }

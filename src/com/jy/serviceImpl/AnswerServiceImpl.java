@@ -52,5 +52,5 @@ public class AnswerServiceImpl implements AnswerService{
 		// TODO Auto-generated method stub
 		answerdao.addcomment(answerid);
 	}
-	
+
 }

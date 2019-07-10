@@ -62,6 +62,20 @@ public class QusetionServiceImpl implements QuestionService {
 		// TODO Auto-generated method stub
 		questiondao.addbrowse(questionid);
 	}
+
+
+	@Override
+	public void addqcommentService(Integer questionid) {
+		// TODO Auto-generated method stub
+		questiondao.addqcomment(questionid);
+	}
+
+
+	@Override
+	public void addanswerService(Integer questionid) {
+		// TODO Auto-generated method stub
+		questiondao.addanswer(questionid);
+	}
 	
 
 }
