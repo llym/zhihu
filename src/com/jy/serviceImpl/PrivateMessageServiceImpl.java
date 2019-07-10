@@ -21,4 +21,10 @@ public class PrivateMessageServiceImpl implements PrivateMessageService{
 		return privatemessagedao.getPM(takeuserid);
 	}
 
+	@Override
+	public List<Privatemessage> getuserPMService(Privatemessage privatemessage) {
+		// TODO Auto-generated method stub
+		return privatemessagedao.getuserPM(privatemessage);
+	}
+
 }

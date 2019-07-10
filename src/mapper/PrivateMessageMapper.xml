@@ -6,5 +6,8 @@
 	<select id="getPM" parameterType="String" resultType="com.jy.entity.Privatemessage">
 		select * from privatemessage where takeuserid=#{takeuserid} and status="1" 
 	</select>
+	<select id="getuserPM" parameterType="String" resultType="com.jy.entity.Privatemessage">
+		select * from privatemessage where (takeuserid=#{takeuserid} and senduserid=#{senduserid}) or (takeuserid=#{senduserid} and senduserid=#{takeuserid})  and status="1" ORDER BY createtime asc                      
+	</select>
 
 </mapper>

@@ -20,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.jy.entity.Answer;
 import com.jy.entity.Answercomment;
 import com.jy.entity.Carequestion;
+import com.jy.entity.Careuser;
 import com.jy.entity.Privatemessage;
 import com.jy.entity.Question;
 import com.jy.entity.Questioncomment;
@@ -28,39 +29,40 @@ import com.jy.entity.Rquestioncomment;
 import com.jy.service.AnswerCommentService;
 import com.jy.service.AnswerService;
 import com.jy.service.CareQuestionService;
+import com.jy.service.CareUserService;
 import com.jy.service.PrivateMessageService;
 import com.jy.service.QuestionCommentService;
 import com.jy.service.QuestionService;
 import com.jy.service.RAnswerCommentService;
 import com.jy.service.RQuestionCommentService;
 
-@RestController
+@Controller
 public class TestController {
-	@Autowired
-	private AnswerService answerservice;
-	@Autowired
-	private QuestionService questionservice;
-	@Autowired
-	private PrivateMessageService privatemessageService;
 
+	@Autowired
+	private CareUserService careuserservice;
+	@Autowired
+	private PrivateMessageService privatemessageservice;
 	
 	
-	@RequestMapping("test11.do")
-	public String personal() {
-		List<Privatemessage> list=privatemessageService.getPMService("111");
-		System.out.println(list);
-		return "12";
-	}
-	
-	
-	@ResponseBody
-	@RequestMapping(value="/privatem.do",produces="html/text;charset=utf-8")
-	public String testcare(String queid,HttpServletRequest request,HttpServletResponse reponse,HttpSession session) {
-		System.out.println(queid+"找到用户");
+	@RequestMapping("test1.do")
+	public ModelAndView  personal() {
+		List<Careuser> list=careuserservice.getCUService("111");
 		
-		List<Privatemessage> list=privatemessageService.getPMService(queid);
-		request.getSession().setAttribute("pmlist",list);
-		System.out.println(list);
-		return "123321";
+		Privatemessage privatemessage=new Privatemessage();
+		privatemessage.setTakeuserid("111");
+		privatemessage.setSenduserid("555");
+		List<Privatemessage> list1 =privatemessageservice.getuserPMService(privatemessage);
+		System.out.println(list1);
+		ModelAndView mav =new ModelAndView("writePM");
+     	mav.addObject("culist",list);
+		mav.addObject("pmdlist",list1);
+		
+		
+		return mav;
+		
 	}
+	
+	
+
 }

@@ -8,4 +8,5 @@ public interface PrivateMessageService {
 
 	public List<Privatemessage> getPMService(String takeuserid);
 	
+	public List<Privatemessage> getuserPMService(Privatemessage privatemessage);
 }

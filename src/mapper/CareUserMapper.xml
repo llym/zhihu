@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.jy.dao.CareuserDao">
+<!-- 复杂查询 -->
+	<select id="getCU" parameterType="String" resultType="com.jy.entity.Careuser">
+		select * from careuser where userid=#{userid} and status="1" 
+	</select>
+
+</mapper>
