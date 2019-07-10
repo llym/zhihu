@@ -12,4 +12,6 @@ public interface QuestionCommentService {
 	public void priseqcService(Integer commentid);
 	
 	public void reduceqcService(Integer commentid);
+	
+	public void  insertqcommentService(Integer commentid);
 }

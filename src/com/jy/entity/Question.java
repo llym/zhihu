@@ -21,7 +21,7 @@ public class Question {
 
     private Integer browsenumb;
 
-    private String anonymity;
+    private Integer commentnumb;
 
     private Date createtime;
 
@@ -99,13 +99,14 @@ public class Question {
         this.browsenumb = browsenumb;
     }
 
-    public String getAnonymity() {
-        return anonymity;
-    }
+    public Integer getCommentnumb() {
+		return commentnumb;
+	}
 
-    public void setAnonymity(String anonymity) {
-        this.anonymity = anonymity == null ? null : anonymity.trim();
-    }
+	public void setCommentnumb(Integer commentnumb) {
+		this.commentnumb = commentnumb;
+	}
+
 
     public Date getCreatetime() {
         return createtime;

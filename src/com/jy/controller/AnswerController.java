@@ -98,6 +98,8 @@ public class AnswerController {
 		answer.setUserid(name);
 		answer.setQuestionid(Integer.decode(queid));
 		answer.setCreatetime(date);
+		
+		questionservice.addanswerService(Integer.decode(queid));//
 		answerservice.insertAnswerService(answer);
 		return "提交成功";
 		

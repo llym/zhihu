@@ -44,4 +44,10 @@ public class QuestionCommentServiceImpl implements QuestionCommentService{
 		questioncommentdao.reduceqc(commentid);
 	}
 
+	@Override
+	public void insertqcommentService(Integer commentid) {
+		// TODO Auto-generated method stub
+		questioncommentdao.insertqcomment(commentid);
+	}
+
 }

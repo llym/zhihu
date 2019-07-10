@@ -100,7 +100,7 @@ public class CommentController {
 		@RequestMapping(value="/priseac.do",produces="html/text;charset=utf-8")
 		public String priseac(String commentid) {
 			System.out.println(commentid);
-			answercommentservice.priseacService(Integer.decode(commentid));
+			answercommentservice.priseacService(Integer.decode(commentid));			
 			return "赞成功";
 		}
 		//评论取消点赞
@@ -148,7 +148,7 @@ public class CommentController {
 					answerc.setCommentcontent(commentcontent);
 					answerc.setUserid(name);
 					answerc.setCreatetime(date);
-							
+					questionservice.addqcommentService(Integer.decode(answerid));
 					questioncommentservice.insertQuestioncommentService(answerc);
 					return "添加成功";
 				}
@@ -171,6 +171,7 @@ public class CommentController {
 				ranswerc.setCommentuserid(queid);
 				ranswerc.setUserid(name);
 				ranswerc.setCreatetime(date);
+				questioncommentservice.insertqcommentService(Integer.decode(commentid));
 				rquestioncommentservice.insertRquestioncommentService(ranswerc);
 				return "添加成功";
 			}
@@ -181,7 +182,8 @@ public class CommentController {
 				@RequestMapping(value="/qpriseac.do",produces="html/text;charset=utf-8")
 				public String qpriseac(String commentid) {
 					System.out.println(commentid);
-					answercommentservice.priseacService(Integer.decode(commentid));
+//					answercommentservice.priseacService(Integer.decode(commentid));
+					questioncommentservice.priseqcService(Integer.decode(commentid));
 					return "赞成功";
 				}
 				//评论取消点赞
@@ -189,7 +191,8 @@ public class CommentController {
 				@RequestMapping(value="/qreduceac.do",produces="html/text;charset=utf-8")
 				public String qreduceac(String commentid) {
 					System.out.println(commentid);
-					answercommentservice.reduceacService(Integer.decode(commentid));
+//					answercommentservice.reduceacService(Integer.decode(commentid));
+					questioncommentservice.reduceqcService(Integer.decode(commentid));
 					return "取消成功";
 				}
 				//评论点赞
@@ -197,7 +200,8 @@ public class CommentController {
 				@RequestMapping(value="/qpriserac.do",produces="html/text;charset=utf-8")
 				public String qpriserac(String rcommentid) {
 					System.out.println(rcommentid);
-					ranswercommentservice.priseracService(Integer.decode(rcommentid));
+//					ranswercommentservice.priseracService(Integer.decode(rcommentid));
+					rquestioncommentservice.priserqcService(Integer.decode(rcommentid));
 					return "赞成功";
 				}
 				//评论取消点赞
@@ -205,20 +209,10 @@ public class CommentController {
 				@RequestMapping(value="/qreducerac.do",produces="html/text;charset=utf-8")
 				public String qreducerac(String rcommentid) {
 					System.out.println(rcommentid);
-					ranswercommentservice.reduceracService(Integer.decode(rcommentid));
+//					ranswercommentservice.reduceracService(Integer.decode(rcommentid));
+					rquestioncommentservice.reducerqcService(Integer.decode(rcommentid));
 					return "取消成功";
 				}
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+
 }

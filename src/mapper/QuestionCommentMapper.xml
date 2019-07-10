@@ -16,4 +16,7 @@
 	<update id="reduceqc" parameterType="com.jy.entity.Questioncomment">
         update questioncomment set prisenumb=prisenumb-1 where commentid=#{commentid}
 	</update>
+	<update id="insertqcomment" parameterType="com.jy.entity.Questioncomment">
+     update question set commentnumb=commentnumb+1 where questionid=(select questionid from questioncomment where commentid=#{commentid}) and status="1"
+     </update>
 </mapper>

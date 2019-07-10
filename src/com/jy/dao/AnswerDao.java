@@ -15,4 +15,5 @@ public interface AnswerDao {
 	public void insertAnswer(Answer answer);
 	
 	public void addcomment(Integer answerid);
+	
 }

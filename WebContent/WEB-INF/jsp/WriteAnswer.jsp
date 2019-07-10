@@ -213,9 +213,25 @@
             if ($(".praise"+id).css('color') == 'rgb(128, 128, 128)') {
                 $(".praise"+id).css('color', 'blue');
                 $("#praiseNum"+id).text(parseInt(num) + 1);
+                $.post("qpriseac.do",
+        			    {
+        			'commentid':id
+        					},
+         			        function(data,status){
+         			        alert(data);
+         			        //window.location.reload();
+        			    });
             } else if ($(".praise"+id).css('color') == 'rgb(0, 0, 255)') {
                 $(".praise"+id).css('color', 'gray');
                 $("#praiseNum"+id).text(parseInt(num) - 1);
+                $.post("qreduceac.do",
+        			    {
+        			'commentid':id
+        					},
+         			        function(data,status){
+         			        alert(data);
+         			        //window.location.reload();
+        			    });
             }
         }
         //点赞回复评论的
@@ -224,9 +240,25 @@
             if ($(".praiseReply"+id).css('color') == 'rgb(128, 128, 128)') {
                 $(".praiseReply"+id).css('color', 'blue');
                 $("#praiseReplyNum"+id).text(parseInt(num) + 1);
+                $.post("qpriserac.do",
+         			    {
+         			'rcommentid':id
+         					},
+          			        function(data,status){
+          			        alert(data);
+          			        //window.location.reload();
+         			    });
             } else if ($(".praiseReply"+id).css('color') == 'rgb(0, 0, 255)') {
                 $(".praiseReply"+id).css('color', 'gray');
                 $("#praiseReplyNum"+id).text(parseInt(num) - 1);
+                $.post("qreducerac.do",
+        			    {
+        			'rcommentid':id
+        					},
+         			        function(data,status){
+         			        alert(data);
+         			        //window.location.reload();
+        			    });
             }
         }
         //回复评论  
@@ -437,7 +469,7 @@
     </script>
 </head>
 <body>
-	 <%-- <jsp:include page="navigation.jsp" flush="true"></jsp:include>  --%>
+	 <jsp:include page="navigation.jsp" flush="true"></jsp:include>
     <div class="topHeader mt-2">
         <div class="question">
             <div class="top">
@@ -471,7 +503,7 @@
                             class="layui-icon layui-icon-friends"
                             style="font-size: 14px; color: rgb(125, 131, 136);"></i>邀请回答</button>
                     <a href="#" class="btn" onclick="readComment()"><i class="layui-icon layui-icon-dialogue"
-                            style="font-size: 14px; color: rgb(125, 131, 136);"></i><span id="num">3</span>条评论</a>
+                            style="font-size: 14px; color: rgb(125, 131, 136);"></i><span id="num">${question.commentnumb}</span>条评论</a>
                 </div>
             </div>
         </div>
@@ -514,7 +546,7 @@
     <div class="answer mt-2">
         <div style="padding:10px 20px">
             <div>
-                <p style="font-weight:bold;font-size:16px"><span id="answerNum">2</span>个回答</p>
+                <p style="font-weight:bold;font-size:16px"><span id="answerNum">${question.answernumb}</span>个回答</p>
             </div>
             <hr />
             <div>
