@@ -14,7 +14,9 @@ public interface QuestionService {
 	
 	public Question getaQuestionService(Integer questionid);
 	
-	public void addattentionService(Integer questionid);
+	public void addattentionService(Integer questionid);//关注
 	
-	public void reduceattentionService(Integer questionid);
+	public void reduceattentionService(Integer questionid);//取消关注
+	
+	public void addbrowseService(Integer questionid);//浏览次数
 }

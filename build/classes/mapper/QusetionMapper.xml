@@ -21,4 +21,8 @@
 	<update id="reduceattention" parameterType="com.jy.entity.Question">
         update question set attentionnumb=attentionnumb-1 where questionid=#{questionid} and status="1"
 	</update>
+	<update id="addbrowse" parameterType="com.jy.entity.Question">
+        update question set browsenumb=browsenumb+1 where questionid=#{questionid} and status="1"
+	</update>
+	
 </mapper>

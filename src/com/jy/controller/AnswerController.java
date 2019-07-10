@@ -1,7 +1,12 @@
 package com.jy.controller;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -38,11 +43,12 @@ public class AnswerController {
 	private AnswerCommentService answercommentservice;
 	@Autowired
 	private RAnswerCommentService ranswercommentservice;
-	
+	//通过questionid来查询
 	@RequestMapping("/test.do")
 	 public  ModelAndView test(Model model,@RequestParam("questionid") String id){
 		Integer a=Integer.decode(id);	//a为前台传的问题id
 		Question question=questionservice.getaQuestionService(a);
+		questionservice.addbrowseService(a); //浏览次数加一
 		System.out.println(question.getQuestionname());
 		List<Questioncomment> qlist = questioncommentservice.getQuestioncommentService(question.getQuestionid());
 		System.out.println(qlist);
@@ -80,6 +86,21 @@ public class AnswerController {
 	     mav.addObject("rcomlist",anlist4);
 		
 		return mav;
+	}
+	//提交回答指令
+	@ResponseBody
+	@RequestMapping(value="/insertanswer.do",produces="html/text;charset=utf-8")
+	public String insertan(String queid,String content,HttpServletRequest request,HttpServletResponse reponse,HttpSession session) {
+		Date date = new Date();
+		String name=(String) request.getSession().getAttribute("username");
+		Answer answer=new Answer();
+		answer.setAnswercontent(content);
+		answer.setUserid(name);
+		answer.setQuestionid(Integer.decode(queid));
+		answer.setCreatetime(date);
+		answerservice.insertAnswerService(answer);
+		return "提交成功";
+		
 	}
 	
 }

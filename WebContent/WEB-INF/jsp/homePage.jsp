@@ -543,8 +543,8 @@
                      </c:if>
                      </c:forEach>
                      <div id="replyText3">
-                            <textarea id="text3${que.userid}" class="form-control" row="5" style="width:500px;"></textarea>
-                            <button type="button" class="btn btn-primary btn-sm mt-2" uc="${que.userid}" an="${que.answerid}"
+                            <textarea id="text3${que.questionid}" class="form-control" row="5" style="width:500px;"></textarea>
+                            <button type="button" class="btn btn-primary btn-sm mt-2" uc="${que.questionid}" an="${que.answerid}"
                              onclick="submitReply3(this)"style="margin-left:450px">发布</button>
                       </div>
                 </div>

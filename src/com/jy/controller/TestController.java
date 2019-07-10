@@ -36,18 +36,12 @@ import com.jy.service.RQuestionCommentService;
 public class TestController {
 	@Autowired
 	private AnswerService answerservice;
-	@ResponseBody
-	@RequestMapping(value="/insertanswer.do",produces="html/text;charset=utf-8")
-	public String insertan(String queid,String content,HttpServletRequest request,HttpServletResponse reponse,HttpSession session) {
-		Date date = new Date();
-		String name=(String) request.getSession().getAttribute("username");
-		Answer answer=new Answer();
-		answer.setAnswercontent(content);
-		answer.setUserid(name);
-		answer.setQuestionid(Integer.decode(queid));
-		answer.setCreatetime(date);
-		answerservice.insertAnswerService(answer);
-		return "提交成功";
-		
+	@Autowired
+	private QuestionService questionservice;
+	
+	@RequestMapping("test1.do")
+	public String personal() {
+		questionservice.addbrowseService(1);
+		return "12";
 	}
 }

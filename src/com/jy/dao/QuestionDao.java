@@ -18,4 +18,6 @@ public interface QuestionDao {
 	public void addattention(Integer questionid);
 	
 	public void reduceattention(Integer questionid);
+	
+	public void addbrowse(Integer questionid);
 }

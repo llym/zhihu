@@ -55,6 +55,13 @@ public class QusetionServiceImpl implements QuestionService {
 		// TODO Auto-generated method stub
 		questiondao.reduceattention(questionid);
 	}
+
+
+	@Override
+	public void addbrowseService(Integer questionid) {
+		// TODO Auto-generated method stub
+		questiondao.addbrowse(questionid);
+	}
 	
 
 }
