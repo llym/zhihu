@@ -28,6 +28,15 @@
 
 
 <style>
+.image1{
+	width:10%;
+	height:10%;
+}
+.image2{
+	width:30%;
+	height:30%;
+}
+
 .normalFace {
 	width: 220px;
 	height: 220px;
@@ -40,6 +49,28 @@
 </style>
 
 <script type="text/javascript">
+function getIdeaPhotoPath(obj){
+	//obj传入的DOM对象
+	console.log(obj)
+	console.log(obj.id);
+	console.log(obj.src);
+	console.log(obj.onload);
+	var path
+	$.post("getIdeaPhotoPath.do",{
+		id:obj.id
+	},function(data){
+		console.log(data)
+		obj.src=data
+		obj.onload=""
+		console.log(obj.onload)
+		console.log(obj.src)
+		
+	});
+	
+}
+
+
+
 	function fold() {
 		var val = $('#change-text').text();
 		if (val == "﹀ 查看详细资料") {
@@ -132,14 +163,14 @@
 	<!--导航栏-->
 	<jsp:include page="navigation.jsp" flush="true"></jsp:include>
 	<div class="container"
-		style="background-color: white; height: 400px; width: 1000px;">
+		style="background-color: white; height: 400px; width: 80%;">
 		<!--个人主页封面-->
-		<div class="layui-upload mt-5">
+		<div class="layui-upload mt-2">
 			<button type="button" id="test1"
 				style="border: 0; outline: 0; background-color: transparent">
 				<img class="layui-upload-img" id="demo1"
 					src="common/image/personalBg.jpg"
-					style="height: 240px; width: 1000px; margin-left: -15px" />
+					style="height: 240px; width: 100%; margin-left: -15px" />
 			</button>
 			<div class="layui-upload-list">
 				<p id="demoText"></p>
@@ -173,10 +204,10 @@
 	</div>
 	<!--正文-->
 	<div class="container mt-5"
-		style="background-color: white; height: 360px; width: 1000px;">
+		style="background-color: white;width: 80%;">
 		<div class="row">
 			<div class="dropdown-divider "></div>
-			<div class="col-8" style="background-color: white; height: 500px;">
+			<div class="col-8" style="background-color: white;">
 				<nav class="navbar navbar-expand-sm bg-light">
 					<ul class="nav nva-tabs" role="tablist">
 						<li class="nav-item"><a class="nav-link active"
@@ -190,7 +221,7 @@
 						<li class="nav-item"><a class="nav-link" data-toggle="tab"
 							href="#MyColumn">专栏&nbsp;<span>0&nbsp;&nbsp;</span></a></li>
 						<li class="nav-item"><a class="nav-link" data-toggle="tab"
-							href="#MyIdea">想法&nbsp;<span>0&nbsp;&nbsp;</span></a></li>
+							href="#MyIdea">想法&nbsp;<span>${ideasNum}&nbsp;&nbsp;</span></a></li>
 						<li class="nav-item">
 							<div class="dropdown">
 								<button type="button" class="btn btn-link dropdown-toggle"
@@ -222,7 +253,7 @@
 						<h5 class="ml-3">我的专栏</h5>
 					</div>
 					<div id="MyIdea" class="container tab-pane fade">
-						<h5 class="ml-3">我的想法</h5>
+						<jsp:include page="myIdeas.jsp" flush="true"></jsp:include>
 					</div>
 					<div id="MyCollect" class="container tab-pane fade">
 						<h5 class="ml-3">我的收藏夹</h5>

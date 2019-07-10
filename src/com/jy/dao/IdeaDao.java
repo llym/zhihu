@@ -1,5 +1,7 @@
 package com.jy.dao;
 
+import java.util.List;
+
 import com.jy.entity.Idea;
 
 public interface IdeaDao {
@@ -14,4 +16,10 @@ public interface IdeaDao {
     int updateByPrimaryKeySelective(Idea record);
 
     int updateByPrimaryKey(Idea record);
+
+	Idea getIdeaById(int id);
+
+	List<Idea> getIdeasByUser(String user);
+
+	void deleteIdea(int id);
 }

@@ -15,12 +15,14 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.jy.entity.Answer;
 import com.jy.entity.Answercomment;
+import com.jy.entity.Idea;
 import com.jy.entity.QA;
 import com.jy.entity.Question;
 import com.jy.entity.Ranswercomment;
 import com.jy.entity.User;
 import com.jy.service.AnswerCommentService;
 import com.jy.service.AnswerService;
+import com.jy.service.IdeaService;
 import com.jy.service.QuestionService;
 import com.jy.service.RAnswerCommentService;
 import com.jy.service.UserService;
@@ -41,6 +43,9 @@ public class AdminController {
 	private AnswerCommentService answercommentservice;
 	@Autowired
 	private RAnswerCommentService ranswercommentservice;
+	@Autowired
+	IdeaService ideaService;
+	
 	
 	@ResponseBody
 	@RequestMapping(value="adminLogin.do",produces="html/text;charset=utf-8")
@@ -74,6 +79,16 @@ public class AdminController {
 		System.out.println(id+"get");
 		User user = userservice.getUserById(id);
 		String path = user.getPhoto();
+		return path;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="getIdeaPhotoPath.do",produces="html/text;charset=utf-8")
+	public String getIdeaPhotoPath(int id,HttpServletRequest request){
+		System.out.println(id+"get ideaid");
+		Idea idea = ideaService.getIdeaById(id);
+		
+		String path = idea.getPhoto();
 		return path;
 	}
 	

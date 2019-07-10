@@ -46,8 +46,7 @@ public class UploadController {
 		System.out.println(df.format(new Date()));// 
 		System.out.println(ideaService.insert(idea));
 		
-		ModelAndView mav = new ModelAndView("showUploadedFile");
-		mav.addObject("imageName", "/pic/"+newFileName);
+		ModelAndView mav = new ModelAndView("redirect:/myPage.do");
 		return mav;
 	}
 }

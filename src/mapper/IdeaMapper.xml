@@ -3,14 +3,17 @@
  "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
 <mapper namespace="com.jy.dao.IdeaDao">
 <!-- 复杂查询 -->
-	<select id="getAnswercomment" parameterType="Integer" resultType="com.jy.entity.Answercomment">
-		select * from answercomment where answerid=#{answerid} and status="1" order by prisenumb desc
+	<select id="getIdeaById" parameterType="Integer" resultType="com.jy.entity.Idea">
+		select * from idea where  ideaid=#{id} and status="1" 
+	</select>
+	<select id="getIdeasByUser" parameterType="String" resultType="com.jy.entity.Idea">
+		select * from idea where  userid=#{user} and status="1" 
 	</select>
 	<insert id="insert" parameterType="com.jy.entity.Idea">
 		insert into idea VALUES (#{ideaid},#{userid},#{ideacontent},#{photo},#{prisenumb},#{createtime},1)
 	</insert>
-	<update id="priseac" parameterType="com.jy.entity.Answercomment">
-        update answercomment set prisenumb=prisenumb+1 where commentid=#{commentid}
+	<update id="deleteIdea" parameterType="int">
+        update idea set status="0" where ideaid=#{id}
 	</update> 
 	<update id="reduceac" parameterType="com.jy.entity.Answercomment">
         update answercomment set prisenumb=prisenumb-1 where commentid=#{commentid}
