@@ -50,7 +50,7 @@ body{
 	 //限制输入框内容
 	 $('#telnum').cbNum().cbLen(11,11);
 	 $('#telnum').cbFreeBlur( { regExp:/^\d{11}$/, msg:"请输入正确的手机号码" });
-	 $('#password1').cbLen(6,50);
+	 $('#password1').cbFreeBlur( { regExp:/^.{6,50}$/, msg:"请输入6位以上的密码" });
 	 //输入完手机号后判断是否重复注册
 	 $("#telnum").blur(function(){
 		 var telnum=$("input#telnum").val();//手机号
