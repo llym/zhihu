@@ -146,7 +146,7 @@ function replace_em(str){
                             <h6 class="mt-4 font-weight-bold text-center">知乎大学小管家<img src="common/image/privateLetter2.png" style="width:15px;height:15px;"/></h6>
                             <div style=" overflow-y:auto;width: 100%;height: 400px;" id="show"><!--固定滚动框大小-->
                             <time dateTime="2018-11-19T03:36:37.000Z"><p class="text-center text-muted mt-3">18/11/19 11:36</p></time>                    
-                            <div><img class="privateLetterIdImg ml-4" src="common/image/privateLetter1.jpg"/>
+                            <div style="float:left"><img class="privateLetterIdImg ml-4" src="common/image/privateLetter1.jpg"/>
                             <div class="ml-5 chat-bg"> <!--chat-bg为对方聊天气泡样式-->
                                 <p class="font-weight-light">亲爱的 虾米 你好：<br/>
 
@@ -158,6 +158,12 @@ function replace_em(str){
                                     
                                   </div>
                                 </div>
+                                        <div style="float:right">
+                                <img class="privateLetterIdImg ml-4" src="common/image/sculpture.jpg" />
+                                <div class=" chat-bg">
+                                    <p style="margin-right: 20px">哦哦</p>
+                                </div>
+                            </div>
 
 
                             </div>
@@ -167,7 +173,7 @@ function replace_em(str){
                                 <h6 class="mt-4 font-weight-bold text-center">知乎读书会团队</h6>
                             <div  style=" overflow-y:auto;width: 100%;height: 400px;" id="show"><!--固定滚动框大小-->
                             <time dateTime="2018-11-19T03:36:37.000Z"><p class="text-center text-muted mt-3">18/10/07 07：35</p></time>                    
-                            <div><img class="privateLetterIdImg ml-4" src="common/image/privateLetter3.jpg"/>
+                            <div style="float:left"><img class="privateLetterIdImg ml-4" src="common/image/privateLetter3.jpg"/>
                             <div class="ml-5 chat-bg">
                                     <p class="font-weight-light">亲爱的 虾米 你好：<br/>
 
@@ -180,6 +186,11 @@ function replace_em(str){
                                         爱你的知乎读书会团队</p>
                                     
                                   </div>
+                                </div>
+                                <div style="float:right">
+                                <img class="privateLetterIdImg ml-4" src="common/image/sculpture.jpg" />
+                                <div class=" chat-bg">
+                                    <p style="margin-right: 20px">不客气</p>
                                 </div>
                             </div>
                             </div>
