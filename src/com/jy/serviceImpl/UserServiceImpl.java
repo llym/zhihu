@@ -134,4 +134,10 @@ public class UserServiceImpl implements UserService {
 			return "修改失败！";
 		}
 	}
+
+	@Override
+	public List<User> searchuserService(String name) {
+		// TODO Auto-generated method stub
+		return userDao.searchuser(name);
+	}
 }

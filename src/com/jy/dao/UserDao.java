@@ -12,6 +12,8 @@ public interface UserDao {
 	public User checkTelnum(User user);
 
 	public List<User> getAllUser();
+	
+	public List<User> searchuser(String name);
 
 	public User getUserById(String id);
 

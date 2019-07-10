@@ -15,6 +15,11 @@
 	<select id="getHot" parameterType="Integer" resultType="com.jy.entity.Question">
 		select  * from question order by browsenumb desc limit 0,10 
 	</select>
+	
+	<select id="searchquestion" parameterType="String" resultType="com.jy.entity.Question">
+		 select * from question where questionname like concat('%',#{name},'%') or  questiondescribe like concat('%',#{name},'%') and status='1'
+	</select>
+	
 	<update id="addattention" parameterType="com.jy.entity.Question">
         update question set attentionnumb=attentionnumb+1 where questionid=#{questionid} and status="1"
 	</update>
@@ -30,4 +35,6 @@
 	<update id="addanswer" parameterType="com.jy.entity.Answer">
         update question set answernumb=answernumb+1 where questionid=#{questionid} and status="1"
 	</update>
+	
+	
 </mapper>

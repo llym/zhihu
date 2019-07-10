@@ -76,6 +76,13 @@ public class QusetionServiceImpl implements QuestionService {
 		// TODO Auto-generated method stub
 		questiondao.addanswer(questionid);
 	}
+
+
+	@Override
+	public List<Question> searchquestionService(String name) {
+		// TODO Auto-generated method stub
+		return questiondao.searchquestion(name);
+	}
 	
 
 }

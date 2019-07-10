@@ -12,6 +12,8 @@ public interface QuestionService {
 	
 	public List<Question> getHotService(Integer topicid);
 	
+	public List<Question> searchquestionService(String name);
+	
 	public Question getaQuestionService(Integer questionid);
 	
 	public void addattentionService(Integer questionid);//关注

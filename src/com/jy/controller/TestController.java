@@ -21,11 +21,13 @@ import com.jy.entity.Answer;
 import com.jy.entity.Answercomment;
 import com.jy.entity.Carequestion;
 import com.jy.entity.Careuser;
+import com.jy.entity.Idea;
 import com.jy.entity.Privatemessage;
 import com.jy.entity.Question;
 import com.jy.entity.Questioncomment;
 import com.jy.entity.Ranswercomment;
 import com.jy.entity.Rquestioncomment;
+import com.jy.entity.User;
 import com.jy.service.AnswerCommentService;
 import com.jy.service.AnswerService;
 import com.jy.service.CareQuestionService;
@@ -35,8 +37,25 @@ import com.jy.service.QuestionCommentService;
 import com.jy.service.QuestionService;
 import com.jy.service.RAnswerCommentService;
 import com.jy.service.RQuestionCommentService;
+import com.jy.service.UserService;
 
-@Controller
+@RestController
 public class TestController {
-
+	@Autowired
+	private QuestionService questionservice ;
+	@Autowired
+	private UserService userservice;
+	
+	@RequestMapping("test1.do")
+	public String test() {
+		/*	模糊查询问题（可用）	
+		List<Question> qlist =questionservice.searchquestionService("好");
+		System.out.println(qlist);
+		*/
+		/*	模糊查询用户（可用）	
+		List<User> ulist =userservice.searchuserService("李");
+		System.out.println(ulist);
+		*/
+		return "test";
+	}
 }

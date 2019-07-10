@@ -235,8 +235,8 @@ textarea::-webkit-input-placeholder {
 						</div>
 					</div>
 					<div style="padding: 10px 10px; font-size: 16px; color: gray;">
-						<span><i class="layui-icon layui-icon-edit"></i> 写新私信</span> <span
-							style="padding-left: 60px">查看全部私信</span>
+						<span><i class="layui-icon layui-icon-edit"></i> <a href="pm.do">写新私信</a></span> <span
+							style="padding-left: 60px"><a href="pm.do">查看全部私信</a></span>
 					</div>
 
 				</div></li>

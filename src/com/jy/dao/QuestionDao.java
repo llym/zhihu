@@ -12,6 +12,8 @@ public interface QuestionDao {
 	
 	public List<Question> getHot(Integer topicid);
 	
+	public List<Question> searchquestion(String name);
+	
 	//获取回答界面的问题信息
 	public Question getaQuestion(Integer questionid);
 	

@@ -23,4 +23,6 @@ public interface UserService {
 	public String updateTelNum(User user,HttpServletRequest request);
 
 	public String updateEmail(User user);
+	
+	public List<User> searchuserService(String name);
 }
