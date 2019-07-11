@@ -45,20 +45,43 @@ public class TestController {
 	private QuestionService questionservice ;
 	@Autowired
 	private UserService userservice;
+	@Autowired
+	private QuestionCommentService questioncommentservice ;
+	@Autowired
+	private RQuestionCommentService rquestioncommentservice;
+	@Autowired
+	private CareUserService  careuserservice;
 	
 	@RequestMapping("test1.do")
 	public ModelAndView  test() {
 	
-		List<Question> qlist =questionservice.searchquestionService("好");
+		List<Question> qlist =questionservice.searchquestionService("如何");
 		System.out.println(qlist);
-		
+		List<Questioncomment> list1 = new ArrayList<Questioncomment>();	
+		List<Questioncomment> list2 = new ArrayList<Questioncomment>();	
+		List<Rquestioncomment> list3 = new ArrayList<Rquestioncomment>();	
+		List<Rquestioncomment> list4 = new ArrayList<Rquestioncomment>();	
+		for(int i=0;i<qlist.size();i++) {
+			System.out.println(qlist.get(i).getQuestionid());
+			 list1=questioncommentservice.getQuestioncommentService(qlist.get(i).getQuestionid());
+			 list2.addAll(list1);
+		}
+		for(int i=0;i<list2.size();i++) {
+			System.out.println(list2.get(i).getCommentid());
+			 list3=rquestioncommentservice.getRquestioncommentService(list2.get(i).getCommentid());
+			 list4.addAll(list3);	
+		}
+		System.out.println(list2);
+		System.out.println(list4);
 		/*	模糊查询用户（可用）	
 		List<User> ulist =userservice.searchuserService("李");
 		System.out.println(ulist);
 		*/
 		ModelAndView mav =new ModelAndView("searchResult");
-		mav.addObject("qlist",qlist);
 		
+		mav.addObject("qlist",qlist);
+		mav.addObject("comlist",list2);
+		mav.addObject("rcomlist",list4);
 		
 		return mav;
 	}
@@ -75,5 +98,28 @@ public class TestController {
 		
 		
 		return mav;
+	}
+	
+	@RequestMapping("test3.do")
+	public String test3() {
+	
+		
+//		List<User> ulist =userservice.searchuserService("李");
+//		System.out.println(ulist);
+//
+//		ModelAndView mav =new ModelAndView("searchUser");
+//		mav.addObject("ulist",ulist);
+		
+		
+		return "searchArticle";
+	}
+	
+	
+	@RequestMapping("/care.do")
+	 public String care(){
+		List<Careuser> list=careuserservice.getallCUService("111");
+		System.out.println(list);
+		return "care";
+		
 	}
 }

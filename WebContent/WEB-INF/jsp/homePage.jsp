@@ -452,7 +452,7 @@
     
     function writeque(id){
     	alert(id);
-    	window.location.href ='test.do?questionid='+id;
+    	window.location.href ='test.do?questionid='+id; //跳转到问题详情界面
     }
     </script>
 </head>

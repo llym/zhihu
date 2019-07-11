@@ -20,4 +20,10 @@ public class CareUserServiceImpl implements CareUserService{
 		return careuserdao.getCU(userid);
 	}
 
+	@Override
+	public List<Careuser> getallCUService(String userid) {
+		// TODO Auto-generated method stub
+		return careuserdao.getallCU(userid);
+	}
+
 }

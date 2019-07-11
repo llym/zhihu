@@ -6,5 +6,9 @@
 	<select id="getCU" parameterType="String" resultType="com.jy.entity.Careuser">
 		select * from careuser where userid=#{userid} or quserid=#{userid} and status="1" 
 	</select>
+	<select id="getallCU" parameterType="String" resultType="com.jy.entity.Careuser">
+		 select * from careuser where userid=#{userid}  and status='1'
+	</select>
+	
 
 </mapper>

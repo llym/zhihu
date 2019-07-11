@@ -98,40 +98,16 @@
                 $("#topic").css("font-weight", "normal");
             })
         })
-        //赞同
-        function agree() {
-            var n = $("#agreeNum").text();
-            $("#agreeNum").text((parseInt(n) + 1));
-            $("#agree").attr('disabled', true);
-        }
-        // 取消赞同
-        function cancel() {
-            var n = $("#agreeNum").text();
-            $("#agreeNum").text((parseInt(n) - 1));
-            $("#agree").attr('disabled', false);
-        }
-
-        function agreeArticle() {
-            var n = $("#agreeArticle").text();
-            $("#agreeArticle").text((parseInt(n) + 1));
-            $("#agreeA").attr('disabled', true);
-        }
-        // 取消赞同
-        function cancelArticle() {
-            var n = $("#agreeArticle").text();
-            $("#agreeArticle").text((parseInt(n) - 1));
-            $("#agreeA").attr('disabled', false);
-        }
 
         //打开评
-        function openComment() {
-            var texts = $("#openComment").text();
+        function openComment(id) {
+            var texts = $("#openComment"+id).text();
             if (texts == "查看评论") {
-                $("#comments").show();
-                $("#openComment").text("收起评论");
+                $("#comments"+id).show();
+                $("#openComment"+id).text("收起评论");
             } else if (texts == "收起评论") {
-                $("#comments").hide();
-                $("#openComment").text("查看评论");
+                $("#comments"+id).hide();
+                $("#openComment"+id).text("查看评论");
             }
         }
         // 点赞某一条评论
@@ -196,6 +172,10 @@
         function publish2() {
             alert($("#replyContent2").val());
         }
+        function answerQuestion(id) {
+            alert(id);
+            window.location.href ='test.do?questionid='+id;
+        }
     </script>
 </head>
 
@@ -225,23 +205,24 @@
                 </p>
                 <p class="mt-2" style="width:400px; white-space:nowrap; text-overflow:ellipsis; overflow:hidden;">${que.questiondescribe}
                 </p>
-                <button type="button" class="btn btn-sm agree mt-2" onclick="agree()" id="agree">赞同<span
-                        id="agreeNum"></span></button>
-                <button type="button" class="btn btn-sm cancel mt-2" onclick="cancel()">▼</button>
-                <a href="#" class="btn btn-sm mt-2" onclick="openComment()" id="openComment">查看评论</a>
+               <button type="button" class="btn btn-sm btn-primary mr-3" onclick="answerQuestion(${que.questionid})"
+                        id="followQuestion">问题详情</button>
+                <a href="#" class="btn btn-sm mt-2" onclick="openComment(${que.questionid})" id="openComment${que.questionid}">查看评论</a>
                 <!-- 评论 -->
-                <div id="comments" class="mt-3"
+                  <c:forEach items="${comlist}" var="com">
+                   <c:if   test="${com.questionid eq que.questionid}">
+                <div id="comments${que.questionid}" class="mt-3"
                     style="padding:10px 15px;border:0.5px solid rgb(212, 210, 210);display:none">
-                    <p id="commentNum" style="font-weight:bold;font-size:15px"><span id="num">42</span>条评论</p>
+                    <p id="commentNum" style="font-weight:bold;font-size:15px"><span id="num">${que.commentnumb}</span>条评论</p>
                     <hr />
                     <div id="content">
                         <image src="common/image/head.jpg" style="width:20px;height:20px"></image>
-                        <span id="commentUser" style="font-size:16px" class="ml-2">小火车列车长大人</span>
-                        <p id="commentContent" style="padding-left:30px" class="mt-2">说的好~先忽悠过来再说</p>
+                        <span id="commentUser" style="font-size:16px" class="ml-2">${com.userid}</span>
+                        <p id="commentContent" style="padding-left:30px" class="mt-2">${com.commentcontent}</p>
                         <p style="padding-left:30px" class="mt-2">
                             <i class="layui-icon layui-icon-praise" style="font-size: 15px; color:gray;"
                                 onclick="like()"></i>
-                            <span id="like">33</span>
+                            <span id="like">${com.prisenumb}</span>
                             <span onclick="reply1()" id="reply1">✎回复</span>
                         </p>
                         <div id="textDiv1" style="display:none">
@@ -250,20 +231,22 @@
                             <button type="button" class="btn btn-primary ml-1" onclick="publish1()">发布</button>
                         </div>
                         <!-- 评论的回复 -->
+                         <c:forEach items="${rcomlist}" var="rcom">
+                         <c:if   test="${com.commentid eq rcom.commentid}">
                         <div id="replying" class="mt-2" style="padding-left:30px;">
                             <image src="common/image/head.jpg" style="width:20px;height:20px">
                             </image>
                             <!-- 回复人 -->
-                            <span id="replyer" style="font-size:16px" class="ml-2">南北与西</span>
+                            <span id="replyer" style="font-size:16px" class="ml-2">${rcom.userid}</span>
                             <span class="text-muted">回复</span>
                             <!-- 被回复者 -->
-                            <span class="repled">ddd</span>
+                            <span class="repled">${rcom.commentuserid}</span>
                             <!-- 回复的内容 -->
-                            <p id="replyContent" class="mt-2" style="padding-left:30px">付款的说法迪斯科解放</p>
+                            <p id="replyContent" class="mt-2" style="padding-left:30px">${rcom.commentcontent}</p>
                             <p style="padding-left:30px" class="mt-2">
                                 <i class="layui-icon layui-icon-praise" style="font-size: 15px; color:gray;"
                                     onclick="likeReply()"></i>
-                                <span id="likeReply">12</span>
+                                <span id="likeReply">${rcom.prisenumb}</span>
                                 <span onclick="reply2()" id="reply2">✎回复</span>
                                 <div id="textDiv2" style="display:none">
                                     <textarea id="replyContent2" class="form-control"
@@ -272,91 +255,21 @@
                                 </div>
                             </p>
                         </div>
+                        </c:if>
+                        </c:forEach>
                     </div>
+                   
                 </div>
+                
+                </c:if>
+                
+                </c:forEach>
+               
+                <hr>
             </div>   </c:forEach>
         </div>
         
       
-        
-        
-        <div id="searchArticle" class="container tab-pane fade"><br>
-            <div class="article">
-                <p style="font-size:18px;font-weight:bold">最后一次，聊下爱否</p>
-                <p class="mt-1">
-                    <image src="common/image/head.jpg" style="width:20px;height:20px"></image> Jesse Chan
-                    <span class="text-muted">一个月前</span>
-                </p>
-                <div class="mt-2" style="font-size:16px">
-                    <p>能尽力守护自己在意的人和事，就是最棒的人类了。</p>
-                    <p>我很感激，在工作的前三年里能有这么两大段经历，其中在爱否的这一段让我明白目的地在哪，另一段让我知道如何具体地磨练技能，朝着正确的方向前进。这个过程中，有人鼓励过我做自己想做的事，有人在我失误的时候帮我扛下责任，有人认可过我的价值，同时指出我的问题。对他们，❤️，大量的❤️。
-                    </p>
-                </div>
-                <button type="button" class="btn btn-sm agree mt-2" onclick="agreeArticle()" id="agreeA">赞同<span
-                        id="agreeArticle">574</span></button>
-                <button type="button" class="btn btn-sm cancel mt-2" onclick="cancelArticle()">▼</button>
-                <a href="#" class="btn btn-sm mt-2">查看评论</a>
-            </div>
-        </div>
-        <div id="searchUser" class="container tab-pane fade"><br>
-
-            <div class="user" style="padding:10px">
-                <div style="float:left">
-                    <image src="common/image/head.jpg" style="width:60px;height:60px">
-                </div>
-                <div style="float:left;margin-left:20px">
-                    <p id="searchUserName" style="font-size:18px;color:red">花木兰</p>
-                    <p class="mt-1">多肉植物叶片\</p>
-                    <p class="text-muted mt-1">421回答·0文章·406关注者</p>
-                </div>
-                <div style="float:right;padding-top:15px">
-                    <button type="button" class="btn btn-primary">+关注她</button>
-                </div>
-            </div>
-
-            <div class="user" style="margin-top:10px;padding:10px">
-                <div style="float:left">
-                    <image src="common/image/head.jpg" style="width:60px;height:60px">
-                </div>
-                <div style="float:left;margin-left:20px">
-                    <p id="searchUserName" style="font-size:18px;color:red">花木兰</p>
-                    <p class="mt-1">除非黄土白骨，守你百岁无忧</p>
-                    <p class="text-muted mt-1">14回答·0文章·161关注者</p>
-                </div>
-                <div style="float:right;padding-top:15px">
-                    <button type="button" class="btn btn-primary">+关注她</button>
-                </div>
-            </div>
-
-            <div class="user" style="margin-top:10px;padding:10px">
-                <div style="float:left">
-                    <image src="common/image/head.jpg" style="width:60px;height:60px">
-                </div>
-                <div style="float:left;margin-left:20px">
-                    <p id="searchUserName" style="font-size:18px;color:red">花木兰</p>
-
-                    <p class="text-muted mt-1">22回答·0文章·8关注者</p>
-                </div>
-                <div style="float:right;padding-top:15px">
-                    <button type="button" class="btn btn-primary">+关注她</button>
-                </div>
-            </div>
-
-            <div class="user" style="margin-top:10px;padding:10px">
-                <div style="float:left">
-                    <image src="common/image/head.jpg" style="width:60px;height:60px">
-                </div>
-                <div style="float:left;margin-left:20px">
-                    <p id="searchUserName" style="font-size:18px;"><span style="font-size:18px;color:red">花木兰</span>没有哥哥
-                    </p>
-                    <p class="mt-1">朔气传金柝，寒光照铁衣</p>
-                    <p class="text-muted mt-1">22回答·0文章·6关注者</p>
-                </div>
-                <div style="float:right;padding-top:15px">
-                    <button type="button" class="btn btn-primary">+关注她</button>
-                </div>
-            </div>
-        </div>
     </div>
     <div class="hotSearch mt-3">
         <div style="background-color:white;padding: 20px 15px;">

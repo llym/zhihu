@@ -8,4 +8,6 @@ public interface CareuserDao {
 	
 	public List<Careuser> getCU(String userid);
 	
+	public List<Careuser> getallCU(String userid);
+	
 }
