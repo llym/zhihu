@@ -73,22 +73,32 @@
 
 			<div class="col-sm-10 ">
 				<div class="row">
-					<div class="mb-5">
-						<img style="height: 20px; weight: 20px;"
-							src="common/image/home.png">问题修改
-					</div>
 					<div class="row">
-						<form role="form" class="form-inline" id="billQueryForm"
-							action="search.do" method="post">
-							<div class="form-group m-auto">
-								<!-- <button id="addBook" name="addBook"
-									class="btn btn-info btn-sm m-1" type="button" onclick="add()">新增图书</button> -->
-
-								<span>问题标题：</span> <input id="idForQuery" name="nameForQuery"
-									type="text" class="form-control m-1" placeholder="请输入标题" />
-								<button id="queryUser" name="queryUser"
-									class="btn btn-info btn-sm m-1" type="submit">查询</button>
+						<div class="mb-5">
+							<img style="height: 20px; weight: 20px;"
+								src="common/image/home.png">问题修改
+						</div>
+					</div>
+					<div class="row mt-5">
+						<form role="form" id="billQueryForm"
+							action="saveQU.do" method="post">
+							<input name="qId" value="${question.questionid}" style="display:none">
+							<div class="form-group m-auto form-inline">
+								<span>问题标题：</span> <input id="qTitle" name="qTitle" value="${question.questionname}"
+									type="text" class="form-control m-1" placeholder="请输入标题" 
+									style="height:50px;width:400px"/>
 							</div>
+							<div class="form-group m-auto form-inline">
+								<span>问题描述：</span> <input id="qDes" 
+								name="qDes" value="${question.questiondescribe}" style="height:200px;width:400px"
+									type="text" class="form-control m-1" placeholder="请输入描述" />
+							</div>
+							<div class="form-group m-auto form-inline">
+								<span>浏览量：</span> <input id="qBnum" name="qBnum" value="${question.browsenumb}"
+									type="text" class="form-control m-1"  placeholder="请输入浏览量" />
+							</div>
+							<button id="queryUser" name="queryUser"
+									class="btn btn-info btn-sm m-1" type="submit">保存</button>
 						</form>
 					</div>
 					

@@ -35,4 +35,6 @@ public interface QuestionService {
 	public String openQuestion(int questionid);
 
 	public Question getQuestionByid(int questionid);
+
+	public void updateQuestion(Question question);
 }

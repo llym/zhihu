@@ -34,7 +34,7 @@
 			});
 	}
 	function update(id){
-		window.location.href="updateQ.do?questionid"+id;
+		window.location.href="updateQ.do?questionid="+id;
 	}
 	function logout(){
 		window.location.href="adminLogin.jsp";

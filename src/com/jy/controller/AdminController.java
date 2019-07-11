@@ -119,14 +119,12 @@ public class AdminController {
 	@ResponseBody
 	@RequestMapping(value = "closeQuestion.do", produces = "html/text;charset=utf-8")
 	public String closeQuestion(int questionid, HttpServletRequest request) {
-		System.out.println("close" + questionid);
 		return questionservice.closeQuestion(questionid);
 	}
 
 	@ResponseBody
 	@RequestMapping(value = "openQuestion.do", produces = "html/text;charset=utf-8")
 	public String openQuestion(int questionid, HttpServletRequest request) {
-		System.out.println("open" + questionid);
 		return questionservice.openQuestion(questionid);
 	}
 
@@ -135,11 +133,26 @@ public class AdminController {
 	public ModelAndView updateQ(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView("admin/updateQuestion");
 		String qid = request.getParameter("questionid");
+		System.out.println("question"+qid);
 		int questionid = Integer.parseInt(qid);
 		Question question= questionservice.getQuestionByid(questionid);
 		
 		// JSONArray object=JSONArray.fromObject(userList);
 		mav.addObject("question", question);
+		return mav;
+	}
+	
+	@RequestMapping("saveQU.do")
+	public ModelAndView saveQU(HttpServletRequest request,int qId,String qTitle,String qDes,int qBnum) {
+		ModelAndView mav = new ModelAndView("redirect:/adminQuestion.do");
+		Question question = new Question();
+		question.setQuestionid(qId);
+		question.setQuestionname(qTitle);
+		question.setQuestiondescribe(qDes);
+		question.setBrowsenumb(qBnum);
+		questionservice.updateQuestion(question);
+		
+		// JSONArray object=JSONArray.fromObject(userList);
 		return mav;
 	}
 

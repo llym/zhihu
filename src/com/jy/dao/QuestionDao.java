@@ -36,4 +36,6 @@ public interface QuestionDao {
 	public void openQuestion(int questionid);
 
 	public Question getQuestionByid(int questionid);
+
+	public void updateQuestion(Question question);
 }

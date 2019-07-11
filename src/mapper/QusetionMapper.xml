@@ -37,7 +37,10 @@
 	<update id="openQuestion" parameterType="int">
         update question set status="1" where questionid=#{questionid}
 	</update>
-	
+	<update id="updateQuestion" parameterType="com.jy.entity.Question">
+        update question set questionname=#{questionname},questiondescribe=#{questiondescribe}
+        ,browsenumb=#{browsenumb} where questionid=#{questionid}
+	</update>
 	
 	<update id="addattention" parameterType="com.jy.entity.Question">
         update question set attentionnumb=attentionnumb+1 where questionid=#{questionid} and status="1"

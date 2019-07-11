@@ -118,12 +118,15 @@ public class QusetionServiceImpl implements QuestionService {
 		}
 	}
 
-
 	@Override
 	public Question getQuestionByid(int questionid) {
-		
 		return questiondao.getQuestionByid(questionid);
 	}
-	
 
+
+	@Override
+	public void updateQuestion(Question question) {
+		questiondao.updateQuestion(question);
+		
+	}
 }
