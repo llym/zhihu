@@ -55,7 +55,7 @@
         }
 
         .content {
-            height: 300px;
+            
         }
 
         #title,
@@ -492,7 +492,8 @@
                             onclick="openShare()">➢分享</span><span class="tip3 mt-2" onclick="openModak()">★收藏</span>
                     </div>
                      <!-- 回答的评论 --> 
-                    <div id="comments${que.questionid}" style="display: none;border:1px solid #D9D9D9;margin-left:15px;margin-right:15px ">
+                    <div id="comments${que.questionid}" class="mt-2"
+                    	style="display: none;border:1px solid #D9D9D9;margin-left:15px;margin-right:15px ">
                     <div id="commentNum" style="font-weight: bold">39条评论</div>
                     <hr>
                      <c:forEach items="${comlist}" var="com">
