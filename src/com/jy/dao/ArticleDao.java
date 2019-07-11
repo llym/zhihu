@@ -10,4 +10,6 @@ public interface ArticleDao {
 
 	List<Article> getArticleByUser(String user);
 
+	void deleteArticle(int id);
+
 }

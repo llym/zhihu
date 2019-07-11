@@ -31,4 +31,14 @@ public class ArticleServiceImpl implements ArticleService{
 		return articleDao.getArticleByUser(user);
 	}
 
+	@Override
+	public String deleteArticle(int id) {
+		try {
+			articleDao.deleteArticle(id);
+			return "delete article success";
+		}catch(Exception e) {
+			return "delete article fail";
+		}
+	}
+
 }

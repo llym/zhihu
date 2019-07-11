@@ -15,7 +15,7 @@
 	<update id="reduceac" parameterType="com.jy.entity.Answercomment">
         update answercomment set prisenumb=prisenumb-1 where commentid=#{commentid}
 	</update>
-	<update id="addacomment" parameterType="com.jy.entity.Answercomment">
-        update answer set commentnumb=commentnumb+1 where answerid=(select answerid from answercomment where commentid=#{commentid}) and status="1"
+	<update id="deleteArticle" parameterType="int">
+        update article set status="0" where articleid=#{id}
 	</update>
 </mapper>

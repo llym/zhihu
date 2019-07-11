@@ -10,4 +10,6 @@ public interface ArticleService {
 
 	List<Article> getArticleByUser(String user);
 
+	String deleteArticle(int id);
+
 }
