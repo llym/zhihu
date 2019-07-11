@@ -10,6 +10,9 @@
 	<insert id="insertQuestioncomment" parameterType="com.jy.entity.Questioncomment" useGeneratedKeys="true">
 		insert into questioncomment(questionid,userid,prisenumb,commentcontent,createtime,status) VALUES (#{questionid},#{userid},"0",#{commentcontent},#{createtime},1)
 	</insert>
+	
+	
+	
 	<update id="priseqc" parameterType="com.jy.entity.Questioncomment">
         update questioncomment set prisenumb=prisenumb+1 where commentid=#{commentid}
 	</update> 

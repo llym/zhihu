@@ -27,4 +27,12 @@ public interface QuestionService {
 	public void addanswerService(Integer questionid);
 
 	public String addQuestion(Question question);
+
+	public List<Question> getAllQuestion();
+
+	public String closeQuestion(int questionid);
+
+	public String openQuestion(int questionid);
+
+	public Question getQuestionByid(int questionid);
 }

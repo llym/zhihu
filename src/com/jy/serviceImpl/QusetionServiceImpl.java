@@ -17,42 +17,36 @@ public class QusetionServiceImpl implements QuestionService {
 
 	@Override
 	public List<Question> getQuestionService(String name) {
-		// TODO Auto-generated method stub
 		return questiondao.getQuestion(name);
 	}
 
 
 	@Override
 	public List<Question> getHotQuestionService(Integer topicid) {
-		// TODO Auto-generated method stub
 		return questiondao.getHotQuestion(topicid);
 	}
 
 
 	@Override
 	public List<Question> getHotService(Integer topicid) {
-		// TODO Auto-generated method stub
 		return questiondao.getHot(topicid);
 	}
 
 
 	@Override
 	public Question getaQuestionService(Integer questionid) {
-		// TODO Auto-generated method stub
 		return questiondao.getaQuestion(questionid);
 	}
 
 
 	@Override
 	public void addattentionService(Integer questionid) {
-		// TODO Auto-generated method stub
 		questiondao.addattention(questionid);
 	}
 
 
 	@Override
 	public void reduceattentionService(Integer questionid) {
-		// TODO Auto-generated method stub
 		questiondao.reduceattention(questionid);
 	}
 
@@ -73,14 +67,12 @@ public class QusetionServiceImpl implements QuestionService {
 
 	@Override
 	public void addanswerService(Integer questionid) {
-		// TODO Auto-generated method stub
 		questiondao.addanswer(questionid);
 	}
 
 
 	@Override
 	public List<Question> searchquestionService(String name) {
-		// TODO Auto-generated method stub
 		return questiondao.searchquestion(name);
 	}
 
@@ -94,6 +86,43 @@ public class QusetionServiceImpl implements QuestionService {
 		}catch(Exception e) {
 			return "发布问题失败！";
 		}
+	}
+
+
+	@Override
+	public List<Question> getAllQuestion() {
+		return questiondao.getAllQuestion();
+	}
+
+
+	@Override
+	public String closeQuestion(int questionid) {
+		try {
+			questiondao.closeQuestion(questionid);
+			return "success";
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+			return "close fail";
+		}
+	}
+
+
+	@Override
+	public String openQuestion(int questionid) {
+		try {
+			questiondao.openQuestion(questionid);
+			return "success";
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+			return "open fail";
+		}
+	}
+
+
+	@Override
+	public Question getQuestionByid(int questionid) {
+		
+		return questiondao.getQuestionByid(questionid);
 	}
 	
 

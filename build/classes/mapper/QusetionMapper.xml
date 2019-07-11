@@ -6,6 +6,13 @@
 	<select id="getQuestion" parameterType="String" resultType="com.jy.entity.Question">
 		select questionid,questionname from question where status="1" 
 	</select>
+	
+	<select id="getQuestionByid" parameterType="int" resultType="com.jy.entity.Question">
+		select * from question where questionid=#{questionid} 
+	</select>
+	<select id="getAllQuestion"  resultType="com.jy.entity.Question">
+		select * from question
+	</select>
 	<select id="getaQuestion" parameterType="Integer" resultType="com.jy.entity.Question">
 		select* from question where questionid=#{questionid} and status="1" 
 	</select>
@@ -23,6 +30,15 @@
 		insert into question (questionid,topicid,userid,questionname,questiondescribe,createtime,status) 
 			values(#{questionid},#{topicid},#{userid},#{questionname},#{questiondescribe},#{createtime},"1")
 	</insert>
+	
+	<update id="closeQuestion" parameterType="int">
+        update question set status="0" where questionid=#{questionid}
+	</update>
+	<update id="openQuestion" parameterType="int">
+        update question set status="1" where questionid=#{questionid}
+	</update>
+	
+	
 	<update id="addattention" parameterType="com.jy.entity.Question">
         update question set attentionnumb=attentionnumb+1 where questionid=#{questionid} and status="1"
 	</update>

@@ -85,13 +85,7 @@
     </style>
 
     <script>
-    var myobject={
-            value:111,
-            inc:function(){
-                    alert(this.value)
-                }
-        }
-    
+  
     $(function(){ 
     	$("#login").click(function(){
     		var username = $("#username").val();
@@ -115,7 +109,7 @@
                     success: function (result) {
                     	console.log(result)
                     	if(result=="success"){
-                    		window.location.href="adminHome.do";
+                    		window.location.href="adminUser.do";
                     	}else{
                     		alert(result)
                     		window.location.reload();
@@ -142,8 +136,7 @@
                 <input type="text" class="input" id="username" placeholder="👨用户名"><br />
                 <input type="password" class="input mt-2" id="password" placeholder="🔒密码" onfocus="this.placeholder=''"
                     onblur="this.placeholder='请输入密码'"><br />
-                    <script>
-                    </script>
+                    
                 <button type="button" class="btn" id="login">登录</button>
             </form>
         </div>

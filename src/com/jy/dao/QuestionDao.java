@@ -28,4 +28,12 @@ public interface QuestionDao {
 	public void addanswer(Integer questionid);
 
 	public void addQuestion(Question question);
+
+	public List<Question> getAllQuestion();
+
+	public void closeQuestion(int questionid);
+
+	public void openQuestion(int questionid);
+
+	public Question getQuestionByid(int questionid);
 }

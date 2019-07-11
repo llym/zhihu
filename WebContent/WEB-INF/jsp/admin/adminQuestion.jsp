@@ -13,25 +13,28 @@
 <script src="common/tool/layui/layui.js"></script>
 <link rel="shortcut icon" href="#" />
 <script type="text/javascript">
-	function fh(id){
-		console.log("fh"+id);
-		$.post("closeUser.do",{
-			userid:id
+	function deleteQ(id){
+		console.log("delete"+id);
+		$.post("closeQuestion.do",{
+			questionid:id
 			},function(data){
 				if(data=="success"){
-					window.location.href="adminUser.do"; 
+					window.location.href="adminQuestion.do";
 				}
 			});
 	}
-	function jf(id){
-		console.log("jf"+id);
-		$.post("openUser.do",{
-			userid:id
+	function regain(id){
+		console.log("regain"+id);
+		$.post("openQuestion.do",{
+			questionid:id
 			},function(data){
 				if(data=="success"){
-					window.location.href="adminUser.do";
+					window.location.href="adminQuestion.do";
 				}
 			});
+	}
+	function update(id){
+		window.location.href="updateQ.do?questionid"+id;
 	}
 	function logout(){
 		window.location.href="adminLogin.jsp";
@@ -60,9 +63,9 @@
 				<ul class="nav nav-pills flex-column">
 					<li class="nav-item"><a class="nav-link" href="#">菜单项MENU</a>
 					</li>
-					<li class="nav-item"><a class="nav-link active"
-						href="adminUser.do">用户管理</a></li>
 					<li class="nav-item"><a class="nav-link"
+						href="adminUser.do">用户管理</a></li>
+					<li class="nav-item"><a class="nav-link active"
 						href="adminQuestion.do">问题管理</a></li>
 				</ul>
 				<hr class="d-sm-none">
@@ -72,7 +75,7 @@
 				<div class="row">
 					<div class="mb-5">
 						<img style="height: 20px; weight: 20px;"
-							src="common/image/home.png">用户管理
+							src="common/image/home.png">问题管理
 					</div>
 					<div class="row">
 						<form role="form" class="form-inline" id="billQueryForm"
@@ -81,15 +84,15 @@
 								<!-- <button id="addBook" name="addBook"
 									class="btn btn-info btn-sm m-1" type="button" onclick="add()">新增图书</button> -->
 
-								<span>用户id：</span> <input id="idForQuery" name="nameForQuery"
-									type="text" class="form-control m-1" placeholder="请输入用户id" />
+								<span>问题标题：</span> <input id="idForQuery" name="nameForQuery"
+									type="text" class="form-control m-1" placeholder="请输入标题" />
 								<button id="queryUser" name="queryUser"
 									class="btn btn-info btn-sm m-1" type="submit">查询</button>
 							</div>
 						</form>
 					</div>
-					<table id="userTable"
-						class="table table-condensed table-bordered table-hover table-striped m-2">
+					<table id="questionTable"
+						class="table table-condensed table-bordered table-responsive table-hover m-2 table-striped">
 						
 					</table>
 					<div id="pageDemo"></div>
@@ -97,7 +100,8 @@
 						layui.use([ 'laypage', 'layer' ],function() {
 											var laypage = layui.laypage, layer = layui.layer;
 											//测试数据
-											var data = ${userList};
+											var data = ${questionList};
+											console.log(data)
 											//调用分页
 											laypage.render({
 														elem : 'pageDemo',
@@ -105,27 +109,28 @@
 														layout : [ 'count','prev', 'page','next','limit','refresh','skip'],
 														jump : function(obj) {
 															//模拟渲染
-															document.getElementById('userTable').innerHTML = function() {
+															document.getElementById('questionTable').innerHTML = function() {
 																var arr = [], thisData = 
 																	data.concat().splice(obj.curr*obj.limit - obj.limit,obj.limit);
-																arr.push('<tr><th>用户id</th>'+'<th>用户名</th><th>性别</th>'+
-																		'<th>手机号码</th><th>邮箱</th>'+
-																		'<th>头像地址</th><th>状态</th>'+
-																		'<th>操作</th>'+
+																arr.push('<tr><th>问题id</th>'+'<th>话题id</th><th>发表用户</th>'+
+																		'<th>标题</th><th>描述</th>'+
+																		'<th>浏览量</th>'+
+																		'<th>状态</th><th>操作</th>'+
 																		'</tr>');
 																
 																layui.each(thisData,function(index,item) {
-																		arr.push('<tr><td>'+ item.userid + '</td>'+
-																				'<td>'+ item.name + '</td>'+
-																				'<td>'+ item.sex + '</td>'+
-																				'<td>'+ item.telnum + '</td>'+
-																				'<td>'+ item.adress + '</td>'+
-																				'<td>'+ item.photo + '</td>'+
+																		arr.push('<tr><td>'+ item.questionid + '</td>'+
+																				'<td>'+ item.topicid + '</td>'+
+																				'<td>'+ item.userid + '</td>'+
+																				'<td>'+ item.questionname + '</td>'+
+																				'<td>'+ item.questiondescribe + '</td>'+
+																				'<td>'+ item.browsenumb + '</td>'+
 																				'<td>'+ item.status + '</td>'+
-																				'<td><button onclick="fh('+item.userid+
-																						')">封号</button>'+
-																				'<button onclick="jf('+item.userid+
-																						')">解封</button></td>'+		
+																				'<td><button onclick="update('+item.questionid+
+																				')">修改</button>'+
+																				'<button onclick="deleteQ('+item.questionid+')">删除</button>'+
+																				'<button onclick="regain('+item.questionid+
+																						')">恢复</button></td>'+		
 																				'</tr>'
 																		);
 																				});
@@ -133,7 +138,6 @@
 															}();
 														}
 													});
-
 										});
 					</script>
 
