@@ -34,6 +34,9 @@ public class FunctionController {
 		List<Idea> ideas = ideaService.getIdeasByUser(user);
 		
 		List<Article> articles = articleService.getArticleByUser(user);
+		List<Topic> topicList = topicService.getAllTopics();
+		System.out.println("获取全部话题："+topicList);
+		request.getSession().setAttribute("topicList", topicList);
 		
 		mav.addObject("articles",articles);
 		mav.addObject("articlesNum",articles.size());
@@ -58,7 +61,7 @@ public class FunctionController {
 	
 	@ResponseBody
 	@RequestMapping(value="getTopicList.do",produces="html/text;charset=utf-8")
-	public String deleteIdea(HttpServletRequest request) {
+	public String getTopicList(HttpServletRequest request) {
 		List<Topic> topicList = topicService.getAllTopics();
 		System.out.println("获取全部话题："+topicList);
 		request.getSession().setAttribute("topicList", topicList);

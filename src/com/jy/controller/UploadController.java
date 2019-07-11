@@ -12,13 +12,16 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.jy.entity.Article;
 import com.jy.entity.Idea;
+import com.jy.entity.Question;
 import com.jy.entity.UploadedImageFile;
 import com.jy.service.ArticleService;
 import com.jy.service.IdeaService;
+import com.jy.service.QuestionService;
 
 @Controller
 public class UploadController {
@@ -26,6 +29,8 @@ public class UploadController {
 	IdeaService ideaService;
 	@Autowired
 	ArticleService articleService;
+	@Autowired
+	QuestionService questionService;
 	
 	@RequestMapping("/uploadIdea.do")
 	public ModelAndView upload(HttpServletRequest request, UploadedImageFile file,String ideacontent)
@@ -63,8 +68,6 @@ public class UploadController {
 		System.out.println("title:"+articleTitle);
 		String articleContent = request.getParameter("articleContent");
 		System.out.println("content"+articleContent);
-		
-		
 		//保存上传的图片
 		String name = RandomStringUtils.randomAlphanumeric(10);
 		String newFileName = name + ".jpg";
@@ -81,12 +84,26 @@ public class UploadController {
 		article.setArticlecontent(articleContent);
 		article.setPhoto("/pic/"+newFileName);
 		System.out.println(articleService.insert(article));
-		
-		
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 		System.out.println(df.format(new Date()));// 
 		
 		ModelAndView mav = new ModelAndView("redirect:/myPage.do");
 		return mav;
 	}
+	
+	@ResponseBody
+	@RequestMapping(value="publishQuestion.do",produces="html/text;charset=utf-8")
+	public String deleteIdea(String userid,int topic,String questionName,String description) {
+		Question question = new Question();
+		System.out.println("userid+"+userid);
+		System.out.println(topic);
+		System.out.println(questionName);
+		question.setUserid(userid);
+		question.setQuestiondescribe(description);
+		question.setQuestionname(questionName);
+		question.setTopicid(topic);
+		question.setCreatetime(new Date());
+		return questionService.addQuestion(question);
+	}
+	
 }

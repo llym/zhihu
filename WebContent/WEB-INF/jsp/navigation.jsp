@@ -54,44 +54,30 @@ textarea::-webkit-input-placeholder {
 		})
 	}
 
-	function getTopicList() {
-		$.post("getTopicList.do", {
+	
 
-		}, function() {
-
+	function publish() {
+		var topic = $("#topic").val();
+		var questionName = $("#questionName").val();
+		var description = $("#questionDescribe").val();
+		console.log(topic)
+		console.log(description);
+		console.log(questionName);
+		
+		$.post("publishQuestion.do",{
+			userid:${username},
+			topic:topic,
+			questionName:questionName,
+			description:description
+		},function(data){
+			alert(data)
+			window.location.href="homePage.do";
 		})
 	}
 
-	function publish() {
-		var val = $('input:radio[name="optradio"]:checked').val();
-		var questionName = $("#questionName").val();
-		if (val == 'on') {
-			alert('匿名');
-		}
-		var description = $(".editor").text();
-		alert(description);
-		alert(questionName);
-		alert($("#sel1").val());
-	}
-
-	// 	function getPrivmess(){
-	// 		var queid=${username};
-	// 		alert(queid);
-	// 		$.post("privatem.do",
-	// 			    {
-	// 			'queid':queid
-	// 					},
-	// 				        function(data,status){
-
-	// 				        alert(data);
-	// 				        alert(${pmlist[1].privmesscontent})
-	// 				        //window.location.reload();
-	// 					});
-
-	// 	}
 </script>
 </head>
-<body onload="getPrivmess()">
+<body>
 	<nav
 		class="navbar navbar-expand-lg bg-white navbar-white justify-content-center ">
 		<a class="navbar-brand text-primary text-lg" href="homePage.do">知乎</a>
@@ -102,6 +88,7 @@ textarea::-webkit-input-placeholder {
 			<li class="nav-item"><a class="nav-link" href="#">等你来答</a></li>
 
 		</ul>
+		<!-- 搜索 -->
 		<form class="form-inline">
 			<div class="input-group">
 				<input type="text" class="form-control" placeholder="Search">
@@ -267,20 +254,17 @@ textarea::-webkit-input-placeholder {
 				style="width: 400px; height: 50px; border: 0px"
 				placeholder="写下你的问题，准确地描述更容易得到解答"></textarea>
 			<textarea id="questionDescribe" maxlength="50" class="mt-3 border"
-				style="width: 80%; height: 20%; border: 2px"
+				style="width: 80%; height: 50px; border: 2px"
 				placeholder="输入问题的背景、条件等详细信息"></textarea>
-			
-
-
 			<p class="text-muted" style="float: right; padding-top: 50px">
 				<span id="question_num">0</span>/<span>50</span>
 			</p>
 		</div>
 		
 		<div class="form-group" style="float: left">
-			<label for="sel1" style="margin-left: 20px">请选择话题:</label> <select
-				name="topicid" class="form-control" onclick="getTopicList()"
-				id="sel1" style="width: 100px; margin-left: 10%">
+			<label for="topic" style="margin-left: 20px">请选择话题:</label> <select
+				name="topicid" class="form-control"
+				id="topic" style="width: 100px; margin-left: 10%">
 				<c:forEach items="${topicList}" var="topic">
 					<option value="${topic.topicid}">${topic.topicname}</option>
 				</c:forEach>

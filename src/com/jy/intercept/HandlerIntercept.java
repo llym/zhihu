@@ -25,7 +25,7 @@ public class HandlerIntercept implements HandlerInterceptor{
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object arg2) throws Exception {
-		System.out.println("1.preHandle");
+		//System.out.println("1.preHandle");
 		//获取请求URL
 		StringBuffer url = request.getRequestURL();
 		//判断URL是否是公开地址
@@ -46,10 +46,10 @@ public class HandlerIntercept implements HandlerInterceptor{
 		HttpSession session = request.getSession();
 		String username = (String)session.getAttribute("username");
 		if(username!=null){//已登录
-			System.out.println(username+":"+"用户已登录！");
+			//System.out.println(username+":"+"用户已登录！");
 			return true;
 		}else{
-			System.out.println(username+":"+"用户未登录！");
+			//System.out.println(username+":"+"用户未登录！");
 			request.getRequestDispatcher("/login.jsp").forward(request, response);
 		}
 		return false;

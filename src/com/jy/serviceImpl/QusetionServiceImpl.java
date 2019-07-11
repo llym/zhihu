@@ -83,6 +83,17 @@ public class QusetionServiceImpl implements QuestionService {
 		// TODO Auto-generated method stub
 		return questiondao.searchquestion(name);
 	}
+
+
+	@Override
+	public String addQuestion(Question question) {
+		try {
+			questiondao.addQuestion(question);
+			return "插入问题成功";
+		}catch(Exception e) {
+			return "插入问题失败！";
+		}
+	}
 	
 
 }

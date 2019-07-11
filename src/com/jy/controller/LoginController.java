@@ -19,18 +19,21 @@ import com.jy.entity.Privatemessage;
 import com.jy.entity.QA;
 import com.jy.entity.Question;
 import com.jy.entity.Ranswercomment;
+import com.jy.entity.Topic;
 import com.jy.entity.User;
 import com.jy.service.AnswerCommentService;
 import com.jy.service.AnswerService;
 import com.jy.service.PrivateMessageService;
 import com.jy.service.QuestionService;
 import com.jy.service.RAnswerCommentService;
+import com.jy.service.TopicService;
 import com.jy.service.UserService;
 
 
 @Controller
 public class LoginController {
-	
+	@Autowired
+	TopicService topicService;
 	@Autowired
 	private UserService userservice;
 	@Autowired
@@ -46,7 +49,7 @@ public class LoginController {
 	
 	//主界面
 	@RequestMapping("/homePage.do")
-	 public ModelAndView s(){
+	 public ModelAndView s(HttpServletRequest request){
 		List<Question> Hlist= questionservice.getQuestionService("");
 		List<QA> list = new ArrayList<QA>();	
 		List<Answercomment> list1 = new ArrayList<Answercomment>();	
@@ -86,7 +89,10 @@ public class LoginController {
 			mav.addObject("quelist",list);
 			mav.addObject("comlist",list2);
 			mav.addObject("rcomlist",list4);
-			
+			//话题表
+			List<Topic> topicList = topicService.getAllTopics();
+			System.out.println("获取全部话题："+topicList);
+			request.getSession().setAttribute("topicList", topicList);
 			return mav;
 		}
 	

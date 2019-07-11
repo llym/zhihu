@@ -25,4 +25,6 @@ public interface QuestionService {
 	public void addqcommentService(Integer questionid);
 	
 	public void addanswerService(Integer questionid);
+
+	public String addQuestion(Question question);
 }

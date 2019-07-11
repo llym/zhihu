@@ -26,4 +26,6 @@ public interface QuestionDao {
 	public void addqcomment(Integer questionid);
 	
 	public void addanswer(Integer questionid);
+
+	public String addQuestion(Question question);
 }

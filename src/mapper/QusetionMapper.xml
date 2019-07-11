@@ -19,7 +19,10 @@
 	<select id="searchquestion" parameterType="String" resultType="com.jy.entity.Question">
 		 select * from question where questionname like concat('%',#{name},'%') or  questiondescribe like concat('%',#{name},'%') and status='1'
 	</select>
-	
+	<insert id="addQuestion" parameterType="com.jy.entity.Question">
+		insert into question (questionid,topicid,userid,questionname,questiondescribe,createtime) 
+		values(#{questionid},#{topicid},#{userid},#{questionname},#{questiondescribe},#{createtime})
+	</insert>
 	<update id="addattention" parameterType="com.jy.entity.Question">
         update question set attentionnumb=attentionnumb+1 where questionid=#{questionid} and status="1"
 	</update>
