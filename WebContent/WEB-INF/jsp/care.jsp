@@ -285,6 +285,13 @@
     
     function cancel(id){
     	alert(id);
+    	 $.post("cancelcau.do",
+ 			    {
+ 			'queid':id
+ 					},
+  			        function(data,status){
+  			       	window.location.reload();
+ 			    });
     }
     </script>
 </head>

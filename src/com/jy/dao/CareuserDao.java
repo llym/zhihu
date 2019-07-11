@@ -10,4 +10,5 @@ public interface CareuserDao {
 	
 	public List<Careuser> getallCU(String userid);
 	
+	public void cancelca(Integer id);
 }

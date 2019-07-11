@@ -26,4 +26,10 @@ public class CareUserServiceImpl implements CareUserService{
 		return careuserdao.getallCU(userid);
 	}
 
+	@Override
+	public void cancelcaService(Integer id) {
+		// TODO Auto-generated method stub
+		careuserdao.cancelca(id);
+	}
+
 }

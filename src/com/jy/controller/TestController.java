@@ -89,4 +89,15 @@ public class TestController {
 		
 		return mav;
 	}
+	
+	
+	//测试关注
+			@ResponseBody
+			@RequestMapping(value="/cancelcau.do",produces="html/text;charset=utf-8")
+			public String testcare(String queid,HttpServletRequest request,HttpServletResponse reponse,HttpSession session) {
+				System.out.println(queid+"+++++++");
+				careuserservice.cancelcaService(Integer.decode(queid));
+				return "1";
+			}
+	
 }
