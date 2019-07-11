@@ -3,8 +3,8 @@
  "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
 <mapper namespace="com.jy.dao.ArticleDao">
 <!-- 复杂查询 -->
-	<select id="getAnswercomment" parameterType="Integer" resultType="com.jy.entity.Answercomment">
-		select * from answercomment where answerid=#{answerid} and status="1" order by prisenumb desc
+	<select id="getArticleByUser" parameterType="String" resultType="com.jy.entity.Article">
+		select * from article where userid=#{user} and status="1" order by prisenumb desc
 	</select>
 	<insert id="insert" parameterType="com.jy.entity.Article" useGeneratedKeys="true">
 		insert into article VALUES (#{articleid},#{userid},#{photo},#{prisenumb},#{articlecontent},#{createtime},"1",#{articlename})

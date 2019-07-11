@@ -7,7 +7,7 @@
 		select * from idea where  ideaid=#{id} and status="1" 
 	</select>
 	<select id="getIdeasByUser" parameterType="String" resultType="com.jy.entity.Idea">
-		select * from idea where  userid=#{user} and status="1" 
+		select * from idea where  userid=#{user} and status="1" order by prisenumb desc
 	</select>
 	<insert id="insert" parameterType="com.jy.entity.Idea">
 		insert into idea VALUES (#{ideaid},#{userid},#{ideacontent},#{photo},#{prisenumb},#{createtime},1)

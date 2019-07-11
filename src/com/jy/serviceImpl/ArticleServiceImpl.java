@@ -1,5 +1,7 @@
 package com.jy.serviceImpl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +23,12 @@ public class ArticleServiceImpl implements ArticleService{
 		}catch(Exception e) {
 			return "插入article失败！";
 		}
+	}
+
+	@Override
+	public List<Article> getArticleByUser(String user) {
+		
+		return articleDao.getArticleByUser(user);
 	}
 
 }

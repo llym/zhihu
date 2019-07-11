@@ -217,7 +217,7 @@ function getIdeaPhotoPath(obj){
 						<li class="nav-item"><a class="nav-link" data-toggle="tab"
 							href="#MyQuestion">提问&nbsp;<span>0&nbsp;&nbsp;</span></a></li>
 						<li class="nav-item"><a class="nav-link" data-toggle="tab"
-							href="#MyArticle">文章&nbsp;<span>0&nbsp;&nbsp;</span></a></li>
+							href="#MyArticle">文章&nbsp;<span>${articlesNum}&nbsp;&nbsp;</span></a></li>
 						<li class="nav-item"><a class="nav-link" data-toggle="tab"
 							href="#MyColumn">专栏&nbsp;<span>0&nbsp;&nbsp;</span></a></li>
 						<li class="nav-item"><a class="nav-link" data-toggle="tab"
@@ -245,7 +245,7 @@ function getIdeaPhotoPath(obj){
 					<div id="MyQuestion" class=" container tab-pane fade">
 						<h5 class="ml-3">我的提问</h5>
 					</div>
-					<div id="MyArticle" class="container tab-pane fade">
+					<div id="MyArticle" class="container tab-pane fade"><!-- 我的文章 -->
 						<jsp:include page="myArticle.jsp" flush="true"></jsp:include>
 						
 					</div>
