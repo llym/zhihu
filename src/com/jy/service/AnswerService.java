@@ -16,4 +16,7 @@ public interface AnswerService {
 	
 	public void addcommentService(Integer answerid);
 	
+	public void addpriseService(Integer answerid);
+	
+	public void cancelpriseService(Integer answerid);
 }

@@ -214,5 +214,29 @@ public class CommentController {
 					return "取消成功";
 				}
 		
+				
+				
+				
+				//回答点赞
+				@ResponseBody
+				@RequestMapping(value="/addprise.do",produces="html/text;charset=utf-8")
+				public String addprise(String answerid) {
+					System.out.println(answerid);
+					answerservice.addpriseService(Integer.decode(answerid));
+					return "赞成功";
+				}
+				//评论取消点赞
+				@ResponseBody
+				@RequestMapping(value="/cancelprise.do",produces="html/text;charset=utf-8")
+				public String canceprise(String answerid) {
+					System.out.println(answerid);
+					answerservice.cancelpriseService(Integer.decode(answerid));
+					return "取消成功";
+				}
+				
+				
+				
+				
+				
 
 }

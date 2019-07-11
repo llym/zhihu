@@ -16,4 +16,8 @@ public interface AnswerDao {
 	
 	public void addcomment(Integer answerid);
 	
+	public void addprise(Integer answerid);
+	
+	public void cancelprise(Integer answerid);
+	
 }

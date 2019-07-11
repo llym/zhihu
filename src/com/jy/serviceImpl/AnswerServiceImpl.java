@@ -53,4 +53,16 @@ public class AnswerServiceImpl implements AnswerService{
 		answerdao.addcomment(answerid);
 	}
 
+	@Override
+	public void addpriseService(Integer answerid) {
+		// TODO Auto-generated method stub
+		answerdao.addprise(answerid);
+	}
+
+	@Override
+	public void cancelpriseService(Integer answerid) {
+		// TODO Auto-generated method stub
+		answerdao.cancelprise(answerid);
+	}
+
 }

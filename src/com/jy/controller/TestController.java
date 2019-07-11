@@ -39,7 +39,7 @@ import com.jy.service.RAnswerCommentService;
 import com.jy.service.RQuestionCommentService;
 import com.jy.service.UserService;
 
-@RestController
+@Controller
 public class TestController {
 	@Autowired
 	private QuestionService questionservice ;
@@ -47,17 +47,33 @@ public class TestController {
 	private UserService userservice;
 	
 	@RequestMapping("test1.do")
-	public String test() {
-		/*	模糊查询问题（可用）	
+	public ModelAndView  test() {
+	
 		List<Question> qlist =questionservice.searchquestionService("好");
 		System.out.println(qlist);
-		*/
+		
 		/*	模糊查询用户（可用）	
 		List<User> ulist =userservice.searchuserService("李");
 		System.out.println(ulist);
 		*/
+		ModelAndView mav =new ModelAndView("searchResult");
+		mav.addObject("qlist",qlist);
 		
 		
-		return "test";
+		return mav;
+	}
+	
+	@RequestMapping("test2.do")
+	public ModelAndView  test2() {
+	
+		
+		List<User> ulist =userservice.searchuserService("李");
+		System.out.println(ulist);
+
+		ModelAndView mav =new ModelAndView("searchUser");
+		mav.addObject("ulist",ulist);
+		
+		
+		return mav;
 	}
 }

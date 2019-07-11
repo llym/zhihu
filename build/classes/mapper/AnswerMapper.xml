@@ -19,5 +19,10 @@
 	<update id="addcomment" parameterType="com.jy.entity.Answer">
         update answer set commentnumb=commentnumb+1 where answerid=#{answerid} and status="1"
 	</update>
-	
+	<update id="addprise" parameterType="com.jy.entity.Answer">
+        update answer set prisenumb=prisenumb+1 where answerid=#{answerid} and status="1"
+	</update>
+	<update id="cancelprise" parameterType="com.jy.entity.Answer">
+        update answer set prisenumb=prisenumb-1 where answerid=#{answerid} and status="1"
+	</update>
 </mapper>

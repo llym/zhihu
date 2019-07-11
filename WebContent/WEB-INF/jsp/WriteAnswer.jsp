@@ -466,6 +466,36 @@
     			    });
         }
         
+        
+        
+        function agreeAnswer(id) {
+            var n = $("#agreeArticle"+id).text();
+            $("#agreeArticle"+id).text((parseInt(n) + 1));
+            $("#agreeA"+id).attr('disabled', true);
+            $.post("addprise.do",
+    			    {
+    			'answerid':id
+    					},
+     			        function(data,status){
+     			        alert(data);
+     			        //window.location.reload();
+    			    });
+        }
+        // 取消赞同
+        function cancelAnswer(id) {
+            var n = $("#agreeArticle"+id).text();
+            $("#agreeArticle"+id).text((parseInt(n) - 1));
+            $("#agreeA"+id).attr('disabled', false);
+            $.post("cancelprise.do",
+    			    {
+    			'answerid':id
+    					},
+     			        function(data,status){
+     			        alert(data);
+     			        //window.location.reload();
+    			    });
+        }
+        
     </script>
 </head>
 <body>
@@ -560,8 +590,9 @@
                     <p class="text-muted mt-2">发布于<span id="answerTime"><fmt:formatDate value="${an.createtime}" pattern="yyyy-MM-dd"/></span></p>
                 </div>
                 <div class="mt-2">
-                    <button type="button" class="btn btn-sm agree">赞同</button>
-                    <button type="button" class="btn btn-sm cancel">▼</i></button>
+                   	<button type="button" class="btn btn-sm agree mt-2" onclick="agreeAnswer(${an.answerid})" id="agreeA${an.answerid}">赞同<span
+                        id="agreeArticle${an.answerid}">${an.prisenumb}</span></button>
+                	<button type="button" class="btn btn-sm cancel mt-2" onclick="cancelAnswer(${an.answerid})" id="cancel${an.answerid}">▼</button>
                     <button onclick="anreadComment(${an.answerid})" type="button" class="btn btn-sm comment">✉<span id="commentNum">${an.commentnumb}</span>条评论</button>
                     <button type="button" class="btn btn-sm share">分享</button>
                     <button type="button" class="btn btn-sm collect">收藏</button>
