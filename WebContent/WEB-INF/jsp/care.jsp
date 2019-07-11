@@ -55,7 +55,7 @@
         }
 
         .content {
-            height: 300px;
+            
         }
 
         #title,
@@ -200,6 +200,92 @@
 
     })
 
+    function collecting() {
+        $("#collecting").attr('disabled', true);
+        $("#collecting").text("已收藏");
+    }
+    function affirmCreate() {
+        var favoritesname = $("#favoritesname").val();
+        alert(favoritesname);
+        var description = $("#description").val();
+        alert(description);
+    }
+    function writeIdeas() {
+        $("[name='testname']").val("xxxxxxxxxxxxxxx");//向模态框中赋值
+        layui.use(['layer'], function () {
+            var layer = layui.layer, $ = layui.$;
+            layer.open({
+                type: 1,//类型
+                area: ['600px', '500px'],//定义宽和高
+                title: false,//题目
+                shadeClose: false,//点击遮罩层关闭
+                content: $('#writeIdeas')//打开的内容
+            });
+        })
+    }
+    function previewImage(file) {
+        var MAXWIDTH = 90;
+        var MAXHEIGHT = 90;
+        $("#deletePhoto").show();
+        var div = document.getElementById('preview');
+        if (file.files && file.files[0]) {
+            div.innerHTML = '<img id=imghead onclick=$("#previewImg").click()>';
+            var img = document.getElementById('imghead');
+            img.onload = function () {
+                var rect = clacImgZoomParam(MAXWIDTH, MAXHEIGHT, img.offsetWidth, img.offsetHeight);
+                img.width = rect.width;
+                img.height = rect.height;
+                //                 img.style.marginLeft = rect.left+'px';
+                img.style.marginTop = rect.top + 'px';
+            }
+            var reader = new FileReader();
+            reader.onload = function (evt) { img.src = evt.target.result; }
+            reader.readAsDataURL(file.files[0]);
+        }
+        else //兼容IE
+        {
+            var sFilter = 'filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale,src="';
+            file.select();
+            var src = document.selection.createRange().text;
+            div.innerHTML = '<img id=imghead>';
+            var img = document.getElementById('imghead');
+            img.filters.item('DXImageTransform.Microsoft.AlphaImageLoader').src = src;
+            var rect = clacImgZoomParam(MAXWIDTH, MAXHEIGHT, img.offsetWidth, img.offsetHeight);
+            status = ('rect:' + rect.top + ',' + rect.left + ',' + rect.width + ',' + rect.height);
+            div.innerHTML = "<div id=divhead style='width:" + rect.width + "px;height:" + rect.height + "px;margin-top:" + rect.top + "px;" + sFilter + src + "\"'></div>";
+        }
+    }
+    function clacImgZoomParam(maxWidth, maxHeight, width, height) {
+        var param = { top: 0, left: 0, width: width, height: height };
+        if (width > maxWidth || height > maxHeight) {
+            rateWidth = width / maxWidth;
+            rateHeight = height / maxHeight;
+
+            if (rateWidth > rateHeight) {
+                param.width = maxWidth;
+                param.height = Math.round(height / rateWidth);
+            } else {
+                param.width = Math.round(width / rateHeight);
+                param.height = maxHeight;
+            }
+        }
+        param.left = Math.round((maxWidth - param.width) / 2);
+        param.top = Math.round((maxHeight - param.height) / 2);
+        return param;
+    }
+    function publishIdea(){
+        var idea=$("#idea").val();
+        alert(idea);
+    }
+    
+    function writeque(id){
+    	alert(id);
+    	window.location.href ='test.do?questionid='+id; //跳转到问题详情界面
+    }
+    
+    function cancel(id){
+    	alert(id);
+    }
     </script>
 </head>
 
@@ -210,10 +296,10 @@
         <div class="left" style="background-color:white;float:left;">
             <ul class="nav" role="tablist">
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#commend">推荐</a>
+                    <a class="nav-link " data-toggle="tab" href="#commend">推荐</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" data-toggle="tab" href="#follow">关注</a>
+                    <a class="nav-link active"  href="#follow">关注</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link"  href="hot.do">热榜</a>
@@ -221,26 +307,38 @@
             </ul>
             
             <div class="tab-content">
-               
-                
-                <div id="follow"><br>
-                    <div id="care" style="height:500px;">
-                       <c:forEach items="${ulist}" var="ue">
-                        <div id="recommendation" class="ml-2 mt-3" >
-                            <div style="float:left"><input type="image" class="" src="common/image/sculpture.jpg" style="width:40px;height:40px"></div>
+                <div id="follow" ><br>
+                    <div id="" style="height:400px;">
+                       <hr>
+                        <!-- 推荐的用户 -->
+                        <c:forEach items="${culist}" var="cu" >
+                         
+                        <div id="recommendation" >
+                        <c:forEach items="${uclist}" var="uc" >
+                         <<c:if   test="${cu.quserid eq uc.userid}">
+                            <div style="float:left"><input type="image" class="" src='${uc.photo}' style="width:40px;height:40px"></div>
                             <div style="float:left" class="ml-2">
-                                <p><span id="userName" style="font-weight:bold">${ue.quserid}</span>,<span id="profile"></span></p>
+                                <p><span id="userName" style="font-weight:bold">${uc.name}</span>,<span id="profile">${uc.autograph}</span></p>
+                                <p class="text-muted"><span id="replyNum">${uc.answernumb}</span>回答.<span id="followNum">${uc.followernumb}</span>关注者</p>
                             </div>
+                            </c:if>
+                        </c:forEach>
                             <div style="float:right">
-                                <button type="button" class="btn btn-primary" id="followHim">取消关注</button>
+                                <button  onclick="cancel(${cu.id})" type="button" class="btn btn-primary" id="followHim">取消关注</button>
                             </div>
                         </div>
- 						 <br>
-                      		<br>
-                          <br>
-                     		 <br>
-                 </c:forEach>
+                        <br>
+                        <br>
+                        <hr>
+                        
+						</c:forEach>
+
+                    </div>
+                </div>
                 
+               
+               
+               
                 <hr>
             </div>
 

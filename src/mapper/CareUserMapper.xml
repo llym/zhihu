@@ -10,5 +10,9 @@
 		 select * from careuser where userid=#{userid}  and status='1'
 	</select>
 	
+	<update id="cancelca" parameterType="com.jy.entity.Careuser">
+        update careuser set Status="0" where and status="1"
+	</update>
+	
 
 </mapper>

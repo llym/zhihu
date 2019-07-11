@@ -29,6 +29,7 @@ import com.jy.entity.Questioncomment;
 import com.jy.entity.Ranswercomment;
 import com.jy.entity.Rquestioncomment;
 import com.jy.entity.User;
+import com.jy.entity.hot;
 import com.jy.service.AnswerCommentService;
 import com.jy.service.AnswerService;
 import com.jy.service.ArticleService;
@@ -63,9 +64,6 @@ public class TestController {
 		String name=(String) request.getSession().getAttribute("sear");
 		List<Article> arlist =articleservice.searcharticleService(name);
 		System.out.println(arlist);
-//		List<User> ulist =userservice.searchuserService("李");
-//		System.out.println(ulist);
-//
 		ModelAndView mav =new ModelAndView("searchArticle");
 		mav.addObject("arlist",arlist);
 		
@@ -76,13 +74,18 @@ public class TestController {
 	
 	@RequestMapping("/care.do")
 	 public ModelAndView  care(){
-		
+		List<User> uclist=new ArrayList<User>();	
 		List<Careuser> list=careuserservice.getallCUService("111");
-		System.out.println(list);
+		for(int i=0;i<list.size();i++) {
+			 System.out.println(list.get(i).getQuserid());  
+			 User user=userservice.getUserById(list.get(i).getQuserid());
+			 uclist.add(user);
+		}
+		System.out.println(uclist);
 		
 		ModelAndView mav =new ModelAndView("care");
-		mav.addObject("ulist",list);
-		
+		mav.addObject("culist",list);
+		mav.addObject("uclist",uclist);
 		
 		return mav;
 	}
