@@ -91,13 +91,11 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public List<User> getAllUser() {
-		// TODO Auto-generated method stub
 		return userDao.getAllUser();
 	}
 
 	@Override
 	public User getUserById(String id) {
-		// TODO Auto-generated method stub
 		return userDao.getUserById(id);
 	}
 
@@ -165,13 +163,16 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User findaUser(String userid) {
-		// TODO Auto-generated method stub
 		return userDao.findaUser(userid);
 	}
 
 	@Override
 	public void updateuser(User user) {
-		// TODO Auto-generated method stub
 		userDao.updateuser(user);
+	}
+
+	@Override
+	public List<User> adminSearchUser(String userid) {
+		return userDao.adminSearchUser(userid);
 	}
 }

@@ -129,4 +129,11 @@ public class QusetionServiceImpl implements QuestionService {
 		questiondao.updateQuestion(question);
 		
 	}
+
+
+	@Override
+	public List<Question> adminSearchQ(String qName) {
+		
+		return questiondao.adminSearchQ(qName);
+	}
 }

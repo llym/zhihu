@@ -64,6 +64,8 @@
 						href="adminUser.do">用户管理</a></li>
 					<li class="nav-item"><a class="nav-link"
 						href="adminQuestion.do">问题管理</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="adminTopic.do">话题管理</a></li>
 				</ul>
 				<hr class="d-sm-none">
 			</div>
@@ -76,12 +78,12 @@
 					</div>
 					<div class="row">
 						<form role="form" class="form-inline" id="billQueryForm"
-							action="search.do" method="post">
+							action="adminSearchUser.do" method="post">
 							<div class="form-group m-auto">
 								<!-- <button id="addBook" name="addBook"
 									class="btn btn-info btn-sm m-1" type="button" onclick="add()">新增图书</button> -->
 
-								<span>用户id：</span> <input id="idForQuery" name="nameForQuery"
+								<span>用户id：</span> <input id="idForQuery" name="userid"
 									type="text" class="form-control m-1" placeholder="请输入用户id" />
 								<button id="queryUser" name="queryUser"
 									class="btn btn-info btn-sm m-1" type="submit">查询</button>

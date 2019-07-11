@@ -18,4 +18,16 @@ public interface TopicDao {
     int updateByPrimaryKey(Topic record);
 
 	List<Topic> getAllTopics();
+
+	List<Topic> getTopics();
+
+	void closeTopic(int topicid);
+
+	void openTopic(int topicid);
+
+	Topic getTopicByid(int topicid);
+
+	void updateTopic(Topic topic);
+
+	void addTopic(Topic topic);
 }

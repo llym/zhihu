@@ -8,4 +8,16 @@ public interface TopicService {
 
 	List<Topic> getAllTopics();
 
+	List<Topic> getTopics();
+
+	String closeUser(int topicid);
+
+	String openUser(int topicid);
+
+	Topic getTopicByid(int topicid);
+
+	void updateTopic(Topic topic);
+
+	void addTopic(Topic topic);
+
 }

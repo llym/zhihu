@@ -6,34 +6,25 @@
 	<select id="getAllTopics" parameterType="String" resultType="com.jy.entity.Topic">
 		select * from topic
 	</select>
-	<select id="finUserByTel" parameterType="String" resultType="com.jy.entity.User">
-		select * from user where telnum=#{username} and status="1"
+	<select id="getTopics" resultType="com.jy.entity.Topic">
+		select * from topic
 	</select>
-	<select id="finUserByEmail" parameterType="String" resultType="com.jy.entity.User">
-		select * from user where adress=#{username} and status="1"
-	</select>
-	<select id="getUserById" parameterType="String" resultType="com.jy.entity.User">
-		select * from user where userid=#{id} and status="1"
-	</select>
-	<select id="checkTelnum" parameterType="com.jy.entity.User" resultType="com.jy.entity.User">
-		select * from user where telnum=#{telnum} and status="1"
-	</select>
-	<insert id="insertUser" parameterType="com.jy.entity.User" useGeneratedKeys="true">
-		insert into user(userid,telnum,password,status) VALUES (#{telnum},#{telnum},#{password},"1")
+	<insert id="addTopic" parameterType="com.jy.entity.Topic">
+		insert into topic values(#{topicid},#{topicname},#{topicdescribe},"1",#{createtime})
 	</insert>
-	<select id="getAllUser"  resultType="com.jy.entity.User">
-		select * from user 
+	<select id="getTopicByid" parameterType="int" resultType="com.jy.entity.Topic">
+		select * from topic where topicid=#{topicid}
 	</select>
-	<update id="updatePassword"  parameterType="com.jy.entity.User">
-		update user set password=#{password} where userid=#{userid}
+	<update id="closeTopic" parameterType="int">
+		update topic set photo="0" where topicid=#{topicid}
 	</update>
-	<update id="updateTelNum"  parameterType="com.jy.entity.User">
-		update user set telnum=#{telnum} where userid=#{userid}
+	<update id="openTopic" parameterType="int">
+		update topic set photo="1" where topicid=#{topicid}
 	</update>
-	<update id="updateUserId"  parameterType="com.jy.entity.User">
-		update user set userid=#{telnum} where telnum=#{telnum}
+	<update id="updateTopic" parameterType="com.jy.entity.Topic">
+		update topic set topicname=#{topicname},topicdescribe=#{topicdescribe} where topicid=#{topicid}
 	</update>
-	<update id="updateEmail"  parameterType="com.jy.entity.User">
-		update user set adress=#{adress} where userid=#{userid}
-	</update>
+	
+	
+	
 </mapper>

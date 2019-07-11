@@ -13,28 +13,32 @@
 <script src="common/tool/layui/layui.js"></script>
 <link rel="shortcut icon" href="#" />
 <script type="text/javascript">
-	function deleteQ(id){
-		console.log("delete"+id);
-		$.post("closeQuestion.do",{
-			questionid:id
+	function closeT(id){
+		console.log("close"+id);
+		$.post("closeTopic.do",{
+			topicid:id
 			},function(data){
 				if(data=="success"){
-					window.location.href="adminQuestion.do";
+					window.location.href="adminTopic.do";
 				}
 			});
 	}
-	function regain(id){
+	function openT(id){
 		console.log("regain"+id);
-		$.post("openQuestion.do",{
-			questionid:id
+		$.post("openTopic.do",{
+			topicid:id
 			},function(data){
 				if(data=="success"){
-					window.location.href="adminQuestion.do";
+					window.location.href="adminTopic.do";
 				}
 			});
 	}
+	function addT(){
+		window.location.href="addTopic.do";
+	}
+	
 	function update(id){
-		window.location.href="updateQ.do?questionid="+id;
+		window.location.href="updateT.do?topicid="+id;
 	}
 	function logout(){
 		window.location.href="adminLogin.jsp";
@@ -65,9 +69,9 @@
 					</li>
 					<li class="nav-item"><a class="nav-link"
 						href="adminUser.do">用户管理</a></li>
-					<li class="nav-item"><a class="nav-link active"
+					<li class="nav-item"><a class="nav-link"
 						href="adminQuestion.do">问题管理</a></li>
-					<li class="nav-item"><a class="nav-linke"
+					<li class="nav-item"><a class="nav-link active"
 						href="adminTopic.do">话题管理</a></li>
 				</ul>
 				<hr class="d-sm-none">
@@ -77,24 +81,24 @@
 				<div class="row">
 					<div class="mb-5">
 						<img style="height: 20px; weight: 20px;"
-							src="common/image/home.png">问题管理
+							src="common/image/home.png">话题管理
 					</div>
 					<div class="row">
 						<form role="form" class="form-inline" id="billQueryForm"
-							action="adminSearchQ.do" method="post">
+							action="search.do" method="post">
 							<div class="form-group m-auto">
-								<!-- <button id="addBook" name="addBook"
-									class="btn btn-info btn-sm m-1" type="button" onclick="add()">新增图书</button> -->
+								<button class="btn btn-info btn-sm m-1" 
+								type="button" onclick="addT()">新增话题</button>
 
-								<span>问题标题：</span> <input name="qName"
-									type="text" class="form-control m-1" placeholder="请输入标题" />
+								<!-- <span>话题：</span> <input id="idForQuery" name="nameForQuery"
+									type="text" class="form-control m-1" placeholder="请输入话题" />
 								<button id="queryUser" name="queryUser"
-									class="btn btn-info btn-sm m-1" type="submit">查询</button>
+									class="btn btn-info btn-sm m-1" type="submit">查询</button> -->
 							</div>
 						</form>
 					</div>
 					<table id="questionTable"
-						class="table table-condensed table-bordered table-responsive table-hover m-2 table-striped">
+						class="table table-condensed table-bordered table-hover m-2 table-striped">
 						
 					</table>
 					<div id="pageDemo"></div>
@@ -102,7 +106,7 @@
 						layui.use([ 'laypage', 'layer' ],function() {
 											var laypage = layui.laypage, layer = layui.layer;
 											//测试数据
-											var data = ${questionList};
+											var data = ${topicList};
 											console.log(data)
 											//调用分页
 											laypage.render({
@@ -114,24 +118,19 @@
 															document.getElementById('questionTable').innerHTML = function() {
 																var arr = [], thisData = 
 																	data.concat().splice(obj.curr*obj.limit - obj.limit,obj.limit);
-																arr.push('<tr><th>问题id</th>'+'<th>话题id</th><th>发表用户</th>'+
-																		'<th>标题</th><th>描述</th>'+
-																		'<th>浏览量</th>'+
+																arr.push('<tr><th>话题id</th>'+'<th>话题</th><th>描述</th>'+
 																		'<th>状态</th><th>操作</th>'+
 																		'</tr>');
 																
 																layui.each(thisData,function(index,item) {
-																		arr.push('<tr><td>'+ item.questionid + '</td>'+
-																				'<td>'+ item.topicid + '</td>'+
-																				'<td>'+ item.userid + '</td>'+
-																				'<td>'+ item.questionname + '</td>'+
-																				'<td>'+ item.questiondescribe + '</td>'+
-																				'<td>'+ item.browsenumb + '</td>'+
-																				'<td>'+ item.status + '</td>'+
-																				'<td><button onclick="update('+item.questionid+
+																		arr.push('<tr><td>'+ item.topicid + '</td>'+
+																				'<td>'+ item.topicname + '</td>'+
+																				'<td>'+ item.topicdescribe + '</td>'+
+																				'<td>'+ item.photo + '</td>'+
+																				'<td><button onclick="update('+item.topicid+
 																				')">修改</button>'+
-																				'<button onclick="deleteQ('+item.questionid+')">删除</button>'+
-																				'<button onclick="regain('+item.questionid+
+																				'<button onclick="closeT('+item.topicid+')">关闭</button>'+
+																				'<button onclick="openT('+item.topicid+
 																						')">恢复</button></td>'+		
 																				'</tr>'
 																		);

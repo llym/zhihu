@@ -18,4 +18,46 @@ public class TopicServiceImpl implements TopicService {
 		
 		return topicDao.getAllTopics();
 	}
+
+	@Override
+	public List<Topic> getTopics() {
+		return topicDao.getTopics();
+	}
+
+	@Override
+	public String closeUser(int topicid) {
+		try {
+			topicDao.closeTopic(topicid);
+			return "success";
+		}catch(Exception e) {
+			return "fail";
+		}
+	}
+
+	@Override
+	public String openUser(int topicid) {
+		try {
+			topicDao.openTopic(topicid);
+			return "success";
+		}catch(Exception e) {
+			return "fail";
+		}
+	}
+
+	@Override
+	public Topic getTopicByid(int topicid) {
+		return topicDao.getTopicByid(topicid);
+	}
+
+	@Override
+	public void updateTopic(Topic topic) {
+		topicDao.updateTopic(topic);
+		
+	}
+
+	@Override
+	public void addTopic(Topic topic) {
+		topicDao.addTopic(topic);
+		
+	}
 }

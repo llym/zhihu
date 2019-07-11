@@ -31,6 +31,9 @@
 	<select id="getAllUser"  resultType="com.jy.entity.User">
 		select * from user 
 	</select>
+	<select id="adminSearchUser"  parameterType="String" resultType="com.jy.entity.User">
+		select * from user where userid like concat('%',#{userid},'%')
+	</select>
 	
 	
 	<update id="updateuser"  parameterType="com.jy.entity.User">

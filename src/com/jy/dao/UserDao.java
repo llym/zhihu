@@ -35,5 +35,7 @@ public interface UserDao {
 	public void closeUser(String userid);
 	
 	public void updateuser(User user);
+
+	public List<User> adminSearchUser(String userid);
 	
 }

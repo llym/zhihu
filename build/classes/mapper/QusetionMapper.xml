@@ -31,6 +31,9 @@
 			values(#{questionid},#{topicid},#{userid},#{questionname},#{questiondescribe},#{createtime},"1")
 	</insert>
 	
+	<select id="adminSearchQ" parameterType="String" resultType="com.jy.entity.Question">
+		select  * from question where questionname like concat('%',#{qName},'%')
+	</select>
 	<update id="closeQuestion" parameterType="int">
         update question set status="0" where questionid=#{questionid}
 	</update>

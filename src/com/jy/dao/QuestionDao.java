@@ -38,4 +38,6 @@ public interface QuestionDao {
 	public Question getQuestionByid(int questionid);
 
 	public void updateQuestion(Question question);
+
+	public List<Question> adminSearchQ(String qName);
 }

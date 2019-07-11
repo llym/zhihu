@@ -33,4 +33,6 @@ public interface UserService {
 	public User findaUser(String userid);
 	
 	public void updateuser(User user);
+
+	public List<User> adminSearchUser(String userid);
 }

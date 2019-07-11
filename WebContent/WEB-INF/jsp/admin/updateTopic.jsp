@@ -13,29 +13,7 @@
 <script src="common/tool/layui/layui.js"></script>
 <link rel="shortcut icon" href="#" />
 <script type="text/javascript">
-	function deleteQ(id){
-		console.log("delete"+id);
-		$.post("closeQuestion.do",{
-			questionid:id
-			},function(data){
-				if(data=="success"){
-					window.location.href="adminQuestion.do";
-				}
-			});
-	}
-	function regain(id){
-		console.log("regain"+id);
-		$.post("openQuestion.do",{
-			questionid:id
-			},function(data){
-				if(data=="success"){
-					window.location.href="adminQuestion.do";
-				}
-			});
-	}
-	function update(id){
-		window.location.href="updateQ.do?questionid"+id;
-	}
+	
 	function logout(){
 		window.location.href="adminLogin.jsp";
 	}
@@ -65,9 +43,9 @@
 					</li>
 					<li class="nav-item"><a class="nav-link"
 						href="adminUser.do">用户管理</a></li>
-					<li class="nav-item"><a class="nav-link active"
-						href="adminQuestion.do">问题管理</a></li>
 					<li class="nav-item"><a class="nav-link"
+						href="adminQuestion.do">问题管理</a></li>
+					<li class="nav-item"><a class="nav-link active"
 						href="adminTopic.do">话题管理</a></li>
 				</ul>
 				<hr class="d-sm-none">
@@ -78,29 +56,24 @@
 					<div class="row">
 						<div class="mb-5">
 							<img style="height: 20px; weight: 20px;"
-								src="common/image/home.png">问题修改
+								src="common/image/home.png">话题修改
 						</div>
 					</div>
 					<div class="row mt-5">
 						<form role="form" id="billQueryForm"
-							action="saveQU.do" method="post">
-							<input name="qId" value="${question.questionid}" style="display:none">
+							action="saveTU.do" method="post">
+							<input name="tId" value="${topic.topicid}" style="display:none">
 							<div class="form-group m-auto form-inline">
-								<span>问题标题：</span> <input id="qTitle" name="qTitle" value="${question.questionname}"
-									type="text" class="form-control m-1" placeholder="请输入标题" 
+								<span>话题：</span> <input id="tTitle" name="tTitle" value="${topic.topicname}"
+									type="text" class="form-control m-1" placeholder="话题" 
 									style="height:50px;width:400px"/>
 							</div>
 							<div class="form-group m-auto form-inline">
-								<span>问题描述：</span> <input id="qDes" 
-								name="qDes" value="${question.questiondescribe}" style="height:200px;width:400px"
+								<span>描述：</span> <input id="tDes" 
+								name="tDes" value="${topic.topicdescribe}" style="height:200px;width:400px"
 									type="text" class="form-control m-1" placeholder="请输入描述" />
 							</div>
-							<div class="form-group m-auto form-inline">
-								<span>浏览量：</span> <input id="qBnum" name="qBnum" value="${question.browsenumb}"
-									type="text" class="form-control m-1"  placeholder="请输入浏览量" />
-							</div>
-							<button id="queryUser" name="queryUser"
-									class="btn btn-info btn-sm m-1" type="submit">保存</button>
+							<button class="btn btn-info btn-sm m-1" type="submit">保存</button>
 						</form>
 					</div>
 					
