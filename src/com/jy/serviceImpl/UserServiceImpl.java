@@ -140,4 +140,26 @@ public class UserServiceImpl implements UserService {
 		// TODO Auto-generated method stub
 		return userDao.searchuser(name);
 	}
+
+	@Override
+	public String closeUser(String userid) {
+		try {
+			userDao.closeUser(userid);
+			return "success";
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			return "修改失败！";
+		}
+	}
+
+	@Override
+	public String openUser(String userid) {
+		try {
+			userDao.openUser(userid);
+			return "success";
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			return "修改失败！";
+		}
+	}
 }

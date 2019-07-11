@@ -28,6 +28,15 @@
 	<select id="getAllUser"  resultType="com.jy.entity.User">
 		select * from user 
 	</select>
+	
+	
+	
+	<update id="closeUser"  parameterType="String">
+		update user set status="0" where userid=#{userid}
+	</update>
+	<update id="openUser"  parameterType="String">
+		update user set status="1" where userid=#{userid}
+	</update>
 	<update id="updatePassword"  parameterType="com.jy.entity.User">
 		update user set password=#{password} where userid=#{userid}
 	</update>

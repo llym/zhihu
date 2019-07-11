@@ -13,25 +13,29 @@
 <script src="common/tool/layui/layui.js"></script>
 <link rel="shortcut icon" href="#" />
 <script type="text/javascript">
-	function getPhotoPath(obj){
-		//obj传入的DOM对象
-		console.log(obj)
-		console.log(obj.id);
-		console.log(obj.src);
-		console.log(obj.onload);
-		var path
-		$.post("getPhotoPath.do",{
-			id:obj.id
-		},function(data){
-			console.log(data)
-			obj.src=data
-			obj.onload=""
-				console.log(obj.onload)
-			console.log(obj.src)
-		});
+	function fh(id){
+		console.log("fh"+id);
+		$.post("closeUser.do",{
+			userid:id
+			},function(data){
+				if(data=="success"){
+					window.location.href="adminHome.do";
+				}
+			});
 	}
-	
-	
+	function jf(id){
+		console.log("jf"+id);
+		$.post("openUser.do",{
+			userid:id
+			},function(data){
+				if(data=="success"){
+					window.location.href="adminHome.do";
+				}
+			});
+	}
+	function logout(){
+		window.location.href="adminLogin.jsp";
+	}
 </script>
 
 </head>
@@ -40,10 +44,10 @@
 		style="background-color: #0069A8">
 		<img class="ml-2" src="common/image/zhi.jpg">
 		<div style="margin-left: 880px">
-			<button>
+			<a href="adminHome.do"><button>
 				<img style="height: 20px; width: 20px;" src="common/image/user.png">${username}管理员
-			</button>
-			<button>
+			</button></a>
+			<button onclick="logout()">
 				<img style="height: 20px; width: 20px; border-left: 1px #00FF66"
 					src="common/image/poweroff.png">退出
 			</button>
@@ -68,7 +72,7 @@
 				<div class="row">
 					<div class="mb-5">
 						<img style="height: 20px; weight: 20px;"
-							src="common/image/home.png"> 用户管理
+							src="common/image/home.png">用户管理
 					</div>
 					<div class="row">
 						<form role="form" class="form-inline" id="billQueryForm"
@@ -77,37 +81,18 @@
 								<!-- <button id="addBook" name="addBook"
 									class="btn btn-info btn-sm m-1" type="button" onclick="add()">新增图书</button> -->
 
-								<span>图书名称：</span> <input id="nameForQuery" name="nameForQuery"
-									type="text" class="form-control m-1" placeholder="请输入用户名称" />
+								<span>图书名称：</span> <input id="idForQuery" name="nameForQuery"
+									type="text" class="form-control m-1" placeholder="请输入用户id" />
 								<button id="queryUser" name="queryUser"
 									class="btn btn-info btn-sm m-1" type="submit">查询</button>
 							</div>
 						</form>
 					</div>
-
-
 					<table id="userTable"
 						class="table table-condensed table-hover table-striped">
-						<tr>
-							<th>图书名称</th>
-							<th>出版设</th>
-							<th>作者</th>
-							<th>库存</th>
-							<th>操作</th>
-						</tr>
-						<div >
-						<%-- <c:forEach items="${books}" var="b" varStatus="st">
-							<tr>
-								<td id="${b.id}">${b.bookname}</td>
-								<td>${b.press}</td>
-								<td>${b.author}</td>
-								<td>${b.inventory}</td>
-								<td><a href="#" onclick="edit(${b.id})">编辑 </a> <a href="#"
-									id="deleteBill" onclick="del(${b.id})">删除</a></td>
-							</tr>
 							<div id="edit${b.id}" style="display: none">
 								<h3>编辑图书</h3>
-								<hr />
+								<hr/>
 								<p>
 									<span>图书名称:</span><input value="${b.bookname}" type="text"
 										class="form-control" id="name${b.id}"
@@ -124,79 +109,53 @@
 									style="float: right; margin-right: 50px;">取消</button>
 								<button type="button" class="btn btn-primary btn-sm mt-2"
 									onclick="save(${b.id})" style="float: right">保存</button>
-
 							</div>
-
-						</c:forEach> --%>
-						</div>
 					</table>
-					<form class="form-inline justify-content-end">
-						<span>共${recordNum}条</span>
+					<div id="pageDemo"></div>
+					<script type="text/javascript">
+						layui.use([ 'laypage', 'layer' ],function() {
+											var laypage = layui.laypage, layer = layui.layer;
+											//测试数据
+											var data = ${userList};
+											//调用分页
+											laypage.render({
+														elem : 'pageDemo',
+														count : data.length,
+														layout : [ 'count','prev', 'page','next','limit','refresh','skip'],
+														jump : function(obj) {
+															//模拟渲染
+															document.getElementById('userTable').innerHTML = function() {
+																var arr = [], thisData = 
+																	data.concat().splice(obj.curr*obj.limit - obj.limit,obj.limit);
+																arr.push('<tr><th>用户id</th>'+'<th>用户名</th><th>性别</th>'+
+																		'<th>手机号码</th><th>邮箱</th>'+
+																		'<th>头像地址</th><th>状态</th>'+
+																		'<th>操作</th>'+
+																		'</tr>');
+																
+																layui.each(thisData,function(index,item) {
+																		arr.push('<tr><td>'+ item.userid + '</td>'+
+																				'<td>'+ item.name + '</td>'+
+																				'<td>'+ item.sex + '</td>'+
+																				'<td>'+ item.telnum + '</td>'+
+																				'<td>'+ item.adress + '</td>'+
+																				'<td>'+ item.photo + '</td>'+
+																				'<td>'+ item.status + '</td>'+
+																				'<td><button onclick="fh('+item.userid+
+																						')">封号</button>'+
+																				'<button onclick="jf('+item.userid+
+																						')">解封</button></td>'+		
+																				'</tr>'
+																		);
+																				});
+																return arr.join('');
+															}();
+														}
+													});
 
-						<ul class="pagination">
-							<c:choose>
-								<c:when test="${pages == 1}">
-									<li class="disabled page-item"><a class="page-link"
-										id="previousPage" href="#">&lt;</a></li>
-									<li class="disabled page-item"><a class="page-link"
-										href="#">首页</a></li>
-									<li class="disabled page-item"><a class="page-link"
-										href="#">第${currentPage}页,共${pages}页</a></li>
-									<li class="disabled page-item"><a class="page-link"
-										href="#">尾页</a></li>
-									<li class="page-item disabled"><a class="page-link"
-										id="nextPage" href="#">&gt;</a></li>
+										});
+					</script>
 
-								</c:when>
-								<c:when test="${currentPage == 1}">
-									<li class="disabled page-item"><a class="page-link"
-										id="previousPage" href="#">&lt;</a></li>
-									<li class="disabled page-item"><a class="page-link"
-										href="#">首页</a></li>
-									<li class="disabled page-item"><a class="page-link"
-										href="#">第${currentPage}页,共${pages}页</a></li>
-									<li class="page-item"><a class="page-link"
-										href="changePage?pageAdd=0&currentPage=${pages}">尾页</a></li>
-									<li class="page-item"><a class="page-link" id="nextPage"
-										href="changePage?pageAdd=1&currentPage=${currentPage}">&gt;</a>
-										<%--  --%></li>
-
-								</c:when>
-								<c:when test="${currentPage eq pages}">
-									<li class="page-item"><a class="page-link"
-										id="previousPage"
-										href="changePage?pageAdd=-1&currentPage=${currentPage}">&lt;</a>
-										<!--  --></li>
-									<li class="page-item"><a class="page-link"
-										href="changePage?pageAdd=0&currentPage=1">首页</a></li>
-									<li class="disabled page-item"><a class="page-link"
-										href="#">第${currentPage}页,共${pages}页</a></li>
-									<li class="disabled page-item"><a class="page-link"
-										href="#">尾页</a></li>
-									<li class="page-item disabled"><a class="page-link"
-										id="nextPage">&gt;</a></li>
-								</c:when>
-								<c:otherwise>
-									<li class="page-item"><a class="page-link"
-										id="previousPage"
-										href="changePage?pageAdd=-1&currentPage=${currentPage}">&lt;</a>
-										<!--  --></li>
-									<li class="page-item"><a class="page-link"
-										href="changePage?pageAdd=0&currentPage=1">首页</a></li>
-									<li class="disabled page-item"><a class="page-link"
-										href="#">第${currentPage}页,共${pages}页</a></li>
-									<li class="page-item"><a class="page-link"
-										href="changePage?pageAdd=0&currentPage=${pages}">尾页</a></li>
-									<li class="page-item"><a class="page-link" id="nextPage"
-										href="changePage?pageAdd=1&currentPage=${currentPage}">&gt;</a>
-										<%--  --%></li>
-								</c:otherwise>
-							</c:choose>
-						</ul>
-
-
-
-					</form>
 					<div id="addtext" style="display: none">
 						<h3>编辑图书</h3>
 						<hr />
@@ -205,10 +164,10 @@
 								id="bookname" style="width: 300px; margin-left: 50px;" />
 						</p>
 						出版社:<input type="text" class="form-control" id="press"
-							style="width: 300px; margin-left: 50px;" /> 作者:<input type="text"
-							class="form-control" id="authors"
-							style="width: 300px; margin-left: 50px;" /> 库存:<input type="text"
-							class="form-control" id="inventory"
+							style="width: 300px; margin-left: 50px;" /> 作者:<input
+							type="text" class="form-control" id="authors"
+							style="width: 300px; margin-left: 50px;" /> 库存:<input
+							type="text" class="form-control" id="inventory"
 							style="width: 300px; margin-left: 50px;" />
 						<button type="button" class="btn btn-sm mt-2" onclick="cancel()"
 							style="float: right; margin-right: 50px;">取消</button>

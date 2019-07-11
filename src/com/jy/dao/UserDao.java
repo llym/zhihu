@@ -27,5 +27,9 @@ public interface UserDao {
 	public User finUserByTel(String username);
 
 	public User finUserByEmail(String username);
+
+	public void openUser(String userid);
+
+	public void closeUser(String userid);
 	
 }

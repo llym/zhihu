@@ -25,4 +25,8 @@ public interface UserService {
 	public String updateEmail(User user);
 	
 	public List<User> searchuserService(String name);
+
+	public String closeUser(String userid);
+
+	public String openUser(String userid);
 }

@@ -19,6 +19,11 @@
      <script src="common/tool/js/md5.js"></script>
     <script src="common/tool/js/jquery.toggle-password.js"></script>
     <style>
+    body{
+  background-image:url(common/image/register-img.jpg);
+    background-size:100%;
+    background-attachment:fixed;
+}
         .change::-webkit-input-placeholder {
                     color: red;
             }
@@ -209,7 +214,7 @@
 
 </head>
 
-<body background="common/image/register-img.jpg">
+<body>
     <div class="container-fluid" align="center">
         <div class="logo">
             <h1 class="text-primary">知乎</h1><br />

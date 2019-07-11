@@ -59,7 +59,7 @@ public class AdminController {
 	}
 	@RequestMapping("adminHome.do")
 	public ModelAndView adminHome(HttpServletRequest request){
-		ModelAndView mav = new ModelAndView("admin/adminHome");
+		ModelAndView mav = new ModelAndView("admin/adminUser");
 		List<User> userList=userservice.getAllUser();
 		List<List>  stringList = new ArrayList<List>();
 		JSONArray jsonArray = new JSONArray();
@@ -87,6 +87,17 @@ public class AdminController {
 		
 		String path = idea.getPhoto();
 		return path;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="closeUser.do",produces="html/text;charset=utf-8")
+	public String closeUser(String userid,HttpServletRequest request){
+		return userservice.closeUser(userid);
+	}
+	@ResponseBody
+	@RequestMapping(value="openUser.do",produces="html/text;charset=utf-8")
+	public String openUser(String userid,HttpServletRequest request){
+		return userservice.openUser(userid);
 	}
 	
 }

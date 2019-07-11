@@ -15,6 +15,11 @@
     <script src="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/js/bootstrap.min.js"></script>
     <link rel="shortcut icon" href="#" />
     <style>
+    body{
+  background-image:url(common/image/1.jpg);
+    background-size:100%;
+    background-attachment:fixed;
+}
         .change::-webkit-input-placeholder {
             color: red;
         }
@@ -128,7 +133,7 @@
 
 </head>
 
-<body background="common/image/1.jpg">
+<body>
     <div class="container-fluid" align="center">
         <div class="logo">
         	<input type="image" src="common/image/zhi.jpg">
