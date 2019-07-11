@@ -6,6 +6,10 @@
 	<select id="getArticleByUser" parameterType="String" resultType="com.jy.entity.Article">
 		select * from article where userid=#{user} and status="1" order by prisenumb desc
 	</select>
+	 
+	<select id="searcharticle" parameterType="String" resultType="com.jy.entity.Article">
+		select * from article where articlename like concat('%',#{name},'%')  and status='1'
+	</select>
 	<insert id="insert" parameterType="com.jy.entity.Article" useGeneratedKeys="true">
 		insert into article VALUES (#{articleid},#{userid},#{photo},#{prisenumb},#{articlecontent},#{createtime},"1",#{articlename})
 	</insert>

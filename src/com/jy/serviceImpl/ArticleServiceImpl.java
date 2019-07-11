@@ -41,4 +41,10 @@ public class ArticleServiceImpl implements ArticleService{
 		}
 	}
 
+	@Override
+	public List<Article> searcharticleService(String name) {
+		// TODO Auto-generated method stub
+		return articleDao.searcharticle(name);
+	}
+
 }

@@ -12,4 +12,5 @@ public interface ArticleService {
 
 	String deleteArticle(int id);
 
+	List<Article> searcharticleService(String name);
 }

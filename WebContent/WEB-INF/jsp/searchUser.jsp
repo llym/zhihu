@@ -103,16 +103,17 @@
 </head>
 
 <body>
+<jsp:include page="navigation.jsp" flush="true"></jsp:include>
     <div class="topHeader mt-1">
         <ul class="nav nav-tabs" role="tablist">
             <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#searchQuestion">问题</a>
+                <a class="nav-link"  href="searchq.do">问题</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#searchArticle">文章</a>
+                <a class="nav-link"  href="searcharticle.do">文章</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active" data-toggle="tab" href="#searchUser">用户</a>
+                <a class="nav-link active"  href="searchuser.do">用户</a>
             </li>
         </ul>
     </div>

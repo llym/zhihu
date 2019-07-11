@@ -74,6 +74,7 @@ textarea::-webkit-input-placeholder {
 			window.location.href="homePage.do";
 		})
 	}
+	
 
 </script>
 </head>
@@ -89,11 +90,11 @@ textarea::-webkit-input-placeholder {
 
 		</ul>
 		<!-- 搜索 -->
-		<form class="form-inline">
+		<form class="form-inline" action="search.do" method="post">
 			<div class="input-group">
-				<input type="text" class="form-control" placeholder="Search">
+				<input id="sear" name ="sear" type="text" class="form-control" placeholder="Search" value="${sear}">
 				<div class="input-group-prepend">
-					<button class="input-group-text" id="basic-addon1">
+					<button class="input-group-text" id="basic-addon1" onclick="search()">
 						<i class="layui-icon layui-icon-search"
 							style="font-size: 16px; color: #1E9FFF;"></i>
 					</button>

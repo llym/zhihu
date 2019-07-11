@@ -12,4 +12,5 @@ public interface ArticleDao {
 
 	void deleteArticle(int id);
 
+	List<Article> searcharticle(String name);
 }

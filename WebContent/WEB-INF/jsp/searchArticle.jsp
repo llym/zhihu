@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -113,38 +115,44 @@
 </head>
 
 <body>
+ <jsp:include page="navigation.jsp" flush="true"></jsp:include> 
     <div class="topHeader mt-1">
         <ul class="nav nav-tabs" role="tablist">
             <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#searchQuestion">问题</a>
+                <a class="nav-link"  href="searchq.do">问题</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active" data-toggle="tab" href="#searchArticle">文章</a>
+                <a class="nav-link active"  href="searcharticle.do">文章</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#searchUser">用户</a>
+                <a class="nav-link"  href="searchuser.do">用户</a>
             </li>
         </ul>
     </div>
     <div class="tab-content">
       
         <div id="searchArticle" class="container tab-pane active"><br>
+            	<c:forEach items="${arlist}" var="ar" >
+            
             <div class="article">
-                <p style="font-size:18px;font-weight:bold">最后一次，聊下爱否</p>
+                <p style="font-size:18px;font-weight:bold">${ar.articlename}</p>
+                
                 <p class="mt-1">
-                    <image src="common/image/head.jpg" style="width:20px;height:20px"></image> Jesse Chan
-                    <span class="text-muted">一个月前</span>
+                    <image src="/pic/a.jpg" style="width:20px;height:20px"></image> ${ar.userid}
+                    <span class="text-muted"><fmt:formatDate  value="${ar.createtime}" pattern="yyyy-MM-dd"/></span>
                 </p>
-                <div class="mt-2" style="font-size:16px">
-                    <p>能尽力守护自己在意的人和事，就是最棒的人类了。</p>
-                    <p>我很感激，在工作的前三年里能有这么两大段经历，其中在爱否的这一段让我明白目的地在哪，另一段让我知道如何具体地磨练技能，朝着正确的方向前进。这个过程中，有人鼓励过我做自己想做的事，有人在我失误的时候帮我扛下责任，有人认可过我的价值，同时指出我的问题。对他们，❤️，大量的❤️。
-                    </p>
+               
+                <div class="mt-2" style="font-size:16px"><image src='${ar.photo}' style="width:160px;height:150px;"></image> ${ar.articlecontent}
                 </div>
+                
                 <button type="button" class="btn btn-sm agree mt-2" onclick="agreeArticle()" id="agreeA">赞同<span
-                        id="agreeArticle">574</span></button>
+                        id="agreeArticle">${ar.prisenumb}</span></button>
                 <button type="button" class="btn btn-sm cancel mt-2" onclick="cancelArticle()">▼</button>
-                <a href="#" class="btn btn-sm mt-2">查看评论</a>
+                
             </div>
+            	</c:forEach>
+            
+            
         </div>
      
     </div>
