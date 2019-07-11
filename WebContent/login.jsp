@@ -209,7 +209,7 @@
 
 </head>
 
-<body background="common/image/bg.jpg">
+<body background="common/image/register-img.jpg">
     <div class="container-fluid" align="center">
         <div class="logo">
             <h1 class="text-primary">知乎</h1><br />
