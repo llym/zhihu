@@ -223,29 +223,23 @@
             <div class="tab-content">
                
                 
-                <div id="follow" class="container tab-pane active"><br>
-                    <div id="" style="height:400px;">
-                        <!--如果没有关注的人-->
-                        <div id="pic" align="center">
-                            <input type="image" class="" src="common/image/card.png"/>
-                            <p class="text-muted" style="font-size:16px">还没有关注的人，为你推荐以下用户</p>
-                        </div>
-                        <!-- 推荐的用户 -->
+                <div id="follow"><br>
+                    <div id="care" style="height:500px;">
+                       <c:forEach items="${ulist}" var="ue">
                         <div id="recommendation" class="ml-2 mt-3" >
                             <div style="float:left"><input type="image" class="" src="common/image/sculpture.jpg" style="width:40px;height:40px"></div>
                             <div style="float:left" class="ml-2">
-                                <p><span id="userName" style="font-weight:bold">Mr-HH</span>,<span id="profile">中南大学 细胞生物学博士在读</span></p>
-                                <p class="text-muted"><span id="replyNum">75</span>回答.<span id="followNum">90682</span>关注着</p>
+                                <p><span id="userName" style="font-weight:bold">${ue.quserid}</span>,<span id="profile"></span></p>
                             </div>
                             <div style="float:right">
-                                <button type="button" class="btn btn-primary" id="followHim">+ 关注他</button>
+                                <button type="button" class="btn btn-primary" id="followHim">取消关注</button>
                             </div>
                         </div>
-
-                      
-                    </div>
-                </div>
-                
+ 						 <br>
+                      		<br>
+                          <br>
+                     		 <br>
+                 </c:forEach>
                 
                 <hr>
             </div>

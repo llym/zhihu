@@ -26,13 +26,11 @@ import com.jy.service.QuestionService;
 		
 		@RequestMapping("/hotopic.do")
 		 public ModelAndView hottopic(Model model,@RequestParam("top") String id){
-			System.out.println(id);
 			List<Question> list= questionservice.getHotQuestionService(Integer.decode(id));
 			List<hot> numlist=new ArrayList<hot>();	
 			
 			
 			for(int i=0;i<list.size();i++) {
-	       	 System.out.println(list.get(i).getQuestionid()); 
 	       	 String photo=answerservice.getPhotoService(list.get(i).getQuestionid());
 	       	 hot ho=new hot();
 	       	 ho.setNumb(i+1);
@@ -40,8 +38,6 @@ import com.jy.service.QuestionService;
 	       	 ho.setQuestionid(list.get(i).getQuestionid());
 	       	 numlist.add(ho);
 			}
-			System.out.println(list);
-			System.out.println(numlist);
 			ModelAndView mav =new ModelAndView("hot");
 			mav.addObject("quelist",list);
 			mav.addObject("numlist",numlist);
@@ -54,7 +50,6 @@ import com.jy.service.QuestionService;
 			List<Question> list= questionservice.getHotService(1);
 			List<hot> numlist=new ArrayList<hot>();	
 			for(int i=0;i<list.size();i++) {
-	      	 System.out.println(list.get(i).getQuestionid()); 
 	      	 String photo=answerservice.getPhotoService(list.get(i).getQuestionid());
 	      	 hot ho=new hot();
 	      	 ho.setNumb(i+1);
@@ -62,8 +57,6 @@ import com.jy.service.QuestionService;
 	      	 ho.setQuestionid(list.get(i).getQuestionid());
 	      	 numlist.add(ho);
 			}
-			System.out.println(list);
-			System.out.println(numlist);
 			ModelAndView mav =new ModelAndView("hot");
 			mav.addObject("quelist",list);
 			mav.addObject("numlist",numlist);

@@ -53,12 +53,12 @@ public class CommentController {
 		@ResponseBody
 		@RequestMapping(value="/insert.do",produces="html/text;charset=utf-8")
 		public String insert(String commentcontent,String answerid,HttpServletRequest request,HttpServletResponse reponse,HttpSession session) {
-			System.out.println(commentcontent);
+		
 			System.out.println(answerid);
 			Date date = new Date();
 			//SimpleDateFormat dateFormat= new SimpleDateFormat("yyyy-MM-dd :hh:mm:ss");
 			SimpleDateFormat dateFormat= new SimpleDateFormat("yyyy-MM-dd ");
-			System.out.println(dateFormat.format(date));
+			
 			String name=(String) request.getSession().getAttribute("username");
 			String userid="111";
 			Answercomment answerc=new Answercomment();
@@ -75,12 +75,11 @@ public class CommentController {
 		@ResponseBody
 		@RequestMapping(value="/insertr.do",produces="html/text;charset=utf-8")
 		public String insertr(String commentcontent,String commentid,String queid,HttpServletRequest request,HttpServletResponse reponse,HttpSession session) {
-				System.out.println(commentcontent);
-				System.out.println(commentid);
+				
 				Date date = new Date();
 				//SimpleDateFormat dateFormat= new SimpleDateFormat("yyyy-MM-dd :hh:mm:ss");
 				SimpleDateFormat dateFormat= new SimpleDateFormat("yyyy-MM-dd ");
-				System.out.println(dateFormat.format(date));
+				
 				String userid="111";
 				String name=(String) request.getSession().getAttribute("username");
 				Ranswercomment ranswerc=new Ranswercomment();
@@ -99,7 +98,6 @@ public class CommentController {
 		@ResponseBody
 		@RequestMapping(value="/priseac.do",produces="html/text;charset=utf-8")
 		public String priseac(String commentid) {
-			System.out.println(commentid);
 			answercommentservice.priseacService(Integer.decode(commentid));			
 			return "赞成功";
 		}
@@ -107,7 +105,6 @@ public class CommentController {
 		@ResponseBody
 		@RequestMapping(value="/reduceac.do",produces="html/text;charset=utf-8")
 		public String reduceac(String commentid) {
-			System.out.println(commentid);
 			answercommentservice.reduceacService(Integer.decode(commentid));
 			return "取消成功";
 		}
@@ -115,7 +112,6 @@ public class CommentController {
 		@ResponseBody
 		@RequestMapping(value="/priserac.do",produces="html/text;charset=utf-8")
 		public String priserac(String rcommentid) {
-			System.out.println(rcommentid);
 			ranswercommentservice.priseracService(Integer.decode(rcommentid));
 			return "赞成功";
 		}
@@ -123,7 +119,6 @@ public class CommentController {
 		@ResponseBody
 		@RequestMapping(value="/reducerac.do",produces="html/text;charset=utf-8")
 		public String reducerac(String rcommentid) {
-			System.out.println(rcommentid);
 			ranswercommentservice.reduceracService(Integer.decode(rcommentid));
 			return "取消成功";
 		}
@@ -134,12 +129,10 @@ public class CommentController {
 				@ResponseBody
 				@RequestMapping(value="/qinsert.do",produces="html/text;charset=utf-8")
 				public String qinsert(String commentcontent,String answerid,HttpServletRequest request,HttpServletResponse reponse,HttpSession session) {
-					System.out.println(commentcontent);
-					System.out.println(answerid);
+				
 					Date date = new Date();
 					//SimpleDateFormat dateFormat= new SimpleDateFormat("yyyy-MM-dd :hh:mm:ss");
 					SimpleDateFormat dateFormat= new SimpleDateFormat("yyyy-MM-dd ");
-					System.out.println(dateFormat.format(date));
 					String name=(String) request.getSession().getAttribute("username");
 					String userid="111";
 					Questioncomment answerc=new Questioncomment();
@@ -158,12 +151,10 @@ public class CommentController {
 		@ResponseBody
 		@RequestMapping(value="/qinsertr.do",produces="html/text;charset=utf-8")
 		public String qinsertr(String commentcontent,String commentid,String queid,HttpServletRequest request,HttpServletResponse reponse,HttpSession session) {
-				System.out.println(commentcontent);
-				System.out.println(commentid);
+		
 				Date date = new Date();
 				//SimpleDateFormat dateFormat= new SimpleDateFormat("yyyy-MM-dd :hh:mm:ss");
 				SimpleDateFormat dateFormat= new SimpleDateFormat("yyyy-MM-dd ");
-				System.out.println(dateFormat.format(date));
 				String name=(String) request.getSession().getAttribute("username");
 				Rquestioncomment ranswerc=new Rquestioncomment();
 				ranswerc.setCommentid(Integer.decode(commentid));
@@ -181,7 +172,6 @@ public class CommentController {
 				@ResponseBody
 				@RequestMapping(value="/qpriseac.do",produces="html/text;charset=utf-8")
 				public String qpriseac(String commentid) {
-					System.out.println(commentid);
 //					answercommentservice.priseacService(Integer.decode(commentid));
 					questioncommentservice.priseqcService(Integer.decode(commentid));
 					return "赞成功";
@@ -190,7 +180,6 @@ public class CommentController {
 				@ResponseBody
 				@RequestMapping(value="/qreduceac.do",produces="html/text;charset=utf-8")
 				public String qreduceac(String commentid) {
-					System.out.println(commentid);
 //					answercommentservice.reduceacService(Integer.decode(commentid));
 					questioncommentservice.reduceqcService(Integer.decode(commentid));
 					return "取消成功";
@@ -199,7 +188,6 @@ public class CommentController {
 				@ResponseBody
 				@RequestMapping(value="/qpriserac.do",produces="html/text;charset=utf-8")
 				public String qpriserac(String rcommentid) {
-					System.out.println(rcommentid);
 //					ranswercommentservice.priseracService(Integer.decode(rcommentid));
 					rquestioncommentservice.priserqcService(Integer.decode(rcommentid));
 					return "赞成功";
@@ -208,7 +196,6 @@ public class CommentController {
 				@ResponseBody
 				@RequestMapping(value="/qreducerac.do",produces="html/text;charset=utf-8")
 				public String qreducerac(String rcommentid) {
-					System.out.println(rcommentid);
 //					ranswercommentservice.reduceracService(Integer.decode(rcommentid));
 					rquestioncommentservice.reducerqcService(Integer.decode(rcommentid));
 					return "取消成功";
@@ -221,7 +208,6 @@ public class CommentController {
 				@ResponseBody
 				@RequestMapping(value="/addprise.do",produces="html/text;charset=utf-8")
 				public String addprise(String answerid) {
-					System.out.println(answerid);
 					answerservice.addpriseService(Integer.decode(answerid));
 					return "赞成功";
 				}
@@ -229,7 +215,6 @@ public class CommentController {
 				@ResponseBody
 				@RequestMapping(value="/cancelprise.do",produces="html/text;charset=utf-8")
 				public String canceprise(String answerid) {
-					System.out.println(answerid);
 					answerservice.cancelpriseService(Integer.decode(answerid));
 					return "取消成功";
 				}

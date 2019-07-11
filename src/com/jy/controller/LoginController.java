@@ -58,7 +58,6 @@ public class LoginController {
 		List<Ranswercomment> list4 = new ArrayList<Ranswercomment>();	
          //遍历questionid，去answer表里找最热的评论，读取对应数据存到新的list集合去         
         for(int i=0;i<Hlist.size();i++) {
-            	 System.out.println(Hlist.get(i).getQuestionid());  
             	 QA qa=new QA();
             	 Answer answer =new Answer();
             	 answer=answerservice.getAnswerService(Hlist.get(i).getQuestionid());
@@ -78,20 +77,17 @@ public class LoginController {
             	 list2.addAll(list1);
             	 }
             }
-        for(int i=0;i<list2.size();i++) {
-        	System.out.println(list2.get(i).getCommentid()); 
+        for(int i=0;i<list2.size();i++) { 
         	Integer commentid=list2.get(i).getCommentid();
         	list3=ranswercommentservice.getRanswercommentService(commentid);
         	list4.addAll(list3);
         }
-        	System.out.println(list4);
 			ModelAndView mav =new ModelAndView("homePage");
 			mav.addObject("quelist",list);
 			mav.addObject("comlist",list2);
 			mav.addObject("rcomlist",list4);
 			//话题表
 			List<Topic> topicList = topicService.getAllTopics();
-			System.out.println("获取全部话题："+topicList);
 			request.getSession().setAttribute("topicList", topicList);
 			return mav;
 		}

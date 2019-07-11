@@ -116,10 +116,15 @@ public class TestController {
 	
 	
 	@RequestMapping("/care.do")
-	 public String care(){
+	 public ModelAndView  care(){
+		
 		List<Careuser> list=careuserservice.getallCUService("111");
 		System.out.println(list);
-		return "care";
 		
+		ModelAndView mav =new ModelAndView("care");
+		mav.addObject("ulist",list);
+		
+		
+		return mav;
 	}
 }

@@ -49,9 +49,7 @@ public class AnswerController {
 		Integer a=Integer.decode(id);	//a为前台传的问题id
 		Question question=questionservice.getaQuestionService(a);
 		questionservice.addbrowseService(a); //浏览次数加一
-		System.out.println(question.getQuestionname());
 		List<Questioncomment> qlist = questioncommentservice.getQuestioncommentService(question.getQuestionid());
-		System.out.println(qlist);
 		List<Rquestioncomment> list1 = new ArrayList<Rquestioncomment>();	
 		List<Rquestioncomment> list2 = new ArrayList<Rquestioncomment>();	
 		for(int i=0;i<qlist.size();i++) {
