@@ -73,9 +73,10 @@ public class TestController {
 	
 	
 	@RequestMapping("/care.do")
-	 public ModelAndView  care(){
+	 public ModelAndView  care(HttpServletRequest request,HttpServletResponse reponse,HttpSession session) {
+		String name=(String) request.getSession().getAttribute("username");		
 		List<User> uclist=new ArrayList<User>();	
-		List<Careuser> list=careuserservice.getallCUService("111");
+		List<Careuser> list=careuserservice.getallCUService(name);
 		for(int i=0;i<list.size();i++) {
 			 System.out.println(list.get(i).getQuserid());  
 			 User user=userservice.getUserById(list.get(i).getQuserid());
@@ -91,7 +92,7 @@ public class TestController {
 	}
 	
 	
-	//测试关注
+	//取消用户关注
 			@ResponseBody
 			@RequestMapping(value="/cancelcau.do",produces="html/text;charset=utf-8")
 			public String testcare(String queid,HttpServletRequest request,HttpServletResponse reponse,HttpSession session) {
@@ -99,5 +100,48 @@ public class TestController {
 				careuserservice.cancelcaService(Integer.decode(queid));
 				return "1";
 			}
+			//用户关注
+			@ResponseBody
+			@RequestMapping(value="/careuser.do",produces="html/text;charset=utf-8")
+			 public String  careu(String queid,HttpServletRequest request,HttpServletResponse reponse,HttpSession session) {
+				String name=(String) request.getSession().getAttribute("username");	
+				Careuser careuser=new Careuser();
+				Date data=new Date();
+				careuser.setQuserid(queid);
+				careuser.setUserid(name);
+				careuser.setCreatetime(data);
+				System.out.println(queid+"+++++++++++++++++++"+name);
+				Careuser testcareuser=careuserservice.testCU(careuser);
+				if(testcareuser!=null) {
+					return "不能重复关注";
+				}
+				else if(queid.equals(name)) {
+					return "不能关注自己";
+				}
+				else {
+				careuserservice.insertcaService(careuser);
+					return "关注成功";
+				}
+				
+			}	
+			
+				@ResponseBody
+				@RequestMapping(value="/upduser.do",produces="html/text;charset=utf-8")
+				 public String  careu(String name,String school,String email,String word,String introduce,String sex,HttpServletRequest request,HttpServletResponse reponse,HttpSession session) {
+					String userid=(String) request.getSession().getAttribute("username");	
+					User user = new User();
+					user.setName(name);
+					user.setSchool(school);
+					user.setAdress(email);
+					user.setAutograph(word);
+					user.setIntroduce(introduce);
+					user.setSex(sex);
+					user.setUserid(userid);
+					userservice.updateuser(user);
+					
+					return "修改成功";
+					
+				}
+			
 	
 }

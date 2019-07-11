@@ -98,6 +98,38 @@
                 $("#topic").css("font-weight", "normal");
             })
         })
+        function careuser(id){
+        	alert(id);
+        	$.post("careuser.do",
+     			    {
+     			'queid':id
+     					},
+      			        function(data,status){
+      			       	
+     						alert(data);
+     						//window.location.reload();
+     			    });
+        }
+        
+        function getPhotoPath(obj){
+    		//obj传入的DOM对象
+    		console.log(obj)
+    		console.log(obj.id);
+    		console.log(obj.src);
+    		console.log(obj.onload);
+    		var path
+    		$.post("getPhotoPath.do",{
+    			id:obj.id
+    		},function(data){
+    			console.log(data)
+    			obj.src=data
+    			obj.onload=""
+    				console.log(obj.onload)
+    			console.log(obj.src)
+    			
+    		});
+    		
+    	}
         
     </script>
 </head>
@@ -123,7 +155,8 @@
  			<c:forEach items="${ulist}" var="ue" varStatus="userStatus">
 	            <div class="user" style="padding:10px">
 	                <div style="float:left">
-	                    <image src="common/image/head.jpg" style="width:60px;height:60px">
+	                    <image id="${ue.userid}" src="common/image/head.jpg" style="width:60px;height:60px"
+	                    onload="getPhotoPath(this)">
 	                </div>
 	                <div style="float:left;margin-left:20px">
 	                    <p id="searchUserName" style="font-size:18px;color:red">${ue.name}</p>
@@ -131,7 +164,7 @@
 	                    <p class="text-muted mt-1">${ue.answernumb} 回答· ${ue.ideanumb} 想法· ${ue.followernumb}关注者</p>
 	                </div>
 	                <div style="float:right;padding-top:15px">
-	                    <button type="button" class="btn btn-primary">+关注</button>
+	                    <button onclick="careuser(${ue.userid})" type="button" class="btn btn-primary">+关注</button>
 	                </div>
 	            </div>
 			</c:forEach>

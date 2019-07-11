@@ -1,6 +1,10 @@
 package com.jy.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,8 +21,11 @@ public class UserController {
 	private UserService userservice;
 	
 	@RequestMapping("updatePersonalData.do")
-	public ModelAndView personalData() {
+	public ModelAndView personalData(HttpServletRequest request,HttpServletResponse reponse,HttpSession session) {
+		String name=(String) request.getSession().getAttribute("username");	
+		User user= userservice.findaUser(name);
 		ModelAndView mav = new ModelAndView("personalData");
+		mav.addObject("user",user);
 		return mav;
 	}
 	@RequestMapping("personalSetting.do")

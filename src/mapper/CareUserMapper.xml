@@ -7,9 +7,9 @@
 		select * from careuser where userid=#{userid} or quserid=#{userid} and status="1" 
 	</select>
 	
-<!-- 	<select id="testCU" parameterType="com.jy.entity.Careuser" resultType="com.jy.entity.Careuser"> -->
-<!-- 		select * from careuser where userid=#{userid} and quserid=#{quserid} and status="1"  -->
-<!-- 	</select> -->
+	<select id="testCU" parameterType="com.jy.entity.Careuser" resultType="com.jy.entity.Careuser">
+		select * from careuser where userid=#{userid} and quserid=#{quserid} and status="1" 
+	</select>
 	
 	<select id="getallCU" parameterType="String" resultType="com.jy.entity.Careuser">
 		 select * from careuser where userid=#{userid}  and status='1'
@@ -19,7 +19,9 @@
         update careuser set Status="0" where Id=#{id} and status="1"
 	</update>
 	
-	
+	<insert id="insertca" parameterType="com.jy.entity.Careuser" useGeneratedKeys="true">
+		insert into careuser (quserid,userid,createtime,status) VALUES (#{quserid},#{userid},#{createtime},"1")
+	</insert>
 	
 
 </mapper>

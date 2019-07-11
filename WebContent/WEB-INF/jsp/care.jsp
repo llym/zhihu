@@ -303,10 +303,10 @@
         <div class="left" style="background-color:white;float:left;">
             <ul class="nav" role="tablist">
                 <li class="nav-item">
-                    <a class="nav-link " data-toggle="tab" href="#commend">推荐</a>
+                    <a class="nav-link " href="homePage.do">推荐</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active"  href="#follow">关注</a>
+                    <a class="nav-link active"  href="care.do">关注</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link"  href="hot.do">热榜</a>

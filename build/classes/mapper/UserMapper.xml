@@ -6,6 +6,9 @@
 	<select id="findUser" parameterType="String" resultType="com.jy.entity.User">
 		select * from user where userid=#{username} and status="1"
 	</select>
+	<select id="findaUser" parameterType="String" resultType="com.jy.entity.User">
+		select * from user where userid=#{userid} and status="1"
+	</select>
 	<select id="finUserByTel" parameterType="String" resultType="com.jy.entity.User">
 		select * from user where telnum=#{username} and status="1"
 	</select>
@@ -30,6 +33,9 @@
 	</select>
 	
 	
+	<update id="updateuser"  parameterType="com.jy.entity.User">
+		update user set name=#{name},school=#{school},adress=#{adress},autograph=#{autograph},introduce=#{introduce},sex=#{sex}  where userid=#{userid}
+	</update>
 	
 	<update id="closeUser"  parameterType="String">
 		update user set status="0" where userid=#{userid}

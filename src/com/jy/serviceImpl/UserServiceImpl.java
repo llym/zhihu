@@ -162,4 +162,16 @@ public class UserServiceImpl implements UserService {
 			return "修改失败！";
 		}
 	}
+
+	@Override
+	public User findaUser(String userid) {
+		// TODO Auto-generated method stub
+		return userDao.findaUser(userid);
+	}
+
+	@Override
+	public void updateuser(User user) {
+		// TODO Auto-generated method stub
+		userDao.updateuser(user);
+	}
 }

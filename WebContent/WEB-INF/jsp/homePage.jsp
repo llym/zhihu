@@ -467,7 +467,7 @@
                     <a class="nav-link active" data-toggle="tab" href="#commend">推荐</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#follow">关注</a>
+                    <a class="nav-link"  href="care.do">关注</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link"  href="hot.do">热榜</a>

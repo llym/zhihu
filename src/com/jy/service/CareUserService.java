@@ -11,4 +11,8 @@ public interface CareUserService {
 	public List<Careuser> getallCUService(String userid);
 	
 	public void cancelcaService(Integer id);
+	
+	public void insertcaService(Careuser careuser);
+	
+	public Careuser testCU(Careuser careuser);
 }

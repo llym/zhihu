@@ -338,7 +338,7 @@
                     <a class="nav-link active" href="homePage.do">推荐</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#follow">关注</a>
+                    <a class="nav-link" href="care.do">关注</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="hot.do">热榜</a>

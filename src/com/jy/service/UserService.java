@@ -29,4 +29,8 @@ public interface UserService {
 	public String closeUser(String userid);
 
 	public String openUser(String userid);
+	
+	public User findaUser(String userid);
+	
+	public void updateuser(User user);
 }

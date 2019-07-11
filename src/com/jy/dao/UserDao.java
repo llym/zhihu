@@ -14,6 +14,8 @@ public interface UserDao {
 	public List<User> getAllUser();
 	
 	public List<User> searchuser(String name);
+	
+	public User findaUser(String userid);
 
 	public User getUserById(String id);
 
@@ -31,5 +33,7 @@ public interface UserDao {
 	public void openUser(String userid);
 
 	public void closeUser(String userid);
+	
+	public void updateuser(User user);
 	
 }

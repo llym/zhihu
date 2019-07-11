@@ -32,4 +32,16 @@ public class CareUserServiceImpl implements CareUserService{
 		careuserdao.cancelca(id);
 	}
 
+	@Override
+	public void insertcaService(Careuser careuser) {
+		// TODO Auto-generated method stub
+		careuserdao.insertca(careuser);
+	}
+
+	@Override
+	public Careuser testCU(Careuser careuser) {
+		// TODO Auto-generated method stub
+		return careuserdao.testCU(careuser);
+	}
+
 }
