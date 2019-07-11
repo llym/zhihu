@@ -88,10 +88,11 @@ public class QusetionServiceImpl implements QuestionService {
 	@Override
 	public String addQuestion(Question question) {
 		try {
+			System.out.println("开始插入问题");
 			questiondao.addQuestion(question);
-			return "插入问题成功";
+			return "发布问题成功！";
 		}catch(Exception e) {
-			return "插入问题失败！";
+			return "发布问题失败！";
 		}
 	}
 	

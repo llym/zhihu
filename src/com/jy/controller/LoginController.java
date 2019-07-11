@@ -86,7 +86,7 @@ public class LoginController {
 			mav.addObject("quelist",list);
 			mav.addObject("comlist",list2);
 			mav.addObject("rcomlist",list4);
-			//话题表
+			//话题列表
 			List<Topic> topicList = topicService.getAllTopics();
 			request.getSession().setAttribute("topicList", topicList);
 			return mav;
@@ -123,7 +123,7 @@ public class LoginController {
 		System.out.println(telnum);
 		User user = new User();
 		user.setTelnum(telnum);
-		String result=	userservice.checkTelnumService(user);
+		String result =	userservice.checkTelnumService(user);
 		return result;
 	}
 	

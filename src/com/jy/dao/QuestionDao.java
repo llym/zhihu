@@ -27,5 +27,5 @@ public interface QuestionDao {
 	
 	public void addanswer(Integer questionid);
 
-	public String addQuestion(Question question);
+	public void addQuestion(Question question);
 }

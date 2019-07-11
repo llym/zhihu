@@ -61,7 +61,6 @@ public class AdminController {
 	public ModelAndView adminHome(HttpServletRequest request){
 		ModelAndView mav = new ModelAndView("admin/adminHome");
 		List<User> userList=userservice.getAllUser();
-		System.out.println(userList.get(0).toString());
 		List<List>  stringList = new ArrayList<List>();
 		JSONArray jsonArray = new JSONArray();
 	    
@@ -76,7 +75,6 @@ public class AdminController {
 	@ResponseBody
 	@RequestMapping(value="getPhotoPath.do",produces="html/text;charset=utf-8")
 	public String getPhotoPath(String id,HttpServletRequest request){
-		System.out.println(id+"get");
 		User user = userservice.getUserById(id);
 		String path = user.getPhoto();
 		return path;
@@ -85,7 +83,6 @@ public class AdminController {
 	@ResponseBody
 	@RequestMapping(value="getIdeaPhotoPath.do",produces="html/text;charset=utf-8")
 	public String getIdeaPhotoPath(int id,HttpServletRequest request){
-		System.out.println(id+"get ideaid");
 		Idea idea = ideaService.getIdeaById(id);
 		
 		String path = idea.getPhoto();
