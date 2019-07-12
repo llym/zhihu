@@ -24,7 +24,7 @@
 	</select>
 	
 	<select id="searchquestion" parameterType="String" resultType="com.jy.entity.Question">
-		 select * from question where questionname like concat('%',#{name},'%') or  questiondescribe like concat('%',#{name},'%') and status='1'
+		 select * from question where questionname like concat('%',#{name},'%') or  questiondescribe like concat('%',#{name},'%') and status='1' order by browsenumb desc
 	</select>
 	<insert id="addQuestion" parameterType="com.jy.entity.Question">
 		insert into question (questionid,topicid,userid,questionname,questiondescribe,createtime,status) 

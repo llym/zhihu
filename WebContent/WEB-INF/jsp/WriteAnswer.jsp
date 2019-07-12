@@ -153,7 +153,7 @@
         }
         function invite() {
             var userName = $("#username").text();
-            alert("用户名:" + userName);
+            //alert("用户名:" + userName);
             $("#invite").attr('disabled', true);
             $("#invite").text("已邀请")
         }
@@ -162,9 +162,9 @@
             $(".writeAnswer").toggle();
         }
         function submit(){
-            alert($("#editor").val());
+            //alert($("#editor").val());
             var questionid=${question.questionid};
-            alert(questionid);
+            //alert(questionid);
             $.post("insertanswer.do",
     			    {
     			'queid':questionid,
@@ -277,7 +277,7 @@
         	var commentid=id.getAttribute('co');
          	var queid=id.getAttribute('uc');
             var text = $("#replyContent"+commentid).val();
-            alert(commentid+text+queid);
+            //alert(commentid+text+queid);
             $.post("qinsertr.do",
     			    {
             	'commentcontent':text,
@@ -305,7 +305,7 @@
         	var rcommentid=id.getAttribute('rc');
         	var queid=id.getAttribute('uc');
             var text=$("#replyCommentText"+rcommentid).val();
-            alert(text+queid);
+            //alert(text+queid);
             $.post("qinsertr.do",
     			    {
             	'commentcontent':text,
@@ -321,7 +321,7 @@
         function publish(){
             var text=$("#commentText").val();
             var questionid=${question.questionid};
-            alert(text+questionid);
+            //alert(text+questionid);
             $.post("qinsert.do",
     			    {
            	'commentcontent':text,

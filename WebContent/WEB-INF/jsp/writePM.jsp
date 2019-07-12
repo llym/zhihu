@@ -197,9 +197,7 @@ function openpm(id){
 }
 
 function sendpm(id){
-	alert(id);
 	var text=$("#saytext").val();
-	alert(text);
 	window.location.reload();
 	$.post("insertpm.do",
 		    {
@@ -215,8 +213,8 @@ function sendpm(id){
 </script>
 </head>
 <body style="background-color: #f6f6f6">
-
-	<div class="container mt-3" style="margin-left: 20%;">
+	<jsp:include page="navigation.jsp" flush="true"></jsp:include>
+	<div class="container mt-3" style="margin-left:10%;">
 
 		<div class="row">
 			<div class="left"
@@ -281,7 +279,7 @@ function sendpm(id){
 											<div class="ml-5 chat-bg">
 												<!--chat-bg为对方聊天气泡样式-->
 
-												<p class="font-weight-light">${pm.privmesscontent}</p>
+												<p class="font-weight-light" >${pm.privmesscontent}</p>
 
 											</div>
 										</div>
@@ -307,8 +305,6 @@ function sendpm(id){
 						</div>
 
 					</div>
-
-					
 					<div>
 					<div>
 						<button class="emotion"
@@ -322,8 +318,7 @@ function sendpm(id){
 					</div>
 					<button type="button" class="btn btn-primary sub_btn"
 						style="float: right;"   onclick="sendpm(${takename})">发送</button>
-
-				</div>
+				</di>
 			</div>
 		</div>
 

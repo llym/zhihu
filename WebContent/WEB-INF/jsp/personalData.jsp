@@ -24,7 +24,7 @@
     <script src="common/tool/scripts/simditor.min.js"></script>
 <script
 	src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
-<script src="common/tool/layui/layui.js"></script>
+
 
 <script>
 
@@ -67,7 +67,7 @@ function saveuser(){
 		<div class="card" style="margin-left: 100px; margin-right: 100px">
 			<div>
 				<div class="card float-left">
-					<img src="common/image/2.jpg" class="card-img ml-3"
+					<img src="common/image/2.jpg" class="card-img ml-3" id="${username}" onload="getPhotoPath(this)"
 						style="width: 200px; height: 200px; margin-top: -30px">
 					<div class="card-img-overlay">
 						<a href="#" class="">修改头像</a>

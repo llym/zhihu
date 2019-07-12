@@ -8,22 +8,15 @@
 <meta charset="UTF-8">
 <title>我的主页</title>
 
-<link rel="stylesheet"
-	href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css"
-	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-	crossorigin="anonymous">
-<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js"
-	integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-	crossorigin="anonymous"></script>
+<link rel="stylesheet" href="common/tool/bootstrap4/css/bootstrap.css">
+<link rel="stylesheet" href="common/tool/layui/css/layui.css"
+	media="all">
+<script src="common/tool/jquery/jquery.js"></script>
 <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js"
 	integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
 	crossorigin="anonymous"></script>
-<script
-	src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js"
-	integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-	crossorigin="anonymous"></script>
-<link rel="stylesheet" href="common/tool/layui/css/layui.css"
-	media="all">
+<script src="common/tool/bootstrap4/js/bootstrap.js"></script>
+
 <script src="common/tool/layui/layui.js" charset="utf-8"></script>
 
 
@@ -80,79 +73,24 @@ function getIdeaPhotoPath(obj){
 		}
 	}
 
-	layui
-			.use(
-					'upload',
-					function() {
+	
+	layui.use('upload',function() {
 						var $ = layui.jquery, upload = layui.upload;
-
-						//背景图片上传
-						var uploadInst = upload
-								.render({
-									elem : '#test1',
-									url : '/upload/',
-									before : function(obj) {
-										//预读本地文件示例，不支持ie8
-										obj.preview(function(index, file,
-												result) {
-											$('#demo1').attr('src', result); //图片链接（base64）
-										});
-									},
-									done : function(res) {
-										//如果上传失败
-										if (res.code > 0) {
-											return layer.msg('上传失败');
-										}
-										//上传成功
-									},
-									error : function() {
-										//演示失败状态，并实现重传
-										var demoText = $('#demoText');
-										demoText
-												.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
-										demoText.find('.demo-reload').on(
-												'click', function() {
-													uploadInst.upload();
-												});
-									}
-								});
-					});
-
-	layui
-			.use(
-					'upload',
-					function() {
-						var $ = layui.jquery, upload = layui.upload;
-
+						var usernaem=${username}
+						console.log(username)
 						//头像图片上传
 						var uploadInst = upload
 								.render({
 									elem : '#test2',
 									url : '/upload/',
-									before : function(obj) {
-										//预读本地文件示例，不支持ie8
-										obj.preview(function(index, file,
-												result) {
-											$('#demo2').attr('src', result); //图片链接（base64）
+									auto : false,
+									choose :function(obj){
+										obj.preview(function(index, file,result) {
+											$('#'+username).attr('src', result); //图片链接（base64）
 										});
-									},
-									done : function(res) {
-										//如果上传失败
-										if (res.code > 0) {
-											return layer.msg('上传失败');
-										}
-										//上传成功
-									},
-									error : function() {
-										//演示失败状态，并实现重传
-										var demoText = $('#demoText2');
-										demoText
-												.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
-										demoText.find('.demo-reload').on(
-												'click', function() {
-													uploadInst.upload();
-												});
 									}
+									
+									
 								});
 					});
 </script>
@@ -166,12 +104,15 @@ function getIdeaPhotoPath(obj){
 		style="background-color: white; height: 400px; width: 80%;">
 		<!--个人主页封面-->
 		<div class="layui-upload mt-2">
+			<form>
+			
 			<button type="button" id="test1"
 				style="border: 0; outline: 0; background-color: transparent">
-				<img class="layui-upload-img" id="demo1"
+				<img class="layui-upload-img" id="${username}"
 					src="common/image/personalBg.jpg"
 					style="height: 240px; width: 100%; margin-left: -15px" />
 			</button>
+			</form>
 			<div class="layui-upload-list">
 				<p id="demoText"></p>
 			</div>
@@ -180,10 +121,13 @@ function getIdeaPhotoPath(obj){
 		<div>
 			<div class="layui-upload col-sm-4 mb-5"
 				style="float: left; margin-top: -100px">
+				<input type="file" accept="image/*" id="test2"  title="头像" name="image"
+					style="display: none; border: 0">
 				<button type="button" id="test2"
 					style="margin-left: 50px; border: 0; outline: 0; background-color: transparent">
-					<img class="layui-upload-img normalFace" id="demo2"
-						src="common/image/idImg.jpg" />
+					<img class="layui-upload-img normalFace" id="${username}"
+						onclick="$('#test2').click();"
+						src="common/image/idImg.jpg" onload="getPhotoPath(this)"/>
 				</button>
 				<div class="layui-upload-list">
 					<p id="demoText2"></p>

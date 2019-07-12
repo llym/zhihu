@@ -99,14 +99,12 @@
             })
         })
         function careuser(id){
-        	alert(id);
         	$.post("careuser.do",
      			    {
      			'queid':id
      					},
       			        function(data,status){
-      			       	
-     						alert(data);
+      			       		alert(data)
      						//window.location.reload();
      			    });
         }
