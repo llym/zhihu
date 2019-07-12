@@ -19,7 +19,7 @@
         }
 
         .topHeader {
-            padding-left: 200px;
+            padding-left: 10%;
             width: 100%;
             height: 50px;
             padding-top: 10px;
@@ -46,7 +46,7 @@
         .tab-content {
             margin-top: 5px;
             float: left;
-            margin-left: 15%;
+            margin-left: 10%;
             width: 600px;
 
         }
@@ -170,10 +170,10 @@
         }
         //发布某一条评论下的评论
         function publish2() {
-            alert($("#replyContent2").val());
+            //alert($("#replyContent2").val());
         }
         function answerQuestion(id) {
-            alert(id);
+            //alert(id);
             window.location.href ='test.do?questionid='+id;
         }
     </script>

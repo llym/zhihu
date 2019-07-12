@@ -9,7 +9,7 @@
 			$.post("deleteIdea.do",{
 				id:id
 			},function(data){
-				alert(data)
+				//alert(data)
 				window.location.relaod();
 			});
 			

@@ -166,7 +166,7 @@
             $("#shared").attr('disabled', true);
             $("#shared").text("已分享");
             var friendName = $("#friendName").text();//要分享的好友名
-            alert(friendName);
+            //alert(friendName);
             $.ajax({
                 type: 'post',
 
@@ -254,8 +254,8 @@
     			'commentid':id
     					},
      			        function(data,status){
-     			        alert(data);
-     			        //window.location.reload();
+     			        //alert(data);
+     			        window.location.reload();
     			    });
             $("#like"+id).text((parseInt(n) + 1));
             
@@ -265,8 +265,8 @@
     			'commentid':id
     					},
      			        function(data,status){
-     			        alert(data);
-     			        //window.location.reload();
+     			        //alert(data);
+     			        window.location.reload();
     			    });
             $("#like"+id).text((parseInt(n) - 1));
             
@@ -292,8 +292,8 @@
     			'rcommentid':id
     					},
      			        function(data,status){
-     			        alert(data);
-     			        //window.location.reload();
+     			        //alert(data);
+     			        window.location.reload();
     			    });
             $("#replyLike"+id).text((parseInt(n) - 1));
             
@@ -332,8 +332,8 @@
 			'queid':queid
 					},
  			        function(data,status){
- 			        alert(data);
- 			        //window.location.reload();
+ 			        //alert(data);
+ 			        window.location.reload();
 			    });
         
     }
@@ -350,8 +350,8 @@
 			'queid':answerid
 					},
  			        function(data,status){
- 			        alert(data);
- 			        //window.location.reload();
+ 			        //alert(data);
+ 			        window.location.reload();
 			    });
     }
     //评论
@@ -494,7 +494,7 @@
                      <!-- 回答的评论 --> 
                     <div id="comments${que.questionid}" class="mt-2"
                     	style="display: none;border:1px solid #D9D9D9;margin-left:15px;margin-right:15px ">
-                    <div id="commentNum" style="font-weight: bold">39条评论</div>
+                    
                     <hr>
                      <c:forEach items="${comlist}" var="com">
                        <c:if   test="${com.answerid eq que.answerid}">

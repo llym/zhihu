@@ -55,11 +55,10 @@ input{
 </style>
 
 <script>
-function getUserInfo(){
+function getUserInfo(obj){
 	$.post("getUserInfo.do",{
 		username:${username}
 	},function(data,status){
-		
 	});
 }
 
@@ -122,7 +121,7 @@ function updateEmail(){
 
 </head>
 
-<body onpageshow="getUserInfo()" onload="getUserInfo()">
+<body onload="getUserInfo(this)">
 	<jsp:include page="navigation.jsp" flush="true"></jsp:include>
 
 	<div class="container mt-3">

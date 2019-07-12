@@ -10,7 +10,7 @@
 </style>
 
 <div>
-	<h4 class="ml-3 font-weight-bold">我的文章</h4>
+	<h4 class="ml-3 font-weight-bold">我的问题</h4>
 </div>
 <div id="ideas">
 	<c:forEach items="${articles}" var="article">

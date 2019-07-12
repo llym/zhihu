@@ -47,7 +47,7 @@ public class FunctionController {
 	//跳转到写回答
 	@RequestMapping("writeAnswer.do")
 	public ModelAndView writeAnswer(HttpServletRequest request) {
-		ModelAndView mav = new ModelAndView("MyPage");
+		ModelAndView mav = new ModelAndView("WriteAnswer");
 		
 		
 		return mav;

@@ -144,8 +144,8 @@
             var publics = $('input:radio[id="public"]:checked').val();//公开
             var privates = $('input:radio[id="private"]:checked').val();//私密
             var status;
-            alert(favoritesname);
-            alert(description);
+            //alert(favoritesname);
+            //alert(description);
             if (publics != null) {
                 status = "公开";
                 alert(status);
@@ -166,7 +166,7 @@
             $("#shared").attr('disabled', true);
             $("#shared").text("已分享");
             var friendName = $("#friendName").text();//要分享的好友名
-            alert(friendName);
+            //alert(friendName);
             $.ajax({
                 type: 'post',
 
@@ -249,9 +249,9 @@
     }
     function affirmCreate() {
         var favoritesname = $("#favoritesname").val();
-        alert(favoritesname);
+        //alert(favoritesname);
         var description = $("#description").val();
-        alert(description);
+        //alert(description);
     }
     function writeIdeas() {
         $("[name='testname']").val("xxxxxxxxxxxxxxx");//向模态框中赋值
@@ -318,11 +318,11 @@
     }
     function publish(){
         var idea=$("#idea").val();
-        alert(idea);
+        //alert(idea);
     }
     
     function writeque(id){
-    	alert(id);
+    	//alert(id);
     	window.location.href ='test.do?questionid='+id;
     }
     </script>

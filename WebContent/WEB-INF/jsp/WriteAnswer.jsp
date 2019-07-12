@@ -218,7 +218,7 @@
         			'commentid':id
         					},
          			        function(data,status){
-         			        alert(data);
+         			        //alert(data);
          			        //window.location.reload();
         			    });
             } else if ($(".praise"+id).css('color') == 'rgb(0, 0, 255)') {
@@ -229,7 +229,7 @@
         			'commentid':id
         					},
          			        function(data,status){
-         			        alert(data);
+         			        //alert(data);
          			        //window.location.reload();
         			    });
             }
@@ -245,7 +245,7 @@
          			'rcommentid':id
          					},
           			        function(data,status){
-          			        alert(data);
+          			        //alert(data);
           			        //window.location.reload();
          			    });
             } else if ($(".praiseReply"+id).css('color') == 'rgb(0, 0, 255)') {
@@ -256,7 +256,7 @@
         			'rcommentid':id
         					},
          			        function(data,status){
-         			        alert(data);
+         			        //alert(data);
          			        //window.location.reload();
         			    });
             }
@@ -286,8 +286,8 @@
     			'queid':queid
     					},
      			        function(data,status){
-     			        alert(data);
-     			        //window.location.reload();
+     			        //alert(data);
+     			        window.location.reload();
     			    });
             
         }
@@ -329,13 +329,10 @@
     			'answerid':questionid
     			    },
     			        function(data,status){
-    			        alert(data);
+    			        //alert(data);
     			        window.location.reload();
     			    });
         }
-        
-        
-        
         //上面是问题，下面是回答
         
         
