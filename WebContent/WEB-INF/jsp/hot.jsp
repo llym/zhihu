@@ -103,22 +103,58 @@
 		    var id=1;
 		    if(string.substring(33,35)=="科学"){
 		    	id=1;window.location.href ='hotopic.do?top='+id;
+		    	$('label#option1').removeClass('active')
+		    	$('label#option2').addClass('active')
+		    	$('label#option3').removeClass('active')
+		    	$('label#option4').removeClass('active')
+		    	$('label#option5').removeClass('active')
+		    	$('label#option6').removeClass('active')
 		    }
 		    else if (string.substring(33,35)=="数码"){
 		    	id=2;window.location.href ='hotopic.do?top='+id;
+		    	$('label#option1').removeClass('active')
+		    	$('label#option2').removeClass('active')
+		    	$('label#option3').removeClass('active')
+		    	$('label#option4').addClass('active')
+		    	$('label#option5').removeClass('active')
+		    	$('label#option6').removeClass('active')
 		    }
 		    else if (string.substring(33,35)=="体育"){
 		    	id=3;window.location.href ='hotopic.do?top='+id;
+		    	$('label#option1').removeClass('active')
+		    	$('label#option2').removeClass('active')
+		    	$('label#option3').addClass('active')
+		    	$('label#option4').removeClass('active')
+		    	$('label#option5').removeClass('active')
+		    	$('label#option6').removeClass('active')
 		    }
 		    else if (string.substring(33,35)=="时尚"){
 		    	id=4;window.location.href ='hotopic.do?top='+id;
+		    	$('label#option1').removeClass('active')
+		    	$('label#option2').removeClass('active')
+		    	$('label#option3').removeClass('active')
+		    	$('label#option4').removeClass('active')
+		    	$('label#option5').addClass('active')
+		    	$('label#option6').removeClass('active')
 		    }
 		    else if (string.substring(33,35)=="影视"){
 		    	id=5;
 		    	window.location.href ='hotopic.do?top='+id;
+		    	$('label#option1').removeClass('active')
+		    	$('label#option2').removeClass('active')
+		    	$('label#option3').removeClass('active')
+		    	$('label#option4').removeClass('active')
+		    	$('label#option5').removeClass('active')
+		    	$('label#option6').addClass('active')
 		    }
 		    else if (string.substring(33,35)=="全站"){
 		    	window.location.href ="hot.do";
+		    	$('label#option1').addClass('active')
+		    	$('label#option2').removeClass('active')
+		    	$('label#option3').removeClass('active')
+		    	$('label#option4').removeClass('active')
+		    	$('label#option5').removeClass('active')
+		    	$('label#option6').removeClass('active')
 		    }
 		    
         });
@@ -347,22 +383,22 @@
                 <div id="hot"><br>
                     <div id="hotList">
                         <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                            <label class="btn btn-outline-primary active ml-2">
+                            <label id="option1" class="btn btn-outline-primary ml-2">
                                 <input type="radio" name="options" id="option1" autocomplete="off" checked>全站
                             </label>
-                            <label class="btn btn-outline-primary ml-2">
+                            <label id="option2" class="btn btn-outline-primary ml-2">
                                 <input type="radio" name="options" id="option2" autocomplete="off">科学
                             </label>
-                            <label class="btn btn-outline-primary ml-2">
+                            <label id="option3" class="btn btn-outline-primary ml-2">
                                 <input type="radio" name="options" id="option3" autocomplete="off">数码
                             </label>
-                            <label class="btn btn-outline-primary ml-2">
+                            <label id="option4" class="btn btn-outline-primary ml-2">
                                 <input type="radio" name="options" id="option3" autocomplete="off">体育
                             </label>
-                            <label class="btn btn-outline-primary ml-2">
+                            <label id="option5" class="btn btn-outline-primary ml-2">
                                 <input type="radio" name="options" id="option3" autocomplete="off">时尚
                             </label>
-                            <label class="btn btn-outline-primary ml-2">
+                            <label id="option6" class="btn btn-outline-primary ml-2">
                                 <input type="radio" name="options" id="option3" autocomplete="off">影视
                             </label>
                         </div>

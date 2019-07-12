@@ -93,7 +93,7 @@ public class UploadController {
 	
 	@ResponseBody
 	@RequestMapping(value="publishQuestion.do",produces="html/text;charset=utf-8")
-	public String deleteIdea(String userid,int topic,String questionName,String description) {
+	public String publishQuestion(String userid,int topic,String questionName,String description) {
 		Question question = new Question();
 		System.out.println("userid+"+userid);
 		System.out.println(topic);
