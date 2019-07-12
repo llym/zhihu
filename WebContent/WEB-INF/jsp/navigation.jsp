@@ -56,7 +56,7 @@ textarea::-webkit-input-placeholder {
 
 	
 
-	function publish() {
+	function publishQuestion() {
 		var topic = $("#topic").val();
 		var questionName = $("#questionName").val();
 		var description = $("#questionDescribe").val();
@@ -276,7 +276,7 @@ textarea::-webkit-input-placeholder {
 		</div>
 		<div style="float: right">
 			<button type="button" class="btn btn-primary"
-				style="margin-top: 30px; margin-right: 10px;" onclick="publish()">发布问题</button>
+				style="margin-top: 30px; margin-right: 10px;" onclick="publishQuestion()">发布问题</button>
 		</div>
 
 

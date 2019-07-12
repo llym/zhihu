@@ -272,6 +272,7 @@
             }
         }
         //发布回复评论的内容
+        
         function publishReply(id) {
         	
         	var commentid=id.getAttribute('co');
