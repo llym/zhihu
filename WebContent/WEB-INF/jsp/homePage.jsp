@@ -245,7 +245,7 @@
     //赞同
     var times1 = 0;
     function like(id) {
-    	alert(id);
+    	//alert(id);
         times1 = times1 + 1;
         var n = $("#like"+id).text();
         if (times1 % 2 != 0) {
@@ -255,7 +255,7 @@
     					},
      			        function(data,status){
      			        //alert(data);
-     			        window.location.reload();
+     			        //window.location.reload();
     			    });
             $("#like"+id).text((parseInt(n) + 1));
             
@@ -266,7 +266,7 @@
     					},
      			        function(data,status){
      			        //alert(data);
-     			        window.location.reload();
+     			        //window.location.reload();
     			    });
             $("#like"+id).text((parseInt(n) - 1));
             
@@ -283,7 +283,7 @@
     			'rcommentid':id
     					},
      			        function(data,status){
-     			        alert(data);
+     			        //alert(data);
      			        //window.location.reload();
     			    });
         } else if (times2 % 2 == 0) {
@@ -293,7 +293,7 @@
     					},
      			        function(data,status){
      			        //alert(data);
-     			        window.location.reload();
+     			        //window.location.reload();
     			    });
             $("#replyLike"+id).text((parseInt(n) - 1));
             
@@ -367,7 +367,7 @@
 			'answerid':answerid
 			    },
 			        function(data,status){
-			        alert(data);
+			        //alert(data);
 			        window.location.reload();
 			    });
        

@@ -132,8 +132,8 @@
         			'queid':a
         					},
          			        function(data,status){
-         			        alert(data);
-         			        //window.location.reload();
+         			        //alert(data);
+         			        window.location.reload();
         			    });
                 
                 
@@ -145,8 +145,8 @@
             			'queid':a
             					},
              			        function(data,status){
-             			        alert(data);
-             			        //window.location.reload();
+             			        //alert(data);
+             			       window.location.reload();
             			    });
             }
 
@@ -171,8 +171,8 @@
     			'content':$("#editor").val()
     					},
      			        function(data,status){
-     			        alert(data);
-     			        //window.location.reload();
+     			        //alert(data);
+     			        window.location.reload();
     			    });
             
         }
@@ -219,7 +219,7 @@
         					},
          			        function(data,status){
          			        //alert(data);
-         			        //window.location.reload();
+         			       	window.location.reload();
         			    });
             } else if ($(".praise"+id).css('color') == 'rgb(0, 0, 255)') {
                 $(".praise"+id).css('color', 'gray');
@@ -230,7 +230,7 @@
         					},
          			        function(data,status){
          			        //alert(data);
-         			        //window.location.reload();
+         			        window.location.reload();
         			    });
             }
         }
@@ -246,7 +246,7 @@
          					},
           			        function(data,status){
           			        //alert(data);
-          			        //window.location.reload();
+          			        window.location.reload();
          			    });
             } else if ($(".praiseReply"+id).css('color') == 'rgb(0, 0, 255)') {
                 $(".praiseReply"+id).css('color', 'gray');
@@ -257,7 +257,7 @@
         					},
          			        function(data,status){
          			        //alert(data);
-         			        //window.location.reload();
+         			        window.location.reload();
         			    });
             }
         }
@@ -314,8 +314,8 @@
     			'queid':queid
     					},
      			        function(data,status){
-     			        alert(data);
-     			        //window.location.reload();
+     			        //alert(data);
+     			       window.location.reload();
     			    });
         }
         //发布对问题的评论
@@ -348,7 +348,7 @@
         			'commentid':id
         					},
          			        function(data,status){
-         			        alert(data);
+         			        //alert(data);
          			        //window.location.reload();
         			    });
             } else if ($(".praise"+id).css('color') == 'rgb(0, 0, 255)') {
@@ -358,7 +358,7 @@
         			'commentid':id
         					},
          			        function(data,status){
-         			        alert(data);
+         			        //alert(data);
          			        //window.location.reload();
         			    });
                 $("#anpraiseNum"+id).text(parseInt(num) - 1);
@@ -373,7 +373,7 @@
          			'rcommentid':id
          					},
           			        function(data,status){
-          			        alert(data);
+          			        //alert(data);
           			        //window.location.reload();
          			    });
                 $(".praiseReply"+id).css('color', 'blue');
@@ -385,7 +385,7 @@
         			'rcommentid':id
         					},
          			        function(data,status){
-         			        alert(data);
+         			        //alert(data);
          			        //window.location.reload();
         			    });
                 $("#anpraiseReplyNum"+id).text(parseInt(num) - 1);
@@ -443,7 +443,7 @@
     			'queid':queid
     					},
      			        function(data,status){
-     			        alert(data);
+     			        //alert(data);
      			        //window.location.reload();
     			    });
         }
@@ -459,7 +459,7 @@
     			'answerid':answerid
     			    },
     			        function(data,status){
-    			        alert(data);
+    			        //alert(data);
     			        window.location.reload();
     			    });
         }
@@ -475,7 +475,7 @@
     			'answerid':id
     					},
      			        function(data,status){
-     			        alert(data);
+     			        //alert(data);
      			        //window.location.reload();
     			    });
         }
@@ -489,7 +489,7 @@
     			'answerid':id
     					},
      			        function(data,status){
-     			        alert(data);
+     			        //alert(data);
      			        //window.location.reload();
     			    });
         }
