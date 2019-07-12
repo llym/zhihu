@@ -324,7 +324,7 @@
          var commentid=id.getAttribute('co');
          var queid=id.getAttribute('uc');
          var text1=$("#text1"+commentid).val();
-        alert(commentid+text1+queid);  
+        //alert(commentid+text1+queid);  
          $.post("insertr.do",
 			    {
         	'commentcontent':text1,
@@ -342,7 +342,7 @@
     	var answerid=id.getAttribute('uc');
         var commentid=id.getAttribute('co');
         var text2=$("#text2"+rcommentid).val();
-        alert(text2+answerid+commentid);
+        //alert(text2+answerid+commentid);
         $.post("insertr.do",
 			    {
         	'commentcontent':text2,
@@ -359,8 +359,8 @@
         var answerid=id.getAttribute('an');
         var commentid=id.getAttribute('uc');
         var text3=$("#text3"+commentid).val();
-       alert(text3);
-       alert(answerid);
+       //alert(text3);
+       //alert(answerid);
        $.post("insert.do",
 			    {
        	'commentcontent':text3,
@@ -378,9 +378,9 @@
     }
     function affirmCreate() {
         var favoritesname = $("#favoritesname").val();
-        alert(favoritesname);
+        //alert(favoritesname);
         var description = $("#description").val();
-        alert(description);
+        //alert(description);
     }
     function writeIdeas() {
         $("[name='testname']").val("xxxxxxxxxxxxxxx");//向模态框中赋值
@@ -447,11 +447,11 @@
     }
     function publishIdea(){
         var idea=$("#idea").val();
-        alert(idea);
+        //alert(idea);
     }
     
     function writeque(id){
-    	alert(id);
+    	//alert(id);
     	window.location.href ='test.do?questionid='+id; //跳转到问题详情界面
     }
     </script>
