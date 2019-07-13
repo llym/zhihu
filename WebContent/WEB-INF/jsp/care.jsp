@@ -275,16 +275,16 @@
     }
     function publishIdea(){
         var idea=$("#idea").val();
-        alert(idea);
+        //alert(idea);
     }
     
     function writeque(id){
-    	alert(id);
+    	//alert(id);
     	window.location.href ='test.do?questionid='+id; //跳转到问题详情界面
     }
     
     function cancel(id){
-    	alert(id);
+    	//alert(id);
     	 $.post("cancelcau.do",
  			    {
  			'queid':id

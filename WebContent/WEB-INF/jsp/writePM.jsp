@@ -256,7 +256,7 @@ function sendpm(id){
 					<div class="tab-pane fade show active" id="v-pills-home"
 						role="tabpanel" aria-labelledby="v-pills-home-tab">
 						<h6 class="mt-4 font-weight-bold text-center">
-							知乎大学小管家<img src="common/image/privateLetter2.png"
+							聊天框<img src="common/image/privateLetter2.png"
 								style="width: 15px; height: 15px;" />
 						</h6>
 

@@ -104,7 +104,7 @@
      			'queid':id
      					},
       			        function(data,status){
-      			       		alert(data)
+      			       		//alert(data)
      						//window.location.reload();
      			    });
         }
